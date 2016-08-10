@@ -1,0 +1,38 @@
+.container {
+	background-color: #8bc34a;
+	margin-top: 60px;
+	border-radius: 7px;
+	box-shadow: 2px 2px rgba(0,0,0,.5);
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin: 10px 0;
+}
+
+.table {
+	margin-top: 15px;
+}
+
+.table > thead > tr > th:first-of-type {	
+	border-top-left-radius: 5px;
+}
+
+.table > thead > tr > th:last-of-type {	
+	border-top-right-radius: 5px;
+}
+
+.table > tbody > tr:last-of-type th {
+	border-bottom-left-radius: 5px;
+}
+
+.table > tbody > tr:last-of-type > td:last-of-type {
+	border-bottom-right-radius: 5px;
+}
+
+.table > thead > tr {
+	background-color: #689f38;
+}
+
+.table > tbody  tr{
+	background-color:#dcedc8;
+}
