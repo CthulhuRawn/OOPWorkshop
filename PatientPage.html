@@ -8,22 +8,11 @@
         <title>EZVet</title>
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+		<script src="js/JavaScript.js"></script>
         <link rel="stylesheet" href="css/bootstrap.css" />
         <link rel="stylesheet" href="css/bootstrap-theme.css" />
         <link rel="stylesheet" href="css/styles.css" />
-        <script>
-                $(document).ready(function(){
-                        $('.dropdown-menu a').on('click', function(){ 
-                                $('.dropdown-toggle').html($(this).html() + '&lt;span class="caret"&gt;&lt;\/span&gt;');    
-                        })
-                        
-                         $('.nav-tabs a').on('click', function (e) {
-                                e.preventDefault();
-                                $(this).tab('show');
-                        })
-                })
-                
-</script>
+        
     </head>
     <body>
         <div class="container">
@@ -37,7 +26,7 @@
                         <label for="exampleInputEmail1">Type</label>
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="true">Type</button>
+                            aria-haspopup="true" aria-expanded="true">Type  <span class="caret"></span></button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="typeDropDown">
                                 <li>
                                     <a href="#">Dog</a>
