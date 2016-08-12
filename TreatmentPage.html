@@ -16,66 +16,53 @@
     </head>
     <body>
         <div class="container">
-            <h2>Patient ID: 123</h2>
+            <h2>Treatment Page</h2>
             <form>
                 <div class="row">
                     <div class="form-group col-sm-4">
                     <label for="exampleInputEmail1">Name</label> 
-                    <input type="text" class="form-control" id="nameInput" placeholder="Name" /></div>
-                    <div class="form-group col-sm-2">
-                        <label for="exampleInputEmail1">Type</label>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="true">Type  <span class="caret"></span></button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="typeDropDown">
-                                <li>
-                                    <a href="#">Dog</a>
-                                </li>
-                                <li>
-                                    <a href="#">Cat</a>
-                                </li>
-                                <li>
-                                    <a href="#">Rabbit</a>
-                                </li>
-                                <li>
-                                    <a href="#">Parrot</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <input type="text" class="form-control" id="nameInput" disabled value="Nalla"/></div>
+                    <div class="form-group col-sm-4">
+                    <label for="exampleInputEmail1">Owner</label> 
+                    <input type="text" class="form-control" id="ownerInput" value="Ron Gal" disabled/></div>
 					<div class="form-group col-sm-2">
 					<label for="exampleInputEmail1">Gender</label>
 					<div>
 					<label class="radio-inline">
-					  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">M
+					  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" disabled>M
 					</label>
 					<label class="radio-inline">
-					  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">F
+					  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked disabled>F
 					</label>
 					</div>
 					</div>
-                    <div class="form-group col-sm-4">
-                    <label for="exampleInputEmail1">Date Of Birth</label> 
-                    <input type="date" class="form-control" id="DOBInput" placeholder="__/___/____" /></div>
+                    <div class="form-group col-sm-2">
+                    <label for="exampleInputEmail1">Age</label> 
+                    <input type="number" class="form-control" id="AgeInput" value="6" disabled/></div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-sm-4">
-                    <label for="exampleInputEmail1">Chip #</label> 
-                    <input type="text" class="form-control" id="chipInput" placeholder="Chip #" /></div>
-                    <div class="form-group col-sm-2">
-                    <label for="exampleInputEmail1">Color</label> 
-                    <input type="text" class="form-control" id="colorInput" placeholder="Color" /></div>
-					<div class="form-group col-sm-2">
-					<label for="exampleInputEmail1">Weight</label> 
-					<div class="input-group">
-						<input type="number" step="any" class="form-control" aria-label="Ammount">
-						<span class="input-group-addon">kg</span>
+					<div class="form-group col-sm-3">
+						<label for="exampleInputEmail1">Weight</label> 
+						<div class="input-group">
+							<input type="number" step="any" class="form-control" aria-label="Ammount">
+							<span class="input-group-addon">kg</span>
 						</div>	
+					</div>	
+                    <div class="form-group col-sm-3">
+                    <label for="exampleInputEmail1">Pulse</label> 
+                    <input type="text" class="form-control" id="chipInput" placeholder="Pulse" /></div>
+                    <div class="form-group col-sm-3">
+                    <label for="exampleInputEmail1">Blood Pressure</label> 
+                    <input type="text" class="form-control" id="colorInput" placeholder="Blood Pressure	" /></div>
+					
+                    <div class="form-group col-sm-3">
+						<label for="exampleInputEmail1">Temprature</label> 
+						<div class="input-group">
+							<input type="number" step="any" class="form-control" aria-label="Ammount">
+							<span class="input-group-addon">°C</span>
 						</div>	
-                    <div class="form-group col-sm-4">
-                    <label for="exampleInputEmail1">Owner</label> 
-                    <input type="text" class="form-control" id="ownerInput" placeholder="Owner" /></div>
-                </div>
+					</div>	
+					</div>
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <button type="submit" class="btn btn-lg btn-primary pull-right">Save</button>
@@ -95,44 +82,36 @@
                     <li role="presentation">
                         <a href="#medicationsTab">Medications</a>
                     </li>
-					<li role="presentation">
-                        <a href="#historyTab">History</a>
-                    </li>
                 </ul>
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="treatmentsTab">
-                    <table class="table table-striped table-hover">
+                    <table id="TreatmentsTable" class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Treatment Date</th>
+                                <th></th>
                                 <th>Treatment Name</th>
                                 <th>Treatment Price</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>01.07.2016</td>
+                                <td></td>
                                 <td>Eye surgery</td>
                                 <td>10$</td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>01.08.2016</td>
+                                <td></td>
                                 <td>Ear surgery</td>
                                 <td>10$</td>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
-                                <td>01.09.2016</td>
+                                <td></td>
                                 <td>Sterilization</td>
                                 <td>20$</td>
                             </tr>
                             <tr>
-                                <th scope="row">4</th>
-                                <td>01.10.2016</td>
+                                <td></td>
                                 <td>visit</td>
                                 <td>30$</td>
                             </tr>
@@ -140,99 +119,86 @@
                     </table>
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            <button type="submit" class="btn btn-primary pull-right">Add</button>
+                            <button type="submit" class="btn btn-primary pull-right" onclick="addRow('TreatmentsTable',this)" id="TreatmentsButton">Add</button>
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane" id="vaccinesTab">
-                    <table class="table table-striped table-hover">
+                    <table id="VaccinesTable" class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Vaccine Date</th>
+                                <th></th>
                                 <th>Vaccine Name</th>
                                 <th>Vaccine Price</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>01.07.2016</td>
+                                <td></td>
                                 <td>Rabis</td>
                                 <td>100$</td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>01.08.2016</td>
+                                <td></td>
                                 <td>HexaVaccine</td>
                                 <td>200$</td>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
-                                <td>01.09.2016</td>
+                                <td></td>
                                 <td>Hepatitis</td>
                                 <td>300$</td>
                             </tr>
                             <tr>
-                                <th scope="row">4</th>
-                                <td>01.10.2016</td>
+                                <td></td>
                                 <td>PPV</td>
                                 <td>100$</td>
                             </tr>
                         </tbody>
                     </table>
+					<div class="row">
+                        <div class="form-group col-sm-12">
+                            <button type="submit" class="btn btn-primary pull-right" onclick="addRow('VaccinesTable',this)" id="VaccinesButton">Add</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane" id="medicationsTab">
-                    <table class="table table-striped table-hover">
+                    <table id="MedicationsTable" class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th></th>
                                 <th>Medication Name</th>
                                 <th>Dose</th>
-                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
+                                <td></td>
                                 <td>Acamol</td>
                                 <td>When required</td>
-                                <td>01.07.2016</td>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
+								<td></td>
                                 <td>Optalgin</td>
                                 <td>1/week</td>
-                                <td>01.08.2016</td>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
+                                <td></td>
                                 <td>Antibiotics</td>
                                 <td>2/day</td>
-                                <td>01.09.2016</td>
                             </tr>
                             <tr>
-                                <th scope="row">4</th>
+                                <td></td>
                                 <td>Veritaserum</td>
                                 <td>1/day</td>
-                                <td>01.10.2016</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-				<div class="tab-pane" id="historyTab">
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="exampleInputEmail1">History</label> 
-							<textarea style="width:100%" rows="10"></textarea>
-						</div>
-					</div>
 					<div class="row">
                         <div class="form-group col-sm-12">
-                            <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            <button type="submit" class="btn btn-primary pull-right" onclick="addRow('MedicationsTable',this)" id="MedicationButton">Add</button>
                         </div>
                     </div>
-				</div>
+                </div>
 			</div>
         </div>
     </body>
