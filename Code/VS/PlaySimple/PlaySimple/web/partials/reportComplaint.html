@@ -1,0 +1,95 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1 class="pageTitle">דוח תלונות</h1>
+    </div>
+</div>
+		
+<div class="row page">
+ 	<div class="col-sm-12 searchPanel">
+		<form class="form-horizontal" name="reportComplaintForm" ng-submit="submitSearch(reportComplaintForm.$valid)" novalidate>
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : reportComplaintForm.fromDate.$invalid && submitted }"
+                        moment-picker="model.fromDate"
+                        locale="he"
+                        format="l"
+                        min-view="year"
+                        max-view="month"
+                        autoclose="true">
+                        <label>מתאריך</label>
+                        <input name="fromDate" class="form-control" type="text" ng-model="model.fromDate" past psdate empty-to-null
+                               ng-model-options="{ updateOn: 'blur' }" />
+                        <div class="callout up three-errors" ng-show="reportComplaintForm.fromDate.$invalid && submitted">
+                            <div ng-show="reportComplaintForm.fromDate.$error.psdate && submitted">יש להזין תאריך בפורמט MM/DD/YYYY</div>
+                            <div ng-show="reportComplaintForm.fromDate.$error.past && submitted">יש להזין תאריך עבר</div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-offset-1 col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : reportComplaintForm.untilDate.$invalid && submitted }"
+                        moment-picker="model.untilDate"
+                        locale="he"
+                        format="l"
+                        min-view="year"
+                        max-view="month"
+                        autoclose="true">
+                        <label>עד תאריך</label>
+                        <input name="untilDate" class="form-control" type="text" ng-model="model.untilDate" required past psdate empty-to-null
+                              ng-model-options="{ updateOn: 'blur' }" />
+                        <div class="callout up three-errors" ng-show="reportComplaintForm.untilDate.$invalid && submitted">
+                            <div ng-show="reportComplaintForm.untilDate.$error.required && submitted">יש להזין תאריך</div>
+                            <div ng-show="reportComplaintForm.untilDate.$error.psdate && submitted">יש להזין תאריך בפורמט MM/DD/YYYY</div>
+                            <div ng-show="reportComplaintForm.untilDate.$error.past && submitted">יש להזין תאריך עבר</div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-offset-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>סוג</label>
+                        <select class="form-control" ng-model="model.complaintType" ng-options="type.id as type.name for type in types">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <button type="submit" class="btn btn-primary btn-block btn-search">חפש</button>
+                </div>
+            </div>				
+		</form>
+	</div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group text-danger" ng-show="reportComplaintForm.$invalid && submitted" ng-class="{ 'has-error' : reportComplaintForm.$invalid && submitted }">
+                <p class="form-control-static">יש לתקן את השגיאות בשדות האדומים</p>
+            </div>
+        </div>
+    </div>		
+    <div class="searchResults">
+        <table class="table table-hover searchTable scrollableTable">
+            <thead>
+            <th ng-click="sortBy('CustomerId')" style="width: 10%">
+                <span class="sortorder" ng-show="propertyName === 'CustomerId'" ng-class="{reverse: reverse}"></span>מזהה
+            </th>
+            <th ng-click="sortBy('FirstName')" style="width: 20%">
+                <span class="sortorder" ng-show="propertyName === 'FirstName'" ng-class="{reverse: reverse}"></span>שם פרטי
+            </th>
+            <th ng-click="sortBy('LastName')" style="width: 20%">
+                <span class="sortorder" ng-show="propertyName === 'LastName'" ng-class="{reverse: reverse}"></span>שם משפחה
+            </th>
+            <th ng-click="sortBy('NumberOfComplaints')" class="centeredCell" style="width: 20%">
+                <span class="sortorder" ng-show="propertyName === 'NumberOfComplaints'" ng-class="{reverse: reverse}"></span>תלונות
+            </th>
+            <th style="width: 30%">פעולות</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in results | orderBy:propertyName:reverse">
+                    <td style="width: 10%">{{row.CustomerId}}</td>
+                    <td style="width: 20%">{{row.FirstName}}</td>
+                    <td style="width: 20%">{{row.LastName}}</td>
+                    <td class="centeredCell" style="width: 20%">{{row.NumberOfComplaints}}</td>
+                    <td style="width: 30%"><a href="#/editCustomer/{{row.CustomerId}}">צפה בתלונות</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

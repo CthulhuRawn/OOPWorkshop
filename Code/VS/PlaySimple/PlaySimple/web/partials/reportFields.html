@@ -1,0 +1,102 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1 class="pageTitle">דוח שימוש במגרשים</h1>
+    </div>
+</div>
+
+<div class="row page">
+    <div class="col-sm-12 searchPanel clearfix">
+        <form class="form-horizontal">
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'>
+                        <label>מזהה מגרש</label>
+                        <input class="form-control" type="number" ng-model="model.fieldId" />
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>שם מגרש</label>
+                        <input class="form-control" type="text" ng-model="model.fieldName" empty-to-null />
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'
+                        moment-picker="model.fromDate"
+                        locale="he"
+                        format="l"
+                        min-view="year"
+                        max-view="month"
+                        autoclose="true">
+                        <label>מתאריך</label>
+                        <input class="form-control" type="text" ng-model="model.fromDate" empty-to-null
+                               ng-model-options="{ updateOn: 'blur' }" />
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'
+                        moment-picker="model.untilDate"
+                        locale="he"
+                        format="l"
+                        min-view="year"
+                        max-view="month"
+                        autoclose="true">
+                        <label>עד תאריך</label>
+                        <input class="form-control" type="text" ng-model="model.untilDate" empty-to-null
+                               ng-model-options="{ updateOn: 'blur' }" />
+                    </div>
+                </div>
+
+                <div class="col-sm-push-5 col-sm-1">
+                    <button type="submit" class="btn btn-primary btn-block btn-search" ng-click="submitSearch()">חפש</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="searchResults">
+        <table class="table table-hover searchTable scrollableTable">
+            <thead>
+                <th ng-click="sortBy('FieldId')" style="width: 12.5%">
+                    <span class="sortorder" ng-show="propertyName === 'FieldId'" ng-class="{reverse: reverse}"></span>מזהה
+                </th>
+                <th ng-click="sortBy('FieldName')" style="width: 12.5%">
+                    <span class="sortorder" ng-show="propertyName === 'FieldName'" ng-class="{reverse: reverse}"></span>שם
+                </th>
+                <th ng-click="sortBy('WeekDayOrders')" style="width: 12.5%">
+                    <span class="sortorder" ng-show="propertyName === 'WeekDayOrders'" ng-class="{reverse: reverse}"></span>ימי חול
+                </th>
+                <th ng-click="sortBy('WeekEndOrders')" style="width: 12.5%">
+                    <span class="sortorder" ng-show="propertyName === 'WeekEndOrders'" ng-class="{reverse: reverse}"></span>סוף שבוע
+                </th>
+                <th ng-click="sortBy('hours16_18Orders')" style="width: 12.5%">
+                    <span class="sortorder" ng-show="propertyName === 'hours16_18Orders'" ng-class="{reverse: reverse}"></span>16:00-18:00
+                </th>
+                <th ng-click="sortBy('hours18_20Orders')" style="width: 12.5%">
+                    <span class="sortorder" ng-show="propertyName === 'hours18_20Orders'" ng-class="{reverse: reverse}"></span>18:00-20:00
+                </th>
+                <th ng-click="sortBy('hours20_22Orders')" style="width: 12.5%">
+                    <span class="sortorder" ng-show="propertyName === 'hours20_22Orders'" ng-class="{reverse: reverse}"></span>20:00-22:00
+                </th>
+                <th style="width: 12.5%">
+                    פעולות
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in results | orderBy:propertyName:reverse">
+                    <td style="width: 12.5%">{{row.FieldId}}</td>
+                    <td style="width: 12.5%">{{row.FieldName}}</td>
+                    <td style="width: 12.5%">{{row.WeekDayOrders}}</td>
+                    <td style="width: 12.5%">{{row.WeekEndOrders}}</td>
+                    <td style="width: 12.5%">{{row.hours16_18Orders}}</td>
+                    <td style="width: 12.5%">{{row.hours18_20Orders}}</td>
+                    <td style="width: 12.5%">{{row.hours20_22Orders}}</td>
+                    <td style="width: 12.5%"><a href="#/editField/{{row.FieldId}}">עבור לדף המגרש</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,307 @@
+/* ==== Palette ==== */
+
+.dark-primary-color    { background: #689F38; }
+.default-primary-color { background: #8BC34A; }
+.light-primary-color   { background: #DCEDC8; }
+.text-primary-color    { color: #212121; }
+.accent-color          { background: #03A9F4; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #727272; }
+.divider-color         { border-color: #B6B6B6; }
+
+/* ==== Main styles ==== */
+
+html, body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	direction: rtl;
+	width: 1024px;
+	height: 728px;
+	margin: 0 auto;
+	background-color: #FCFDFD;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* ==== Layout ==== */
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.pageContainer {
+	height: 100%;
+	margin-right: 3%;
+	position: relative;
+}
+
+.fullLine {
+    width: 100%;
+    display: block;
+    float: right;
+}
+
+.fieldContainer {
+	margin-bottom: 10px;
+	float: right;
+	padding-left: 3%;
+}
+
+.fieldContainer label {
+	display:inline-block;
+}
+
+.fieldContainer.onePerRow {
+	width: 100%;
+}
+
+.fieldContainer.threePerRow {
+	width: 33.3333%;
+}
+
+.fieldContainer.threePerRow label{
+	width: 40%;
+}
+
+.fieldContainer.threePerRow input, .fieldContainer.threePerRow select{
+	width: 60%;
+}
+
+.fieldContainer.threePerRow input[type="button"] {
+	width:40%;
+}
+
+.newLine {
+	clear: both;
+}
+
+.pullLeft {
+	float: left;
+}
+
+.padLeft {
+	margin-left:10px;
+}
+/* ==== Buttons ==== */
+
+.btn {
+	float:left;
+    background-color: #0BA5EA;
+    border: 0;
+    border-radius: 5px;
+    min-width: 90px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.btn:not(:first-of-type) {
+	margin-left: 10px;
+}
+
+.btn:active {
+	box-shadow: inset 0 0 3px #000000;
+}
+
+.btn-danger {
+	background-color: #d9534f;
+}
+
+.btn-secondary {
+	background-color: #b6b6b6;
+}
+
+/* ==== Headers ==== */
+
+h1.pageTitle {
+    background-color: #4399C7;
+    color: #212121;
+	padding-right: 25px;
+	text-shadow: 0px 1px white;
+    margin-top: 10px;	
+}
+
+/* ==== Tables ==== */
+
+.searchTable {
+	/*font-family:"Lucida Sans Unicode", "Lucida Grande", Sans-Serif;*/
+	/*font-size:12px;*/
+	background:#fff;
+	width:480px;
+	border-collapse:collapse;
+	text-align:left;
+	width: 100%;
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+
+.searchTable th:first-of-type {
+	border-top-right-radius: 10px;
+}
+
+.searchTable th:last-of-type {
+	border-top-left-radius: 10px;
+}
+
+.searchTable tr:last-of-type td:last-of-type {
+	border-bottom-left-radius: 10px;
+}
+
+.searchTable tr:last-of-type td:first-of-type {
+	border-bottom-right-radius: 10px;
+}
+
+.searchTable th {
+	font-size:16px;
+	font-weight:bold;
+	color:#039;
+	border-bottom:2px solid #6678b1;
+	padding:10px 8px;
+	text-align:right;
+}
+
+.searchTable tr:nth-child(even) {
+	background-color: #eee;
+}
+
+.searchTable tbody tr:hover {
+	background-color: #CCC;
+}
+
+.searchTable td {
+	border-bottom:1px solid #ccc;
+	color:#669;
+	padding:6px 8px;
+	text-align:right;
+}
+
+.searchTable tbody tr td:first-of-type {
+	text-align:center;
+	width: 5%;
+}
+
+.searchTable tbody tr:hover td {
+	color:#009;
+}
+
+.searchTable .centeredCell {
+	text-align:center;
+}
+
+.searchTable .smallCell {
+	width: 10%;
+}
+
+.searchTable .mediumCell {
+	width: 13%;
+}
+
+.searchTable .largeCell {
+	width: 15%;
+}
+
+.searchTable .tableAction {
+	cursor: pointer;
+	text-decoration: underline;
+}
+/* ==== General Page Styles ==== */
+
+.page {
+    background-color: #B4D0DC;
+    padding: 20px 15px 5px 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;	
+}
+
+.appLinks {
+	margin-top: 10px;
+}
+
+.appLinks a {
+    background-color: transparent;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    border-left: 1px solid black;
+    transition: box-shadow 0.5s ease-in;
+}
+
+.appLinks a:hover {
+	box-shadow: inset 0 0 3px #000000;
+}
+
+.appLinks a:last-of-type {
+	border-left: 0;
+}
+
+.searchPanel {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #b6b6b6;
+}
+
+/* ==== Forms ==== */
+
+fieldset {
+	border: 2px solid #b6b6b6;
+    border-radius: 10px;
+    padding-top: 10px;
+	margin-bottom: 10px;	
+}
+
+textarea {
+	resize: none;
+	height: 100px;
+}
+
+input[type="radio"], input[type="checkbox"]{
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+input[type="radio"], input[type="checkbox"] {
+	margin-left: 5px;
+}
+
+input[type="radio"] + span:not(:last-of-type), input[type="checkbox"] + span:not(:last-of-type) {
+	margin-left:15px;
+}
+
+.horizontalFieldsetPadding {
+	padding-left: calc(3% + 10px);
+	padding-right: calc(3% + 10px);
+}
+
+/* ==== Login Form ==== */
+
+.loginForm {
+	width: 400px;
+	position: absolute;
+	right: 50%;
+	top: 20%;
+	transform: translateX(50%);
+}
+
+.loginForm fieldset {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.loginForm .fieldContainer label {
+	display:inline-block;
+	width: 20%;
+}
+
+.loginForm  .fieldContainer input {
+	width: 80%;
+}

@@ -1,0 +1,101 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1 class="pageTitle">חיפוש לקוחות</h1>
+    </div>
+</div>
+	
+<div class="row page">
+	<div class="col-sm-12 searchPanel">
+		<form class="form-horizontal">
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'>
+                        <label for="user_title">שם פרטי</label>
+                        <input class="form-control" type="text" ng-model="model.firstName" empty-to-null />
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>שם משפחה</label>
+                        <input class="form-control" type="text" ng-model="model.lastName" empty-to-null />
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'>
+                        <label for="user_title">מגיל</label>
+                        <input class="form-control" type="number" ng-model="model.minAge" />
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>עד גיל</label>
+                        <input class="form-control" type="number" ng-model="model.maxAge" />
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'>
+                        <label>מגורים</label>
+                        <select class="form-control" ng-model="model.regionId" ng-options="type.id as type.name for type in types">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>מזהה</label>
+                        <input class="form-control"  type="number" ng-model="model.customerId" />
+                    </div>
+                </div>
+                <div class="col-sm-push-5 col-sm-1">
+                    <button type="submit" class="btn btn-primary btn-block btn-search" ng-click="submitSearch()">חפש</button>
+                </div>
+            </div>			
+		</form>
+	</div>
+    <div class="searchResults">
+        <table class="table table-hover searchTable scrollableTable">
+            <thead>
+                <th ng-click="sortBy('Id')" class="col-sm-2">
+                    <span class="sortorder" ng-show="propertyName === 'Id'" ng-class="{reverse: reverse}"></span>מזהה
+                </th>
+                <th ng-click="sortBy('FirstName')" class="col-sm-2">
+                    <span class="sortorder" ng-show="propertyName === 'FirstName'" ng-class="{reverse: reverse}"></span>שם פרטי
+                </th>
+                <th ng-click="sortBy('LastName')" class="col-sm-2">
+                    <span class="sortorder" ng-show="propertyName === 'LastName'" ng-class="{reverse: reverse}"></span>שם משפחה
+                </th>
+                <th ng-click="sortBy('BirthDate')" class="col-sm-2">
+                    <span class="sortorder" ng-show="propertyName === 'BirthDate'" ng-class="{reverse: reverse}"></span>גיל
+                </th>
+                <th ng-click="sortBy('Region')" class="col-sm-2">
+                    <span class="sortorder" ng-show="propertyName === 'Region'" ng-class="{reverse: reverse}"></span>מגורים
+                </th>
+                <th class="col-sm-2">
+                    פעולות
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in results | orderBy:propertyName:reverse">
+                    <td class="col-sm-2">{{row.Id}}</td>
+                    <td class="col-sm-2">{{row.FirstName}}</td>
+                    <td class="col-sm-2">{{row.LastName}}</td>
+                    <td class="col-sm-2">{{row.BirthDate | ageFilter}}</td>
+                    <td class="col-sm-2">
+                        <div ng-repeat="regionType in types">
+                            <div ng-if="regionType.id == row.Region">
+                                {{regionType.name}}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-sm-2"><a href="#/editCustomer/{{row.Id}}">עבור לדף לקוח</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

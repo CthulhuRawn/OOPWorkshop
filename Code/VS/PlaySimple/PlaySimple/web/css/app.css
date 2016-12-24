@@ -1,0 +1,235 @@
+/* ==== Main styles ==== */
+
+html, body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	direction: rtl;
+	background-color: #FCFDFD;
+}
+
+body, .container {
+    min-width: 992px;
+}
+
+.appLinks {
+    margin-top: 30px;
+    display: none;
+}
+
+.page {
+    background-color: #B4D0DC;
+    padding: 0 15px 5px 15px;
+    background-clip: content-box;
+}
+
+.searchPanel {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #b6b6b6;
+    padding: 15px 35px 15px 15px;
+}
+
+.editPanel {
+    padding: 15px 35px 15px 15px;
+}
+
+.searchResults {
+    padding: 0 25px 0 15px;
+}
+
+.centeredCell {
+    text-align:center;
+}
+
+/* ==== Table styles ==== */
+
+.table>thead>tr>th {
+    border-bottom:2px solid #6678b1;
+}
+
+.searchTable {
+    background:#fff;
+	border-radius: 5px;
+}
+
+.searchTable caption {
+    padding-right: 8px;
+    color: rgb(51,51,51);
+    font-weight: bold;
+}
+
+.searchTable th:first-of-type, .searchTable th:last-of-type, 
+.searchTable tr:last-of-type td:last-of-type, .searchTable tr:last-of-type td:first-of-type {
+	border-top-right-radius: inherit;
+}
+
+.searchTable tr:nth-child(even) {
+	background-color: #eee;
+}
+
+.searchTable tbody tr:hover {
+	background-color: #CCC;
+}
+
+.sortorder.reverse:after {
+    content: '\25b2';
+}
+
+.sortorder:after {
+    content: '\25bc';
+}
+
+.scrollableTable thead, .scrollableTable tbody { 
+    display: block; 
+}
+
+.scrollableTable > thead > tr th:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.scrollableTable > thead > tr,
+.scrollableTable > tbody > tr {
+    display: block;
+    overflow: hidden;
+}
+
+.scrollableTable > thead > tr th,
+.scrollableTable > tbody > tr td {
+    display: inline-block;
+    float: right;
+}
+
+.scrollableTable tbody {
+    height: 300px;
+    overflow-y: auto;    
+    overflow-x: hidden;  
+}
+
+/* ==== Form styles ==== */
+
+.btn {
+    font-size: 1.2em;
+}
+
+.searchPanel .btn {
+    font-size: 1em;
+}
+
+.btn-search {
+    margin-top: 26px;
+}
+
+textarea.form-control {
+	resize: none;
+	height: 100px;
+}
+
+
+.form-errors {
+    padding-right: 25px;
+    background-color: rgb(240,240,240); 
+}
+
+
+select:not(:focus):not(.ng-valid) + .callout:not(:hover),
+input:not(:focus):not(.ng-valid) + .callout:not(:hover) {
+	transform: scale(0);
+}
+
+.callout {	
+	position: absolute;
+	max-width: 14em;
+	padding: .6em .8em;
+	border-radius: .3em;
+	margin: .3em 0 0 -.2em;
+	background: #fed;
+	border: 1px solid rgba(0,0,0,.3);
+	box-shadow: .05em .2em .6em rgba(0,0,0,.2);
+    font-size: .9em;
+    z-index: 2;
+    margin-right: 5px;
+}
+
+.callout:before {
+	content: "";
+	position: absolute;
+	top: -.4em;
+	right: 1em;
+	padding: .35em;
+	background: inherit;
+	border: inherit;
+	border-right: 0;
+	border-bottom: 0;
+	transform: rotate(45deg);
+}
+
+.callout.up {
+    top: -1.3em;
+}
+
+.callout.up:before {
+	transform: rotate(225deg);
+    top: initial;
+	bottom: -.4em;
+}
+
+.callout.two-errors {
+    top: -2.3em;
+}
+
+.callout.three-errors {
+    top: -3.3em;
+}
+
+.callout.four-errors {
+    top: -4.3em;
+}
+
+/* ==== Headers  ==== */
+
+h1.pageTitle {
+    background-color: #4399C7;
+    color: #212121;
+	text-shadow: 0px 1px white;
+    margin: 20px 0;
+    padding-right: 15px;
+}
+
+/* ==== Login  ==== */
+
+.loginForm {
+	width: 600px;
+	position: absolute;
+	right: 50%;
+	top: 20%;
+	transform: translateX(50%);
+
+    border: 2px solid #b6b6b6;
+    border-radius: 10px;
+    
+    padding: 15px;
+}
+
+.loginForm .form-group:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ==== Datepicker styles ==== */
+
+.moment-picker .header-view th:first-child, .moment-picker .header-view th:last-child {
+    transform:rotate(180deg);
+}
+
+/* ==== Spinner styles ==== */
+
+.spinner-container {
+    display: none;
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    background-color: rgba(0,0,0,0);
+}

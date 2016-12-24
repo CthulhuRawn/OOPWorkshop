@@ -1,0 +1,124 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1 class="pageTitle">הרשמה</h1>
+    </div>
+</div>
+
+<div class="row page">
+    <div class="col-sm-12 editPanel">
+        <form class="form-horizontal" name="userForm" ng-submit="submitCustomer(userForm.$valid)" novalidate>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : userForm.username.$invalid && submitted }">
+                        <label>שם משתמש</label>
+                        <input name="username" class="form-control" type="text" ng-model="model.Username" required ng-maxlength="20" />
+                        <div class="callout" ng-show="userForm.username.$invalid && submitted">
+                            <div ng-show="userForm.username.$error.required && submitted">יש להזין שם משתמש</div>
+                            <div ng-show="userForm.username.$error.maxlength && submitted">שם משתמש חייב להיות קטן מ-20 תווים</div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-offset-1 col-sm-3' ng-class="{ 'has-error' : userForm.password.$invalid && submitted }">
+                    <div class='form-group'>
+                        <label>סיסמה</label>
+                        <input name="password" class="form-control" type="password" ng-model="model.Password" required equals="{{verifiedPassword}}" />
+                        <div class="callout" ng-show="userForm.password.$invalid && submitted">
+                            <div ng-show="userForm.password.$error.required && submitted">יש להזין סיסמה</div>
+                            <div ng-show="userForm.password.$error.equals && submitted">הסיסמאות אינן מתאימות</div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3' ng-class="{ 'has-error' : userForm.verifyPassword.$invalid && submitted }">
+                    <div class='form-group'>
+                        <label>אימות סיסמה</label>
+                        <input name="verifyPassword" class="form-control" type="password" ng-model="verifiedPassword" required equals="{{model.Password}}" />
+                        <div class="callout" ng-show="userForm.verifyPassword.$invalid && submitted">
+                            <div ng-show="userForm.verifyPassword.$error.required && submitted">יש להזין סיסמה שוב</div>
+                            <div ng-show="userForm.verifyPassword.$error.equals && submitted">הסיסמאות אינן מתאימות</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : userForm.firstName.$invalid && submitted }">
+                        <label>שם פרטי</label>
+                        <input name="firstName" class="form-control" type="text" ng-model="model.FirstName" required ng-maxlength="20" />
+                        <div class="callout" ng-show="userForm.firstName.$invalid && submitted">
+                            <div ng-show="userForm.firstName.$error.required && submitted">יש להזין שם פרטי</div>
+                            <div ng-show="userForm.firstName.$error.maxlength && submitted">שם פרטי חייב להיות קטן מ-20 תווים</div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-offset-1 col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : userForm.lastName.$invalid && submitted }">
+                        <label>שם משפחה</label>
+                        <input name="lastName" class="form-control" type="text" ng-model="model.LastName" required ng-maxlength="20" />
+                        <div class="callout" ng-show="userForm.lastName.$invalid && submitted">
+                            <div ng-show="userForm.lastName.$error.required && submitted">יש להזין שם משפחה</div>
+                            <div ng-show="userForm.lastName.$error.maxlength && submitted">שם משפחה חייב להיות קטן מ-20 תווים</div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : userForm.email.$invalid && submitted }">
+                        <label>אימייל</label>
+                        <input name="email" class="form-control" type="email" ng-model="model.Email" required />
+                        <div class="callout" ng-show="userForm.email.$invalid && submitted">
+                            <div ng-show="userForm.email.$error.required && submitted">יש להזין אימייל</div>
+                            <div ng-show="userForm.email.$error.email && submitted">כותבת אימייל אינה חוקית</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : userForm.birthDate.$invalid && submitted }"
+                               moment-picker="model.BirthDate"
+                               locale="he"
+                               format="l"
+                               min-view="year"
+                               max-view="month"
+                               autoclose="true"
+                               today="true">
+                        <label>תאריך לידה</label>
+                        <input name="birthDate" class="form-control" empty-to-null
+                               required past psdate ng-model="model.BirthDate"
+                               ng-model-options="{ updateOn: 'blur' }">
+                        <div class="callout up three-errors" ng-show="userForm.birthDate.$invalid && submitted">
+                            <div ng-show="userForm.birthDate.$error.required && submitted">יש להזין תאריך לידה</div>
+                            <div ng-show="userForm.birthDate.$error.psdate && submitted">יש להזין תאריך בפורמט DD/MM/YYYY</div>
+                            <div ng-show="userForm.birthDate.$error.past && submitted">יש להזין תאריך בעבר</div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-offset-1 col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : userForm.region.$invalid && submitted }">
+                        <label>מגורים</label>
+                        <select required name="region" class="form-control" ng-model="model.Region" 
+                                         ng-options="type.id as type.name for type in regionTypes">
+                        </select>
+                        <div class="callout up" ng-show="userForm.region.$invalid && submitted">
+                            <div ng-show="userForm.region.$error.required && submitted">יש לבחור אזור מגורים</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-push-3 col-sm-1" style="margin-right: 15px">
+                    <button type="submit" class="btn btn-primary btn-block btn-search">הירשם</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group form-errors text-danger" ng-show="userForm.$invalid && submitted" ng-class="{ 'has-error' : userForm.$invalid && submitted }">
+            <p class="form-control-static">יש לתקן את השגיאות בשדות האדומים</p>
+        </div>
+    </div>
+</div>

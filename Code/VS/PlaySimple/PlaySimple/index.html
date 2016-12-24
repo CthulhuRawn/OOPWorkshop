@@ -1,0 +1,101 @@
+﻿<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title>Play Simple</title>
+    <link rel="stylesheet" href="web/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="web/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="web/css/bootstrap-rtl.css" />
+    <link rel="stylesheet" href="web/css/angular-moment-picker.min.css">
+    <link rel="stylesheet" href="web/css/toaster.css">
+    <link rel="stylesheet" href="web/css/app.css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+
+<body> 
+    <div class="container">
+        <nav class="appLinks" ng-class="{'show': !sharedVariables.isLogin}">
+            <ul class="nav nav-pills">
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchAvailableOrders'}" ng-show="sharedVariables.role == 'Customer'">
+                    <a href="#/searchAvailableOrders">הזמן</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'ownedOrders'}" ng-show="sharedVariables.role == 'Customer'">
+                    <a href="#/ownedOrders">צפה בהזמנות</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'pendingOrdersToJoin'}" ng-show="sharedVariables.role == 'Customer'">
+                    <a href="#/pendingOrdersToJoin">בקשות ההצטרפות שלי</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchAvailableOrdersToJoin'}" ng-show="sharedVariables.role == 'Customer'">
+                    <a href="#/searchAvailableOrdersToJoin">הצטרף למגרש</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchOrders'}" ng-show="sharedVariables.role == 'Employee'">
+                    <a href="#/searchOrders">צפייה בהזמנות</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchCustomers'}">
+                    <a href="#/searchCustomers">חיפוש לקוחות</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'editField'}" ng-show="sharedVariables.role == 'Admin' || sharedVariables.role == 'Employee'">
+                    <a href="#/editField">צור מגרש</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchEmployees'}" ng-show="sharedVariables.role == 'Admin'">
+                    <a href="#/searchEmployees" ng-show="sharedVariables.role == 'Admin'">חיפוש עובדים</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'editEmployee'}" ng-show="sharedVariables.role == 'Admin'">
+                    <a href="#/editEmployee" ng-show="sharedVariables.role == 'Admin'">צור עובד</a>
+                </li>
+                <li uib-dropdown role="presentation" ng-class="{active: $route.current.activetab.startsWith('report')}" class="dropdown"
+                    ng-show="sharedVariables.role == 'Admin' || sharedVariables.role == 'Employee'">
+                    <a uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> הפקת דוחות <span class="caret"></span> </a>
+                    <ul uib-dropdown-menu class="dropdown-menu">
+                        <li ng-class="{active: $route.current.activetab == 'reportCustomer'}"><a href="#/reportCustomer">פעילות לקוח</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportComplaint'}"><a href="#/reportComplaint" ng-show="sharedVariables.role == 'Admin'">תלונות</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportFields'}"><a href="#/reportFields">שימוש במגרשים</a></li>
+                    </ul>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'editMyCustomer'}" ng-show="sharedVariables.role == 'Customer'">
+                    <a href="#/editMyCustomer/{{sharedVariables.userId}}">הפרטים שלי</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="" ng-click="logout()">התנתק</a>
+                </li>
+            </ul>
+        </nav>
+        <div ng-view>
+        </div>
+    </div>
+    <div class="spinner-container" ng-class="{'show': spinnerActive}">
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner"></span>
+    </div>
+    <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}">
+
+    </toaster-container>
+
+    <script src="web/lib/angular/angular.js"></script>
+    <script src="web/lib/angular/angular-route.js"></script>
+    <script src="web/lib/angular/angular-animate.js"></script>
+
+    <script src="web/js/app.js"></script>
+    <script src="web/js/services.js"></script>
+    <script src="web/js/filters.js"></script>
+    <script src="web/js/directives.js"></script>
+    <script src="web/js/customerControllers.js"></script>
+    <script src="web/js/employeeControllers.js"></script>
+    <script src="web/js/fieldControllers.js"></script>
+    <script src="web/js/loginControllers.js"></script>
+    <script src="web/js/ordersControllers.js"></script>
+    <script src="web/js/reportControllers.js"></script>
+
+    <script src="web/lib/ui-bootstrap-2.1.3.js"></script>
+    <script src="web/lib/ui-bootstrap-tpls-2.1.3.js"></script>
+
+    <script src="web/lib/moment-with-locales.js"></script>
+    <script src="web/lib/angular-moment-picker.min.js"></script>
+
+    <script src="web/lib/spin.min.js"></script>
+    <script src="web/lib/angular-spinner.js"></script>
+
+    <script src="web/lib/toaster.js"></script>
+</body>
+</html>

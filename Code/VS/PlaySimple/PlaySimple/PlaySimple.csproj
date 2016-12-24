@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{306E6619-6FA8-49E7-8F6E-B489199F4E15}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlaySimple</RootNamespace>
+    <AssemblyName>PlaySimple</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LinqKit.EntityFramework, Version=1.1.8.0, Culture=neutral, PublicKeyToken=b6c8cfc71f7a6a80, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqKit.EntityFramework.1.1.8.0\lib\net451\LinqKit.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi.WebHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.WebHost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SQLite, Version=1.0.101.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.101.0\lib\net451\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.101.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.101.0\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.101.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.101.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Common\DateTimeParameterBinding.cs" />
+    <Compile Include="Common\DateUtils.cs" />
+    <Compile Include="Common\NinjectConfigurator.cs" />
+    <Compile Include="Common\NinjectDependencyResolver.cs" />
+    <Compile Include="Common\PlaySimpleDateConverter.cs" />
+    <Compile Include="Controllers\ComplaintsController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ParticipantsController.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="DTOs\CustomerUpdateResponse.cs" />
+    <Compile Include="DTOs\EmployeeResponse.cs" />
+    <Compile Include="DTOs\LoginResponse.cs" />
+    <Compile Include="DTOs\RegistrationReponse.cs" />
+    <Compile Include="DTOs\UserCredentials.cs" />
+    <Compile Include="DTOs\UsingFieldsReport.cs" />
+    <Compile Include="Filters\AllowCORS.cs" />
+    <Compile Include="Filters\TransactionFilterAttribute.cs" />
+    <Compile Include="Filters\ValidateModelAttribute.cs" />
+    <Compile Include="QueryProcessors\ComplaintsQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\DecodesQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\EmployeesQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\CustomersQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\FieldsQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\DBAccessBase.cs" />
+    <Compile Include="QueryProcessors\IDatabaseAccess.cs" />
+    <Compile Include="QueryProcessors\OrdersQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\ParticipantsQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\ReportsQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\ReviewsQueryProcessor.cs" />
+    <Compile Include="Validators\AboveAttribute.cs" />
+    <Compile Include="Validators\IsEnumOfTypeAttribute.cs" />
+    <Compile Include="Validators\ListExistsInDbAttribute.cs" />
+    <Compile Include="Validators\NotInFutureAttribute.cs" />
+    <Compile Include="Validators\NotInPastAttribute.cs" />
+    <Content Include="web\css\angular-moment-picker.min.css" />
+    <Content Include="web\css\app.css" />
+    <Content Include="web\css\bootstrap-rtl.css" />
+    <Content Include="web\css\bootstrap-theme.min.css" />
+    <Content Include="web\css\toaster.css" />
+    <Content Include="web\css\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Compile Include="DTOs\Complaint.cs" />
+    <Compile Include="DTOs\Employee.cs" />
+    <Compile Include="DTOs\Entity.cs" />
+    <Compile Include="DTOs\Field.cs" />
+    <Compile Include="DTOs\OffendingCustomersReport.cs" />
+    <Compile Include="DTOs\Order.cs" />
+    <Compile Include="DTOs\Participant.cs" />
+    <Compile Include="DTOs\Review.cs" />
+    <Compile Include="DTOs\Customer.cs" />
+    <Compile Include="DTOs\CustomersActivityReport.cs" />
+    <Compile Include="Validators\ExistsInDBAttribute.cs" />
+    <Content Include="index.html" />
+    <Content Include="web\js\ordersControllers.js" />
+    <Content Include="web\js\customerControllers.js" />
+    <Content Include="web\js\reportControllers.js" />
+    <Content Include="web\js\employeeControllers.js" />
+    <Content Include="web\js\fieldControllers.js" />
+    <Content Include="web\lib\angular-moment-picker.min.js" />
+    <Content Include="web\lib\moment-with-locales.js" />
+    <Content Include="web\js\app.js" />
+    <Content Include="web\lib\toaster.js" />
+    <Content Include="web\js\loginControllers.js" />
+    <Content Include="web\js\directives.js" />
+    <Content Include="web\js\filters.js" />
+    <Content Include="web\lib\angular-spinner.js" />
+    <Content Include="web\lib\spin.min.js" />
+    <Content Include="web\js\services.js" />
+    <Content Include="web\lib\ui-bootstrap-2.1.3.js" />
+    <Content Include="web\lib\ui-bootstrap-tpls-2.1.3.js" />
+    <Content Include="web\lib\angular\angular-animate.js" />
+    <Content Include="web\lib\angular\angular-aria.js" />
+    <Content Include="web\lib\angular\angular-cookies.js" />
+    <Content Include="web\lib\angular\angular-csp.css" />
+    <Content Include="web\lib\angular\angular-loader.js" />
+    <Content Include="web\lib\angular\angular-message-format.js" />
+    <Content Include="web\lib\angular\angular-messages.js" />
+    <Content Include="web\lib\angular\angular-mocks.js" />
+    <Content Include="web\lib\angular\angular-parse-ext.js" />
+    <Content Include="web\lib\angular\angular-resource.js" />
+    <Content Include="web\lib\angular\angular-route.js" />
+    <Content Include="web\lib\angular\angular-sanitize.js" />
+    <Content Include="web\lib\angular\angular-scenario.js" />
+    <Content Include="web\lib\angular\angular-touch.js" />
+    <Content Include="web\lib\angular\angular.js" />
+    <Content Include="web\partials\editCustomer.html" />
+    <Content Include="web\partials\editEmployee.html" />
+    <Content Include="web\partials\editField.html" />
+    <Content Include="web\partials\editOrder.html" />
+    <Content Include="web\partials\pendingOrdersToJoin.html" />
+    <Content Include="web\partials\loginForm.html" />
+    <Content Include="web\partials\ownedOrders.html" />
+    <Content Include="web\partials\registrationForm.html" />
+    <Content Include="web\partials\reportComplaint.html" />
+    <Content Include="web\partials\reportCustomer.html" />
+    <Content Include="web\partials\reportFields.html" />
+    <Content Include="web\partials\searchAvailableOrders.html" />
+    <Content Include="web\partials\searchCustomers.html" />
+    <Content Include="web\partials\searchEmployee.html" />
+    <Content Include="web\partials\searchAvailableOrdersToJoin.html" />
+    <Content Include="web\partials\searchOrders.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\GlobalExceptionHandler.cs" />
+    <Compile Include="Consts.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\FieldsController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Filters\BasicAuthenticationIdentity.cs" />
+    <Compile Include="Filters\GlobalAuthorizationFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="PlaySimple.cd" />
+    <Content Include="App_Data\db.sqlite" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="web\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{7035209C-29DF-4B24-97EF-B72E9AD009BC}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maps\Maps.csproj">
+      <Project>{8EAE22B9-3724-4ECF-B47E-ED301D29D6D2}</Project>
+      <Name>Maps</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59233</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59233/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.101.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.101.0\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.101.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.101.0\build\net451\System.Data.SQLite.Core.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

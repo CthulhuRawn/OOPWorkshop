@@ -1,0 +1,46 @@
+﻿TODO:
+
+dont forget:
+remove unused css
+rearrange the code in app.run block (Create default controller)
+
+עמית:
+יש יוזרים customer, employee, admin שהסיסמאות הם כמו היוזרים,
+כל אחד עם התפקיד שלו.
+
+באגים/בעיות:
+
+רמת חשיבות מ- 1 עד 10. נגיד ש-5 ומעלה אנחנו חייבים לתקן.
+
+1. לשים גודל לטבלאות ו scrollbar, ב- editOrder יש שתי טבלאות קטנות. (חשיבות 10).
+	---------------------------------------
+	done - added scrollableTable css class. if it is used you need to specify col-sm-x for th and td.
+	should we do this for other tables as well?
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	צריך לכל הטבלאות, 2 הטבלאות האלה פשוט שונות אז ציינתי אותם. אתה יכול לראות במסך הזמן יש שם הרבה רשומות כל פעם.
+
+6. במסמך עיצוב הובטח חלוקה ל service ים ב client לפי נושאים, צריך להחליט מה לעשות (חשיבות 5).
+
+7. לעבור על validato ים של ה attribute ים של ה- dto לבדוק מה רלוונטי לפי המימושים (חשיבות 4-5).
+	-- look TODO in ExistsInDBAttribute.class
+  
+9.datepicker נורמלי או לפחות לגרום לנוכחי לא בלי באגים במקרה של dd/MM/yyyy (חשיבות 4). 
+	---------------------------------------
+	done in registration form
+	++++++++++++++++++++++++
+	check age in search customers
+
+13. ה- method factory לא עובד, הפונקציה Initialization של כל dto ממשתי בדרך עקומה. שעושים את זה כביכול כמו שצריך אז כל השורות בשליפה מחזירות אותם ערכים. 
+       אפשר לדבוק את לדוגמא עם customer וללכת למסך חיפוש לקוחות. כאשר לפני פונקציית ה- select (שבתוכה קוראים ל Initialization) קוראים ל- toList אז זה בסדר.
+
+14.כפתורים.  בות 3-4). עשיתי בעריכת מגרש
+	---------------------------------------
+	created in editField (made the button larger as well) - we can use any icon in http://getbootstrap.com/components/#glyphicons-glyphs
+	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	מבחינתי להשאר עם הצבע האדום בלי האיקוניים אבל מה שעושה לך טוב.
+
+15. לשים את כל ה-web בתקייה אחת, כולל index.html (חשיבות 2).
+	---------------------------------------
+	done
+
+17. הצגת שגיאות מהשרת באופן נורמלי.

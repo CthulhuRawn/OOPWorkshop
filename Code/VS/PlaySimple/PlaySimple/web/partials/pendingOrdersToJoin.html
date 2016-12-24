@@ -1,0 +1,143 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1 class="pageTitle">בקשות להצטרפות שלי</h1>
+    </div>
+</div>
+		
+<div class="row page">
+    <div class="col-sm-12 searchPanel">
+        <form class="form-horizontal">
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'>
+                        <label>מספר מזמין</label>
+                        <input class="form-control" type="number" ng-model="model.ownerId" />
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>שם מזמין</label>
+                        <input class="form-control" type="text" ng-model="model.ownerName" empty-to-null />
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'>
+                        <label>מספר הזמנה</label>
+                        <input class="form-control" type="number" ng-model="model.orderId" />
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>סטטוס הזמנה</label>
+                        <select class="form-control" ng-model="model.invitationStatusId" 
+                                ng-options="orderStatus.id as orderStatus.name for orderStatus in orderStatuses">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'>
+                        <label>מספר מגרש</label>
+                        <input class="form-control" type="number" ng-model="model.fieldId" />
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>שם מגרש</label>
+                        <input class="form-control" type="text" ng-model="model.fieldName" empty-to-null />
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'
+                        moment-picker="model.fromDate"
+                        locale="he"
+                        format="l"
+                        min-view="year"
+                        max-view="month"
+                        autoclose="true">
+                        <label>מתאריך</label>
+                        <input class="form-control" type="text" ng-model="model.fromDate" empty-to-null
+                               ng-model-options="{ updateOn: 'blur' }" />
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'
+                        moment-picker="model.untilDate"
+                        locale="he"
+                        format="l"
+                        min-view="year"
+                        max-view="month"
+                        autoclose="true">
+                        <label>עד תאריך</label>
+                        <input class="form-control" type="text" ng-model="model.untilDate" empty-to-null
+                               ng-model-options="{ updateOn: 'blur' }" />
+                    </div>
+                </div>
+
+                <div class="col-sm-push-5 col-sm-1">
+                    <button type="submit" class="btn btn-primary btn-block btn-search" ng-click="submitSearch()">חפש</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="searchResults">
+        <table class="table table-hover searchTable scrollableTable">
+            <thead>
+            <th ng-click="sortBy('Order.Id')" style="width: 14.28%">
+                <span class="sortorder" ng-show="propertyName === 'Order.Id'" ng-class="{reverse: reverse}"></span>הזמנה
+            </th>
+            <th ng-click="sortBy('Order.Field.Name')" style="width: 14.28%">
+                <span class="sortorder" ng-show="propertyName === 'Order.Field.Name'" ng-class="{reverse: reverse}"></span>מגרש
+            </th>
+            <th ng-click="sortBy('Order.StartDate')" style="width: 14.28%">
+                <span class="sortorder" ng-show="propertyName === 'Order.StartDate'" ng-class="{reverse: reverse}"></span>תאריך
+            </th>
+            <th ng-click="sortBy('Order.Owner.FirstName')" style="width: 14.28%">
+                <span class="sortorder" ng-show="propertyName === 'Order.Owner.FirstName'" ng-class="{reverse: reverse}"></span>לקוח מזמין
+            </th>
+            <th ng-click="sortBy('Order.Status')" style="width: 14.28%">
+                <span class="sortorder" ng-show="propertyName === 'Order.Status'" ng-class="{reverse: reverse}"></span>סטטוס הזמנה
+            </th>
+            <th ng-click="sortBy('Status')" style="width: 14.28%">
+                <span class="sortorder" ng-show="propertyName === 'Status'" ng-class="{reverse: reverse}"></span>סטטוס בקשה
+            </th>
+            <th style="width: 14.28%">
+                פעולות
+            </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in results | orderBy:propertyName:reverse">
+                    <td style="width: 14.28%">{{row.Order.Id}}</td>
+                    <td style="width: 14.28%">{{row.Order.Field.Id}} - {{row.Order.Field.Name}}</td>
+                    <td style="width: 14.28%">{{row.Order.StartDate | dateOrderFilter}}</td>
+                    <td style="width: 14.28%">{{row.Order.Owner.Id}} - {{row.Order.Owner.FirstName}} {{row.Order.Owner.LastName}}</td>
+                    <td style="width: 14.28%">
+                        <div ng-repeat="orderStatus in orderStatuses">
+                            <div ng-if="orderStatus.id == row.Order.Status">
+                                {{orderStatus.name}}
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 14.28%">
+                        <div ng-repeat="orderStatus in invitationStatuses">
+                            <div ng-if="orderStatus.id == row.Status">
+                                {{orderStatus.name}}
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 14.28%"><a href="" ng-click="cancelJoining(row.Id, $index)">בטל</a>  <a href="#/editOrder/{{row.Order.Id}}">צפה</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

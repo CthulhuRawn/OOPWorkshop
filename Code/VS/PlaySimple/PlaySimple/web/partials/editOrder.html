@@ -1,0 +1,163 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1 class="pageTitle">פרטי הזמנה</h1>
+    </div>
+</div>
+<div class="row page" >
+    <div class="col-sm-12 editPanel">
+        <form class="form-horizontal" name="orderForm" ng-submit="submitOrder(orderForm.$valid, 1)" novalidate>
+
+            <div class="row" ng-show="lessThen24Hours && sharedVariables.role == 'Customer' && model.Owner.Id == sharedVariables.userId">
+                <div class="col-sm-12">
+                    <div class="form-group text-danger">
+                        <p class="form-control-static">מועד ההזמנה בעוד פחות מ-24. ניתן לשנות רק את רשימת המשתתפים. </p>
+                    </div>
+                </div>
+            </div>
+            <div class='row' >
+                <div class='col-sm-3'>
+                    <div class='form-group'>
+                        <label>מזהה</label>
+                        <input disabled class="form-control" type="number" ng-model="model.Id" />
+                    </div>
+                </div>
+                <div class='col-sm-offset-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>סוג</label>
+                        <select class="form-control" ng-model="model.Field.Type" ng-disabled="lessThen24Hours || sharedVariables.role != 'Customer' || model.Owner.Id != sharedVariables.userId"
+                                ng-options="type.id as type.name for type in fieldType" ng-change="fieldTypeChanged()">
+                        </select>
+                    </div>
+                </div>
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group'>
+                        <label>מגרש</label>
+                        <select class="form-control" ng-model="model.Field.Id" ng-disabled="lessThen24Hours || sharedVariables.role != 'Customer' || model.Owner.Id != sharedVariables.userId"
+                                ng-options="field.Id as field.Name for field in optinalFields" ng-change="getOptionals()">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <div class='form-group'
+                        moment-picker="datePicker"
+                        locale="he"
+                        format="l"
+                        min-view="year"
+                        max-view="month"
+                        autoclose="true">
+                        <label>תאריך</label>
+
+                        <input class="form-control" type="text" ng-model="datePicker" ng-change="getOptionals()" 
+                               ng-model-options="{ updateOn: 'blur' }" empty-to-null
+                               ng-disabled="lessThen24Hours || sharedVariables.role != 'Customer' || model.Owner.Id != sharedVariables.userId" />
+                    </div>
+                </div>
+                <div class='col-sm-offset-1 col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : orderForm.startDate.$invalid && submitted }">
+                        <label>שעה</label>
+                        <select required name="startDate" class="form-control"  ng-model="model.StartDate" ng-disabled="lessThen24Hours || sharedVariables.role != 'Customer' || model.Owner.Id != sharedVariables.userId""
+                            ng-options="optinalOrder.StartDate as optinalOrder.StartDate| dateOrderFilter for optinalOrder in optinalOrders">
+                        </select>
+                        <div class="callout up" ng-show="orderForm.startDate.$invalid && submitted">
+                            <div ng-show="orderForm.startDate.$error.required && submitted">יש לבחור שעה</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-sm-push-1 col-sm-3'>
+                    <div class='form-group' ng-class="{ 'has-error' : orderForm.playersNumber.$invalid && submitted }">
+                        <label>מספר שחקנים</label>
+                        <input name="playersNumber" class="form-control" type="number" ng-model="model.PlayersNumber" min="0" required  ng-disabled="lessThen24Hours || sharedVariables.role != 'Customer' || model.Owner.Id != sharedVariables.userId"/>
+                        <div class="callout" ng-show="orderForm.playersNumber.$invalid && submitted">
+                            <div ng-show="orderForm.playersNumber.$error.required && submitted">יש להזין מספר שחקנים</div>
+                            <div ng-show="orderForm.playersNumber.$error.min && orderForm.playersNumber.$error.number && submitted">מס' שחקנים חייב להיות מספר לא שלילי</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <table class="table table-hover searchTable scrollableTable">
+                        <caption>משתתפים</caption>
+                        <thead>
+                        <th class="col-sm-6">מזהה</th>
+                        <th class="col-sm-6">שם</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in model.Participants">
+                                <td class="col-sm-6" ng-if="row.Status == 2">
+                                    {{row.Customer.Id}}
+                                </td>
+                                <td class="col-sm-6" ng-if="row.Status == 2">
+                                    {{row.Customer.FirstName}} {{row.LastName}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-9">
+                    <table class="table table-hover searchTable scrollableTable">
+                        <caption>בקשות הצטרפות לאישור</caption>
+                        <thead>
+                            <th class="col-sm-3">מזהה</th>
+                            <th class="col-sm-3">שם</th>
+                            <th class="col-sm-3">תאריך בקשה</th>
+                            <th class="col-sm-3">פעולות</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in model.Participants">
+                                <td class="col-sm-3" ng-if="row.Status == 1">
+                                    {{row.Customer.Id}}
+                                </td>
+                                <td class="col-sm-3" ng-if="row.Status == 1">
+                                    {{row.Customer.FirstName}} {{row.LastName}}
+                                </td>
+                                <td class="col-sm-3" ng-if="row.Status == 1">
+                                    {{row.Date | date : 'dd/MM/yyyy'}}
+                                </td>
+                                <td class="col-sm-3" ng-if="row.Status == 1 && sharedVariables.role == 'Customer' && model.Owner.Id == sharedVariables.userId">
+                                    <a href="" ng-click="acceptRejectParticipant(row, 2)">אשר</a> <a href="" ng-click="acceptRejectParticipant(row, 3)">דחה</a>
+                                </td>
+                                <td ng-if="row.Status == 1 && (sharedVariables.role != 'Customer' || model.Owner.Id != sharedVariables.userId)">
+                                </td>
+                              </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" ng-show="sharedVariables.role == 'Customer' && model.Owner.Id == sharedVariables.userId">
+                <div class="col-sm-offset-6 col-sm-2">
+                    <button type="button" class="btn btn-danger btn-block btn-search" ng-click="cancelOrder()" ng-disabled="lessThen24Hours"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>   בטל הזמנה</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-danger btn-block btn-search" ng-click="cancelChanges()" ng-disabled="lessThen24Hours"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>   בטל שינויים</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary btn-block btn-search" ng-disabled="lessThen24Hours"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>   שמור</button>
+                </div>
+            </div>
+
+            <div class="row" ng-show="sharedVariables.role == 'Employee' && model.Status == 1">
+                <div class="col-sm-offset-8 col-sm-2">
+                    <button type="button" class="btn btn-danger btn-block btn-search" ng-click="acceptRejectOrder(3)">דחה</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary btn-block btn-search" ng-click="acceptRejectOrder(2)">אשר</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+		
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group form-errors text-danger" ng-show="orderForm.$invalid && submitted" ng-class="{ 'has-error' : orderForm.$invalid && submitted }">
+            <p class="form-control-static">יש לתקן את השגיאות בשדות האדומים</p>
+        </div>
+    </div>
+</div>
