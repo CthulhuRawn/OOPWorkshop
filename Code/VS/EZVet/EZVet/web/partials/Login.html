@@ -1,0 +1,36 @@
+﻿<div class="container">
+    <h2 class="text-center">Login</h2>
+
+    <form name="loginform" novalidate ng-submit="submitUser()">
+        <div class="row">
+            <div class="form-group col-sm-6 col-sm-offset-3">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"  ng-model="model.username" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-6 col-sm-offset-3">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="model.password" required>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember Me
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-danger row" ng-show="noUser || userFrozen" ng-class="{ 'has-error' : loginform.$invalid && submitted }" >
+            <p ng-show="noUser" class="col-sm-offset-3"><strong>Invalid user name or password</strong></p>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-6 col-sm-offset-3">
+                <a class="btn btn-primary pull-left" href="#/registrationForm">Sign Up!</a>
+                <button type="submit" class="btn btn-primary pull-right">Login!</button>
+            </div>
+
+        </div>
+    </form>
+</div>

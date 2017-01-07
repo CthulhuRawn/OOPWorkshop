@@ -1,8 +1,6 @@
-﻿using Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using EZVet.Common;
 using EZVet.DTOs;
 
@@ -34,50 +32,12 @@ namespace EZVet.QueryProcessors
 
         public IEnumerable<OffendingCustomersReport> GetOffendingCustomersReport(DateTime? fromDate, DateTime? untilDate, int? complaintType)
         {
-            var complaintsGrouping = _complaintsQueryProcessor.Search(null, fromDate, untilDate, complaintType).GroupBy(x => x.OffendingCustomer.Id, x => x.OffendedCustomer.Id);
-            List<OffendingCustomersReport> offendingList = new List<OffendingCustomersReport>();
-
-            foreach (var item in complaintsGrouping)
-            {
-                DTOs.Customer customer = _customersQueryProcessor.GetCustomer(item.Key ?? 0);
-                offendingList.Add(new OffendingCustomersReport()
-                        {
-                            CustomerId = customer.Id??0,
-                            FirstName = customer.FirstName,
-                            LastName = customer.LastName,
-                            NumberOfComplaints = item.Count()
-                        });
-            }
-            return offendingList;
+           throw new NotImplementedException();
         }
 
         public IEnumerable<CustomersActivityReport> GetCustomersActivityReport(string firstName, string lastName, int? minAge, int? maxAge, DateTime? fromDate, DateTime? untilDate)
         {
-            var customers = _customersQueryProcessor.Search(firstName, lastName, minAge, maxAge, null, null);
-            var report = customers.Select(x => new CustomersActivityReport
-                {
-                    CoustomerId = x.Id ?? 0,
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
-                    BirthDate = x.BirthDate,
-                    NumberOfOrders = _ordersQueryProcessor.Search(null, x.Id, null, new int?[] { (int)Consts.Decodes.OrderStatus.Accepted }, null, null, fromDate, untilDate).Count(),
-                    NumberOfCanceledOrders = _ordersQueryProcessor.Search(null, x.Id, null, new int?[] { (int)Consts.Decodes.OrderStatus.Canceled }, null, null, fromDate, untilDate).Count(),
-                    NumberOfJoiningAsGuest = _participantsQueryProcessor.Search(x.Id, null, new int?[] { (int)Consts.Decodes.InvitationStatus.Accepted },
-                    null, null, null, null, null, null).Count()
-                }).ToArray();
-
-            for (int i = 0; i < report.Count(); i++)
-            {
-                var item = report[i];
-                var itemOrder = _ordersQueryProcessor.Search(null, item.CoustomerId, null, new int?[] { (int)Consts.Decodes.OrderStatus.Accepted }, null, null, null, null);
-
-                if (itemOrder.Count != 0)
-                {
-                    item.LastGameDate = itemOrder.Max(x => x.StartDate);
-                }
-            }         
-
-            return report;
+            throw new NotImplementedException();
         }
         public IEnumerable<UsingFieldsReport> GetUsingFieldsReport(int? fieldId, string fieldName, DateTime? fromDate, DateTime? untilDate)
         {

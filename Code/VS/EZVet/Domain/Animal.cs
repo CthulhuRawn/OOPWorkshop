@@ -6,7 +6,7 @@ namespace Domain
     public class Animal : Entity
     {
         public virtual string Name { get; set; }
-        public virtual UserBase Owner { get; set; }
+        public virtual Owner Owner { get; set; }
         public virtual IList<TreatmentReport> Orders { get; set; }
         public virtual IList<Doctor> Doctors { get; set; }
         public virtual IList<AnimalMeasurements> AnimalMeasurements { get; set; }

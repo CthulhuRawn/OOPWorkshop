@@ -4,8 +4,6 @@ using Maps;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using EZVet.QueryProcessors;
-using EZVet.DTOs;
-using System.Collections.Generic;
 
 namespace GenerateData
 {

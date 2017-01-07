@@ -1,10 +1,7 @@
 ﻿using Domain;
 using NHibernate;
 using NHibernate.Linq;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace EZVet.QueryProcessors
 {

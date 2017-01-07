@@ -1,14 +1,4 @@
-﻿using Domain;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using Maps;
-using NHibernate;
-using NHibernate.Tool.hbm2ddl;
-using EZVet.Common;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace EZVet
 {

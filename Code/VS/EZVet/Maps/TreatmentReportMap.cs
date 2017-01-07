@@ -1,5 +1,4 @@
 ﻿using Domain;
-using FluentNHibernate.Mapping;
 
 namespace Maps
 {

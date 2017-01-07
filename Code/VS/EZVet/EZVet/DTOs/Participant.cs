@@ -1,15 +1,11 @@
-﻿using Domain;
-using System;
+﻿using System;
 using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
     public class Participant : Entity<DTOs.Participant , Domain.Participant>
     {
-        [ExistsInDB(typeof(Domain.Customer))]
-        public virtual Customer Customer { get; set; }
-
-        public virtual DateTime Date { get; set; }
+         public virtual DateTime Date { get; set; }
 
         [ExistsInDB(typeof(Domain.Order))]
         public virtual Order Order { get; set; }
@@ -20,7 +16,7 @@ namespace EZVet.DTOs
         public override Participant Initialize(Domain.Participant domain)
         {
             Id = domain.Id;
-            Customer = new DTOs.Customer().Initialize(domain.Customer);
+           
             Date = domain.Date;
             Order = new DTOs.Order().Initialize(domain.Order);
             Status = domain.Status.Id;

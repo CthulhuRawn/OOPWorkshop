@@ -1,12 +1,10 @@
 ﻿using Domain;
-using FluentNHibernate.Mapping;
 
 namespace Maps
 {
-    public abstract class UserBaseMap<TEntity> : EntityMap<TEntity>
-        where TEntity : UserBase
+    public class OwnerMap : EntityMap<Owner>
     {
-        public UserBaseMap()
+        public OwnerMap()
         {
             Map(x => x.FirstName);
             Map(x => x.LastName);

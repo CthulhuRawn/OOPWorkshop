@@ -1,11 +1,11 @@
-﻿using Domain;
-using NHibernate;
-using System;
+﻿using System;
 using System.Text;
 using System.Web.Http;
-using System.Linq;
+using Domain;
 using EZVet.DTOs;
 using EZVet.QueryProcessors;
+using NHibernate;
+
 
 namespace EZVet.Controllers
 {
@@ -24,24 +24,24 @@ namespace EZVet.Controllers
         [Route("api/login/login")]
         public LoginResponse Login(UserCredentials credentials)
         {
-            byte[] toEncodeAsBytes = ASCIIEncoding.ASCII.GetBytes(credentials.Username + ":" + credentials.Password);
+            byte[] toEncodeAsBytes = Encoding.ASCII.GetBytes(credentials.Username + ":" + credentials.Password);
             string authenticationKey = "Basic " + Convert.ToBase64String(toEncodeAsBytes);
             string role = null;
             int userId = 0;
 
-            var user = _session.QueryOver<Domain.Customer>().Where(x => x.Username == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
+            var user = _session.QueryOver<Domain.Owner>().Where(x => x.Username == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
 
             if (user != null)
             {
-                role = Consts.Roles.Customer;
+                role = Consts.Roles.Owner;
                 userId = user.Id;
             }
 
-            var employee = _session.QueryOver<Domain.Employee>().Where(x => x.Username == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
+            var employee = _session.QueryOver<Doctor>().Where(x => x.Username == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
 
             if (employee != null)
             {
-                role = Consts.Roles.Employee;
+                role = Consts.Roles.Doctor;
                 userId = employee.Id;
             }
 
@@ -58,7 +58,6 @@ namespace EZVet.Controllers
             return new LoginResponse
             {
                 UserId = userId,
-				IsUserFrozen = user != null && user.FreezeDate.HasValue && user.FreezeDate > DateTime.Now,
                 AuthorizationKey = authenticationKey,
                 Role = role
             };
@@ -66,9 +65,9 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/login/registration")]
-        public RegistrationReponse Registration(DTOs.Customer customer)
+        public RegistrationReponse Registration(DTOs.Owner customer)
         {
-            if (_customersQueryProcessor.Exists(customer.Username))
+            if (_customersQueryProcessor.Exists(customer.Email))
             {
                 return new RegistrationReponse
                 {
@@ -76,9 +75,9 @@ namespace EZVet.Controllers
                 };
             }
 
-            _customersQueryProcessor.Save(customer);
+            
 
-            return new RegistrationReponse()
+            return new RegistrationReponse
             {
                 AlreadyExists = false
             };

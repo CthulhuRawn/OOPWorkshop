@@ -81,7 +81,7 @@
     <Compile Include="TreatmentLinksMap.cs" />
     <Compile Include="TreatmentReportMap.cs" />
     <Compile Include="TreatmentTypeDecodeMap.cs" />
-    <Compile Include="UserBaseMap.cs" />
+    <Compile Include="OwnerMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

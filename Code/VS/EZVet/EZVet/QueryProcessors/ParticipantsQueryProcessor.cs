@@ -66,7 +66,7 @@ namespace EZVet.QueryProcessors
         {
             Participant newParticipant = new Participant()
             {
-                Customer = _customersQueryProcessor.Get(participant.Customer.Id ?? 0),
+                
                 Date = participant.Date,
                 Order = _ordersQueryProcessor.Get(participant.Order.Id ?? 0),
                 Status = _decodesQueryProcessor.Get<InvitationStatusDecode>(participant.Status)

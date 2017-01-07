@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public abstract class UserBase : Entity
+    public class Owner : Entity
     {
         public virtual string Username { get; set; }
         public virtual string Password { get; set; }

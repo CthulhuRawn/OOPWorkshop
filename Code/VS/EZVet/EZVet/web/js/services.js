@@ -21,13 +21,13 @@
 
                 // unauthorized
                 if (response.status == 401) {
-                    toaster.warning('אין לך הרשאות למסך זה');
+                    toaster.warning('You are not autorized to view this page');
                     $location.path("/login");
                 }
 
                 // unexpected error
                 else if (response.status == 500 || response.status == 400) {
-                    toaster.error("אופס!", "אירעה שגיאה בשרת...", 5000);
+                    toaster.error("Oops!", "We seem to have a problem...", 5000);
                 }
 
                 return response;

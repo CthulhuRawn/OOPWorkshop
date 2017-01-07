@@ -10,7 +10,6 @@ namespace EZVet
     {
         public static void Register(HttpConfiguration config)
         {
-            GlobalConfiguration.Configuration.Filters.Add(new AllowCORSFilterAttribute());
 
             // Adds authorization / authentication for all requests to controllers
             GlobalConfiguration.Configuration.Filters.Add(new GlobalAuthorizationFilter());

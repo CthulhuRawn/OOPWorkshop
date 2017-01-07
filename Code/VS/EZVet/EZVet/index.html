@@ -2,10 +2,9 @@
 <html ng-app="myApp">
 <head>
     <meta charset="utf-8">
-    <title>Play Simple</title>
+    <title>EZVet</title>
     <link rel="stylesheet" href="web/css/bootstrap.min.css" />
     <link rel="stylesheet" href="web/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="web/css/bootstrap-rtl.css" />
     <link rel="stylesheet" href="web/css/angular-moment-picker.min.css">
     <link rel="stylesheet" href="web/css/toaster.css">
     <link rel="stylesheet" href="web/css/app.css">
@@ -17,8 +16,11 @@
     <div class="container">
         <nav class="appLinks" ng-class="{'show': !sharedVariables.isLogin}">
             <ul class="nav nav-pills">
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchAvailableOrders'}" ng-show="sharedVariables.role == 'Customer'">
-                    <a href="#/searchAvailableOrders">הזמן</a>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'AnimalsListCustomer'}" ng-show="sharedVariables.role == 'Owner'">
+                    <a href="#/AnimalsListCustomer">My Animals</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'AnimalsListVet'}" ng-show="sharedVariables.role == 'Doctor'">
+                    <a href="#/AnimalsListVet">My Animals</a>
                 </li>
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'ownedOrders'}" ng-show="sharedVariables.role == 'Customer'">
                     <a href="#/ownedOrders">צפה בהזמנות</a>

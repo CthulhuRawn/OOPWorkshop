@@ -4,7 +4,6 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace EZVet.QueryProcessors
 {
@@ -57,8 +56,7 @@ namespace EZVet.QueryProcessors
         {
             Complaint newComplaint = new Complaint()
             {
-                OffendingCustomer = ((DBAccessBase<Customer>)_customersQueryProcessor).Get(complaint.OffendingCustomer.Id ?? 0),
-                OffendedCustomer = ((DBAccessBase<Customer>)_customersQueryProcessor).Get(complaint.OffendedCustomer.Id ?? 0),
+               
                 Description = complaint.Description,
                 Type = _decodesQueryProcessor.Get<ComplaintTypeDecode>(complaint.Type),
                 Date = complaint.Date

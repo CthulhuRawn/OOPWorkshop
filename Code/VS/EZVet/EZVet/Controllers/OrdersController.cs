@@ -10,7 +10,7 @@ using EZVet.QueryProcessors;
 
 namespace EZVet.Controllers
 {
-    [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Employee + "," + Consts.Roles.Customer)]
+    [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
     public class OrdersController : ApiController
     {
         private readonly IOrdersQueryProcessor _ordersQueryProcessor;
@@ -71,10 +71,7 @@ namespace EZVet.Controllers
             var currPrincipal = HttpContext.Current.User as ClaimsPrincipal;
             var currIdentity = currPrincipal.Identity as BasicAuthenticationIdentity;
             int userId = currIdentity.UserId;
-            order.Owner = new DTOs.Customer()
-            {
-                Id = userId
-            };
+         
             return _ordersQueryProcessor.Save(order);
         }
 
@@ -158,10 +155,7 @@ namespace EZVet.Controllers
             {
                 Status = (int)Consts.Decodes.InvitationStatus.Sent,
                 Date = DateTime.Now,
-                Customer = new DTOs.Customer()
-                {
-                    Id = userId
-                },
+                
                 Order = new DTOs.Order()
                 {
                     Id = orderId

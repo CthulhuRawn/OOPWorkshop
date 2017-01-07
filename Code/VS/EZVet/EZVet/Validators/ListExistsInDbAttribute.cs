@@ -1,10 +1,7 @@
 ﻿using NHibernate;
-using EZVet.Common;
 using System;
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace EZVet.Validators
 {

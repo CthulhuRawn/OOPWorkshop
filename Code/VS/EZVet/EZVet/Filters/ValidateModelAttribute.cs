@@ -1,11 +1,4 @@
-using Domain;
-using EZVet.Common;
-using System;
 using System.Net;
-using System.Security;
-using System.Security.Principal;
-using System.Text;
-using System.Threading;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Net.Http;

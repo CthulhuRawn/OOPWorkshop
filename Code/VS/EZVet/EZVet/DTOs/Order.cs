@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Domain;
+﻿using System.Collections.Generic;
 using EZVet.Common;
 using EZVet.Validators;
 
@@ -10,9 +8,7 @@ namespace EZVet.DTOs
     {
         //[NotInPast]
         public virtual long StartDate { get; set; }
-
-        [ExistsInDB(typeof(Domain.Customer))]
-        public virtual Customer Owner { get; set; }
+        
 
         [Above(-1)]
         public virtual int PlayersNumber { get; set; }
@@ -30,7 +26,7 @@ namespace EZVet.DTOs
         {
             Id = domain.Id;
             StartDate = DateUtils.ConvertToJavaScript(domain.StartDate);
-            Owner = new DTOs.Customer().Initialize(domain.Owner);
+
             PlayersNumber = domain.PlayersNumber;
             Status = domain.Status.Id;
             Field = new DTOs.Field().Initialize(domain.Field);

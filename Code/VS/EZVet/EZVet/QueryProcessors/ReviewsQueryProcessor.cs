@@ -41,9 +41,7 @@ namespace EZVet.QueryProcessors
             {
                 Date = review.Date,
                 Title = review.Title,
-                Description = review.Description,
-                Reviewer = _customersQueryProcessor.Get(review.Reviewer.Id ?? 0),
-                ReviewedCustomer = _customersQueryProcessor.Get(review.ReviewedCustomer.Id ?? 0)
+                Description = review.Description
             };
 
             Review persistedReview = Save(newReview);

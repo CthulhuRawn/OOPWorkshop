@@ -6,12 +6,12 @@
         $httpProvider.interceptors.push('httpErrorHandler');
 
         $routeProvider.when('/', {
-            templateUrl: 'web/partials/loginForm.html',
+            templateUrl: 'web/partials/Login.html',
             controller: 'LoginCtrl'
         });
 
         $routeProvider.when('/login', {
-            templateUrl: 'web/partials/loginForm.html',
+            templateUrl: 'web/partials/Login.html',
             controller: 'LoginCtrl'
         }); 
         $routeProvider.when('/registrationForm', {

@@ -1,16 +1,11 @@
-﻿using EZVet.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using EZVet.Filters;
 using EZVet.QueryProcessors;
 
 namespace EZVet.Controllers
 {
-    [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Employee)]
+    [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
     public class EmployeesController : ApiController
     {
         private readonly IEmployeesQueryProcessor _employessQueryProcessor;

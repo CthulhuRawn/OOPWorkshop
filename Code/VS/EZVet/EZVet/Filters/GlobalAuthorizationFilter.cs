@@ -1,10 +1,8 @@
 ﻿using Domain;
 using NHibernate;
-using EZVet.Common;
 using System;
 using System.Security;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Web;
@@ -57,25 +55,23 @@ namespace EZVet.Filters
         /// <returns></returns>
         private bool AuthorizeUser(string username, string password, HttpActionContext actionContext)
         {
-            ISession session =(ISession)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ISession));
+            var authorized = false;
+            var session =(ISession)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ISession));
 
-            var user = session.QueryOver<Customer>().Where(x => x.Username == username && x.Password == password).SingleOrDefault();
+            var user = session.QueryOver<Owner>().Where(x => x.Username == username && x.Password == password).SingleOrDefault();
 
             if (user != null)
-            {
-                if (user.FreezeDate.HasValue && user.FreezeDate > DateTime.Now)
-                    return false;
-
-                AuthorizationSucceed(user.Id, Consts.Roles.Customer);
-                return true;
+            { 
+                AuthorizationSucceed(user.Id, Consts.Roles.Owner);
+                authorized = true;
             }
 
-            var employee = session.QueryOver<Employee>().Where(x => x.Username == username && x.Password == password).SingleOrDefault();
+            var employee = session.QueryOver<Doctor>().Where(x => x.Username == username && x.Password == password).SingleOrDefault();
 
             if (employee != null)
             {
-                AuthorizationSucceed(employee.Id, Consts.Roles.Employee);
-                return true;
+                AuthorizationSucceed(employee.Id, Consts.Roles.Doctor);
+                authorized = true;
             }
 
             var admin = session.QueryOver<Admin>().Where(x => x.Username == username && x.Password == password).SingleOrDefault();
@@ -83,10 +79,10 @@ namespace EZVet.Filters
             if (admin != null)
             {
                 AuthorizationSucceed(admin.Id, Consts.Roles.Admin);
-                return true;
+                authorized = true;
             }
 
-            return false;
+            return authorized;
         }
 
         private void AuthorizationSucceed(int userId, string userRole)

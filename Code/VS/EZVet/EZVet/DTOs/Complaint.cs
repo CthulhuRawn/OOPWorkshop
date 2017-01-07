@@ -1,5 +1,4 @@
 ﻿using System;
-using Domain;
 using System.ComponentModel.DataAnnotations;
 using EZVet.Validators;
 
@@ -16,11 +15,6 @@ namespace EZVet.DTOs
         [NotInFutureAttribute]
         public virtual DateTime Date { get; set; }
 
-        [ExistsInDB(typeof(Domain.Customer))]
-        public virtual Customer OffendingCustomer { get; set; }
-
-        [ExistsInDB(typeof(Domain.Customer))]
-        public virtual Customer OffendedCustomer { get; set; }
 
         public override Complaint Initialize(Domain.Complaint domain)
         {
@@ -28,8 +22,6 @@ namespace EZVet.DTOs
             Description = domain.Description;
             Type = domain.Type.Id;
             Date = domain.Date;
-            OffendingCustomer = new DTOs.Customer().Initialize(domain.OffendingCustomer);
-            OffendedCustomer = new DTOs.Customer().Initialize(domain.OffendedCustomer);
 
             return this;
         }

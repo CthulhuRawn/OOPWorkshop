@@ -7,7 +7,7 @@ using EZVet.QueryProcessors;
 
 namespace EZVet.Controllers
 {
-    [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Employee)]
+    [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
     public class ReportsController : ApiController
     {
         private readonly IReportsQueryProcessor _reportsQueryProcessor;

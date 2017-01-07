@@ -3,12 +3,8 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public class Customer : UserBase
+    public class Customer : Owner
     {
-        public virtual DateTime BirthDate { get; set; }
-
-        public virtual string Email { get; set; }
-
         public virtual DateTime? FreezeDate { get; set; }
 
         public virtual RegionDecode Region { get; set; }

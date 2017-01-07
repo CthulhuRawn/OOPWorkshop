@@ -9,7 +9,7 @@ using EZVet.QueryProcessors;
 
 namespace EZVet.Controllers
 {
-    [Authorize(Roles = Consts.Roles.Customer)]
+    [AuthorizeRolesAttribute(Consts.Roles.Doctor)]
     public class ParticipantsController : ApiController
     {
         private readonly IParticipantsQueryProcessor _participantsQueryProcessor;

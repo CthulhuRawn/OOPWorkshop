@@ -4,7 +4,6 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Web;
 using EZVet.Common;
@@ -113,7 +112,7 @@ namespace EZVet.QueryProcessors
             // TODO remove EndDate from Order
             Order newOrder = new Order()
             {
-                Owner = _customersQueryProcessor.Get(order.Owner.Id ?? 0),
+                
                 StartDate = DateUtils.ConvertFromJavaScript(order.StartDate),
                 Field = _fieldsQueryProcessor.Get(order.Field.Id ?? 0),
                 PlayersNumber = order.PlayersNumber,
@@ -240,11 +239,7 @@ namespace EZVet.QueryProcessors
             {
                 var participants = _participantsQueryProcessor.Search(null, null, null, null, item.Id, null, null, null, null);
                 
-                if (!participants.Any(x => x.Customer.Id == userId) &&
-                    item.PlayersNumber > participants.Where(x => x.Status == (int)Consts.Decodes.InvitationStatus.Accepted).Count())
-                {
-                    finalResult.Add(item);
-                }
+               
             }
             return finalResult;
         }

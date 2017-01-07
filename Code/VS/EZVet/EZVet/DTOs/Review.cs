@@ -1,5 +1,4 @@
 ﻿using System;
-using Domain;
 using System.ComponentModel.DataAnnotations;
 using EZVet.Validators;
 
@@ -15,11 +14,7 @@ namespace EZVet.DTOs
 
         public virtual DateTime Date { get; set; }
 
-        [ExistsInDB(typeof(Domain.Customer))]
-        public virtual Customer Reviewer { get; set; }
-
-        [ExistsInDB(typeof(Domain.Customer))]
-        public virtual Customer ReviewedCustomer { get; set; }
+       
 
         public override Review Initialize(Domain.Review domain)
         {
@@ -27,9 +22,7 @@ namespace EZVet.DTOs
             Title = domain.Title;
             Description = domain.Description;
             Date = domain.Date;
-            Reviewer = new DTOs.Customer().Initialize(domain.Reviewer);
-            ReviewedCustomer = new DTOs.Customer().Initialize(domain.ReviewedCustomer); ;
-
+           
             return this;
         }
     }
