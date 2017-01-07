@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EZVet.DTOs.Complaint">
+    <Position X="17" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAQAAAAAAAAAAAAAAACABAQgAAAAAAAA=</HashCode>
+      <FileName>DTOs\Complaint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.Customer">
+    <Position X="21.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAgCAIAQAAAQAAAAQAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>DTOs\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.CustomersActivityReport">
+    <Position X="17.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAEAAAAAACEABAEAAAAAAAAAAABAAAAAAAAAAAAg=</HashCode>
+      <FileName>DTOs\CustomersActivityReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.Employee">
+    <Position X="20.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAACAAAQAAAQAAAAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>DTOs\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.Entity&lt;TDTO, TDomain&gt;" Collapsed="true">
+    <Position X="20.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.Field">
+    <Position X="23.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgQAAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Field.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.OffendingCustomersReport">
+    <Position X="19" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAEAAAAAAAAAAAAAAAAABAAAAAAAAAAAAg=</HashCode>
+      <FileName>DTOs\OffendingCustomersReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.Order">
+    <Position X="22.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAACEAAAAAQAAAAAAAAAAAAAAAAAAACAAAEAAgAA=</HashCode>
+      <FileName>DTOs\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.Participant">
+    <Position X="19.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAEAAAAAQAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\Participant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.Review">
+    <Position X="18" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAgAUAAAAAAAAAAAAAAAAABAAAAAABAAAA=</HashCode>
+      <FileName>DTOs\Review.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.UsingFieldsReport">
+    <Position X="20.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAKAAAAAAAAAAAQAAAAACAAAAEEAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\UsingFieldsReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.Controllers.CustomersController">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAABAAgAAAABAAAAAIAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Controllers\CustomersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.Controllers.EmployeesController">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAABAAAAAAAAAAAEAAAAAAAAAgAAgAAA=</HashCode>
+      <FileName>Controllers\EmployeesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.Controllers.FieldsController">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAABAAAAAAAAAAAEAAAgAAAAAAAAgAAA=</HashCode>
+      <FileName>Controllers\FieldsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.Controllers.OrdersController">
+    <Position X="21.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAEAAABABABAAEAgIACAAAAAAAAAAAAQAgCAA=</HashCode>
+      <FileName>Controllers\OrdersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.Controllers.ReportsController">
+    <Position X="23" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQCAAAAAAAAAAAAAAAAAAAAAACAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.QueryProcessors.ComplaintsQueryProcessor">
+    <Position X="13.75" Y="33" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAIAAAAAAAAAAABEAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\ComplaintsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EZVet.QueryProcessors.CustomersQueryProcessor">
+    <Position X="13.75" Y="26.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEhAAA=</HashCode>
+      <FileName>QueryProcessors\CustomersQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EZVet.QueryProcessors.DBAccessBase&lt;T&gt;">
+    <Position X="17" Y="30" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAABAAAAAAAAAAAEAAAggAAAAAAAAAAA=</HashCode>
+      <FileName>QueryProcessors\DBAccessBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EZVet.QueryProcessors.EmployeesQueryProcessor">
+    <Position X="16.5" Y="33" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\EmployeesQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EZVet.QueryProcessors.FieldsQueryProcessor">
+    <Position X="16.5" Y="26.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAgAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\FieldsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EZVet.QueryProcessors.OrdersQueryProcessor">
+    <Position X="19.25" Y="33" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQABYAAAAAAAAAABAAAAABECAAAAAgAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\OrdersQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EZVet.QueryProcessors.ParticipantsQueryProcessor">
+    <Position X="19" Y="26.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAEAAAAAAAAAAAAAhEAAEAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\ParticipantsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EZVet.QueryProcessors.ReportsQueryProcessor" BaseTypeListCollapsed="true">
+    <Position X="22" Y="26.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAEAAAAAAAAAAAAABACAAAKAgAAgAAAAAAAAA=</HashCode>
+      <FileName>QueryProcessors\ReportsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="EZVet.QueryProcessors.ReviewsQueryProcessor">
+    <Position X="22" Y="33" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAAAAAAAAAABAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\ReviewsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="EZVet.Controllers.ReviewsController">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Controllers\ReviewsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.Controllers.LoginController">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAgAAAQAAAEAAA=</HashCode>
+      <FileName>Controllers\LoginController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.Controllers.ComplaintsController">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAABAAAAAAAAAAAAAIAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Controllers\ComplaintsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.Controllers.ParticipantsController">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAABAAAAEAAAACAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ParticipantsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.UserCredentials">
+    <Position X="17.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>DTOs\UserCredentials.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.RegistrationReponse">
+    <Position X="19" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>DTOs\RegistrationReponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EZVet.DTOs.LoginResponse">
+    <Position X="20.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAgCAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>DTOs\LoginResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="EZVet.QueryProcessors.IComplaintsQueryProcessor">
+    <Position X="13.75" Y="36.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\ComplaintsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EZVet.QueryProcessors.ICustomersQueryProcessor">
+    <Position X="13.75" Y="24" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEhAAA=</HashCode>
+      <FileName>QueryProcessors\CustomersQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EZVet.QueryProcessors.IEmployeesQueryProcessor">
+    <Position X="16.5" Y="36.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\EmployeesQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EZVet.QueryProcessors.IFieldsQueryProcessor">
+    <Position X="16.5" Y="24" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAgAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\FieldsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EZVet.QueryProcessors.IDatabaseAccess&lt;T&gt;">
+    <Position X="15" Y="30" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>QueryProcessors\IDatabaseAccess.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EZVet.QueryProcessors.IOrdersQueryProcessor">
+    <Position X="19.25" Y="36.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQABYAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\OrdersQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EZVet.QueryProcessors.IParticipantsQueryProcessor">
+    <Position X="19" Y="24" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\ParticipantsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EZVet.QueryProcessors.IReportsQueryProcessor">
+    <Position X="22" Y="24" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAACAAAAgAAAAAAAAA=</HashCode>
+      <FileName>QueryProcessors\ReportsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="EZVet.QueryProcessors.IReviewsQueryProcessor">
+    <Position X="22" Y="36.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>QueryProcessors\ReviewsQueryProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
