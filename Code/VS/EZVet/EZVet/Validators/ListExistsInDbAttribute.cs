@@ -19,9 +19,9 @@ namespace EZVet.Validators
 
             try
             {
-                IList valueAsList = (IList)value;
+                var valueAsList = (IList)value;
                 
-                foreach(object currVal in valueAsList)
+                foreach(var currVal in valueAsList)
                 {
                     var entity = session.Get(_type, ((Domain.Entity)currVal).Id);
                     if (entity == null)

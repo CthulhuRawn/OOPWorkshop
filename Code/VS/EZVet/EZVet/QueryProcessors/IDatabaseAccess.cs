@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace EZVet.QueryProcessors
 {
-    interface IDatabaseAccess<T> where T : Entity
+    public interface IDatabaseAccess<T> where T : Entity
     {
         T Get(int id);
         void Update(int id, T entity);

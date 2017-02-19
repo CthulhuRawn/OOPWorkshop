@@ -11,25 +11,25 @@ namespace EZVet.Controllers
 {
     public class LoginController : ApiController
     {
-        private ICustomersQueryProcessor _customersQueryProcessor;
+        private IOwnersQueryProcessor _ownersQueryProcessor;
         ISession _session;
 
-        public LoginController(ISession session, ICustomersQueryProcessor customersQueryProcessor)
+        public LoginController(ISession session, IOwnersQueryProcessor ownersQueryProcessor)
         {
             _session = session;
-            _customersQueryProcessor = customersQueryProcessor;
+            _ownersQueryProcessor = ownersQueryProcessor;
         }
 
         [HttpPost]
         [Route("api/login/login")]
         public LoginResponse Login(UserCredentials credentials)
         {
-            byte[] toEncodeAsBytes = Encoding.ASCII.GetBytes(credentials.Username + ":" + credentials.Password);
-            string authenticationKey = "Basic " + Convert.ToBase64String(toEncodeAsBytes);
+            var toEncodeAsBytes = Encoding.ASCII.GetBytes(credentials.Username + ":" + credentials.Password);
+            var authenticationKey = "Basic " + Convert.ToBase64String(toEncodeAsBytes);
             string role = null;
-            int userId = 0;
+            var userId = 0;
 
-            var user = _session.QueryOver<Domain.Owner>().Where(x => x.Username == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
+            var user = _session.QueryOver<Domain.Owner>().Where(x => x.Email == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
 
             if (user != null)
             {
@@ -37,7 +37,7 @@ namespace EZVet.Controllers
                 userId = user.Id;
             }
 
-            var employee = _session.QueryOver<Doctor>().Where(x => x.Username == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
+            var employee = _session.QueryOver<Domain.Doctor>().Where(x => x.Email == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
 
             if (employee != null)
             {
@@ -65,9 +65,9 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/login/registration")]
-        public RegistrationReponse Registration(DTOs.Owner customer)
+        public RegistrationReponse Registration(DTOs.Owner owner)
         {
-            if (_customersQueryProcessor.Exists(customer.Email))
+            if (_ownersQueryProcessor.Exists(owner.Email))
             {
                 return new RegistrationReponse
                 {
@@ -75,7 +75,7 @@ namespace EZVet.Controllers
                 };
             }
 
-            
+            _ownersQueryProcessor.Save(owner);
 
             return new RegistrationReponse
             {

@@ -58,7 +58,7 @@ namespace EZVet.Filters
             var authorized = false;
             var session =(ISession)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ISession));
 
-            var user = session.QueryOver<Owner>().Where(x => x.Username == username && x.Password == password).SingleOrDefault();
+            var user = session.QueryOver<Owner>().Where(x => x.Email == username && x.Password == password).SingleOrDefault();
 
             if (user != null)
             { 
@@ -66,7 +66,7 @@ namespace EZVet.Filters
                 authorized = true;
             }
 
-            var employee = session.QueryOver<Doctor>().Where(x => x.Username == username && x.Password == password).SingleOrDefault();
+            var employee = session.QueryOver<Doctor>().Where(x => x.Email == username && x.Password == password).SingleOrDefault();
 
             if (employee != null)
             {

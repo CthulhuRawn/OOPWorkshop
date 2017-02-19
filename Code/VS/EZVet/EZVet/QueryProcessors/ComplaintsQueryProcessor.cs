@@ -19,10 +19,10 @@ namespace EZVet.QueryProcessors
 
     public class ComplaintsQueryProcessor : DBAccessBase<Complaint>, IComplaintsQueryProcessor
     {
-        ICustomersQueryProcessor _customersQueryProcessor;
+        IOwnersQueryProcessor _customersQueryProcessor;
         IDecodesQueryProcessor _decodesQueryProcessor;
 
-        public ComplaintsQueryProcessor(ISession session, IDecodesQueryProcessor decodesQueryProcessor, ICustomersQueryProcessor customersQueryProcessor) : base(session)
+        public ComplaintsQueryProcessor(ISession session, IDecodesQueryProcessor decodesQueryProcessor, IOwnersQueryProcessor customersQueryProcessor) : base(session)
         {
             _decodesQueryProcessor = decodesQueryProcessor;
             _customersQueryProcessor = customersQueryProcessor;
@@ -54,7 +54,7 @@ namespace EZVet.QueryProcessors
 
         public DTOs.Complaint Save(DTOs.Complaint complaint)
         {
-            Complaint newComplaint = new Complaint()
+            var newComplaint = new Complaint()
             {
                
                 Description = complaint.Description,
@@ -63,7 +63,7 @@ namespace EZVet.QueryProcessors
                 
             };
 
-            Complaint persistedComplaint = Save(newComplaint);
+            var persistedComplaint = Save(newComplaint);
 
             return new DTOs.Complaint().Initialize(persistedComplaint);
         }

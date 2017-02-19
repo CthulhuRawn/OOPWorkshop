@@ -20,7 +20,7 @@ namespace EZVet.Common
             CancellationToken cancellationToken)
         {
             string dateToParse = null;
-            string paramName = this.Descriptor.ParameterName;
+            var paramName = this.Descriptor.ParameterName;
 
             var nameVal = actionContext.Request.GetQueryNameValuePairs();
             dateToParse = nameVal.Where(q => q.Key.Equals(paramName))

@@ -1,5 +1,4 @@
-﻿        
-<div class="container">
+﻿<div class="container">
     <h2>My Pets</h2>
     <form>
         <div class="row">
@@ -17,41 +16,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Nalla</td>
-                        <td>Dr. Orly Netanel</td>
-                        <td>Cat</td>
-                        <td>6.1</td>
-                        <td>Female</td>
-                        <td>01.09.2016</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Clara</td>
-                        <td>Dr. Orly Netanel</td>
-                        <td>Cat</td>
-                        <td>0.9</td>
-                        <td>Female</td>
-                        <td>01.10.2016</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Mika</td>
-                        <td>Dr. Effi Vagshal</td>
-                        <td>Parrot</td>
-                        <td>2.6</td>
-                        <td>Female</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Jullie</td>
-                        <td>Dr. Effi Vagshal</td>
-                        <td>Parrot</td>
-                        <td>1.6</td>
-                        <td>Female</td>
-                        <td>01.01.2017</td>
+                    <tr ng-repeat="x in pets">
+                        <td>{{ x.Id }}</td>
+                        <td>{{ x.Name }}</td>
+                        <td>{{ x.DoctorName }}</td>
+                        <td>{{ x.Type }}</td>
+                        <td>{{ x.Age }}</td>
+                        <td>{{ x.Gender }}</td>
+                        <td>{{ x.NextVisit }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -59,7 +31,7 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-12">
-                <button type="submit" class="btn btn-lg btn-primary pull-right">Add Pet</button>
+                <button type="button" class="btn btn-lg btn-primary pull-right" ng-click="addRow()">Add Pet</button>
             </div>
         </div>
     </form>

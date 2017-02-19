@@ -60,28 +60,26 @@ namespace EZVet.QueryProcessors
 
         public DTOs.Employee Save(DTOs.Employee employee)
         {
-            Employee newEmployee = new Employee
+            var newEmployee = new Employee
             {
                 FirstName = employee.FirstName,
                 LastName = employee.LastName,
-                Username = employee.Username,
                 Password = employee.Username,
                 Salary = employee.Salary,
                 Email = employee.Email
             };
 
-            Employee persistedEmployee = Save(newEmployee);
+            var persistedEmployee = Save(newEmployee);
 
             return new DTOs.Employee().Initialize(persistedEmployee);
         }
 
         public DTOs.Employee Update(int id, DTOs.Employee employee)
         {
-            Employee existingEmployee = Get(id);
+            var existingEmployee = Get(id);
 
             existingEmployee.FirstName = employee.FirstName ?? existingEmployee.FirstName;
             existingEmployee.LastName = employee.LastName ?? existingEmployee.LastName;
-            existingEmployee.Username = employee.Username ?? existingEmployee.Username;
             existingEmployee.Password = employee.Password ?? existingEmployee.Password;
             existingEmployee.Email = employee.Email ?? existingEmployee.Email;
 
@@ -95,7 +93,7 @@ namespace EZVet.QueryProcessors
 
         public bool Exists(string name)
         {
-            return Query().Where(emp => emp.Username == name).Any();
+            return Query().Where(emp => emp.Email == name).Any();
         }
 
         public void Delete(int id)

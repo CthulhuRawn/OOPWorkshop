@@ -11,9 +11,9 @@ namespace GenerateData
     {
         static void Main(string[] args)
         {
-            string absoluteDbPath = "C:/Users/Ron/Documents/GitHub/OOPWorkshop/Code/VS/EZVet/EZVet/App_Data/db.sqlite";
+            var absoluteDbPath = "C:/W/git_managed/Sadna/db.sqlite";
 
-            ISessionFactory sessionFactory = Fluently.Configure()
+            var sessionFactory = Fluently.Configure()
                     .Database(SQLiteConfiguration.Standard.UsingFile(absoluteDbPath))
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CustomerMap>())
                     .CurrentSessionContext("web")
@@ -21,15 +21,15 @@ namespace GenerateData
                     .BuildSessionFactory();
             var session = sessionFactory.OpenSession();
 
-            DecodesQueryProcessor decode = new DecodesQueryProcessor(session);
-            EmployeesQueryProcessor employeeQP = new EmployeesQueryProcessor(session);
-            FieldsQueryProcessor fieldQP = new FieldsQueryProcessor(decode, session);
-            CustomersQueryProcessor customerQP = new CustomersQueryProcessor(session, decode);
+            var decode = new DecodesQueryProcessor(session);
+            var employeeQP = new EmployeesQueryProcessor(session);
+            var fieldQP = new FieldsQueryProcessor(decode, session);
+            var customerQP = new OwnersQueryProcessor(session, decode);
 
-            ComplaintsQueryProcessor complaintQP = new ComplaintsQueryProcessor(session, decode, customerQP);
-            OrdersQueryProcessor orderQP = new OrdersQueryProcessor(session, customerQP, fieldQP, decode);
-            ParticipantsQueryProcessor participantQP = new ParticipantsQueryProcessor(session, customerQP, orderQP, decode);
-            ReviewsQueryProcessor reviewQP = new ReviewsQueryProcessor(session, customerQP);
+            var complaintQP = new ComplaintsQueryProcessor(session, decode, customerQP);
+            var orderQP = new OrdersQueryProcessor(session, customerQP, fieldQP, decode);
+            var participantQP = new ParticipantsQueryProcessor(session, customerQP, orderQP, decode);
+            var reviewQP = new ReviewsQueryProcessor(session, customerQP);
 
             //ReportsQueryProcessor reportsQP = new ReportsQueryProcessor(customerQP, orderQP, complaintQP, participantQP);
 

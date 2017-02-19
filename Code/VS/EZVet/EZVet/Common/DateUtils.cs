@@ -8,8 +8,8 @@ namespace EZVet.Common
     {
         public static int GetAge(DateTime dateTime)
         {
-            DateTime today = DateTime.Today;
-            int age = today.Year - dateTime.Year;
+            var today = DateTime.Today;
+            var age = today.Year - dateTime.Year;
 
             if (dateTime > today.AddYears(-age))
                 age--;
@@ -19,8 +19,8 @@ namespace EZVet.Common
 
         public static DateTime GetXYearsEarly(int age)
         {
-            DateTime today = DateTime.Today;
-            DateTime past = today.AddYears(-age);
+            var today = DateTime.Today;
+            var past = today.AddYears(-age);
             return past;
         }
 

@@ -18,9 +18,9 @@ namespace EZVet.QueryProcessors
 
     public class ReviewsQueryProcessor : DBAccessBase<Review>, IReviewsQueryProcessor
     {
-        private CustomersQueryProcessor _customersQueryProcessor;
+        private IOwnersQueryProcessor _customersQueryProcessor;
 
-        public ReviewsQueryProcessor(ISession session, CustomersQueryProcessor customersQueryProcessor) : base(session)
+        public ReviewsQueryProcessor(ISession session, IOwnersQueryProcessor customersQueryProcessor) : base(session)
         {
             _customersQueryProcessor = customersQueryProcessor;
         }
@@ -37,14 +37,14 @@ namespace EZVet.QueryProcessors
 
         public DTOs.Review Save(DTOs.Review review)
         {
-            Review newReview = new Review()
+            var newReview = new Review()
             {
                 Date = review.Date,
                 Title = review.Title,
                 Description = review.Description
             };
 
-            Review persistedReview = Save(newReview);
+            var persistedReview = Save(newReview);
 
             return new DTOs.Review().Initialize(persistedReview);
         }

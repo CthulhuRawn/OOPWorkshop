@@ -28,7 +28,6 @@ namespace EZVet.DTOs
         public override Employee Initialize(Domain.Employee domain)
         {
            Id = domain.Id;
-           Username = domain.Username;
            Password = domain.Password;
            FirstName = domain.FirstName;
            LastName = domain.LastName;

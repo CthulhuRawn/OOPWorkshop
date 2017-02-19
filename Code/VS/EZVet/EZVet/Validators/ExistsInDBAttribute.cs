@@ -23,7 +23,7 @@ namespace EZVet.Validators
             if (!_type.IsSubclassOf(typeof(Domain.Entity)))
                 throw new ValidationException("type must inherit from Domain.Entity");
 
-            ISession session = (ISession)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ISession));
+            var session = (ISession)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ISession));
             try
             {
                 // TODO cast to Entity<TDTO, TDomain>

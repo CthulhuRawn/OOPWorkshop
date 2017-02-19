@@ -4,7 +4,7 @@ using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
-    public class Owner : Entity<Owner, Domain.Owner>
+    public class Doctor : Entity<Doctor, Domain.Doctor>
     {
         [Key]
         [EmailAddress]
@@ -23,7 +23,7 @@ namespace EZVet.DTOs
 
         public virtual Address Address { get; set; }
 
-        public override Owner Initialize(Domain.Owner domain)
+        public override Doctor Initialize(Domain.Doctor domain)
         {
             Id = domain.Id;
             Password = domain.Password;

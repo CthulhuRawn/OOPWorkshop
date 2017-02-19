@@ -15,13 +15,13 @@ namespace EZVet.QueryProcessors
 
     public class ReportsQueryProcessor : IReportsQueryProcessor
     {
-        private readonly ICustomersQueryProcessor _customersQueryProcessor;
+        private readonly IOwnersQueryProcessor _customersQueryProcessor;
         private readonly IComplaintsQueryProcessor _complaintsQueryProcessor;
         private readonly IOrdersQueryProcessor _ordersQueryProcessor;
         private readonly IParticipantsQueryProcessor _participantsQueryProcessor;
         private readonly IFieldsQueryProcessor _fieldsQueryProcessor;
 
-        public ReportsQueryProcessor(ICustomersQueryProcessor customersQueryProcessor, IOrdersQueryProcessor ordersQueryProcessor, IComplaintsQueryProcessor complaintsQueryProcessor, IParticipantsQueryProcessor participantsQueryProcessor, IFieldsQueryProcessor fieldsQueryProcessor)
+        public ReportsQueryProcessor(IOwnersQueryProcessor customersQueryProcessor, IOrdersQueryProcessor ordersQueryProcessor, IComplaintsQueryProcessor complaintsQueryProcessor, IParticipantsQueryProcessor participantsQueryProcessor, IFieldsQueryProcessor fieldsQueryProcessor)
         {
             _customersQueryProcessor = customersQueryProcessor;
             _ordersQueryProcessor = ordersQueryProcessor;

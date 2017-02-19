@@ -28,7 +28,9 @@ namespace EZVet.Common
         private void ConfigureQueryProcessors(IKernel container)
         {
             container.Bind<IComplaintsQueryProcessor>().To<ComplaintsQueryProcessor>();
-            container.Bind<ICustomersQueryProcessor>().To<CustomersQueryProcessor>();
+            container.Bind<IAnimalsQueryProcessor>().To<AnimalsQueryProcessor>();
+            container.Bind<IOwnersQueryProcessor>().To<OwnersQueryProcessor>();
+            container.Bind<IDoctorsQueryProcessor>().To<DoctorsQueryProcessor>();
             container.Bind<IDecodesQueryProcessor>().To<DecodesQueryProcessor>();
             container.Bind<IEmployeesQueryProcessor>().To<EmployeesQueryProcessor>();
             container.Bind<IFieldsQueryProcessor>().To<FieldsQueryProcessor>();
@@ -47,7 +49,7 @@ namespace EZVet.Common
 
         private ISessionFactory CreateSessionFactory(IContext context)
         {
-            string absoluteDbPath = HttpContext.Current.Server.MapPath(Consts.DB_PATH);
+            var absoluteDbPath = HttpContext.Current.Server.MapPath(Consts.DB_PATH);
 
             return Fluently.Configure()
                     .Database(SQLiteConfiguration.Standard.UsingFile(absoluteDbPath))

@@ -22,11 +22,11 @@ namespace EZVet.QueryProcessors
 
     public class ParticipantsQueryProcessor : DBAccessBase<Participant>, IParticipantsQueryProcessor
     {
-        private CustomersQueryProcessor _customersQueryProcessor;
+        private IOwnersQueryProcessor _customersQueryProcessor;
         private OrdersQueryProcessor _ordersQueryProcessor;
         private IDecodesQueryProcessor _decodesQueryProcessor;
 
-        public ParticipantsQueryProcessor(ISession session, CustomersQueryProcessor customersQueryProcessor, OrdersQueryProcessor ordersQueryProcessor, IDecodesQueryProcessor decodesQueryProcessor) : base(session)
+        public ParticipantsQueryProcessor(ISession session, IOwnersQueryProcessor customersQueryProcessor, OrdersQueryProcessor ordersQueryProcessor, IDecodesQueryProcessor decodesQueryProcessor) : base(session)
         {
             _customersQueryProcessor = customersQueryProcessor;
             _ordersQueryProcessor = ordersQueryProcessor;
@@ -64,7 +64,7 @@ namespace EZVet.QueryProcessors
 
         public DTOs.Participant Save(DTOs.Participant participant)
         {
-            Participant newParticipant = new Participant()
+            var newParticipant = new Participant()
             {
                 
                 Date = participant.Date,
@@ -72,7 +72,7 @@ namespace EZVet.QueryProcessors
                 Status = _decodesQueryProcessor.Get<InvitationStatusDecode>(participant.Status)
             };
 
-            Participant persistedParticipant = Save(newParticipant);
+            var persistedParticipant = Save(newParticipant);
 
             return new DTOs.Participant().Initialize(persistedParticipant);
         }
@@ -80,7 +80,7 @@ namespace EZVet.QueryProcessors
         // Only status can be changed
         public DTOs.Participant Update(int id, DTOs.Participant participant)
         {
-            Participant existingParticipant = Get(id);
+            var existingParticipant = Get(id);
 
             existingParticipant.Status = _decodesQueryProcessor.Get<InvitationStatusDecode>(participant.Status);
 
@@ -110,7 +110,7 @@ namespace EZVet.QueryProcessors
 
             if (!string.IsNullOrEmpty(ownerName))
             {
-                string[] names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                var names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                 if (names.Length == 1)
                 {

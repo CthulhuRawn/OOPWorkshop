@@ -39,7 +39,7 @@ namespace EZVet.Controllers
         {
             var currPrincipal = HttpContext.Current.User as ClaimsPrincipal;
             var currIdentity = currPrincipal.Identity as BasicAuthenticationIdentity;
-            int userId = currIdentity.UserId;
+            var userId = currIdentity.UserId;
 
             
             return _complaintsQueryProcessor.Save(complaint);

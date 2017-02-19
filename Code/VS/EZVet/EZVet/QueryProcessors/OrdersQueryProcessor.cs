@@ -29,12 +29,12 @@ namespace EZVet.QueryProcessors
 
     public class OrdersQueryProcessor : DBAccessBase<Order>, IOrdersQueryProcessor
     {
-        private CustomersQueryProcessor _customersQueryProcessor;
+        private IOwnersQueryProcessor _customersQueryProcessor;
         private FieldsQueryProcessor _fieldsQueryProcessor;
         private IDecodesQueryProcessor _decodesQueryProcessor;
         private IParticipantsQueryProcessor _participantsQueryProcessor;
 
-        public OrdersQueryProcessor(ISession session, CustomersQueryProcessor customersQueryProcessor, FieldsQueryProcessor fieldsQueryProcessor,
+        public OrdersQueryProcessor(ISession session, IOwnersQueryProcessor customersQueryProcessor, FieldsQueryProcessor fieldsQueryProcessor,
             IDecodesQueryProcessor decodesQueryProcessor) : base(session)
         {
             _customersQueryProcessor = customersQueryProcessor;
@@ -79,7 +79,7 @@ namespace EZVet.QueryProcessors
 
             if (!string.IsNullOrEmpty(ownerName))
             {
-                string[] names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                var names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                 if (names.Length == 1)
                 {
@@ -110,7 +110,7 @@ namespace EZVet.QueryProcessors
         public DTOs.Order Save(DTOs.Order order)
         {
             // TODO remove EndDate from Order
-            Order newOrder = new Order()
+            var newOrder = new Order()
             {
                 
                 StartDate = DateUtils.ConvertFromJavaScript(order.StartDate),
@@ -120,7 +120,7 @@ namespace EZVet.QueryProcessors
                 Participants = new List<Participant>()
             };
 
-            Order persistedOrder = Save(newOrder);
+            var persistedOrder = Save(newOrder);
 
             return new DTOs.Order().Initialize(persistedOrder);
         }
@@ -128,7 +128,7 @@ namespace EZVet.QueryProcessors
         // Owner can be changed.
         public DTOs.Order Update(int id, DTOs.Order order)
         {
-            Order existingOrder = Get(id);
+            var existingOrder = Get(id);
 
             if (order.Status != null)
                 existingOrder.Status = _decodesQueryProcessor.Get<OrderStatusDecode>(order.Status);
@@ -150,7 +150,7 @@ namespace EZVet.QueryProcessors
         public List<DTOs.Order> SearchOptionalOrders(int? fieldId, string fieldName, int? fieldTypeId, DateTime date)
         {
             IList<DTOs.Field> fields = _fieldsQueryProcessor.Search(fieldId, fieldName, fieldTypeId).ToList();
-            IList<DateTime> possibleDate = DateUtils.PossibleDateOrders(date);
+            var possibleDate = DateUtils.PossibleDateOrders(date);
 
             var possibleEvent = from field in _fieldsQueryProcessor.Search(fieldId, fieldName, fieldTypeId).ToList()
                                 from dateStart in DateUtils.PossibleDateOrders(date)
@@ -174,7 +174,7 @@ namespace EZVet.QueryProcessors
         {
             var currPrincipal = HttpContext.Current.User as ClaimsPrincipal;
             var currIdentity = currPrincipal.Identity as BasicAuthenticationIdentity;
-            int userId = currIdentity.UserId;
+            var userId = currIdentity.UserId;
 
             var filter = PredicateBuilder.New<Order>(x => x.Owner.Id != userId);
 
@@ -185,7 +185,7 @@ namespace EZVet.QueryProcessors
 
             if (!string.IsNullOrEmpty(ownerName))
             {
-                string[] names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                var names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                 if (names.Length == 1)
                 {
@@ -233,7 +233,7 @@ namespace EZVet.QueryProcessors
 
             var allResult = Query().Where(filter).ToList().Select(x => new DTOs.Order().Initialize(x));
 
-            List<DTOs.Order> finalResult = new List<DTOs.Order>();
+            var finalResult = new List<DTOs.Order>();
 
             foreach (var item in allResult)
             {

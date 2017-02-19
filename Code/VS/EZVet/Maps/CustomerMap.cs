@@ -11,7 +11,6 @@ namespace Maps
 
             Id(x => x.Id);
 
-            Map(x => x.Username);
             Map(x => x.Password);
             Map(x => x.FirstName);
             Map(x => x.LastName);

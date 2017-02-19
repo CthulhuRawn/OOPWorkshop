@@ -63,21 +63,21 @@ namespace EZVet.QueryProcessors
 
         public DTOs.Field Save(DTOs.Field field)
         {
-            Field newField = new Field
+            var newField = new Field
             {
                 Name = field.Name,
                 Size = _decodesQueryProcessor.Get<FieldSizeDecode>(field.Size),
                 Type = _decodesQueryProcessor.Get<FieldTypeDecode>(field.Type),
             };
 
-            Field persistedField = Save(newField);
+            var persistedField = Save(newField);
 
             return new DTOs.Field().Initialize(persistedField);
         }
 
         public DTOs.Field Update(int id, DTOs.Field field)
         {
-            Field existingField = Get(id);
+            var existingField = Get(id);
 
             existingField.Name = field.Name ?? existingField.Name;
 

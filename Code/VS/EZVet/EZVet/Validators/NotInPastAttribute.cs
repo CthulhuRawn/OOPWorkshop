@@ -12,7 +12,7 @@ namespace EZVet.Validators
                 throw new ValidationException("Value must be DateTime");
             }
 
-            DateTime dt = (DateTime)value;
+            var dt = (DateTime)value;
             if (dt < DateTime.Now)
             {
                 return new ValidationResult("Make sure your date is newer than today");

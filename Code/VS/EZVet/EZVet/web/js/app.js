@@ -85,6 +85,11 @@
             controller: 'ownedOrdersCrtl',
             activetab: 'ownedOrders'
         });
+        $routeProvider.when('/AnimalsListCustomer', {
+            templateUrl: 'web/partials/AnimalsListCustomer.html',
+            controller: 'animalsCtrl',
+            activetab: 'AnimalsListCustomer'
+        });
         $routeProvider.when('/editOrder/:Id?', {
             templateUrl: 'web/partials/editOrder.html',
             controller: 'OrdersCtrl',

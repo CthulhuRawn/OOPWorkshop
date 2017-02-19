@@ -28,7 +28,7 @@ namespace EZVet.Controllers
         {
             var currPrincipal = HttpContext.Current.User as ClaimsPrincipal;
             var currIdentity = currPrincipal.Identity as BasicAuthenticationIdentity;
-            int userId = currIdentity.UserId;
+            var userId = currIdentity.UserId;
             int?[] statuses = null;
             if (orderStatusId.HasValue)
                 statuses = new int?[] { orderStatusId };
@@ -57,7 +57,7 @@ namespace EZVet.Controllers
         [HttpGet]
         public DTOs.Order Get(int id)
         {
-            DTOs.Order order = _ordersQueryProcessor.GetOrder(id);
+            var order = _ordersQueryProcessor.GetOrder(id);
             order.Participants = _participantsQueryProcessor.Search(null, null, new int?[] { (int)Consts.Decodes.InvitationStatus.Sent, (int)Consts.Decodes.InvitationStatus.Accepted }, 
                 null, order.Id, null, null, null, null).ToList();
             return order;
@@ -70,7 +70,7 @@ namespace EZVet.Controllers
         {
             var currPrincipal = HttpContext.Current.User as ClaimsPrincipal;
             var currIdentity = currPrincipal.Identity as BasicAuthenticationIdentity;
-            int userId = currIdentity.UserId;
+            var userId = currIdentity.UserId;
          
             return _ordersQueryProcessor.Save(order);
         }
@@ -117,11 +117,11 @@ namespace EZVet.Controllers
             //    dateTime = DateUtils.ConvertFromJavaScript(date ?? 0);
 
 
-            List<DTOs.Order> optionals = _ordersQueryProcessor.SearchOptionalOrders(fieldId, null, fieldType, dateTime??DateTime.Today);
+            var optionals = _ordersQueryProcessor.SearchOptionalOrders(fieldId, null, fieldType, dateTime??DateTime.Today);
 
             if (orderId.HasValue)
             {
-                DTOs.Order current = _ordersQueryProcessor.GetOrder(orderId ?? 0);
+                var current = _ordersQueryProcessor.GetOrder(orderId ?? 0);
 
                 if (current.Field.Id == fieldId && DateUtils.ConvertFromJavaScript(current.StartDate).Date == dateTime.Value.Date)
                 {
@@ -149,9 +149,9 @@ namespace EZVet.Controllers
         {
             var currPrincipal = HttpContext.Current.User as ClaimsPrincipal;
             var currIdentity = currPrincipal.Identity as BasicAuthenticationIdentity;
-            int userId = currIdentity.UserId;
+            var userId = currIdentity.UserId;
 
-            DTOs.Participant newParticipant = new DTOs.Participant()
+            var newParticipant = new DTOs.Participant()
             {
                 Status = (int)Consts.Decodes.InvitationStatus.Sent,
                 Date = DateTime.Now,

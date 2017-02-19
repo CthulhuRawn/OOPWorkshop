@@ -152,11 +152,14 @@
     <Compile Include="Controllers\ComplaintsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ParticipantsController.cs" />
+    <Compile Include="Controllers\AnimalsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="DTOs\Animal.cs" />
     <Compile Include="DTOs\Address.cs" />
     <Compile Include="DTOs\CustomerUpdateResponse.cs" />
     <Compile Include="DTOs\EmployeeResponse.cs" />
     <Compile Include="DTOs\LoginResponse.cs" />
+    <Compile Include="DTOs\Doctor.cs" />
     <Compile Include="DTOs\RegistrationReponse.cs" />
     <Compile Include="DTOs\UserCredentials.cs" />
     <Compile Include="DTOs\UsingFieldsReport.cs" />
@@ -166,7 +169,9 @@
     <Compile Include="QueryProcessors\ComplaintsQueryProcessor.cs" />
     <Compile Include="QueryProcessors\DecodesQueryProcessor.cs" />
     <Compile Include="QueryProcessors\EmployeesQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\CustomersQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\AnimalsQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\DoctorsQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\OwnersQueryProcessor.cs" />
     <Compile Include="QueryProcessors\FieldsQueryProcessor.cs" />
     <Compile Include="QueryProcessors\DBAccessBase.cs" />
     <Compile Include="QueryProcessors\IDatabaseAccess.cs" />

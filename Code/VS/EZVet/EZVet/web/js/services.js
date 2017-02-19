@@ -77,7 +77,7 @@
                         path = '/searchOrders';
                     }
                     else {
-                        path = '/ownedOrders';
+                        path = '/AnimalsListCustomer';
                     }
                 }
 
@@ -121,6 +121,9 @@
                 fields: urlBase + "reports/fields",
                 customers: urlBase + "reports/customers",
                 complaints: urlBase + "reports/complaints"
+            },
+            animals: {
+                owner: urlBase + "animals/myAnimals"
             }
         }
     });

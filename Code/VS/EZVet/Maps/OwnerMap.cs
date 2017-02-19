@@ -9,11 +9,10 @@ namespace Maps
             Map(x => x.FirstName);
             Map(x => x.LastName);
             Map(x => x.Password);
-            Map(x => x.Username);
             Map(x => x.BirthDate);
             Map(x => x.Email);
 
-            References(x => x.Address);
+            References(x => x.Address).Cascade.All();
 
             HasMany(x => x.Animals);
         }

@@ -71,6 +71,18 @@
         }
     }]);
 
+    myApp.controller('animalsCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', '$rootScope', function ($scope, $http, ServerRoutes, DomainDecodes, toaster, $rootScope) {
+        $scope.pets = [];
+
+        $http({
+            url: ServerRoutes.animals.owner,
+            method: "GET",
+            params: { Id: $rootScope.sharedVariables.userId },
+        }).then(function searchCompleted(response) {
+            $scope.pets = angular.copy(response.data);
+        });
+    }]);
+
     myApp.controller('OrdersCtrl', ['$rootScope', '$scope', '$http', '$routeParams', '$location', 'DomainDecodes', 'ServerRoutes', 'toaster', function ($rootScope, $scope, $http, $routeParams, $location, DomainDecodes, ServerRoutes, toaster) {
 
         $scope.getOptionals = function () {

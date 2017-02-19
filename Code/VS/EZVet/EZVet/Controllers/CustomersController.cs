@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text;
-using System.Web;
 using System.Web.Http;
-using EZVet.Filters;
 using EZVet.QueryProcessors;
 
 namespace EZVet.Controllers
@@ -25,7 +20,7 @@ namespace EZVet.Controllers
 
     public class CustomersController : ApiController
     {
-        private readonly ICustomersQueryProcessor _customersQueryProcessor;
+        private readonly IOwnersQueryProcessor _customersQueryProcessor;
 
         private readonly IReviewsQueryProcessor _reviewsQueryProcessor;
 
@@ -33,7 +28,7 @@ namespace EZVet.Controllers
 
         private readonly UserTypeComparer _userTypeComparer;
 
-        public CustomersController(ICustomersQueryProcessor customerQueryProcessor, IReviewsQueryProcessor reviewsQueryProcessor, 
+        public CustomersController(IOwnersQueryProcessor customerQueryProcessor, IReviewsQueryProcessor reviewsQueryProcessor, 
             IComplaintsQueryProcessor complaintsQueryProcessor)
         {
             _customersQueryProcessor = customerQueryProcessor;
