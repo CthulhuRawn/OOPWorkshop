@@ -13,6 +13,7 @@
                         <th>Age</th>
                         <th>Gender</th>
                         <th>Next Scheduled Visit</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,6 +25,7 @@
                             <td>{{ x.Age }}</td>
                             <td>{{ x.Gender }}</td>
                             <td>{{ x.NextVisit }}</td>
+                            <td><a type="button" class="btn btn-sm btn-primary" href="#/PatientPage/{{x.id}}">View Pet</a></td>
                         </tr>
                     </tbody>
                 </table>

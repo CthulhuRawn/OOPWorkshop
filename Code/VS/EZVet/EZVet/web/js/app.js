@@ -95,7 +95,7 @@
             controller: 'animalsCtrl',
             activetab: 'AnimalsListVet'
         });
-        $routeProvider.when('/PatientPage', {
+        $routeProvider.when('/PatientPage/:Id?', {
             templateUrl: 'web/partials/PatientPage.html',
             controller: 'patientCtrl',
             activetab: 'PatientPage'
