@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using EZVet.DTOs;
 using EZVet.Filters;
 using EZVet.QueryProcessors;
 
@@ -16,14 +17,14 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
-        public IEnumerable<DTOs.Field> Search(int? fieldId = null, string fieldName = null, int? type = null)
+        public IEnumerable<Field> Search(int? fieldId = null, string fieldName = null, int? type = null)
         {
             return _fieldsQueryProcessor.Search(fieldId, fieldName, type);
         }
 
         [HttpGet]
         [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
-        public DTOs.Field Get(int id)
+        public Field Get(int id)
         {
             return _fieldsQueryProcessor.GetField(id);
         }
@@ -31,7 +32,7 @@ namespace EZVet.Controllers
         [HttpPost]
         [TransactionFilter]
         [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
-        public DTOs.Field Save([FromBody]DTOs.Field field)
+        public Field Save([FromBody]Field field)
         {
             return _fieldsQueryProcessor.Save(field);
         }
@@ -39,7 +40,7 @@ namespace EZVet.Controllers
         [HttpPut]
         [TransactionFilter]
         [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
-        public DTOs.Field Update([FromUri]int id, [FromBody]DTOs.Field field)
+        public Field Update([FromUri]int id, [FromBody]Field field)
         {
             return _fieldsQueryProcessor.Update(id, field);
         }

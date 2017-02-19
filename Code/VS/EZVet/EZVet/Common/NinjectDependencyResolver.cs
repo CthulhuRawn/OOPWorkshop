@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
 using Ninject;
+
 namespace EZVet.Common
 {
     public class NinjectDependencyResolver : IDependencyResolver

@@ -1,22 +1,22 @@
-﻿using Domain;
-using NHibernate;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using EZVet.DTOs;
+using NHibernate;
 
 namespace EZVet.QueryProcessors
 {
     public interface IReviewsQueryProcessor
     {
-        IEnumerable<DTOs.Review> Search(int reviewedCustomerId);
+        IEnumerable<Review> Search(int reviewedCustomerId);
 
-        DTOs.Review GetReview(int id);
+        Review GetReview(int id);
 
-        DTOs.Review Save(DTOs.Review review);
+        Review Save(Review review);
 
-        DTOs.Review Update(int id, DTOs.Review review);
+        Review Update(int id, Review review);
     }
 
-    public class ReviewsQueryProcessor : DBAccessBase<Review>, IReviewsQueryProcessor
+    public class ReviewsQueryProcessor : DBAccessBase<Domain.Review>, IReviewsQueryProcessor
     {
         private IOwnersQueryProcessor _customersQueryProcessor;
 
@@ -25,19 +25,19 @@ namespace EZVet.QueryProcessors
             _customersQueryProcessor = customersQueryProcessor;
         }
 
-        public IEnumerable<DTOs.Review> Search(int reviewedCustomerId)
+        public IEnumerable<Review> Search(int reviewedCustomerId)
         {
-            return Query().Where(x => x.ReviewedCustomer.Id == reviewedCustomerId).ToList().Select(x => new DTOs.Review().Initialize(x));
+            return Query().Where(x => x.ReviewedCustomer.Id == reviewedCustomerId).ToList().Select(x => new Review().Initialize(x));
         }
 
-        public DTOs.Review GetReview(int id)
+        public Review GetReview(int id)
         {
-            return new DTOs.Review().Initialize(Get(id));
+            return new Review().Initialize(Get(id));
         }
 
-        public DTOs.Review Save(DTOs.Review review)
+        public Review Save(Review review)
         {
-            var newReview = new Review()
+            var newReview = new Domain.Review
             {
                 Date = review.Date,
                 Title = review.Title,
@@ -46,10 +46,10 @@ namespace EZVet.QueryProcessors
 
             var persistedReview = Save(newReview);
 
-            return new DTOs.Review().Initialize(persistedReview);
+            return new Review().Initialize(persistedReview);
         }
 
         // TODO consider delete
-        public DTOs.Review Update(int id, DTOs.Review review) { return null; }
+        public Review Update(int id, Review review) { return null; }
     }
 }

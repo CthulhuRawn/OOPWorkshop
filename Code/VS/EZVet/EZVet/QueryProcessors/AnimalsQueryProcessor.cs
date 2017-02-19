@@ -1,24 +1,17 @@
-﻿using Domain;
-using LinqKit;
-using NHibernate;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Web;
-using EZVet.Common;
-using EZVet.Filters;
-
+using EZVet.DTOs;
+using NHibernate;
 
 namespace EZVet.QueryProcessors
 {
     public interface IAnimalsQueryProcessor
     {
-        List<DTOs.Animal> SearchMine(int id);
+        List<Animal> SearchMine(int id);
     }
 
 
-    public class AnimalsQueryProcessor : DBAccessBase<Animal>, IAnimalsQueryProcessor
+    public class AnimalsQueryProcessor : DBAccessBase<Domain.Animal>, IAnimalsQueryProcessor
     {
         private readonly IOwnersQueryProcessor _ownersQueryProcessor;
         private readonly IDoctorsQueryProcessor _doctorsQueryProcessor;
@@ -29,22 +22,22 @@ namespace EZVet.QueryProcessors
         }
 
 
-        public List<DTOs.Animal> SearchMine(int id)
+        public List<Animal> SearchMine(int id)
         {
             if (_doctorsQueryProcessor.ExistsById(id))
                 return
                     Query()
                         .Where(x => x.Doctors.Any(doc => doc.Id == id))
-                        .Select(x => new DTOs.Animal().Initialize(x))
+                        .Select(x => new Animal().Initialize(x))
                         .ToList();
 
             if (_ownersQueryProcessor.ExistsById(id))
                 return Query()
                     .Where(x => x.Owner.Id == id)
-                    .Select(x => new DTOs.Animal().Initialize(x))
+                    .Select(x => new Animal().Initialize(x))
                     .ToList();
 
-            return new List<DTOs.Animal>();
+            return new List<Animal>();
         }
 
     }

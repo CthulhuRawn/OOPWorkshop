@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
-using Domain;
-using NHibernate;
 using System.Linq;
 using EZVet.Common;
+using EZVet.DTOs;
 using LinqKit;
+using NHibernate;
 
 namespace EZVet.QueryProcessors
 {
     public interface IOwnersQueryProcessor 
     {
-        IEnumerable<DTOs.Owner> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? customerId);
+        IEnumerable<Owner> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? customerId);
 
-        DTOs.Owner GetOwner(int id);
+        Owner GetOwner(int id);
 
-        DTOs.Owner Save(DTOs.Owner owner);
+        Owner Save(Owner owner);
 
-        DTOs.Owner Update(int id, DTOs.Owner owner);
+        Owner Update(int id, Owner owner);
         bool Exists(string username);
         bool ExistsById(int id);
     }
 
-    public class OwnersQueryProcessor : DBAccessBase<Owner>, IOwnersQueryProcessor
+    public class OwnersQueryProcessor : DBAccessBase<Domain.Owner>, IOwnersQueryProcessor
     {
         private readonly IDecodesQueryProcessor _decodesQueryProcessor;
 
@@ -39,9 +39,9 @@ namespace EZVet.QueryProcessors
             return Query().Where(user => user.Id == id).Any();
         }
 
-        public IEnumerable<DTOs.Owner> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? customerId)
+        public IEnumerable<Owner> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? customerId)
         {
-            var filter = PredicateBuilder.New<Owner>(x => true);
+            var filter = PredicateBuilder.New<Domain.Owner>(x => true);
 
             if (!string.IsNullOrEmpty(firstName))
             {
@@ -67,26 +67,26 @@ namespace EZVet.QueryProcessors
             {
                 filter.And(x => x.Id == customerId);
             }
-            var result = Query().Where(filter).ToList().Select(x => new DTOs.Owner().Initialize(x));
+            var result = Query().Where(filter).ToList().Select(x => new Owner().Initialize(x));
 
             return result;
         }
 
-        public DTOs.Owner GetOwner(int id)
+        public Owner GetOwner(int id)
         {
-            return new DTOs.Owner().Initialize(Get(id));
+            return new Owner().Initialize(Get(id));
         }
 
-        public DTOs.Owner Save(DTOs.Owner owner)
+        public Owner Save(Owner owner)
         {
-            var newOwner = new Owner
+            var newOwner = new Domain.Owner
             {
                 FirstName = owner.FirstName,
                 LastName = owner.LastName,
                 Password = owner.Password,
                 BirthDate = owner.BirthDate,
                 Email = owner.Email,
-                Address =  new Address
+                Address =  new Domain.Address
                 {
                     City = owner.Address.City,
                     Country = owner.Address.Country,
@@ -97,10 +97,10 @@ namespace EZVet.QueryProcessors
 
             var persistedOwner = Save(newOwner);
 
-            return new DTOs.Owner().Initialize(persistedOwner);
+            return new Owner().Initialize(persistedOwner);
         }
 
-        public DTOs.Owner Update(int id, DTOs.Owner owner)
+        public Owner Update(int id, Owner owner)
         {
             var existingOwner = Get(id);
 
@@ -114,7 +114,7 @@ namespace EZVet.QueryProcessors
             
             Update(id, existingOwner);
 
-            return new DTOs.Owner().Initialize(existingOwner);
+            return new Owner().Initialize(existingOwner);
         }
 
     }

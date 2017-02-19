@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using EZVet.DTOs;
 using EZVet.Filters;
 using EZVet.QueryProcessors;
 
@@ -16,29 +17,29 @@ namespace EZVet.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<DTOs.Employee> Search(string firstName = null, string lastName = null, string eMail = null, int? id = null)
+        public IEnumerable<Employee> Search(string firstName = null, string lastName = null, string eMail = null, int? id = null)
         {
             return _employessQueryProcessor.Search(firstName, lastName, eMail, id);
         }
 
         [HttpGet]
-        public DTOs.Employee Get(int id)
+        public Employee Get(int id)
         {
             return _employessQueryProcessor.GetEmployee(id);
         }
 
         [HttpPost]
         [TransactionFilter]
-        public DTOs.EmployeeResponse Save([FromBody]DTOs.Employee employee)
+        public EmployeeResponse Save([FromBody]Employee employee)
         {
             if (!_employessQueryProcessor.Exists(employee.Username))
-                return new DTOs.EmployeeResponse()
+                return new EmployeeResponse
                 {
                     AlreadyExists = false,
                     Employee = _employessQueryProcessor.Save(employee)
                 };
 
-            return new DTOs.EmployeeResponse()
+            return new EmployeeResponse
             {
                 AlreadyExists = true
             };
@@ -46,7 +47,7 @@ namespace EZVet.Controllers
 
         [HttpPut]
         [TransactionFilter]
-        public DTOs.Employee Update([FromUri]int id, [FromBody]DTOs.Employee employee)
+        public Employee Update([FromUri]int id, [FromBody]Employee employee)
         {
             return _employessQueryProcessor.Update(id, employee);
         }

@@ -1,9 +1,8 @@
-﻿using FluentNHibernate.Cfg;
+﻿using EZVet.QueryProcessors;
+using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Maps;
-using NHibernate;
 using NHibernate.Tool.hbm2ddl;
-using EZVet.QueryProcessors;
 
 namespace GenerateData
 {

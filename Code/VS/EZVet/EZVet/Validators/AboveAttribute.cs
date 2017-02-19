@@ -20,10 +20,7 @@ namespace EZVet.Validators
             {
                 return new ValidationResult("Value below minimal");
             }
-            else
-            {
-                return ValidationResult.Success;
-            }
+            return ValidationResult.Success;
         }
     }
 }

@@ -26,11 +26,11 @@ namespace EZVet.Common
 
         public static IList<DateTime> PossibleDateOrders(DateTime dateTime)
         {
-            IList<DateTime> possibleHour = new List<DateTime>()
+            IList<DateTime> possibleHour = new List<DateTime>
             {
                 new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 16, 0, 0, DateTimeKind.Local),
                 new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 18, 0, 0, DateTimeKind.Local),
-                new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 20, 0, 0, DateTimeKind.Local),
+                new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 20, 0, 0, DateTimeKind.Local)
             };
 
             return possibleHour;
@@ -45,7 +45,7 @@ namespace EZVet.Common
         /// <returns>An integer value representing the number of milliseconds since 1 January 1970 00:00:00 UTC.</returns>
         public static long ConvertToJavaScript(DateTime from)
         {
-            return System.Convert.ToInt64((from - _jan1st1970).TotalMilliseconds);
+            return Convert.ToInt64((from - _jan1st1970).TotalMilliseconds);
         }
 
         /// <summary>

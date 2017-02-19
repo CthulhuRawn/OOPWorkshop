@@ -1,8 +1,8 @@
-﻿using EZVet.Common;
-using EZVet.Filters;
-using System;
+﻿using System;
 using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
+using EZVet.Common;
+using EZVet.Filters;
 
 namespace EZVet
 {

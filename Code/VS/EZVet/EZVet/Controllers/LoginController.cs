@@ -5,7 +5,8 @@ using Domain;
 using EZVet.DTOs;
 using EZVet.QueryProcessors;
 using NHibernate;
-
+using Doctor = Domain.Doctor;
+using Owner = EZVet.DTOs.Owner;
 
 namespace EZVet.Controllers
 {
@@ -37,7 +38,7 @@ namespace EZVet.Controllers
                 userId = user.Id;
             }
 
-            var employee = _session.QueryOver<Domain.Doctor>().Where(x => x.Email == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
+            var employee = _session.QueryOver<Doctor>().Where(x => x.Email == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
 
             if (employee != null)
             {
@@ -65,7 +66,7 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/login/registration")]
-        public RegistrationReponse Registration(DTOs.Owner owner)
+        public RegistrationReponse Registration(Owner owner)
         {
             if (_ownersQueryProcessor.Exists(owner.Email))
             {

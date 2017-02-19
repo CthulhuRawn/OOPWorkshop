@@ -1,4 +1,6 @@
-﻿using FluentNHibernate.Cfg;
+﻿using System.Web;
+using EZVet.QueryProcessors;
+using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Maps;
 using NHibernate;
@@ -7,8 +9,6 @@ using NHibernate.Tool.hbm2ddl;
 using Ninject;
 using Ninject.Activation;
 using Ninject.Web.Common;
-using System.Web;
-using EZVet.QueryProcessors;
 
 namespace EZVet.Common
 {

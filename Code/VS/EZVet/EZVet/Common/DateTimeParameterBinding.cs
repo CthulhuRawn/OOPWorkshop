@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Metadata;
-using System.Net.Http;
 
 namespace EZVet.Common
 {
@@ -20,7 +20,7 @@ namespace EZVet.Common
             CancellationToken cancellationToken)
         {
             string dateToParse = null;
-            var paramName = this.Descriptor.ParameterName;
+            var paramName = Descriptor.ParameterName;
 
             var nameVal = actionContext.Request.GetQueryNameValuePairs();
             dateToParse = nameVal.Where(q => q.Key.Equals(paramName))

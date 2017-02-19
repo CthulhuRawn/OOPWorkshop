@@ -4,7 +4,7 @@ using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
-    public class Order : Entity<DTOs.Order, Domain.Order>
+    public class Order : Entity<Order, Domain.Order>
     {
         //[NotInPast]
         public virtual long StartDate { get; set; }
@@ -20,7 +20,7 @@ namespace EZVet.DTOs
 
         // TODO REMOVE ListExistsInDb
         //[ListExistsInDb(typeof(Domain.Participant))]
-        public virtual IList<DTOs.Participant> Participants { get; set; }
+        public virtual IList<Participant> Participants { get; set; }
 
         public override Order Initialize(Domain.Order domain)
         {
@@ -29,7 +29,7 @@ namespace EZVet.DTOs
 
             PlayersNumber = domain.PlayersNumber;
             Status = domain.Status.Id;
-            Field = new DTOs.Field().Initialize(domain.Field);
+            Field = new Field().Initialize(domain.Field);
 
             return this;
         }

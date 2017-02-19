@@ -1,25 +1,26 @@
-﻿using Domain;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Domain;
 using LinqKit;
 using NHibernate;
-using System.Collections.Generic;
-using System.Linq;
+using Field = EZVet.DTOs.Field;
 
 namespace EZVet.QueryProcessors
 {
     public interface IFieldsQueryProcessor
     {
-        IEnumerable<DTOs.Field> Search(int? fieldId, string fieldName, int? typeId);
+        IEnumerable<Field> Search(int? fieldId, string fieldName, int? typeId);
 
-        DTOs.Field GetField(int id);
+        Field GetField(int id);
 
-        DTOs.Field Save(DTOs.Field field);
+        Field Save(Field field);
 
-        DTOs.Field Update(int id, DTOs.Field field);
+        Field Update(int id, Field field);
 
         void Delete(int id);
     }
     
-    public class FieldsQueryProcessor : DBAccessBase<Field>, IFieldsQueryProcessor
+    public class FieldsQueryProcessor : DBAccessBase<Domain.Field>, IFieldsQueryProcessor
     {
         IDecodesQueryProcessor _decodesQueryProcessor;
 
@@ -28,9 +29,9 @@ namespace EZVet.QueryProcessors
             _decodesQueryProcessor = decodesQueryProcessor;
         }
 
-        public IEnumerable<DTOs.Field> Search(int? fieldId, string fieldName, int? typeId)
+        public IEnumerable<Field> Search(int? fieldId, string fieldName, int? typeId)
         {
-            var filter = PredicateBuilder.New<Field>(x => true);
+            var filter = PredicateBuilder.New<Domain.Field>(x => true);
 
             if (fieldId.HasValue)
             {
@@ -51,31 +52,31 @@ namespace EZVet.QueryProcessors
 
             return queryResult.ToList().Select(x =>
             {
-                return new DTOs.Field().Initialize(x);
+                return new Field().Initialize(x);
             });
         }
 
         // TODO handle not found
-        public DTOs.Field GetField(int id)
+        public Field GetField(int id)
         {
-            return new DTOs.Field().Initialize(Get(id));
+            return new Field().Initialize(Get(id));
         }
 
-        public DTOs.Field Save(DTOs.Field field)
+        public Field Save(Field field)
         {
-            var newField = new Field
+            var newField = new Domain.Field
             {
                 Name = field.Name,
                 Size = _decodesQueryProcessor.Get<FieldSizeDecode>(field.Size),
-                Type = _decodesQueryProcessor.Get<FieldTypeDecode>(field.Type),
+                Type = _decodesQueryProcessor.Get<FieldTypeDecode>(field.Type)
             };
 
             var persistedField = Save(newField);
 
-            return new DTOs.Field().Initialize(persistedField);
+            return new Field().Initialize(persistedField);
         }
 
-        public DTOs.Field Update(int id, DTOs.Field field)
+        public Field Update(int id, Field field)
         {
             var existingField = Get(id);
 
@@ -89,12 +90,12 @@ namespace EZVet.QueryProcessors
 
             Update(id, existingField);
 
-            return new DTOs.Field().Initialize(existingField);
+            return new Field().Initialize(existingField);
         }
 
         public void Delete(int id)
         {
-            Delete(new Field() { Id = id });
+            Delete(new Domain.Field { Id = id });
         }
     }
 }

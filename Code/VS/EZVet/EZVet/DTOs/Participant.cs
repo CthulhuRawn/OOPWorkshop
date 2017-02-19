@@ -3,7 +3,7 @@ using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
-    public class Participant : Entity<DTOs.Participant , Domain.Participant>
+    public class Participant : Entity<Participant , Domain.Participant>
     {
          public virtual DateTime Date { get; set; }
 
@@ -18,7 +18,7 @@ namespace EZVet.DTOs
             Id = domain.Id;
            
             Date = domain.Date;
-            Order = new DTOs.Order().Initialize(domain.Order);
+            Order = new Order().Initialize(domain.Order);
             Status = domain.Status.Id;
 
             return this;

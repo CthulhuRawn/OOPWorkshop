@@ -1,7 +1,8 @@
-﻿using NHibernate;
-using System;
+﻿using System;
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
+using Domain;
+using NHibernate;
 
 namespace EZVet.Validators
 {
@@ -23,7 +24,7 @@ namespace EZVet.Validators
                 
                 foreach(var currVal in valueAsList)
                 {
-                    var entity = session.Get(_type, ((Domain.Entity)currVal).Id);
+                    var entity = session.Get(_type, ((Entity)currVal).Id);
                     if (entity == null)
                     {
                         return new ValidationResult("Entity doesn't exist");

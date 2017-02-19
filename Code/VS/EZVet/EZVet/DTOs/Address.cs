@@ -2,7 +2,7 @@
 
 namespace EZVet.DTOs
 {
-    public class Address : Entity<DTOs.Address, Domain.Address>
+    public class Address : Entity<Address, Domain.Address>
     {
         [MaxLength(30)]
         public virtual string Country { get; set; }

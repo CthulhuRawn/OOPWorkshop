@@ -1,6 +1,4 @@
-﻿using Domain;
-using NHibernate;
-using System;
+﻿using System;
 using System.Security;
 using System.Security.Claims;
 using System.Text;
@@ -9,11 +7,13 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using Domain;
 using EZVet.Controllers;
+using NHibernate;
 
 namespace EZVet.Filters
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class GlobalAuthorizationFilter : AuthorizationFilterAttribute
     {
         /// <summary>

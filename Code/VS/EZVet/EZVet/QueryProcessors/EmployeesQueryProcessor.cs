@@ -1,34 +1,34 @@
-﻿using Domain;
+﻿using System.Collections.Generic;
+using System.Linq;
+using EZVet.DTOs;
 using LinqKit;
 using NHibernate;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace EZVet.QueryProcessors
 {
     public interface IEmployeesQueryProcessor
     {
-        IEnumerable<DTOs.Employee> Search(string firstName, string lastName, string eMail, int? id);
+        IEnumerable<Employee> Search(string firstName, string lastName, string eMail, int? id);
 
-        DTOs.Employee GetEmployee(int id);
+        Employee GetEmployee(int id);
 
-        DTOs.Employee Save(DTOs.Employee employee);
+        Employee Save(Employee employee);
 
-        DTOs.Employee Update(int id, DTOs.Employee employee);
+        Employee Update(int id, Employee employee);
 
         bool Exists(string name);
 
         void Delete(int id);
     }
 
-    public class EmployeesQueryProcessor : DBAccessBase<Employee>, IEmployeesQueryProcessor
+    public class EmployeesQueryProcessor : DBAccessBase<Domain.Employee>, IEmployeesQueryProcessor
     {
         public EmployeesQueryProcessor(ISession session) : base(session)
         {
         }
-        public IEnumerable<DTOs.Employee> Search(string firstName, string lastName, string eMail, int? id)
+        public IEnumerable<Employee> Search(string firstName, string lastName, string eMail, int? id)
         {
-            var filter = PredicateBuilder.New<Employee>(x => true);
+            var filter = PredicateBuilder.New<Domain.Employee>(x => true);
 
             if (!string.IsNullOrEmpty(firstName))
             {
@@ -50,17 +50,17 @@ namespace EZVet.QueryProcessors
                 filter.And(x => x.Id == id);
             }
 
-            return Query().Where(filter).ToList().Select(x => new DTOs.Employee().Initialize(x));
+            return Query().Where(filter).ToList().Select(x => new Employee().Initialize(x));
         }
 
-        public DTOs.Employee GetEmployee(int id)
+        public Employee GetEmployee(int id)
         {
-            return new DTOs.Employee().Initialize(Get(id));
+            return new Employee().Initialize(Get(id));
         }
 
-        public DTOs.Employee Save(DTOs.Employee employee)
+        public Employee Save(Employee employee)
         {
-            var newEmployee = new Employee
+            var newEmployee = new Domain.Employee
             {
                 FirstName = employee.FirstName,
                 LastName = employee.LastName,
@@ -71,10 +71,10 @@ namespace EZVet.QueryProcessors
 
             var persistedEmployee = Save(newEmployee);
 
-            return new DTOs.Employee().Initialize(persistedEmployee);
+            return new Employee().Initialize(persistedEmployee);
         }
 
-        public DTOs.Employee Update(int id, DTOs.Employee employee)
+        public Employee Update(int id, Employee employee)
         {
             var existingEmployee = Get(id);
 
@@ -88,7 +88,7 @@ namespace EZVet.QueryProcessors
 
             Update(id, existingEmployee);
 
-            return new DTOs.Employee().Initialize(existingEmployee);
+            return new Employee().Initialize(existingEmployee);
         }
 
         public bool Exists(string name)
@@ -98,7 +98,7 @@ namespace EZVet.QueryProcessors
 
         public void Delete(int id)
         {
-            base.Delete(new Employee() { Id = id });
+            base.Delete(new Domain.Employee { Id = id });
         }
     }
 }

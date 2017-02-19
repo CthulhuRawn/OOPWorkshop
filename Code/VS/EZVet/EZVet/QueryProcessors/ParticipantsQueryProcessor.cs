@@ -1,26 +1,27 @@
-﻿using Domain;
-using LinqKit;
-using NHibernate;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain;
+using LinqKit;
+using NHibernate;
+using Participant = EZVet.DTOs.Participant;
 
 namespace EZVet.QueryProcessors
 {
     public interface IParticipantsQueryProcessor
     {
-        IEnumerable<DTOs.Participant> Search(int? customerId, int? ownerId, int?[] statusIds, string ownerName, int? orderId, int? fieldId, string fieldName, DateTime? fromDate, DateTime? untilDate);
+        IEnumerable<Participant> Search(int? customerId, int? ownerId, int?[] statusIds, string ownerName, int? orderId, int? fieldId, string fieldName, DateTime? fromDate, DateTime? untilDate);
 
-        DTOs.Participant GetParticipant(int id);
+        Participant GetParticipant(int id);
 
-        DTOs.Participant Save(DTOs.Participant participant);
+        Participant Save(Participant participant);
 
-        DTOs.Participant Update(int id, DTOs.Participant participant);
+        Participant Update(int id, Participant participant);
 
         void Delete(int id);
     }
 
-    public class ParticipantsQueryProcessor : DBAccessBase<Participant>, IParticipantsQueryProcessor
+    public class ParticipantsQueryProcessor : DBAccessBase<Domain.Participant>, IParticipantsQueryProcessor
     {
         private IOwnersQueryProcessor _customersQueryProcessor;
         private OrdersQueryProcessor _ordersQueryProcessor;
@@ -57,14 +58,14 @@ namespace EZVet.QueryProcessors
 
         //}
 
-        public DTOs.Participant GetParticipant(int id)
+        public Participant GetParticipant(int id)
         {
-            return new DTOs.Participant().Initialize(Get(id));
+            return new Participant().Initialize(Get(id));
         }
 
-        public DTOs.Participant Save(DTOs.Participant participant)
+        public Participant Save(Participant participant)
         {
-            var newParticipant = new Participant()
+            var newParticipant = new Domain.Participant
             {
                 
                 Date = participant.Date,
@@ -74,11 +75,11 @@ namespace EZVet.QueryProcessors
 
             var persistedParticipant = Save(newParticipant);
 
-            return new DTOs.Participant().Initialize(persistedParticipant);
+            return new Participant().Initialize(persistedParticipant);
         }
 
         // Only status can be changed
-        public DTOs.Participant Update(int id, DTOs.Participant participant)
+        public Participant Update(int id, Participant participant)
         {
             var existingParticipant = Get(id);
 
@@ -86,12 +87,12 @@ namespace EZVet.QueryProcessors
 
             Update(id, existingParticipant);
 
-            return new DTOs.Participant().Initialize(existingParticipant);
+            return new Participant().Initialize(existingParticipant);
         }
 
-        public IEnumerable<DTOs.Participant> Search(int? customerId, int? ownerId, int?[] statusIds, string ownerName, int? orderId, int? fieldId, string fieldName, DateTime? fromDate, DateTime? untilDate)
+        public IEnumerable<Participant> Search(int? customerId, int? ownerId, int?[] statusIds, string ownerName, int? orderId, int? fieldId, string fieldName, DateTime? fromDate, DateTime? untilDate)
         {
-            var filter = PredicateBuilder.New<Participant>(x => true);
+            var filter = PredicateBuilder.New<Domain.Participant>(x => true);
 
             if (ownerId.HasValue)
             {
@@ -110,7 +111,7 @@ namespace EZVet.QueryProcessors
 
             if (!string.IsNullOrEmpty(ownerName))
             {
-                var names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                var names = ownerName.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                 if (names.Length == 1)
                 {
@@ -147,14 +148,14 @@ namespace EZVet.QueryProcessors
                 filter.And(x => x.Order.StartDate <= calcEndDate);
             }
 
-            var result = Query().Where(filter).ToList().Select(x => new DTOs.Participant().Initialize(x));
+            var result = Query().Where(filter).ToList().Select(x => new Participant().Initialize(x));
             return result;
 
         }
 
         public void Delete(int id)
         {
-            Delete(new Participant() { Id = id });
+            Delete(new Domain.Participant { Id = id });
         }
     }
 }

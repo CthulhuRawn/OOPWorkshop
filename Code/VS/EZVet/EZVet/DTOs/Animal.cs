@@ -1,13 +1,13 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace EZVet.DTOs
 {
-    public class Animal : Entity<DTOs.Animal, Domain.Animal>
+    public class Animal : Entity<Animal, Domain.Animal>
     {
         public string Name { get; set; }
         public string DoctorName { get; set; }
+        public string OwnerName { get; set; }
         public string Type { get; set; }
         public double Age { get; set; }
         public string Gender { get; set; }
@@ -24,7 +24,9 @@ namespace EZVet.DTOs
             Age = (DateTime.UtcNow - domain.DateOfBirth).Days / 365.0;
             Gender = domain.Gender.ToString();
             NextVisit = DateTime.UtcNow.AddDays(180);
-            
+            OwnerName = domain.Owner.FirstName + domain.Owner.LastName;
+
+
             return this;
         }
     }

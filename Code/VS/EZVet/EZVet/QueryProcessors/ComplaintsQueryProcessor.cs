@@ -1,23 +1,24 @@
-﻿using Domain;
-using LinqKit;
-using NHibernate;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain;
+using LinqKit;
+using NHibernate;
+using Complaint = EZVet.DTOs.Complaint;
 
 namespace EZVet.QueryProcessors
 {
     public interface IComplaintsQueryProcessor
     {
         // TODO changed, add to doc
-        IEnumerable<DTOs.Complaint> Search(int? customerId, DateTime? fromDate, DateTime? untilDate, int? complaintType);
+        IEnumerable<Complaint> Search(int? customerId, DateTime? fromDate, DateTime? untilDate, int? complaintType);
 
-        DTOs.Complaint GetComplaint(int id);
+        Complaint GetComplaint(int id);
 
-        DTOs.Complaint Save(DTOs.Complaint complaint);
+        Complaint Save(Complaint complaint);
     }
 
-    public class ComplaintsQueryProcessor : DBAccessBase<Complaint>, IComplaintsQueryProcessor
+    public class ComplaintsQueryProcessor : DBAccessBase<Domain.Complaint>, IComplaintsQueryProcessor
     {
         IOwnersQueryProcessor _customersQueryProcessor;
         IDecodesQueryProcessor _decodesQueryProcessor;
@@ -28,9 +29,9 @@ namespace EZVet.QueryProcessors
             _customersQueryProcessor = customersQueryProcessor;
         }
 
-        public IEnumerable<DTOs.Complaint> Search(int? customerId, DateTime? fromDate, DateTime? untilDate, int? complaintType)
+        public IEnumerable<Complaint> Search(int? customerId, DateTime? fromDate, DateTime? untilDate, int? complaintType)
         {
-            var filter = PredicateBuilder.New<Complaint>(x => true);
+            var filter = PredicateBuilder.New<Domain.Complaint>(x => true);
 
             if (customerId.HasValue)
                 filter.And(x => x.OffendingCustomer.Id == customerId);
@@ -44,17 +45,17 @@ namespace EZVet.QueryProcessors
             if (complaintType.HasValue)
                 filter.And(x => x.Type == _decodesQueryProcessor.Get<ComplaintTypeDecode>(complaintType??0));
 
-            return Query().Where(filter).ToList().Select(x => new DTOs.Complaint().Initialize(x));
+            return Query().Where(filter).ToList().Select(x => new Complaint().Initialize(x));
         }
 
-        public DTOs.Complaint GetComplaint(int id)
+        public Complaint GetComplaint(int id)
         {
-            return new DTOs.Complaint().Initialize(Get(id));
+            return new Complaint().Initialize(Get(id));
         }
 
-        public DTOs.Complaint Save(DTOs.Complaint complaint)
+        public Complaint Save(Complaint complaint)
         {
-            var newComplaint = new Complaint()
+            var newComplaint = new Domain.Complaint
             {
                
                 Description = complaint.Description,
@@ -65,7 +66,7 @@ namespace EZVet.QueryProcessors
 
             var persistedComplaint = Save(newComplaint);
 
-            return new DTOs.Complaint().Initialize(persistedComplaint);
+            return new Complaint().Initialize(persistedComplaint);
         }
     }
 }

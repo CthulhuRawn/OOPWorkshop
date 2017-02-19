@@ -4,7 +4,7 @@ using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
-    public class Complaint : Entity<DTOs.Complaint, Domain.Complaint>
+    public class Complaint : Entity<Complaint, Domain.Complaint>
     {
         [MaxLength(1000)]
         public virtual string Description { get; set; }
@@ -12,7 +12,7 @@ namespace EZVet.DTOs
         [IsEnumOfType(typeof(Consts.Decodes.ComplaintType))]
         public virtual int? Type { get; set; }
 
-        [NotInFutureAttribute]
+        [NotInFuture]
         public virtual DateTime Date { get; set; }
 
 

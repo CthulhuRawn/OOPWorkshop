@@ -16,42 +16,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Nalla</td>
-                        <td>Ron Gal</td>
-                        <td>Cat</td>
-                        <td>6.1</td>
-                        <td>Female</td>
-                        <td>01.09.2016</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Clara</td>
-                        <td>Alisa Gal</td>
-                        <td>Cat</td>
-                        <td>0.9</td>
-                        <td>Female</td>
-                        <td>01.10.2016</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Mika</td>
-                        <td>Ron Gal</td>
-                        <td>Parrot</td>
-                        <td>2.6</td>
-                        <td>Female</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Jullie</td>
-                        <td>Alisa Gal</td>
-                        <td>Parrot</td>
-                        <td>1.6</td>
-                        <td>Female</td>
-                        <td>01.01.2017</td>
-                    </tr>
+                        <tr ng-repeat="x in pets">
+                            <td>{{ x.Id }}</td>
+                            <td>{{ x.Name }}</td>
+                            <td>{{ x.OwnerName }}</td>
+                            <td>{{ x.Type }}</td>
+                            <td>{{ x.Age }}</td>
+                            <td>{{ x.Gender }}</td>
+                            <td>{{ x.NextVisit }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

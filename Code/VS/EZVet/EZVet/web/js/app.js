@@ -90,6 +90,16 @@
             controller: 'animalsCtrl',
             activetab: 'AnimalsListCustomer'
         });
+        $routeProvider.when('/AnimalsListVet', {
+            templateUrl: 'web/partials/AnimalsListVet.html',
+            controller: 'animalsCtrl',
+            activetab: 'AnimalsListVet'
+        });
+        $routeProvider.when('/PatientPage', {
+            templateUrl: 'web/partials/PatientPage.html',
+            controller: 'patientCtrl',
+            activetab: 'PatientPage'
+        });
         $routeProvider.when('/editOrder/:Id?', {
             templateUrl: 'web/partials/editOrder.html',
             controller: 'OrdersCtrl',

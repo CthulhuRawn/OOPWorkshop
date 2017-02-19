@@ -1,33 +1,35 @@
-﻿using Domain;
-using LinqKit;
-using NHibernate;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
+using Domain;
 using EZVet.Common;
 using EZVet.Filters;
+using LinqKit;
+using NHibernate;
+using Field = EZVet.DTOs.Field;
+using Order = EZVet.DTOs.Order;
 
 namespace EZVet.QueryProcessors
 {
     public interface IOrdersQueryProcessor
     {
-        List<DTOs.Order> Search(int? orderId, int? ownerId, string ownerName, int?[] orderStatusIds, int? fieldId, string fieldName, DateTime? startDate, DateTime? endDate);
+        List<Order> Search(int? orderId, int? ownerId, string ownerName, int?[] orderStatusIds, int? fieldId, string fieldName, DateTime? startDate, DateTime? endDate);
 
-        DTOs.Order GetOrder(int id);
+        Order GetOrder(int id);
 
-        DTOs.Order Save(DTOs.Order order);
+        Order Save(Order order);
 
-        DTOs.Order Update(int id, DTOs.Order order);
+        Order Update(int id, Order order);
 
-        List<DTOs.Order> SearchOptionalOrders(int? fieldId, string fieldName, int? fieldTypeId, DateTime date);
+        List<Order> SearchOptionalOrders(int? fieldId, string fieldName, int? fieldTypeId, DateTime date);
 
-        IEnumerable<DTOs.Order> SearchAvailableOrdersToJoin(int? ownerId, string ownerName, int? orderId, int? orderStatusId, int? fieldId, string fieldName, DateTime? startDate, DateTime? endDate);
+        IEnumerable<Order> SearchAvailableOrdersToJoin(int? ownerId, string ownerName, int? orderId, int? orderStatusId, int? fieldId, string fieldName, DateTime? startDate, DateTime? endDate);
     }
 
 
-    public class OrdersQueryProcessor : DBAccessBase<Order>, IOrdersQueryProcessor
+    public class OrdersQueryProcessor : DBAccessBase<Domain.Order>, IOrdersQueryProcessor
     {
         private IOwnersQueryProcessor _customersQueryProcessor;
         private FieldsQueryProcessor _fieldsQueryProcessor;
@@ -43,9 +45,9 @@ namespace EZVet.QueryProcessors
             _participantsQueryProcessor = new ParticipantsQueryProcessor(session, customersQueryProcessor, this, decodesQueryProcessor);
         }
 
-        public List<DTOs.Order> Search(int? orderId, int? ownerId, string ownerName, int?[] orderStatusIds, int? fieldId, string fieldName, DateTime? startDate, DateTime? endDate)
+        public List<Order> Search(int? orderId, int? ownerId, string ownerName, int?[] orderStatusIds, int? fieldId, string fieldName, DateTime? startDate, DateTime? endDate)
         {
-            var filter = PredicateBuilder.New<Order>(x => true);
+            var filter = PredicateBuilder.New<Domain.Order>(x => true);
 
             if (orderId.HasValue)
             {
@@ -79,7 +81,7 @@ namespace EZVet.QueryProcessors
 
             if (!string.IsNullOrEmpty(ownerName))
             {
-                var names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                var names = ownerName.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                 if (names.Length == 1)
                 {
@@ -97,20 +99,20 @@ namespace EZVet.QueryProcessors
             }
 
 
-            var result = Query().Where(filter).ToList().Select(x => new DTOs.Order().Initialize(x));
+            var result = Query().Where(filter).ToList().Select(x => new Order().Initialize(x));
 
             return result.ToList();
         }
 
-        public DTOs.Order GetOrder(int id)
+        public Order GetOrder(int id)
         {
-            return new DTOs.Order().Initialize(Get(id));
+            return new Order().Initialize(Get(id));
         }
 
-        public DTOs.Order Save(DTOs.Order order)
+        public Order Save(Order order)
         {
             // TODO remove EndDate from Order
-            var newOrder = new Order()
+            var newOrder = new Domain.Order
             {
                 
                 StartDate = DateUtils.ConvertFromJavaScript(order.StartDate),
@@ -122,11 +124,11 @@ namespace EZVet.QueryProcessors
 
             var persistedOrder = Save(newOrder);
 
-            return new DTOs.Order().Initialize(persistedOrder);
+            return new Order().Initialize(persistedOrder);
         }
 
         // Owner can be changed.
-        public DTOs.Order Update(int id, DTOs.Order order)
+        public Order Update(int id, Order order)
         {
             var existingOrder = Get(id);
 
@@ -143,13 +145,13 @@ namespace EZVet.QueryProcessors
 
             Update(id, existingOrder);
 
-            return new DTOs.Order().Initialize(existingOrder);
+            return new Order().Initialize(existingOrder);
         }
 
         // TODO add to doc date is mandator
-        public List<DTOs.Order> SearchOptionalOrders(int? fieldId, string fieldName, int? fieldTypeId, DateTime date)
+        public List<Order> SearchOptionalOrders(int? fieldId, string fieldName, int? fieldTypeId, DateTime date)
         {
-            IList<DTOs.Field> fields = _fieldsQueryProcessor.Search(fieldId, fieldName, fieldTypeId).ToList();
+            IList<Field> fields = _fieldsQueryProcessor.Search(fieldId, fieldName, fieldTypeId).ToList();
             var possibleDate = DateUtils.PossibleDateOrders(date);
 
             var possibleEvent = from field in _fieldsQueryProcessor.Search(fieldId, fieldName, fieldTypeId).ToList()
@@ -161,7 +163,7 @@ namespace EZVet.QueryProcessors
             var order = Search(null, null, null, statuses, null, null, date, date);
 
             var possibleOrders = possibleEvent.Where(a => !order.Any(r => r.StartDate == DateUtils.ConvertToJavaScript(a.dateStart) & r.Field.Id == a.field.Id)).
-                ToList().Select(possibleOrder => new DTOs.Order()
+                ToList().Select(possibleOrder => new Order
                 {
                     Field = possibleOrder.field,
                     StartDate = DateUtils.ConvertToJavaScript(possibleOrder.dateStart)
@@ -170,13 +172,13 @@ namespace EZVet.QueryProcessors
             return possibleOrders.ToList();
         }
 
-        public IEnumerable<DTOs.Order> SearchAvailableOrdersToJoin(int? ownerId, string ownerName, int? orderId, int? orderStatusId, int? fieldId, string fieldName, DateTime? startDate, DateTime? endDate)
+        public IEnumerable<Order> SearchAvailableOrdersToJoin(int? ownerId, string ownerName, int? orderId, int? orderStatusId, int? fieldId, string fieldName, DateTime? startDate, DateTime? endDate)
         {
             var currPrincipal = HttpContext.Current.User as ClaimsPrincipal;
             var currIdentity = currPrincipal.Identity as BasicAuthenticationIdentity;
             var userId = currIdentity.UserId;
 
-            var filter = PredicateBuilder.New<Order>(x => x.Owner.Id != userId);
+            var filter = PredicateBuilder.New<Domain.Order>(x => x.Owner.Id != userId);
 
             if (orderId.HasValue)
             {
@@ -185,7 +187,7 @@ namespace EZVet.QueryProcessors
 
             if (!string.IsNullOrEmpty(ownerName))
             {
-                var names = ownerName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                var names = ownerName.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
                 if (names.Length == 1)
                 {
@@ -231,9 +233,9 @@ namespace EZVet.QueryProcessors
                 filter.And(x => x.StartDate <= calcEndDate);
             }
 
-            var allResult = Query().Where(filter).ToList().Select(x => new DTOs.Order().Initialize(x));
+            var allResult = Query().Where(filter).ToList().Select(x => new Order().Initialize(x));
 
-            var finalResult = new List<DTOs.Order>();
+            var finalResult = new List<Order>();
 
             foreach (var item in allResult)
             {

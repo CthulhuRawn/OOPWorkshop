@@ -17,10 +17,7 @@ namespace EZVet.Validators
             {
                 return new ValidationResult("Make sure your date is newer than today");
             }
-            else
-            {
-                return ValidationResult.Success;
-            }
+            return ValidationResult.Success;
         }
     }
 }

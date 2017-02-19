@@ -73,8 +73,8 @@
                     if (loginData.Role == "Admin") {
                         path = '/searchCustomers';
                     }
-                    else if (loginData.Role == "Employee") { // 
-                        path = '/searchOrders';
+                    else if (loginData.Role == "Doctor") { // 
+                        path = '/AnimalsListVet';
                     }
                     else {
                         path = '/AnimalsListCustomer';
@@ -123,7 +123,8 @@
                 complaints: urlBase + "reports/complaints"
             },
             animals: {
-                owner: urlBase + "animals/myAnimals"
+                owner: urlBase + "animals/myAnimals",
+                patient: urlBase + "animals/patient"
             }
         }
     });

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EZVet.DTOs
 {
-    public class Review : Entity<DTOs.Review, Domain.Review>
+    public class Review : Entity<Review, Domain.Review>
     {
         [MaxLength(20)]
         public virtual string Title { get; set; }

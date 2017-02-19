@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
-using Domain;
-using NHibernate;
 using System.Linq;
 using EZVet.Common;
+using EZVet.DTOs;
 using LinqKit;
+using NHibernate;
 
 namespace EZVet.QueryProcessors
 {
     public interface IDoctorsQueryProcessor
     {
-        IEnumerable<DTOs.Doctor> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? doctorId);
+        IEnumerable<Doctor> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? doctorId);
 
-        DTOs.Doctor GetDoctor(int id);
+        Doctor GetDoctor(int id);
 
-        DTOs.Doctor Save(DTOs.Doctor doctor);
+        Doctor Save(Doctor doctor);
 
-        DTOs.Doctor Update(int id, DTOs.Doctor doctor);
+        Doctor Update(int id, Doctor doctor);
         bool Exists(string username);
         bool ExistsById(int id);
     }
 
-    public class DoctorsQueryProcessor : DBAccessBase<Doctor>, IDoctorsQueryProcessor
+    public class DoctorsQueryProcessor : DBAccessBase<Domain.Doctor>, IDoctorsQueryProcessor
     {
         private readonly IDecodesQueryProcessor _decodesQueryProcessor;
 
@@ -39,9 +39,9 @@ namespace EZVet.QueryProcessors
             return Query().Where(user => user.Id == id).Any();
         }
 
-        public IEnumerable<DTOs.Doctor> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? doctorId)
+        public IEnumerable<Doctor> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? doctorId)
         {
-            var filter = PredicateBuilder.New<Doctor>(x => true);
+            var filter = PredicateBuilder.New<Domain.Doctor>(x => true);
 
             if (!string.IsNullOrEmpty(firstName))
             {
@@ -67,26 +67,26 @@ namespace EZVet.QueryProcessors
             {
                 filter.And(x => x.Id == doctorId);
             }
-            var result = Query().Where(filter).ToList().Select(x => new DTOs.Doctor().Initialize(x));
+            var result = Query().Where(filter).ToList().Select(x => new Doctor().Initialize(x));
 
             return result;
         }
 
-        public DTOs.Doctor GetDoctor(int id)
+        public Doctor GetDoctor(int id)
         {
-            return new DTOs.Doctor().Initialize(Get(id));
+            return new Doctor().Initialize(Get(id));
         }
 
-        public DTOs.Doctor Save(DTOs.Doctor doctor)
+        public Doctor Save(Doctor doctor)
         {
-            var newDoctor = new Doctor
+            var newDoctor = new Domain.Doctor
             {
                 FirstName = doctor.FirstName,
                 LastName = doctor.LastName,
                 Password = doctor.Password,
                 BirthDate = doctor.BirthDate,
                 Email = doctor.Email,
-                Address =  new Address
+                Address =  new Domain.Address
                 {
                     City = doctor.Address.City,
                     Country = doctor.Address.Country,
@@ -97,10 +97,10 @@ namespace EZVet.QueryProcessors
 
             var persistedDoctor = Save(newDoctor);
 
-            return new DTOs.Doctor().Initialize(persistedDoctor);
+            return new Doctor().Initialize(persistedDoctor);
         }
 
-        public DTOs.Doctor Update(int id, DTOs.Doctor doctor)
+        public Doctor Update(int id, Doctor doctor)
         {
             var existingDoctor = Get(id);
 
@@ -114,7 +114,7 @@ namespace EZVet.QueryProcessors
             
             Update(id, existingDoctor);
 
-            return new DTOs.Doctor().Initialize(existingDoctor);
+            return new Doctor().Initialize(existingDoctor);
         }
 
     }

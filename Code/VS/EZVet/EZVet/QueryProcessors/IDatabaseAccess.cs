@@ -1,5 +1,5 @@
-﻿using Domain;
-using System.Linq;
+﻿using System.Linq;
+using Domain;
 
 namespace EZVet.QueryProcessors
 {

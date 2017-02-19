@@ -43,7 +43,7 @@ namespace EZVet.QueryProcessors
         {
             var orders = _ordersQueryProcessor.Search(null, null, null, new int?[] { (int)Consts.Decodes.OrderStatus.Accepted }, null, null, fromDate, untilDate);
             var report = _fieldsQueryProcessor.Search(fieldId, fieldName, null).Select(x =>
-             new UsingFieldsReport()
+             new UsingFieldsReport
              {
                  FieldId = x.Id ?? 0,
                  FieldName = x.Name,

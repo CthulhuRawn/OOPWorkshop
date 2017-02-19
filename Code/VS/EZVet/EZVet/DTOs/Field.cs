@@ -3,7 +3,7 @@ using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
-    public class Field : Entity<DTOs.Field, Domain.Field>
+    public class Field : Entity<Field, Domain.Field>
     {
         [MaxLength(20)]
         public virtual string Name { get; set; }

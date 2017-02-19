@@ -1,7 +1,7 @@
-﻿using Domain;
+﻿using System.Linq;
+using Domain;
 using NHibernate;
 using NHibernate.Linq;
-using System.Linq;
 
 namespace EZVet.QueryProcessors
 {

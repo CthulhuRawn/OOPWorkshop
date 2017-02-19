@@ -1,7 +1,9 @@
-﻿using NHibernate;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Http;
+using Domain;
+using EZVet.DTOs;
+using NHibernate;
 
 namespace EZVet.Validators
 {
@@ -20,14 +22,14 @@ namespace EZVet.Validators
                 return ValidationResult.Success;
             }
 
-            if (!_type.IsSubclassOf(typeof(Domain.Entity)))
+            if (!_type.IsSubclassOf(typeof(Entity)))
                 throw new ValidationException("type must inherit from Domain.Entity");
 
             var session = (ISession)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ISession));
             try
             {
                 // TODO cast to Entity<TDTO, TDomain>
-                var entity = session.Get(_type, ((DTOs.EntityBase)value).Id);
+                var entity = session.Get(_type, ((EntityBase)value).Id);
                 if (entity == null)
                 {
                     return new ValidationResult("Entity doesn't exist");
