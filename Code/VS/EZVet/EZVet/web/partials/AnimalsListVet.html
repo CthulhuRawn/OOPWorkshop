@@ -21,11 +21,11 @@
                             <td>{{ x.Id }}</td>
                             <td>{{ x.Name }}</td>
                             <td>{{ x.OwnerName }}</td>
-                            <td>{{ x.Type }}</td>
-                            <td>{{ x.Age }}</td>
-                            <td>{{ x.Gender }}</td>
+                            <td>{{ getType(x.Type)}}</td>
+                            <td>{{ calcAge(x.DateOfBirth) }}</td>
+                            <td>{{ getGender(x.Gender)}}</td>
                             <td>{{ x.NextVisit }}</td>
-                            <td><a type="button" class="btn btn-sm btn-primary" href="#/PatientPage/{{x.id}}">View Pet</a></td>
+                            <td><a type="button" class="btn btn-sm btn-primary" href="#/PatientPage?id={{x.Id}}">View Pet</a></td>
                         </tr>
                     </tbody>
                 </table>

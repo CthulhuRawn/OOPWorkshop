@@ -12,6 +12,7 @@ namespace EZVet.QueryProcessors
         IEnumerable<Owner> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? customerId);
 
         Owner GetOwner(int id);
+        Domain.Owner Get(int id);
 
         Owner Save(Owner owner);
 
@@ -31,12 +32,12 @@ namespace EZVet.QueryProcessors
 
         public bool Exists(string username)
         {
-            return Query().Where(user => user.Email == username).Any();
+            return Query().Any(user => user.Email == username);
         }
 
         public bool ExistsById(int id)
         {
-            return Query().Where(user => user.Id == id).Any();
+            return Get(id) != null;
         }
 
         public IEnumerable<Owner> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? customerId)

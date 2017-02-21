@@ -1,4 +1,5 @@
-﻿using EZVet.QueryProcessors;
+﻿using Domain;
+using EZVet.QueryProcessors;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Maps;
@@ -19,7 +20,7 @@ namespace GenerateData
                     .ExposeConfiguration(conf => new SchemaUpdate(conf).Execute(false, true))
                     .BuildSessionFactory();
             var session = sessionFactory.OpenSession();
-
+            
             var decode = new DecodesQueryProcessor(session);
             var employeeQP = new EmployeesQueryProcessor(session);
             var fieldQP = new FieldsQueryProcessor(decode, session);
@@ -29,7 +30,7 @@ namespace GenerateData
             var orderQP = new OrdersQueryProcessor(session, customerQP, fieldQP, decode);
             var participantQP = new ParticipantsQueryProcessor(session, customerQP, orderQP, decode);
             var reviewQP = new ReviewsQueryProcessor(session, customerQP);
-
+            
             //ReportsQueryProcessor reportsQP = new ReportsQueryProcessor(customerQP, orderQP, complaintQP, participantQP);
 
             //IEnumerable<Order> orrr = orderQP.GetAvailbleOrders(2, null, 1, new System.DateTime(2016, 8, 20, 0, 0, 0));

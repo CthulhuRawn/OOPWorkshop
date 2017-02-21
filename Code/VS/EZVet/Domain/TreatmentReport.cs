@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -9,6 +10,7 @@ namespace Domain
         public virtual AnimalMeasurements AnimalMeasurements { get; set; }
         public virtual IList<Treatment> Treatments { get; set; }
         public virtual double TotalPrice { get; set; }
+        public virtual DateTime Date{ get; set; }
 
     }
 }

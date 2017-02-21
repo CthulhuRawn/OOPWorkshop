@@ -7,7 +7,9 @@ namespace Maps
         public TreatmentMap()
         {
             Map(x => x.Name);
+            Map(x => x.Dose);
             References(x => x.Type);
+            References(x => x.ContainingTreatment);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using Domain;
 using EZVet.DTOs;
@@ -55,6 +57,13 @@ namespace EZVet.Controllers
             }
 
             role = role ?? Consts.Roles.None;
+
+            var cookie = new HttpCookie("userId", userId.ToString());
+            cookie.Expires = DateTime.MaxValue;
+            cookie.Domain = Request.RequestUri.Host;
+            cookie.Path = "/";
+
+            HttpContext.Current.Response.Cookies.Add(cookie);
 
             return new LoginResponse
             {

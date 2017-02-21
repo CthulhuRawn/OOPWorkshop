@@ -10,6 +10,8 @@ namespace Maps
             Map(x => x.Weight);
             Map(x => x.Notes);
             Map(x => x.DateOfBirth);
+            Map(x => x.ChipNumber);
+            Map(x => x.Color);
 
             References(x => x.Gender);
             References(x => x.Owner);

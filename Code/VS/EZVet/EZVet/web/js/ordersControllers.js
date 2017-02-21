@@ -71,47 +71,7 @@
         }
     }]);
 
-    myApp.controller('animalsCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', '$rootScope', function ($scope, $http, ServerRoutes, DomainDecodes, toaster, $rootScope) {
-        $scope.pets = [];
-
-        $http({
-            url: ServerRoutes.animals.owner,
-            method: "GET",
-            params: { Id: $rootScope.sharedVariables.userId },
-        }).then(function searchCompleted(response) {
-            $scope.pets = angular.copy(response.data);
-        });
-    }]);
-
-    myApp.controller('patientCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', '$rootScope', '$location',
-        function ($scope, $http, ServerRoutes, DomainDecodes, toaster, $rootScope, $location) {
-            $scope.pet = {Id:-1};
-            
-            var id = $location.search()["id"];
-            if (id) {
-                $http({
-                    url: ServerRoutes.animals.patient,
-                    method: "GET",
-                    params: { Id: id, personId: $rootScope.sharedVariables.userId },
-                }).then(function searchCompleted(response) {
-                    $scope.pet = angular.copy(response.data);
-                });
-            }
-
-            $scope.savePet = function() {
-                $http({
-                    url: ServerRoutes.animals.patient,
-                    method: "POST",
-                    data: angular.copy($scope.pet),
-                }).then(function searchCompleted(response) {
-                    if (response.status == 200) {
-                        $scope.pet = angular.copy(response.data);
-                        toaster.success('Pet Saved!');
-                    }
-                });
-            }
-        }
-    ]);
+    
 
     myApp.controller('OrdersCtrl', ['$rootScope', '$scope', '$http', '$routeParams', '$location', 'DomainDecodes', 'ServerRoutes', 'toaster', function ($rootScope, $scope, $http, $routeParams, $location, DomainDecodes, ServerRoutes, toaster) {
 

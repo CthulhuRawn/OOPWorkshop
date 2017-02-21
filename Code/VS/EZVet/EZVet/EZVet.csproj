@@ -154,6 +154,9 @@
     <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="DTOs\Medication.cs" />
+    <Compile Include="DTOs\Vaccine.cs" />
+    <Compile Include="DTOs\Treatment.cs" />
     <Compile Include="DTOs\Animal.cs" />
     <Compile Include="DTOs\Address.cs" />
     <Compile Include="DTOs\CustomerUpdateResponse.cs" />
@@ -204,12 +207,15 @@
     <Compile Include="DTOs\CustomersActivityReport.cs" />
     <Compile Include="Validators\ExistsInDBAttribute.cs" />
     <Content Include="index.html" />
+    <Content Include="web\js\animalsControllers.js" />
     <Content Include="web\js\ordersControllers.js" />
     <Content Include="web\js\customerControllers.js" />
     <Content Include="web\js\reportControllers.js" />
     <Content Include="web\js\employeeControllers.js" />
     <Content Include="web\js\fieldControllers.js" />
     <Content Include="web\lib\angular-moment-picker.min.js" />
+    <Content Include="web\lib\bootstrap.js" />
+    <Content Include="web\lib\jquery.js" />
     <Content Include="web\lib\moment-with-locales.js" />
     <Content Include="web\js\app.js" />
     <Content Include="web\lib\toaster.js" />

@@ -124,13 +124,41 @@
             },
             animals: {
                 owner: urlBase + "animals/myAnimals",
-                patient: urlBase + "animals/patient"
+                patient: urlBase + "animals/animal"
             }
         }
     });
 
     myApp.factory("DomainDecodes", function(){
         return {
+            genders: [
+                {
+                    id: 1,
+                    name: 'Male'
+                },
+                {
+                    id: 2,
+                    name: 'Female'
+                }
+            ],
+            animalTypes:[
+                {
+                    id: 1,
+                    name: 'Cat'
+                },
+            {
+                id: 2,
+                name: 'Dog'
+            },
+            {
+                id: 3,
+                name: 'Fish'
+            },
+            {
+                id: 4,
+                name: 'Bird'
+            }
+            ],
             orderStatus: [
             {
                 id: 1,
