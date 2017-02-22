@@ -11,11 +11,11 @@ namespace Maps
             Map(x => x.Password);
             Map(x => x.BirthDate);
             Map(x => x.Email);
+            Map(x => x.DoctorCode);
 
-            References(x => x.Address);
+            References(x => x.Address).Cascade.All();
 
             HasMany(x => x.Animals);
-            Map(x => x.DoctorCode);
             HasMany(x => x.Treatments);
             HasMany(x => x.TreatingAnimals);
         }

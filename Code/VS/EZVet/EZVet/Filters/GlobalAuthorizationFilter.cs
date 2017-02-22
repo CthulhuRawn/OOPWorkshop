@@ -38,7 +38,7 @@ namespace EZVet.Filters
             Thread.CurrentPrincipal = genericPrincipal;
             HttpContext.Current.User = genericPrincipal;
 
-            if (!AuthorizeUser(identity.Name, identity.Password, filterContext))
+            if (!AuthorizeUser(identity.Name, identity.Password))
             {
                 throw new SecurityException();
             }
@@ -53,7 +53,7 @@ namespace EZVet.Filters
         /// <param name="pass"></param>
         /// <param name="filterContext"></param>
         /// <returns></returns>
-        private bool AuthorizeUser(string username, string password, HttpActionContext actionContext)
+        private bool AuthorizeUser(string username, string password)
         {
             var authorized = false;
             var session =(ISession)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ISession));
@@ -66,11 +66,11 @@ namespace EZVet.Filters
                 authorized = true;
             }
 
-            var employee = session.QueryOver<Doctor>().Where(x => x.Email == username && x.Password == password).SingleOrDefault();
+            var doctor = session.QueryOver<Doctor>().Where(x => x.Email == username && x.Password == password).SingleOrDefault();
 
-            if (employee != null)
+            if (doctor != null)
             {
-                AuthorizationSucceed(employee.Id, Consts.Roles.Doctor);
+                AuthorizationSucceed(doctor.Id, Consts.Roles.Doctor);
                 authorized = true;
             }
 

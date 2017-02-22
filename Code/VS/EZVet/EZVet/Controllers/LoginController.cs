@@ -15,12 +15,14 @@ namespace EZVet.Controllers
     public class LoginController : ApiController
     {
         private IOwnersQueryProcessor _ownersQueryProcessor;
+        private IDoctorsQueryProcessor _doctorsQueryProcessor;
         ISession _session;
 
-        public LoginController(ISession session, IOwnersQueryProcessor ownersQueryProcessor)
+        public LoginController(ISession session, IOwnersQueryProcessor ownersQueryProcessor, IDoctorsQueryProcessor doctorsQueryProcessor)
         {
             _session = session;
             _ownersQueryProcessor = ownersQueryProcessor;
+            _doctorsQueryProcessor = doctorsQueryProcessor;
         }
 
         [HttpPost]
@@ -75,9 +77,9 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/login/registration")]
-        public RegistrationReponse Registration(Owner owner)
+        public RegistrationReponse Registration(PersonLogin entity)
         {
-            if (_ownersQueryProcessor.Exists(owner.Email))
+            if (_ownersQueryProcessor.Exists(entity.Email) || _doctorsQueryProcessor.Exists(entity.Email))
             {
                 return new RegistrationReponse
                 {
@@ -85,7 +87,14 @@ namespace EZVet.Controllers
                 };
             }
 
-            _ownersQueryProcessor.Save(owner);
+            if (!string.IsNullOrEmpty(entity.DoctorCode))
+            {
+                _doctorsQueryProcessor.Save(entity);
+            }
+            else
+            {
+                _ownersQueryProcessor.Save(entity);
+            }
 
             return new RegistrationReponse
             {

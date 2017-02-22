@@ -1,7 +1,7 @@
 ﻿!(function () {
     myApp = angular.module('myApp');
 
-    myApp.factory('httpErrorHandler', ['usSpinnerService', 'toaster', '$location', function (usSpinnerService, toaster, $location) {
+    myApp.factory('httpErrorHandler', ['usSpinnerService', 'toaster', '$location', function (usSpinnerService, toaster, $location, $q) {
         var errorHandler = {
             request: function (config) {
                 if (!config.url.endsWith(".html"))
@@ -28,6 +28,7 @@
                 // unexpected error
                 else if (response.status == 500 || response.status == 400) {
                     toaster.error("Oops!", "We seem to have a problem...", 5000);
+                    return $q.reject(rejection);
                 }
 
                 return response;
@@ -158,103 +159,7 @@
                 id: 4,
                 name: 'Bird'
             }
-            ],
-            orderStatus: [
-            {
-                id: 1,
-                name: 'ממתין לאישור'
-            },
-            {
-                id: 2,
-                name: 'התקבל'
-            },
-            {
-                id: 3,
-                name: 'נדחה'
-            },
-            {
-                id: 4,
-                name: 'בוטל'
-            }
-            ],
-            complaintType: [
-                {
-                    id: 1,
-                    name: 'אי תשלום'
-                },
-                {
-                    id: 2,
-                    name: 'אי הגעה'
-                },
-                {
-                    id: 3,
-                    name: 'חוסר ספורטיביות'
-                }
-            ],
-            fieldSize: [
-                {
-                    id: 1,
-                    name: 'קטן'
-                },
-                {
-                    id: 2,
-                    name: 'בינוני'
-                },
-                {
-                    id: 3,
-                    name: 'גדול'
-                }
-            ],
-            fieldType: [
-                {
-                    id: 1,
-                    name: 'כדורגל'
-                },
-                {
-                    id: 2,
-                    name: 'כדורסל'
-                },
-                {
-                    id: 3,
-                    name: 'טניס'
-                },
-                {
-                id: 4,
-                name: 'כדורעף'
-                }
-            ],
-            invitationStatus: [
-                {
-                    id: 1,
-                    name: 'נשלח'
-                },
-                {
-                    id: 2,
-                    name: 'התקבל'
-                },
-                {
-                    id: 3,
-                    name: 'נדחה'
-                }
-            ],
-            regionDecode: [
-                {
-                    id: 1,
-                    name: 'דן'
-                },
-                {
-                    id: 2,
-                    name: 'נגב'
-                },
-                {
-                    id: 3,
-                    name: 'חיפה'
-                },
-                {
-                    id: 4,
-                    name: 'ירושלים'
-                }
-         ]};
+            ]};
     });
 })();
 

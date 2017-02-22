@@ -14,7 +14,7 @@ namespace EZVet.QueryProcessors
         Owner GetOwner(int id);
         Domain.Owner Get(int id);
 
-        Owner Save(Owner owner);
+        Owner Save(PersonLogin owner);
 
         Owner Update(int id, Owner owner);
         bool Exists(string username);
@@ -78,7 +78,7 @@ namespace EZVet.QueryProcessors
             return new Owner().Initialize(Get(id));
         }
 
-        public Owner Save(Owner owner)
+        public Owner Save(PersonLogin owner)
         {
             var newOwner = new Domain.Owner
             {
@@ -87,12 +87,12 @@ namespace EZVet.QueryProcessors
                 Password = owner.Password,
                 BirthDate = owner.BirthDate,
                 Email = owner.Email,
-                Address =  new Domain.Address
+                Address = new Domain.Address
                 {
                     City = owner.Address.City,
                     Country = owner.Address.Country,
-                    StreetName= owner.Address.StreetName,
-                    StreetNumber= owner.Address.StreetNumber
+                    StreetName = owner.Address.StreetName,
+                    StreetNumber = owner.Address.StreetNumber
                 }
             };
 

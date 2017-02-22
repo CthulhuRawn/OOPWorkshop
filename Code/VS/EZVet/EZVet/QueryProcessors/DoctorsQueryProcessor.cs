@@ -13,7 +13,7 @@ namespace EZVet.QueryProcessors
 
         Doctor GetDoctor(int id);
 
-        Doctor Save(Doctor doctor);
+        Doctor Save(PersonLogin doctor);
 
         Doctor Update(int id, Doctor doctor);
         bool Exists(string username);
@@ -77,7 +77,7 @@ namespace EZVet.QueryProcessors
             return new Doctor().Initialize(Get(id));
         }
 
-        public Doctor Save(Doctor doctor)
+        public Doctor Save(PersonLogin doctor)
         {
             var newDoctor = new Domain.Doctor
             {
@@ -86,12 +86,13 @@ namespace EZVet.QueryProcessors
                 Password = doctor.Password,
                 BirthDate = doctor.BirthDate,
                 Email = doctor.Email,
-                Address =  new Domain.Address
+                DoctorCode = doctor.DoctorCode,
+                Address = new Domain.Address
                 {
                     City = doctor.Address.City,
                     Country = doctor.Address.Country,
-                    StreetName= doctor.Address.StreetName,
-                    StreetNumber= doctor.Address.StreetNumber
+                    StreetName = doctor.Address.StreetName,
+                    StreetNumber = doctor.Address.StreetNumber
                 }
             };
 

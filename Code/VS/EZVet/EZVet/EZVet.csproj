@@ -154,6 +154,7 @@
     <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="DTOs\PersonLogin.cs" />
     <Compile Include="DTOs\Medication.cs" />
     <Compile Include="DTOs\Vaccine.cs" />
     <Compile Include="DTOs\Treatment.cs" />

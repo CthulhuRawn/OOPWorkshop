@@ -24,15 +24,14 @@ namespace EZVet.DTOs
 
         public override Animal Initialize(Domain.Animal domain)
         {
-            var previousOrder = domain.Orders?.OrderByDescending(x => x.Id).FirstOrDefault();
             Id = domain.Id;
             Name = domain.Name;
-            DoctorName = previousOrder?.Doctor.FirstName + previousOrder?.Doctor.LastName;
+            DoctorName = domain.Doctors?.LastOrDefault()?.GetName();
             Type = domain.Type.Id;
             DateOfBirth = domain.DateOfBirth;
             Gender = domain.Gender.Id;
             NextVisit = DateTime.UtcNow.AddDays(180);
-            OwnerName = domain.Owner.FirstName + domain.Owner.LastName;
+            OwnerName = domain.Owner.GetName();
             Notes = domain.Notes;
             Weight = domain.Weight;
             ChipNumber = domain.ChipNumber;

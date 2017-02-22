@@ -13,9 +13,8 @@
         }
 
         $scope.calcAge = function (dateOfBirth) {
-            return Math.round(moment().diff(dateOfBirth, 'years', true) * 100) / 100;
-
-
+            var dob = moment(dateOfBirth, 'DD/MM/YYYY');
+            return Math.round(moment().diff(dob, 'years', true) * 100) / 100;
         }
 
         $http({

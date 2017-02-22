@@ -66,7 +66,7 @@
                     <div class='form-group' ng-class="{ 'has-error' : userForm.birthDate.$invalid && submitted }"
                          moment-picker="model.BirthDate"
                          locale="en"
-                         format="l"
+                         format="DD/MM/YYYY"
                          min-view="year"
                          max-view="month"
                          autoclose="true"
@@ -91,7 +91,7 @@
                 <div class='col-sm-2'>
                     <div class='form-group' ng-class="{ 'has-error' : userForm.country.$invalid && submitted }">
                         <label>Country</label>
-                        <input name="country" class="form-control" type="text" ng-model="model.Address.Country" required ng-maxlength="30"/>
+                        <input name="country" class="form-control" type="text" ng-model="model.Address.Country" required ng-maxlength="30" />
                         <div class="callout" ng-show="userForm.country.$invalid && submitted">
                             <div ng-show="userForm.country.$error.required && submitted">Please insert country</div>
                             <div ng-show="userForm.country.$error.maxlength && submitted">Country must not exceed 30 characters</div>
@@ -102,7 +102,7 @@
                 <div class='col-sm-offset-1 col-sm-3'>
                     <div class='form-group' ng-class="{ 'has-error' : userForm.city.$invalid && submitted }">
                         <label>City</label>
-                        <input name="city" class="form-control" type="text" ng-model="model.Address.City" required ng-maxlength="50"/>
+                        <input name="city" class="form-control" type="text" ng-model="model.Address.City" required ng-maxlength="50" />
                         <div class="callout" ng-show="userForm.city.$invalid && submitted">
                             <div ng-show="userForm.city.$error.required && submitted">Please insert city</div>
                             <div ng-show="userForm.city.$error.maxlength && submitted">City must not exceed 50 characters</div>
@@ -113,7 +113,7 @@
                 <div class='col-sm-offset-1 col-sm-3'>
                     <div class='form-group' ng-class="{ 'has-error' : userForm.streetName.$invalid && submitted }">
                         <label>Street Name</label>
-                        <input name="streetName" class="form-control" type="text" ng-model="model.Address.StreetName" required ng-maxlength="50"/>
+                        <input name="streetName" class="form-control" type="text" ng-model="model.Address.StreetName" required ng-maxlength="50" />
                         <div class="callout" ng-show="userForm.streetName.$invalid && submitted">
                             <div ng-show="userForm.streetName.$error.required && submitted">Please insert street name</div>
                             <div ng-show="userForm.streetName.$error.maxlength && submitted">Street name must not exceed 50 characters</div>
@@ -124,17 +124,28 @@
                 <div class='col-sm-offset-1 col-sm-1'>
                     <div class='form-group' ng-class="{ 'has-error' : userForm.streetNumber.$invalid && submitted }">
                         <label>Street #</label>
-                        <input name="streetNumber" class="form-control" type="number" ng-model="model.Address.StreetNumber" required min="0"/>
+                        <input name="streetNumber" class="form-control" type="number" ng-model="model.Address.StreetNumber" required min="0" />
                         <div class="callout" ng-show="userForm.streetNumber.$invalid && submitted">
                             <div ng-show="userForm.streetNumber.$error.required && submitted">Please insert street number</div>
                         </div>
                     </div>
                 </div>
 
-
-                <button type="submit" class="btn btn-primary btn-block btn-search">Sign up</button>
-
             </div>
+            <div class="row">
+                <div class='col-sm-2'>
+                    <div class='form-group' ng-class="{ 'has-error' : userForm.docCode.$invalid && submitted }">
+                        <label>Doctor Code</label>
+                        <input name="country" class="form-control" type="text" ng-model="model.DoctorCode" ng-maxlength="30" />
+                        <div class="callout" ng-show="userForm.docCode.$invalid && submitted">
+                            <div ng-show="userForm.docCode.$error.maxlength && submitted">Doctor code must not exceed 30 characters</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-search">Sign up</button>
+
+            
         </form>
     </div>
 </div>

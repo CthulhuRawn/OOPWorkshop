@@ -40,7 +40,7 @@ namespace EZVet.QueryProcessors
 
             if (_ownersQueryProcessor.ExistsById(id))
                 return Query()
-                    .Where(x => x.Owner.Id == id)
+                    .Where(x => x.Owner.Id == id).ToList()
                     .Select(x => new Animal().Initialize(x))
                     .ToList();
 

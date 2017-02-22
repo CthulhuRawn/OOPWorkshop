@@ -51,7 +51,7 @@
                         toaster.error("Oops!", "User already exists!", 5000);
                     }
                     else {
-                        //$location.path("/login");
+                        
                        
                         $scope.loginModel = {}
                         $scope.loginModel.username = $scope.model.Username;
@@ -62,10 +62,11 @@
                                 url: ServerRoutes.login.login,
                                 data: $scope.loginModel
                             })
-                            .then(function(response) {
+                            .then(function() {
                                 toaster.success("Thanks!", "You are now one of us!", 5000);
-                                LoginService.saveLogin(response.data);
-                                LoginService.navigateToHomepage();
+                                //LoginService.saveLogin(response.data);
+                                //LoginService.navigateToHomepage();
+                                $location.path("/login");
                             });
                     }
                 });

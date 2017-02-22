@@ -4,7 +4,7 @@ using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
-    public class Doctor : Entity<Doctor, Domain.Doctor>
+    public class PersonLogin : EntityBase
     {
         [Key]
         [EmailAddress]
@@ -22,20 +22,10 @@ namespace EZVet.DTOs
         public virtual DateTime BirthDate { get; set; }
 
         public virtual Address Address { get; set; }
+
+        [MaxLength(30)]
         public virtual string DoctorCode { get; set; }
 
-        public override Doctor Initialize(Domain.Doctor domain)
-        {
-            Id = domain.Id;
-            Password = domain.Password;
-            FirstName = domain.FirstName;
-            LastName = domain.LastName;
-            BirthDate = domain.BirthDate;
-            Email = domain.Email;
-            DoctorCode = domain.DoctorCode;
-            Address = new Address().Initialize(domain.Address);
-
-            return this;
-        }
     }
+    
 }

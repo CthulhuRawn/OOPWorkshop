@@ -13,5 +13,10 @@ namespace Domain
         public virtual Address Address { get; set; }
 
         public virtual IList<Animal> Animals { get; set; }
+
+        public virtual string GetName()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }
