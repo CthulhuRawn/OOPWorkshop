@@ -3,16 +3,19 @@ using System.Linq;
 using Domain;
 using NHibernate;
 using Animal = EZVet.DTOs.Animal;
+using Doctor = EZVet.DTOs.Doctor;
 
 namespace EZVet.QueryProcessors
 {
     public interface IAnimalsQueryProcessor
     {
         List<Animal> SearchMine(int id);
+        List<Animal> SearchPatients(int id);
 
         Animal GetAnimal(int id);
 
         Animal Save(Animal animal, int cotnactId);
+        void AttachToDoctor(int vetId, int petId);
     }
 
 
@@ -29,15 +32,19 @@ namespace EZVet.QueryProcessors
         }
 
 
-        public List<Animal> SearchMine(int id)
+        public List<Animal> SearchPatients(int id)
         {
             if (_doctorsQueryProcessor.ExistsById(id))
                 return
                     Query()
-                        .Where(x => x.Doctors.Any(doc => doc.Id == id))
+                        .Where(x => x.Doctor.Id == id)
                         .Select(x => new Animal().Initialize(x))
                         .ToList();
 
+            return new List<Animal>();
+        }
+        public List<Animal> SearchMine(int id)
+        {
             if (_ownersQueryProcessor.ExistsById(id))
                 return Query()
                     .Where(x => x.Owner.Id == id).ToList()
@@ -47,7 +54,6 @@ namespace EZVet.QueryProcessors
             return new List<Animal>();
         }
         
-
         public Animal Save(Animal animal, int contactId)
         {
             Domain.Animal domainAnimal;
@@ -81,6 +87,13 @@ namespace EZVet.QueryProcessors
         public Animal GetAnimal(int id)
         {
             return new Animal().Initialize(Get(id));
+        }
+
+        public void AttachToDoctor(int vetId, int petId)
+        {
+            var animal = Get(petId);
+            animal.Doctor = _doctorsQueryProcessor.Get(vetId);
+            Update(petId, animal);
         }
     }
 }

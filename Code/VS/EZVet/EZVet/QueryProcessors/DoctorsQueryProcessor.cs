@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EZVet.Common;
 using EZVet.DTOs;
 using LinqKit;
 using NHibernate;
@@ -9,15 +8,15 @@ namespace EZVet.QueryProcessors
 {
     public interface IDoctorsQueryProcessor
     {
-        IEnumerable<Doctor> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? doctorId);
-
         Doctor GetDoctor(int id);
+        Domain.Doctor Get(int id);
 
         Doctor Save(PersonLogin doctor);
 
         Doctor Update(int id, Doctor doctor);
         bool Exists(string username);
         bool ExistsById(int id);
+        IEnumerable<Doctor> Search(string firstName, string lastName, string address, int? id);
     }
 
     public class DoctorsQueryProcessor : DBAccessBase<Domain.Doctor>, IDoctorsQueryProcessor
@@ -39,7 +38,7 @@ namespace EZVet.QueryProcessors
             return Query().Where(user => user.Id == id).Any();
         }
 
-        public IEnumerable<Doctor> Search(string firstName, string lastName, int? minAge, int? maxAge, int? region, int? doctorId)
+        public IEnumerable<Doctor> Search(string firstName, string lastName, string address, int? doctorId)
         {
             var filter = PredicateBuilder.New<Domain.Doctor>(x => true);
 
@@ -53,14 +52,9 @@ namespace EZVet.QueryProcessors
                 filter.And(x => x.LastName.Contains(lastName));
             }
 
-            if (minAge.HasValue)
+            if (!string.IsNullOrEmpty(address))
             {
-                filter.And(x => x.BirthDate <= DateUtils.GetXYearsEarly(minAge ?? 0));
-            }
-
-            if (maxAge.HasValue)
-            {
-                filter.And(x => x.BirthDate >= DateUtils.GetXYearsEarly(maxAge ?? 0));
+                filter.And(x => x.Address.City.Contains(address) || x.Address.StreetName.Contains(address) || x.Address.Country.Contains(address));
             }
             
             if (doctorId.HasValue)

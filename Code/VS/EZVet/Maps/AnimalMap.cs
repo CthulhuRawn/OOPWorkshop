@@ -17,9 +17,9 @@ namespace Maps
             References(x => x.Owner);
             References(x => x.Type);
             References(x => x.SubType);
+            References(x => x.Doctor);
 
             HasMany(x => x.Orders);
-            HasMany(x => x.Doctors);
             HasMany(x => x.AnimalMeasurements);
         }
     }

@@ -22,29 +22,8 @@
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'AnimalsListVet'}" ng-show="sharedVariables.role == 'Doctor'">
                     <a href="#/AnimalsListVet">My Animals</a>
                 </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'ownedOrders'}" ng-show="sharedVariables.role == 'Customer'">
-                    <a href="#/ownedOrders">צפה בהזמנות</a>
-                </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'pendingOrdersToJoin'}" ng-show="sharedVariables.role == 'Customer'">
-                    <a href="#/pendingOrdersToJoin">בקשות ההצטרפות שלי</a>
-                </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchAvailableOrdersToJoin'}" ng-show="sharedVariables.role == 'Customer'">
-                    <a href="#/searchAvailableOrdersToJoin">הצטרף למגרש</a>
-                </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchOrders'}" ng-show="sharedVariables.role == 'Employee'">
-                    <a href="#/searchOrders">צפייה בהזמנות</a>
-                </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchCustomers'}">
-                    <a href="#/searchCustomers">חיפוש לקוחות</a>
-                </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'editField'}" ng-show="sharedVariables.role == 'Admin' || sharedVariables.role == 'Employee'">
-                    <a href="#/editField">צור מגרש</a>
-                </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'searchEmployees'}" ng-show="sharedVariables.role == 'Admin'">
-                    <a href="#/searchEmployees" ng-show="sharedVariables.role == 'Admin'">חיפוש עובדים</a>
-                </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'editEmployee'}" ng-show="sharedVariables.role == 'Admin'">
-                    <a href="#/editEmployee" ng-show="sharedVariables.role == 'Admin'">צור עובד</a>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'VetSearch'}" ng-show="sharedVariables.role == 'Owner'">
+                    <a href="#/VetSearch">Vet Search</a>
                 </li>
                 <li uib-dropdown role="presentation" ng-class="{active: $route.current.activetab.startsWith('report')}" class="dropdown"
                     ng-show="sharedVariables.role == 'Admin' || sharedVariables.role == 'Employee'">
@@ -70,7 +49,7 @@
     <div class="spinner-container" ng-class="{'show': spinnerActive}">
         <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner"></span>
     </div>
-    <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}">
+    <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-bottom-center'}">
 
     </toaster-container>
 
@@ -89,6 +68,7 @@
     <script src="web/js/ordersControllers.js"></script>
     <script src="web/js/reportControllers.js"></script>
     <script src="web/js/animalsControllers.js"></script>
+    <script src="web/js/vetController.js"></script>
     
     <script src="web/lib/jquery.js"></script>
     <script src="web/lib/bootstrap.js"></script>

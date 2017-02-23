@@ -22,5 +22,10 @@ namespace EZVet.DTOs
 
             return this;
         }
+
+        public virtual string ForUI()
+        {
+            return Country + ", " + City + ", " + StreetName + " " + StreetNumber;
+        }
     }
 }

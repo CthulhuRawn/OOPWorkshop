@@ -19,10 +19,18 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/animals/myAnimals")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
         public List<Animal> MyAnimals(int id)
         {
             return _animalsQueryProcessor.SearchMine(id).ToList();
+        }
+
+        [HttpGet]
+        [Route("api/animals/myPatients")]
+        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Doctor)]
+        public List<Animal> MyPatients(int id)
+        {
+            return _animalsQueryProcessor.SearchPatients(id).ToList();
         }
 
         [HttpGet]

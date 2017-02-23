@@ -23,6 +23,7 @@ namespace EZVet.DTOs
 
         public virtual Address Address { get; set; }
         public virtual string DoctorCode { get; set; }
+        public virtual string AddressToDispaly { get; set; }
 
         public override Doctor Initialize(Domain.Doctor domain)
         {
@@ -34,7 +35,7 @@ namespace EZVet.DTOs
             Email = domain.Email;
             DoctorCode = domain.DoctorCode;
             Address = new Address().Initialize(domain.Address);
-
+            AddressToDispaly = Address.ForUI();
             return this;
         }
     }

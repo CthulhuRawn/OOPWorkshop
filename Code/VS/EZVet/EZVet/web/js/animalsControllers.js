@@ -17,8 +17,12 @@
             return Math.round(moment().diff(dob, 'years', true) * 100) / 100;
         }
 
+        var url = ServerRoutes.animals.owner;
+        if ($rootScope.sharedVariables.role === "Doctor")
+            url = ServerRoutes.animals.doctor;
+
         $http({
-            url: ServerRoutes.animals.owner,
+            url: url,
             method: "GET",
             params: { Id: $rootScope.sharedVariables.userId }
         }).then(function searchCompleted(response) {

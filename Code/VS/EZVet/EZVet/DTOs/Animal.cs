@@ -26,7 +26,7 @@ namespace EZVet.DTOs
         {
             Id = domain.Id;
             Name = domain.Name;
-            DoctorName = domain.Doctors?.LastOrDefault()?.GetName();
+            DoctorName = domain.Doctor?.GetName();
             Type = domain.Type.Id;
             DateOfBirth = domain.DateOfBirth;
             Gender = domain.Gender.Id;

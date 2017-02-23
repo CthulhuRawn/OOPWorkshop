@@ -99,33 +99,14 @@
                 registration: urlBase + "login/registration",
                 login: urlBase + "login/login"
             },
-
-            complaints: {
-                base: urlBase + "complaints",
-                search: urlBase + "complaints/search"
-            },
-            reviews:{
-                base: urlBase + "reviews",
-                search: urlBase + "reviews/search"
-            },
-            orders: {
-                base: urlBase + "orders",
-                availables: urlBase + "orders/availables",
-                searchmyorders: urlBase + "orders/searchownedorders",
-                search: urlBase + "orders/search",
-                optionals: urlBase + "orders/optionals",
-                updatepraticipant: urlBase + "orders/updatepraticipant",
-                availablestojoin: urlBase + "orders/availablestojoin",
-                jointoorder: urlBase + "orders/jointoorder"
-            },
-            reports: {
-                fields: urlBase + "reports/fields",
-                customers: urlBase + "reports/customers",
-                complaints: urlBase + "reports/complaints"
-            },
             animals: {
                 owner: urlBase + "animals/myAnimals",
+                doctor: urlBase + "animals/myPatients",
                 patient: urlBase + "animals/animal"
+            },
+            vets: {
+                all: urlBase + "vets/all",
+                assign: urlBase + "vets/assign"
             }
         }
     });

@@ -8,7 +8,7 @@ namespace Domain
         public virtual string Name { get; set; }
         public virtual Owner Owner { get; set; }
         public virtual IList<TreatmentReport> Orders { get; set; }
-        public virtual IList<Doctor> Doctors { get; set; }
+        public virtual Doctor Doctor { get; set; }
         public virtual IList<AnimalMeasurements> AnimalMeasurements { get; set; }
         public virtual DateTime DateOfBirth { get; set; }
         public virtual GenderDecode Gender { get; set; }
