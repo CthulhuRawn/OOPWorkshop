@@ -30,12 +30,12 @@
         });
     }]);
 
-    myApp.controller('patientCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', '$rootScope', '$location',
-        function ($scope, $http, ServerRoutes, DomainDecodes, toaster, $rootScope, $location) {
+    myApp.controller('patientCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', '$rootScope', '$routeParams',
+        function ($scope, $http, ServerRoutes, DomainDecodes, toaster, $rootScope, $routeParams) {
             $scope.pet = { Id: -1 };
             $scope.animalTypes = DomainDecodes.animalTypes;
 
-            var id = $location.search()["id"];
+            var id = $routeParams.id;
             if (id) {
                 $http({
                     url: ServerRoutes.animals.patient,

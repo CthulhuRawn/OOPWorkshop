@@ -1,6 +1,6 @@
 ﻿!(function() {
     var myApp = angular.module('myApp');
-    myApp.controller('vetCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', '$location', function ($scope, $http, ServerRoutes, toaster, $location) {
+    myApp.controller('vetCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', '$routeParams', function ($scope, $http, ServerRoutes, toaster, $routeParams) {
             $scope.model = {};
             $scope.vets = [];
             $scope.pageTitle = "Vet Search";
@@ -8,7 +8,7 @@
             $scope.propertyName = 'Id';
             $scope.reverse = false;
 
-            $scope.petId = $location.search()["pet"];
+            $scope.petId = $routeParams.pet;
             
             if ($scope.petId) {
                 $http({
@@ -57,12 +57,12 @@
         }
     ]);
 
-    myApp.controller('vetPageCtrl', ['$rootScope', '$scope', 'toaster', '$http', 'ServerRoutes', '$location', 'DomainDecodes', function ($rootScope, $scope,
+    myApp.controller('vetPageCtrl', ['$rootScope', '$scope', 'toaster', '$http', 'ServerRoutes', 'DomainDecodes', '$routeParams', function ($rootScope, $scope,
             toaster,
             $http,
             ServerRoutes,
-            $location,
-            DomainDecodes) {
+            DomainDecodes,
+            $routeParams) {
         
         $scope.animalTypes = DomainDecodes.animalTypes;
         
@@ -80,7 +80,7 @@
 
 
             $scope.vet = {};
-            $scope.vetId = $location.search()["id"];
+            $scope.vetId = $routeParams.id;
         if ($rootScope.sharedVariables.role === "Doctor") {
             $scope.vetId = $rootScope.sharedVariables.userId;
         }

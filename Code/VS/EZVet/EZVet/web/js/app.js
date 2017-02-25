@@ -28,17 +28,17 @@
             controller: 'animalsCtrl',
             activetab: 'AnimalsListVet'
         });
-        $routeProvider.when('/PatientPage/:Id?', {
+        $routeProvider.when('/PatientPage/:id?', {
             templateUrl: 'web/partials/PatientPage.html',
             controller: 'patientCtrl',
             activetab: 'PatientPage'
         });
-        $routeProvider.when('/VetSearch', {
+        $routeProvider.when('/VetSearch/:pet?', {
             templateUrl: 'web/partials/VetSearch.html',
             controller: 'vetCtrl',
             activetab: 'VetSearch'
         });
-        $routeProvider.when('/VetPage', {
+        $routeProvider.when('/VetPage/:id?', {
             templateUrl: 'web/partials/VetPage.html',
             controller: 'vetPageCtrl',
             activetab: 'VetPage'
