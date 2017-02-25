@@ -15,6 +15,7 @@ namespace EZVet.QueryProcessors
         Animal GetAnimal(int id);
 
         Animal Save(Animal animal, int cotnactId);
+        Domain.Animal Get(int animalId);
         void AttachToDoctor(int vetId, int petId);
     }
 

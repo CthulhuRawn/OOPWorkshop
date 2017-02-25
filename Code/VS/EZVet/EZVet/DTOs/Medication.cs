@@ -9,6 +9,7 @@ namespace EZVet.DTOs
         [MaxLength(30)]
         public virtual string Name { get; set; }
         public virtual string Dose { get; set; }
+        public virtual double Price { get; set; }
         public virtual DateTime Date { get; set; }
 
         public override Medication Initialize(Domain.Treatment domain)
@@ -16,7 +17,7 @@ namespace EZVet.DTOs
             Id = domain.Id;
             Name = domain.Name;
             Date = domain.ContainingTreatment.Date;
-            Dose = domain.Dose;
+            Price = domain.Price;
 
             return this;
         }

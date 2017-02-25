@@ -7,10 +7,11 @@ namespace Maps
         public TreatmentReportMap()
         {
             Map(x => x.TotalPrice);
-            HasMany(x => x.Treatments);
-            References(x => x.Animal);
-            References(x => x.AnimalMeasurements);
-            References(x => x.Doctor);
+            Map(x => x.Date);
+            HasMany(x => x.Treatments).Cascade.All();
+            References(x => x.Animal).Cascade.All();
+            References(x => x.AnimalMeasurements).Cascade.All();
+            References(x => x.Doctor).Cascade.All();
         }
     }
 }

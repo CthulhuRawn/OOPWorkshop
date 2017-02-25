@@ -28,6 +28,7 @@ namespace EZVet.Common
         private void ConfigureQueryProcessors(IKernel container)
         {
             container.Bind<IComplaintsQueryProcessor>().To<ComplaintsQueryProcessor>();
+            container.Bind<ITreatmentsQueryProcessor>().To<TreatmentsQueryProcessor>();
             container.Bind<IAnimalsQueryProcessor>().To<AnimalsQueryProcessor>();
             container.Bind<IOwnersQueryProcessor>().To<OwnersQueryProcessor>();
             container.Bind<IDoctorsQueryProcessor>().To<DoctorsQueryProcessor>();

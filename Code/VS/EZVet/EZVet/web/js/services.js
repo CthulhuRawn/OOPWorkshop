@@ -109,6 +109,9 @@
                 getVet: urlBase + "vets/get",
                 saveVet: urlBase + "vets/save",
                 assign: urlBase + "vets/assign"
+            },
+            treatments: {
+                save: urlBase + "treatments/save"
             }
         }
     });

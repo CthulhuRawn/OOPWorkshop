@@ -7,7 +7,7 @@ namespace Maps
         public AnimalMeasurementsMap()
         {
             Map(x => x.Pulse);
-            Map(x => x.Temprature);
+            Map(x => x.Temperature);
             Map(x => x.Weight);
             Map(x => x.SystolicBloodPressure);
             Map(x => x.DiastolicBloodPressure);

@@ -43,6 +43,11 @@
             controller: 'vetPageCtrl',
             activetab: 'VetPage'
         });
+        $routeProvider.when('/TreatmentPage/:id?', {
+            templateUrl: 'web/partials/TreatmentPage.html',
+            controller: 'treatmentPageCtrl',
+            activetab: 'TreatmentPage'
+        });
 
         $routeProvider.otherwise({
             redirectTo: '/login'
