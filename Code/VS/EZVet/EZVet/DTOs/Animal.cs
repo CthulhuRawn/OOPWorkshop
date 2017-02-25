@@ -17,6 +17,7 @@ namespace EZVet.DTOs
         public double Weight { get; set; }
         public string ChipNumber { get; set; }
         public string Color { get; set; }
+        public string OwnerPhone { get; set; }
         public IEnumerable<Treatment> Treatments { get; set; }
         public IEnumerable<Vaccine> Vaccines { get; set; }
         public IEnumerable<Medication> Medications { get; set; }
@@ -36,6 +37,7 @@ namespace EZVet.DTOs
             Weight = domain.Weight;
             ChipNumber = domain.ChipNumber;
             Color = domain.Color;
+            OwnerPhone = domain.Owner.Phone;
 
             return this;
         }
