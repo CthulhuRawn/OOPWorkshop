@@ -9,6 +9,7 @@
             $scope.reverse = false;
 
             $scope.petId = $location.search()["pet"];
+            
             if ($scope.petId) {
                 $http({
                     url: ServerRoutes.animals.patient,
@@ -42,12 +43,66 @@
                 $http({
                     url: ServerRoutes.vets.all,
                     method: "GET",
-                    params: $scope.model,
+                    params: $scope.model
                 }).then(function searchCompleted(response) {
                     $scope.vets = response.data;
 
                     if (angular.equals($scope.vets, [])) {
                         toaster.info('No doctors found');
+                    }
+                });
+            };
+
+            
+        }
+    ]);
+
+    myApp.controller('vetPageCtrl', ['$rootScope', '$scope', 'toaster', '$http', 'ServerRoutes', '$location', 'DomainDecodes', function ($rootScope, $scope,
+            toaster,
+            $http,
+            ServerRoutes,
+            $location,
+            DomainDecodes) {
+        
+        $scope.animalTypes = DomainDecodes.animalTypes;
+        
+        $scope.toggleSelection = function (type) {
+                var idx = $scope.vet.Types.indexOf(type);
+
+                if (idx > -1) {
+                    $scope.vet.Types.splice(idx, 1);
+                }
+                
+                else {
+                    $scope.vet.Types.push(type);
+                }
+            }
+
+
+            $scope.vet = {};
+            $scope.vetId = $location.search()["id"];
+        if ($rootScope.sharedVariables.role === "Doctor") {
+            $scope.vetId = $rootScope.sharedVariables.userId;
+        }
+            $http({
+                url: ServerRoutes.vets.getVet,
+                method: "GET",
+                params: { vetId: $scope.vetId }
+            }).then(function searchCompleted(response) {
+                $scope.vet = response.data;
+            });
+
+            $scope.save = function() {
+                $http({
+                    url: ServerRoutes.vets.saveVet,
+                    method: "POST",
+                    data: angular.copy($scope.vet)
+                }).then(function searchCompleted(response) {
+                    if (response.status === 200) {
+                        $scope.vet = response.data;
+                        toaster.success('Saved!');
+                    } else {
+                        toaster.error('Error!');
                     }
                 });
             };

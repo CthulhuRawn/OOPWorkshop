@@ -38,6 +38,11 @@
             controller: 'vetCtrl',
             activetab: 'VetSearch'
         });
+        $routeProvider.when('/VetPage', {
+            templateUrl: 'web/partials/VetPage.html',
+            controller: 'vetPageCtrl',
+            activetab: 'VetPage'
+        });
 
         $routeProvider.otherwise({
             redirectTo: '/login'

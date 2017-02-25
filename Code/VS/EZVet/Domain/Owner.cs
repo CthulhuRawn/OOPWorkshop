@@ -11,6 +11,7 @@ namespace Domain
         public virtual DateTime BirthDate { get; set; }
         public virtual string Email { get; set; }
         public virtual Address Address { get; set; }
+        public virtual string Phone { get; set; }
 
         public virtual IList<Animal> Animals { get; set; }
 

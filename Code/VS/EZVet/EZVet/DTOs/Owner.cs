@@ -22,6 +22,7 @@ namespace EZVet.DTOs
         public virtual DateTime BirthDate { get; set; }
 
         public virtual Address Address { get; set; }
+        public virtual string Phone{ get; set; }
 
         public override Owner Initialize(Domain.Owner domain)
         {
@@ -32,7 +33,7 @@ namespace EZVet.DTOs
             BirthDate = domain.BirthDate;
             Email = domain.Email;
             Address = new Address().Initialize(domain.Address);
-
+            Phone = domain.Phone;
             return this;
         }
     }

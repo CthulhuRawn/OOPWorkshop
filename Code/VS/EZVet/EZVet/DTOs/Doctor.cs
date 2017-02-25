@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using EZVet.Validators;
 
 namespace EZVet.DTOs
@@ -24,6 +26,10 @@ namespace EZVet.DTOs
         public virtual Address Address { get; set; }
         public virtual string DoctorCode { get; set; }
         public virtual string AddressToDispaly { get; set; }
+        public virtual  string Notes { get; set; }
+        public virtual string OpeningHours { get; set; }
+        public virtual string Phone { get; set; }
+        public virtual IList<int> Types { get; set; }
 
         public override Doctor Initialize(Domain.Doctor domain)
         {
@@ -36,6 +42,11 @@ namespace EZVet.DTOs
             DoctorCode = domain.DoctorCode;
             Address = new Address().Initialize(domain.Address);
             AddressToDispaly = Address.ForUI();
+            Notes = domain.Notes;
+            OpeningHours = domain.OpeningHours;
+            Phone = domain.Phone;
+            Types = domain.AnimalTypes.Select(x => x.Id).ToList();
+
             return this;
         }
     }

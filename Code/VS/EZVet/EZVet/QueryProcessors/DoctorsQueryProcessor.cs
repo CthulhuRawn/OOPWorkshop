@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Domain;
 using EZVet.DTOs;
 using LinqKit;
 using NHibernate;
+using Doctor = EZVet.DTOs.Doctor;
 
 namespace EZVet.QueryProcessors
 {
@@ -103,6 +105,13 @@ namespace EZVet.QueryProcessors
             existingDoctor.LastName = doctor.LastName ?? existingDoctor.LastName;
             existingDoctor.Password = doctor.Password ?? existingDoctor.Password;
             existingDoctor.Email = doctor.Email ?? existingDoctor.Email;
+            existingDoctor.Notes = doctor.Notes ?? existingDoctor.Notes;
+            existingDoctor.OpeningHours = doctor.OpeningHours ?? existingDoctor.OpeningHours;
+            existingDoctor.Phone = doctor.Phone ?? existingDoctor.Phone;
+
+            var savedTypes =
+                _decodesQueryProcessor.Query<AnimalTypeDecode>().Where(x => doctor.Types.Any(type => type == x.Id)).ToList();
+            existingDoctor.AnimalTypes = savedTypes;
 
             if (doctor.BirthDate != null)
                 existingDoctor.BirthDate = doctor.BirthDate;

@@ -75,7 +75,7 @@
                         path = '/searchCustomers';
                     }
                     else if (loginData.Role == "Doctor") { // 
-                        path = '/AnimalsListVet';
+                        path = '/VetPage';
                     }
                     else {
                         path = '/AnimalsListCustomer';
@@ -106,6 +106,8 @@
             },
             vets: {
                 all: urlBase + "vets/all",
+                getVet: urlBase + "vets/get",
+                saveVet: urlBase + "vets/save",
                 assign: urlBase + "vets/assign"
             }
         }

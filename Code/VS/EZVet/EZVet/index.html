@@ -20,10 +20,13 @@
                     <a href="#/AnimalsListCustomer">My Animals</a>
                 </li>
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'AnimalsListVet'}" ng-show="sharedVariables.role == 'Doctor'">
-                    <a href="#/AnimalsListVet">My Animals</a>
+                    <a href="#/AnimalsListVet">My Patients</a>
                 </li>
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'VetSearch'}" ng-show="sharedVariables.role == 'Owner'">
                     <a href="#/VetSearch">Vet Search</a>
+                </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'VetPage'}" ng-show="sharedVariables.role == 'Doctor'">
+                    <a href="#/VetPage">My Page</a>
                 </li>
                 <li uib-dropdown role="presentation" ng-class="{active: $route.current.activetab.startsWith('report')}" class="dropdown"
                     ng-show="sharedVariables.role == 'Admin' || sharedVariables.role == 'Employee'">

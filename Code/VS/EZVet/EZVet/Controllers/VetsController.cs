@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
 using EZVet.DTOs;
 using EZVet.Filters;
@@ -33,6 +34,34 @@ namespace EZVet.Controllers
         public void Assign(int vetId, int petId)
         {
             _animalsQueryProcessor.AttachToDoctor(vetId, petId);
+        }
+
+        [HttpGet]
+        [Route("api/vets/get")]
+        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        public Doctor Get(int? vetId)
+        {
+            if(vetId.HasValue)
+            return _doctorsQueryProcessor.GetDoctor(vetId.Value);
+
+            var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
+
+            int vetIdFromCookie;
+            if (cookieValue[1] == "Doctor" && int.TryParse(cookieValue[0], out vetIdFromCookie))
+            {
+               return _doctorsQueryProcessor.GetDoctor(vetIdFromCookie);
+            }
+
+            return new Doctor();
+        }
+
+        [HttpPost]
+        [Route("api/vets/save")]
+        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Doctor)]
+        [TransactionFilter]
+        public Doctor Save(Doctor doctor)
+        {
+            return _doctorsQueryProcessor.Update(doctor.Id.Value, doctor);
         }
     }
 }

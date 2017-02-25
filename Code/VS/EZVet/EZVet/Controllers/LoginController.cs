@@ -60,7 +60,7 @@ namespace EZVet.Controllers
 
             role = role ?? Consts.Roles.None;
 
-            var cookie = new HttpCookie("userId", userId.ToString());
+            var cookie = new HttpCookie("userId", userId + ":" + role);
             cookie.Expires = DateTime.MaxValue;
             cookie.Domain = Request.RequestUri.Host;
             cookie.Path = "/";

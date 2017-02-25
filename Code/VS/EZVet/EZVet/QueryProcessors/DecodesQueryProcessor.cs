@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Domain;
 using NHibernate;
 using NHibernate.Linq;
@@ -7,6 +8,7 @@ namespace EZVet.QueryProcessors
 {
     public interface IDecodesQueryProcessor
     {
+        IEnumerable<T> Query<T>() where T : Decode;
         T Get<T>(string name) where T : Decode;
 
         T Get<T>(int? id) where T : Decode;
@@ -29,6 +31,11 @@ namespace EZVet.QueryProcessors
         public T Get<T>(int? id) where T : Decode
         {
             return _session.Query<T>().Single(encode => encode.Id == id);
+        }
+
+        public IEnumerable<T> Query<T>() where T : Decode
+        {
+            return _session.Query<T>();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Maps
             Map(x => x.Password);
             Map(x => x.BirthDate);
             Map(x => x.Email);
+            Map(x => x.Phone);
 
             References(x => x.Address).Cascade.All();
 
