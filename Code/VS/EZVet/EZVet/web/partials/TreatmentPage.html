@@ -21,19 +21,19 @@
             </div>
             <div class="form-group col-sm-2">
                 <label>Age</label> 
-                <input type="number" class="form-control" id="AgeInput" value="{{ calcAge(treatment.Animal.DateOfBirth) }}" disabled/></div>
+                <input type="text" class="form-control" id="AgeInput" value="{{ calcAge(treatment.Animal.DateOfBirth) }}" disabled/></div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-3">
+            <div class="form-group col-sm-2">
                 <label>Weight</label> 
                 <div class="input-group">
-                    <input type="number" step="any" class="form-control" ng-model="treatment.Measurements.Weight">
+                    <input type="number" class="form-control" ng-model="treatment.Measurements.Weight">
                     <span class="input-group-addon">Kg</span>
                 </div>
             </div>	
             <div class="form-group col-sm-2">
                 <label>Pulse</label> 
-                <input type="text" class="form-control" placeholder="Pulse" ng-model="treatment.Measurements.Pulse"/>
+                <input type="number" class="form-control" ng-model="treatment.Measurements.Pulse"/>
             </div>
             <div class="form-group col-sm-2">
                 <label>Systolic BP</label> 
@@ -43,12 +43,26 @@
                 <label>Diastolic BP</label>
                 <input type="number" class="form-control" ng-model="treatment.Measurements.DiastolicBloodPressure" />
             </div>
-            <div class="form-group col-sm-3">
+            <div class="form-group col-sm-2">
                 <label>Temperature</label> 
                 <div class="input-group">
-                    <input type="number" step="any" class="form-control" ng-model="treatment.Measurements.Temperature">
+                    <input type="number" class="form-control" ng-model="treatment.Measurements.Temperature">
                     <span class="input-group-addon">°C</span>
                 </div>	
+            </div>
+            <div class="form-group col-sm-2">
+                <div class='form-group'
+                     moment-picker="treatment.Animal.NextVisit"
+                     locale="en-gb"
+                     format="DD/MM/YYYY"
+                     min-view="year"
+                     max-view="month"
+                     autoclose="true">
+                    <label>Date of next visit</label>
+                    <input name="DateNextVisit" class="form-control" empty-to-null
+                           required past psdate ng-model="treatment.Animal.NextVisit"
+                           ng-model-options="{ updateOn: 'blur' }">
+                </div>
             </div>	
         </div>
         <div class="row">
@@ -70,6 +84,9 @@
             <li role="presentation">
                 <a data-toggle="tab" data-target="#medicationsTab">Medications</a>
             </li>
+            <li role="presentation">
+                <a data-toggle="tab" data-target="#summaryTab">Summary</a>
+            </li>
         </ul>
     </div>
     <div class="tab-content">
@@ -79,12 +96,14 @@
                 <tr>
                     <th>Treatment Name</th>
                     <th>Price</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="treatment in treatment.treatments">
-                        <td>{{ treatment.Name }}</td>
-                        <td>{{ treatment.Price }}$</td>
+                    <tr ng-repeat="treat in treatment.treatments">
+                        <td>{{ treat.Name }}</td>
+                        <td>{{ treat.Price }}$</td>
+                        <td><button type="button" class ="btn btn-danger btn-sm" ng-click="deleteTreatment(treat.Name)">Delete</button></td>
                     </tr>
                     <tr>
                         <td><input type="text" class="form-control" ng-model="newTreatment.Name" /></td>
@@ -109,12 +128,14 @@
                     <tr>
                         <th>Vaccine Name</th>
                         <th>Price</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="vaccine in treatment.vaccines">
                         <td>{{ vaccine.Name }}</td>
                         <td>{{ vaccine.Price }}$</td>
+                        <td><button type="button" class="btn btn-danger btn-sm" ng-click="deleteVaccine(vaccine.Name)">Delete</button></td>
                     </tr>
                     <tr>
                         <td><input type="text" class="form-control" ng-model="newVaccine.Name" /></td>
@@ -136,33 +157,73 @@
         <div class="tab-pane" id="medicationsTab">
             <table id="MedicationsTable" class="table table-striped table-hover">
                 <thead>
-                    <tr>
-                        <th>Medication Name</th>
-                        <th>Dose</th>
-                        <th>Price</th>
-                    </tr>
+                <tr>
+                    <th>Medication Name</th>
+                    <th>Dose</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="medication in treatment.medications">
-                        <td>{{ medication.Name }}</td>
-                        <td>{{ medication.Dose }}</td>
-                        <td>{{ medication.Price }}$</td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="form-control" ng-model="newMedication.Name" /></td>
-                        <td><input type="text" class="form-control" ng-model="newMedication.Dose" /></td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" class="form-control" ng-model="newMedication.Price">
-                                <span class="input-group-addon">$</span>
-                            </div>
-                        </td>
-                    </tr>
+                <tr ng-repeat="medication in treatment.medications">
+                    <td>{{ medication.Name }}</td>
+                    <td>{{ medication.Dose }}</td>
+                    <td>{{ medication.Price }}$</td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="deleteMedication(medication.Name)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="form-control" ng-model="newMedication.Name" /></td>
+                    <td><input type="text" class="form-control" ng-model="newMedication.Dose" /></td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control" ng-model="newMedication.Price">
+                            <span class="input-group-addon">$</span>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div class="row">
                 <div class="form-group col-sm-12">
                     <button type="button" class="btn btn-primary pull-right" ng-click="addMedication()" id="MedicationButton">Add</button>
+                </div>
+            </div>
+        </div>
+        <div id="summaryTab" class="tab-pane">
+            <table id="VaccinesTable" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Dose</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="vaccine in treatment.vaccines">
+                    <td>{{ vaccine.Name }}</td>
+                    <td></td>
+                    <td>{{ vaccine.Price }}$</td>
+                </tr>
+                <tr ng-repeat="treat in treatment.treatments">
+                    <td>{{ treat.Name }}</td>
+                    <td></td>
+                    <td>{{ treat.Price }}$</td>
+                </tr>
+                <tr ng-repeat="medication in treatment.medications">
+                    <td>{{ medication.Name }}</td>
+                    <td>{{ medication.Dose }}</td>
+                    <td>{{ medication.Price }}$</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <th>Total Price: {{totalPrice}}$</th>
+                </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <button type="button" class="btn btn-primary pull-right" ng-click="print()"><i class="fa fa-print"></i></button>
                 </div>
             </div>
         </div>

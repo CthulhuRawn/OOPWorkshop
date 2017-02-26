@@ -18,5 +18,6 @@ namespace Domain
         public virtual string Notes { get; set; }
         public virtual string ChipNumber { get; set; }
         public virtual string Color { get; set; }
+        public virtual DateTime DateNextVisit { get; set; }
     }
 }

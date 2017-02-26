@@ -3,7 +3,6 @@ using System.Linq;
 using Domain;
 using NHibernate;
 using Animal = EZVet.DTOs.Animal;
-using Doctor = EZVet.DTOs.Doctor;
 
 namespace EZVet.QueryProcessors
 {
@@ -17,6 +16,7 @@ namespace EZVet.QueryProcessors
         Animal Save(Animal animal, int cotnactId);
         Domain.Animal Get(int animalId);
         void AttachToDoctor(int vetId, int petId);
+        void Update(int animalId, Domain.Animal animal);
     }
 
 

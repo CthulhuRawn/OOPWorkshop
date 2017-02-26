@@ -31,13 +31,14 @@ namespace EZVet.DTOs
             Type = domain.Type.Id;
             DateOfBirth = domain.DateOfBirth;
             Gender = domain.Gender.Id;
-            NextVisit = DateTime.UtcNow.AddDays(180);
+            NextVisit = domain.DateNextVisit;
             OwnerName = domain.Owner.GetName();
             Notes = domain.Notes;
             Weight = domain.Weight;
             ChipNumber = domain.ChipNumber;
             Color = domain.Color;
             OwnerPhone = domain.Owner.Phone;
+            
 
             return this;
         }

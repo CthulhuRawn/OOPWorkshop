@@ -9,9 +9,9 @@ namespace Maps
             Map(x => x.TotalPrice);
             Map(x => x.Date);
             HasMany(x => x.Treatments).Cascade.All();
-            References(x => x.Animal).Cascade.All();
+            References(x => x.Animal);
             References(x => x.AnimalMeasurements).Cascade.All();
-            References(x => x.Doctor).Cascade.All();
+            References(x => x.Doctor);
         }
     }
 }

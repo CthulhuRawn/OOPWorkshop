@@ -31,7 +31,7 @@ namespace EZVet.QueryProcessors
 
         public TreatmentReport Save(TreatmentReport treatment, int cotnactId)
         {
-
+            TreatmentReport result;
             var animal = _animalsQueryProcessor.Get(treatment.Animal.Id.Value);
             if (treatment.Id.HasValue)
             {
@@ -48,10 +48,46 @@ namespace EZVet.QueryProcessors
                     report.AnimalMeasurements.Weight = treatment.Measurements.Weight;
                 }
 
+                var pastTreatments = report.Treatments.ToList();
+                var medicationToAdd = treatment.Medications.Where(x => pastTreatments.All(y => y.Id != x.Id)).Select(x => new Treatment
+                {
+                    Name = x.Name,
+                    Dose = x.Dose,
+                    Price = x.Price,
+                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int)TreatmentType.Medication)
+                });
+
+                var treatmentsToAdd = treatment.Treatments.Where(x => pastTreatments.All(y => y.Id != x.Id)).Select(x => new Treatment
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int)TreatmentType.Treatment)
+                });
+
+                var vaccinesToAdd = treatment.Vaccines.Where(x => pastTreatments.All(y => y.Id != x.Id)).Select(x => new Treatment
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int)TreatmentType.Vaccine)
+                });
+
+                var treatments = new List<Treatment>();
+                treatments.AddRange(medicationToAdd);
+                treatments.AddRange(vaccinesToAdd);
+                treatments.AddRange(treatmentsToAdd);
+
+                treatments.AddRange(report.Treatments);
+
+                report.Treatments = report.Treatments.Where(x => treatment.Vaccines.Any(y => y.Id == x.Id))
+                    .Where(x => treatment.Medications.Any(y => y.Id == x.Id))
+                    .Where(x => treatment.Treatments.Any(y => y.Id == x.Id)).ToList();
+
+                report.Treatments = treatments;
+
                 report.Date = DateTime.UtcNow;
 
                 Update(report.Id, report);
-                return new TreatmentReport().Initialize(report);
+                result = new TreatmentReport().Initialize(report);
             }
             else
             {
@@ -101,8 +137,13 @@ namespace EZVet.QueryProcessors
                     Doctor = _doctorsQueryProcessor.Get(cotnactId)
                 };
                 
-                return new TreatmentReport().Initialize(Save(report));
+                result = new TreatmentReport().Initialize(Save(report));
             }
+            animal.Weight = result.Measurements.Weight;
+            animal.DateNextVisit = treatment.Animal.NextVisit;
+            _animalsQueryProcessor.Update(animal.Id, animal);
+
+            return result;
         }
     }
 }

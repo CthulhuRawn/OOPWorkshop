@@ -197,9 +197,11 @@
     <Content Include="web\css\angular-moment-picker.min.css" />
     <Content Include="web\css\app.css" />
     <Content Include="web\css\bootstrap-theme.min.css" />
+    <Content Include="web\css\font-awesome.min.css" />
     <Content Include="web\css\toaster.css" />
     <Content Include="web\css\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="web\fonts\fontawesome-webfont.svg" />
     <Content Include="web\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Compile Include="DTOs\Complaint.cs" />
@@ -319,6 +321,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="web\fonts\fontawesome-webfont.eot" />
+    <Content Include="web\fonts\fontawesome-webfont.ttf" />
+    <Content Include="web\fonts\fontawesome-webfont.woff" />
+    <Content Include="web\fonts\fontawesome-webfont.woff2" />
+    <Content Include="web\fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
