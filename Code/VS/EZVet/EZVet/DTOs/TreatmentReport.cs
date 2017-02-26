@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Domain;
+using EZVet.Common;
 
 namespace EZVet.DTOs
 {
@@ -15,18 +14,32 @@ namespace EZVet.DTOs
         public virtual double TotalPrice { get; set; }
         public virtual DateTime Date { get; set; }
         public virtual AnimalMeasurements Measurements { get; set; }
+        public virtual string TreatmentSummary { get; set; }
 
         public override TreatmentReport Initialize(Domain.TreatmentReport domain)
         {
+            CommonInitialize(domain);
+            Animal = new Animal().Initialize(domain.Animal);
+         
+            return this;
+        }
+
+        public override TreatmentReport ShallowInitialize(Domain.TreatmentReport domain)
+        {
+            CommonInitialize(domain);
+            return this;
+        }
+
+        private void CommonInitialize(Domain.TreatmentReport domain)
+        {
             Id = domain.Id;
             Date = domain.Date;
-            Treatments = domain.Treatments.Where(x => x.Type.Name == "Treatment").Select(x=>new Treatment().Initialize(x)).ToList();
-            Vaccines = domain.Treatments.Where(x => x.Type.Name == "Vaccine").Select(x=>new Vaccine().Initialize(x)).ToList();
-            Medications = domain.Treatments.Where(x => x.Type.Name == "Medication").Select(x=>new Medication().Initialize(x)).ToList();
+            Treatments = domain.Treatments.Where(x => x.Type.Id == (int)TreatmentType.Treatment).Select(x => new Treatment().Initialize(x)).ToList();
+            Vaccines = domain.Treatments.Where(x => x.Type.Id == (int)TreatmentType.Vaccine).Select(x => new Vaccine().Initialize(x)).ToList();
+            Medications = domain.Treatments.Where(x => x.Type.Id == (int)TreatmentType.Medication).Select(x => new Medication().Initialize(x)).ToList();
             Measurements = new AnimalMeasurements().Initialize(domain.AnimalMeasurements);
-            Animal = new Animal().Initialize(domain.Animal);
-
-            return this;
+            TreatmentSummary = domain.Summary;
+            TotalPrice = domain.Treatments.Select(x => x.Price).Sum();
         }
     }
 }

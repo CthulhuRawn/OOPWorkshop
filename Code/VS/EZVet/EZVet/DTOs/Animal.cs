@@ -22,6 +22,7 @@ namespace EZVet.DTOs
         public IEnumerable<Treatment> Treatments { get; set; }
         public IEnumerable<Vaccine> Vaccines { get; set; }
         public IEnumerable<Medication> Medications { get; set; }
+        public IEnumerable<TreatmentReport> TreatmentSummaries { get; set; }
 
 
         public override Animal Initialize(Domain.Animal domain)
@@ -54,6 +55,7 @@ namespace EZVet.DTOs
                     .Where(x => x.Type.Id == (int) TreatmentType.Treatment)
                     .Select(x => new Treatment().Initialize(x))
                     .ToList();
+            TreatmentSummaries = domain.Orders?.Select(x => new TreatmentReport().ShallowInitialize(x));
 
 
             return this;

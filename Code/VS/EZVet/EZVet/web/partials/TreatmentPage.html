@@ -100,20 +100,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="treat in treatment.Treatments">
-                        <td>{{ treat.Name }}</td>
-                        <td>{{ treat.Price }}$</td>
-                        <td><button type="button" class ="btn btn-danger btn-sm" ng-click="deleteTreatment(treat.Name)">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="form-control" ng-model="newTreatment.Name" /></td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" class="form-control" ng-model="newTreatment.Price">
-                                <span class="input-group-addon">$</span>
-                            </div>
-                        </td>
-                    </tr>
+                <tr ng-repeat="treat in treatment.Treatments">
+                    <td>{{ treat.Name }}</td>
+                    <td>{{ treat.Price }}$</td>
+                    <td><button type="button" class ="btn btn-danger btn-sm" ng-click="deleteTreatment(treat.Name)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="form-control" ng-model="newTreatment.Name" /></td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control" ng-model="newTreatment.Price">
+                            <span class="input-group-addon">$</span>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div class="row">
@@ -125,27 +125,27 @@
         <div class="tab-pane" id="vaccinesTab">
             <table id="VaccinesTable" class="table table-striped table-hover">
                 <thead>
-                    <tr>
-                        <th>Vaccine Name</th>
-                        <th>Price</th>
-                        <th></th>
-                    </tr>
+                <tr>
+                    <th>Vaccine Name</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="vaccine in treatment.Vaccines">
-                        <td>{{ vaccine.Name }}</td>
-                        <td>{{ vaccine.Price }}$</td>
-                        <td><button type="button" class="btn btn-danger btn-sm" ng-click="deleteVaccine(vaccine.Name)">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="form-control" ng-model="newVaccine.Name" /></td>
-                        <td>
-                            <div class="input-group">
-                                <input type="number" class="form-control" ng-model="newVaccine.Price">
-                                <span class="input-group-addon">$</span>
-                            </div>
-                        </td>
-                    </tr>
+                <tr ng-repeat="vaccine in treatment.Vaccines">
+                    <td>{{ vaccine.Name }}</td>
+                    <td>{{ vaccine.Price }}$</td>
+                    <td><button type="button" class="btn btn-danger btn-sm" ng-click="deleteVaccine(vaccine.Name)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="form-control" ng-model="newVaccine.Name" /></td>
+                    <td>
+                        <div class="input-group">
+                            <input type="number" class="form-control" ng-model="newVaccine.Price">
+                            <span class="input-group-addon">$</span>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div class="row">
@@ -190,7 +190,8 @@
             </div>
         </div>
         <div id="summaryTab" class="tab-pane">
-            <table id="VaccinesTable" class="table table-striped table-hover">
+            <textarea rows="5" ng-model="treatment.TreatmentSummary" class="col-sm-12 form-control"></textarea>
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -199,15 +200,36 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr ng-show="treatment.Vaccines.length > 0">
+                    <th>
+                        Vaccines:
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
                 <tr ng-repeat="vaccine in treatment.Vaccines">
                     <td>{{ vaccine.Name }}</td>
                     <td></td>
                     <td>{{ vaccine.Price }}$</td>
                 </tr>
+                <tr ng-show="treatment.Treatments.length > 0">
+                    <th>
+                        Treatments:
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
                 <tr ng-repeat="treat in treatment.Treatments">
                     <td>{{ treat.Name }}</td>
                     <td></td>
                     <td>{{ treat.Price }}$</td>
+                </tr>
+                <tr ng-show="treatment.Medications.length > 0">
+                    <th>
+                        Medications
+                    </th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 <tr ng-repeat="medication in treatment.Medications">
                     <td>{{ medication.Name }}</td>

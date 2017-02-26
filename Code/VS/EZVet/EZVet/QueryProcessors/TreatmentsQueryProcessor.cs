@@ -16,14 +16,12 @@ namespace EZVet.QueryProcessors
 
     public class TreatmentsQueryProcessor : DBAccessBase<Domain.TreatmentReport>, ITreatmentsQueryProcessor
     {
-        private readonly IOwnersQueryProcessor _ownersQueryProcessor;
         private readonly IDoctorsQueryProcessor _doctorsQueryProcessor;
         private readonly IDecodesQueryProcessor _decodesQueryProcessor;
         private readonly IAnimalsQueryProcessor _animalsQueryProcessor;
 
-        public TreatmentsQueryProcessor(ISession session, IOwnersQueryProcessor ownersQueryProcessor, IDoctorsQueryProcessor doctorsQueryProcessor, IDecodesQueryProcessor decodesQueryProcessor, IAnimalsQueryProcessor animalsQueryProcessor) : base(session)
+        public TreatmentsQueryProcessor(ISession session, IDoctorsQueryProcessor doctorsQueryProcessor, IDecodesQueryProcessor decodesQueryProcessor, IAnimalsQueryProcessor animalsQueryProcessor) : base(session)
         {
-            _ownersQueryProcessor = ownersQueryProcessor;
             _doctorsQueryProcessor = doctorsQueryProcessor;
             _decodesQueryProcessor = decodesQueryProcessor;
             _animalsQueryProcessor = animalsQueryProcessor;
@@ -91,6 +89,7 @@ namespace EZVet.QueryProcessors
                 report.Treatments = currentTreatments;
 
                 report.Date = DateTime.UtcNow;
+                report.Summary = treatment.TreatmentSummary;
 
                 Update(report.Id, report);
                 result = new TreatmentReport().Initialize(report);
@@ -145,8 +144,7 @@ namespace EZVet.QueryProcessors
                     Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
                     ContainingTreatment = report
                 }));
-
-
+                report.Summary = treatment.TreatmentSummary;
 
                 result = new TreatmentReport().Initialize(Save(report));
             }

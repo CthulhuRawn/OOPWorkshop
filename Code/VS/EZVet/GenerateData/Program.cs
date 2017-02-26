@@ -1,5 +1,4 @@
-﻿using Domain;
-using EZVet.QueryProcessors;
+﻿using EZVet.QueryProcessors;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Maps;

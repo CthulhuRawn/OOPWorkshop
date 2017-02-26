@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
 using System.Web.Http;
@@ -8,7 +7,6 @@ using EZVet.DTOs;
 using EZVet.QueryProcessors;
 using NHibernate;
 using Doctor = Domain.Doctor;
-using Owner = EZVet.DTOs.Owner;
 
 namespace EZVet.Controllers
 {

@@ -8,6 +8,7 @@ namespace Maps
         {
             Map(x => x.TotalPrice);
             Map(x => x.Date);
+            Map(x => x.Summary);
             HasMany(x => x.Treatments).Cascade.All();
             References(x => x.Animal);
             References(x => x.AnimalMeasurements).Cascade.All();

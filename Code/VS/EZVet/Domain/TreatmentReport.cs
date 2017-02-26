@@ -11,6 +11,7 @@ namespace Domain
         public virtual IList<Treatment> Treatments { get; set; }
         public virtual double TotalPrice { get; set; }
         public virtual DateTime Date{ get; set; }
+        public virtual string Summary { get; set; }
 
     }
 }
