@@ -100,7 +100,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="treat in treatment.treatments">
+                    <tr ng-repeat="treat in treatment.Treatments">
                         <td>{{ treat.Name }}</td>
                         <td>{{ treat.Price }}$</td>
                         <td><button type="button" class ="btn btn-danger btn-sm" ng-click="deleteTreatment(treat.Name)">Delete</button></td>
@@ -132,7 +132,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="vaccine in treatment.vaccines">
+                    <tr ng-repeat="vaccine in treatment.Vaccines">
                         <td>{{ vaccine.Name }}</td>
                         <td>{{ vaccine.Price }}$</td>
                         <td><button type="button" class="btn btn-danger btn-sm" ng-click="deleteVaccine(vaccine.Name)">Delete</button></td>
@@ -165,7 +165,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="medication in treatment.medications">
+                <tr ng-repeat="medication in treatment.Medications">
                     <td>{{ medication.Name }}</td>
                     <td>{{ medication.Dose }}</td>
                     <td>{{ medication.Price }}$</td>
@@ -199,17 +199,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="vaccine in treatment.vaccines">
+                <tr ng-repeat="vaccine in treatment.Vaccines">
                     <td>{{ vaccine.Name }}</td>
                     <td></td>
                     <td>{{ vaccine.Price }}$</td>
                 </tr>
-                <tr ng-repeat="treat in treatment.treatments">
+                <tr ng-repeat="treat in treatment.Treatments">
                     <td>{{ treat.Name }}</td>
                     <td></td>
                     <td>{{ treat.Price }}$</td>
                 </tr>
-                <tr ng-repeat="medication in treatment.medications">
+                <tr ng-repeat="medication in treatment.Medications">
                     <td>{{ medication.Name }}</td>
                     <td>{{ medication.Dose }}</td>
                     <td>{{ medication.Price }}$</td>

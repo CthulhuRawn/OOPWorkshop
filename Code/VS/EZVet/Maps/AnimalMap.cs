@@ -12,7 +12,7 @@ namespace Maps
             Map(x => x.DateOfBirth);
             Map(x => x.ChipNumber);
             Map(x => x.Color);
-            Map(x => x.DateNextVisit);
+            Map(x => x.DateNextVisit).Nullable();
 
             References(x => x.Gender);
             References(x => x.Owner);

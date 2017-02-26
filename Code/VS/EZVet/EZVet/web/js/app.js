@@ -18,15 +18,10 @@
             templateUrl: 'web/partials/registrationForm.html',
             controller: 'RegistrationFormCtrl'
         });
-        $routeProvider.when('/AnimalsListCustomer', {
-            templateUrl: 'web/partials/AnimalsListCustomer.html',
+        $routeProvider.when('/AnimalsList', {
+            templateUrl: 'web/partials/AnimalsList.html',
             controller: 'animalsCtrl',
-            activetab: 'AnimalsListCustomer'
-        });
-        $routeProvider.when('/AnimalsListVet', {
-            templateUrl: 'web/partials/AnimalsListVet.html',
-            controller: 'animalsCtrl',
-            activetab: 'AnimalsListVet'
+            activetab: 'AnimalsList'
         });
         $routeProvider.when('/PatientPage/:id?', {
             templateUrl: 'web/partials/PatientPage.html',

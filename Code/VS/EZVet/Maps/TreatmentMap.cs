@@ -8,6 +8,7 @@ namespace Maps
         {
             Map(x => x.Name);
             Map(x => x.Dose);
+            Map(x => x.Price);
             References(x => x.Type);
             References(x => x.ContainingTreatment);
         }

@@ -255,7 +255,7 @@
     <Content Include="web\lib\angular\angular.js" />
     <Content Include="web\partials\About.html" />
     <Content Include="web\partials\AnimalsListAdoption.html" />
-    <Content Include="web\partials\AnimalsListCustomer.html" />
+    <Content Include="web\partials\AnimalsList.html" />
     <Content Include="web\partials\AnimalsListVet.html" />
     <Content Include="web\partials\Old\editCustomer.html" />
     <Content Include="web\partials\Old\editEmployee.html" />

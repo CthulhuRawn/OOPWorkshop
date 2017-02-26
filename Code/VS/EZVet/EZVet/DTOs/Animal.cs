@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EZVet.Common;
 
 namespace EZVet.DTOs
 {
@@ -12,7 +13,7 @@ namespace EZVet.DTOs
         public int Type { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Gender { get; set; }
-        public DateTime NextVisit { get; set; }
+        public DateTime? NextVisit { get; set; }
         public string Notes { get; set; }
         public double Weight { get; set; }
         public string ChipNumber { get; set; }
@@ -38,7 +39,22 @@ namespace EZVet.DTOs
             ChipNumber = domain.ChipNumber;
             Color = domain.Color;
             OwnerPhone = domain.Owner.Phone;
-            
+            Vaccines =
+                domain.Orders?.SelectMany(x => x.Treatments)
+                    .Where(x => x.Type.Id == (int) TreatmentType.Vaccine)
+                    .Select(x => new Vaccine().Initialize(x))
+                    .ToList();
+            Medications =
+                domain.Orders?.SelectMany(x => x.Treatments)
+                    .Where(x => x.Type.Id == (int) TreatmentType.Medication)
+                    .Select(x => new Medication().Initialize(x))
+                    .ToList();
+            Treatments =
+                domain.Orders?.SelectMany(x => x.Treatments)
+                    .Where(x => x.Type.Id == (int) TreatmentType.Treatment)
+                    .Select(x => new Treatment().Initialize(x))
+                    .ToList();
+
 
             return this;
         }

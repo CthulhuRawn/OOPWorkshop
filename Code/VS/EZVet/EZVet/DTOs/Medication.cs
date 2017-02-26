@@ -18,6 +18,7 @@ namespace EZVet.DTOs
             Name = domain.Name;
             Date = domain.ContainingTreatment.Date;
             Price = domain.Price;
+            Dose = domain.Dose;
 
             return this;
         }

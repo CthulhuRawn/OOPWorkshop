@@ -1,5 +1,5 @@
 ﻿<div class="container">
-    <h2>My Pets</h2>
+    <h2>{{ sharedVariables.role === 'Owner' ? 'My Pets':'My Patients'}}</h2>
     <form>
         <div class="row">
             <div class="col-sm-12">
@@ -8,7 +8,8 @@
                     <tr>
                         <th>#</th>
                         <th>Pet Name</th>
-                        <th>Doctor Name</th>
+                        <th ng-show="sharedVariables.role === 'Owner'">Doctor Name</th>
+                        <th ng-show="sharedVariables.role === 'Doctor'">Owner Name</th>
                         <th>Type</th>
                         <th>Age</th>
                         <th>Gender</th>
@@ -20,7 +21,8 @@
                     <tr ng-repeat="x in pets">
                         <td>{{ x.Id }}</td>
                         <td>{{ x.Name }}</td>
-                        <td>{{ x.DoctorName }}</td>
+                        <td ng-show="sharedVariables.role === 'Owner'">{{ x.DoctorName }}</td>
+                        <td ng-show="sharedVariables.role === 'Doctor'">{{ x.OwnerName }}</td>
                         <td>{{ getType(x.Type)}}</td>
                         <td>{{ calcAge(x.DateOfBirth) }}</td>
                         <td>{{ getGender(x.Gender)}}</td>
@@ -33,7 +35,7 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-12">
-                <a type="button" class="btn btn-lg btn-primary pull-right" href="#/PatientPage">Add Pet</a>
+                <a type="button" class="btn btn-lg btn-primary pull-right" href="#/PatientPage" ng-show="sharedVariables.role === 'Owner'">Add Pet</a>
             </div>
         </div>
     </form>

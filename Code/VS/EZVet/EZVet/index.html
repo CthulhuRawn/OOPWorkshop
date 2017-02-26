@@ -17,11 +17,11 @@
     <div class="container">
         <nav class="appLinks" ng-class="{'show': !sharedVariables.isLogin}">
             <ul class="nav nav-pills">
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'AnimalsListCustomer'}" ng-show="sharedVariables.role == 'Owner'">
-                    <a href="#/AnimalsListCustomer">My Animals</a>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'AnimalsList'}" ng-show="sharedVariables.role == 'Owner'">
+                    <a href="#/AnimalsList">My Animals</a>
                 </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'AnimalsListVet'}" ng-show="sharedVariables.role == 'Doctor'">
-                    <a href="#/AnimalsListVet">My Patients</a>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'AnimalsList'}" ng-show="sharedVariables.role == 'Doctor'">
+                    <a href="#/AnimalsList">My Patients</a>
                 </li>
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'VetSearch'}" ng-show="sharedVariables.role == 'Owner'">
                     <a href="#/VetSearch">Vet Search</a>

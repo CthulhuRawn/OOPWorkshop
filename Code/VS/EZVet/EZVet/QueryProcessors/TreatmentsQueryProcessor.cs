@@ -49,40 +49,46 @@ namespace EZVet.QueryProcessors
                 }
 
                 var pastTreatments = report.Treatments.ToList();
-                var medicationToAdd = treatment.Medications.Where(x => pastTreatments.All(y => y.Id != x.Id)).Select(x => new Treatment
-                {
-                    Name = x.Name,
-                    Dose = x.Dose,
-                    Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int)TreatmentType.Medication)
-                });
+                var medications = treatment.Medications.Select(x =>
+                    x.Id.HasValue && x.Id > 0
+                        ? pastTreatments.Single(y => y.Id == x.Id)
+                        : new Treatment
+                        {
+                            Name = x.Name,
+                            Dose = x.Dose,
+                            Price = x.Price,
+                            Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Medication),
+                            ContainingTreatment = report
+                        });
 
-                var treatmentsToAdd = treatment.Treatments.Where(x => pastTreatments.All(y => y.Id != x.Id)).Select(x => new Treatment
-                {
-                    Name = x.Name,
-                    Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int)TreatmentType.Treatment)
-                });
+                var treatments = treatment.Treatments.Select(x =>
+                    x.Id.HasValue && x.Id > 0
+                        ? pastTreatments.Single(y => y.Id == x.Id)
+                        : new Treatment
+                        {
+                            Name = x.Name,
+                            Price = x.Price,
+                            Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
+                            ContainingTreatment = report
+                        });
 
-                var vaccinesToAdd = treatment.Vaccines.Where(x => pastTreatments.All(y => y.Id != x.Id)).Select(x => new Treatment
-                {
-                    Name = x.Name,
-                    Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int)TreatmentType.Vaccine)
-                });
+                var vaccines = treatment.Vaccines.Select(x =>
+                    x.Id.HasValue && x.Id > 0
+                        ? pastTreatments.Single(y => y.Id == x.Id)
+                        : new Treatment
+                        {
+                            Name = x.Name,
+                            Price = x.Price,
+                            Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine),
+                            ContainingTreatment = report
+                        });
 
-                var treatments = new List<Treatment>();
-                treatments.AddRange(medicationToAdd);
-                treatments.AddRange(vaccinesToAdd);
-                treatments.AddRange(treatmentsToAdd);
+                var currentTreatments = new List<Treatment>();
+                currentTreatments.AddRange(medications);
+                currentTreatments.AddRange(vaccines);
+                currentTreatments.AddRange(treatments);
 
-                treatments.AddRange(report.Treatments);
-
-                report.Treatments = report.Treatments.Where(x => treatment.Vaccines.Any(y => y.Id == x.Id))
-                    .Where(x => treatment.Medications.Any(y => y.Id == x.Id))
-                    .Where(x => treatment.Treatments.Any(y => y.Id == x.Id)).ToList();
-
-                report.Treatments = treatments;
+                report.Treatments = currentTreatments;
 
                 report.Date = DateTime.UtcNow;
 
@@ -103,28 +109,6 @@ namespace EZVet.QueryProcessors
 
                 var treatments = new List<Treatment>();
 
-                treatments.AddRange(treatment.Medications.Select(x => new Treatment
-                {
-                    Name = x.Name,
-                    Dose = x.Dose,
-                    Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Medication)
-                }));
-
-                treatments.AddRange(treatment.Vaccines.Select(x => new Treatment
-                {
-                    Name = x.Name,
-                    Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine)
-                }));
-
-                treatments.AddRange(treatment.Treatments.Select(x => new Treatment
-                {
-                    Name = x.Name,
-                    Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment)
-                }));
-
                 var report = new Domain.TreatmentReport
                 {
                     AnimalMeasurements = animalMeasurements,
@@ -136,7 +120,34 @@ namespace EZVet.QueryProcessors
                     Treatments = treatments,
                     Doctor = _doctorsQueryProcessor.Get(cotnactId)
                 };
-                
+
+                treatments.AddRange(treatment.Medications.Select(x => new Treatment
+                {
+                    Name = x.Name,
+                    Dose = x.Dose,
+                    Price = x.Price,
+                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Medication),
+                    ContainingTreatment = report
+                }));
+
+                treatments.AddRange(treatment.Vaccines.Select(x => new Treatment
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine),
+                    ContainingTreatment = report
+                }));
+
+                treatments.AddRange(treatment.Treatments.Select(x => new Treatment
+                {
+                    Name = x.Name,
+                    Price = x.Price,
+                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
+                    ContainingTreatment = report
+                }));
+
+
+
                 result = new TreatmentReport().Initialize(Save(report));
             }
             animal.Weight = result.Measurements.Weight;

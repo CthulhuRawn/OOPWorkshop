@@ -1,7 +1,7 @@
 ﻿!(function() {
     var myApp = angular.module('myApp');
     myApp.controller('treatmentPageCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', '$routeParams', function ($scope, $http, ServerRoutes, toaster, $routeParams) {
-            $scope.treatment = { vaccines: [], treatments: [], medications: [] };
+            $scope.treatment = { Vaccines: [], Treatments: [], Medications: [] };
             $scope.newTreatment = {};
             $scope.newMedication = {};
             $scope.newVaccine = {};
@@ -23,7 +23,7 @@
 
             $scope.addTreatment = function () {
                 if ($scope.newTreatment.Name && ($scope.newTreatment.Price || $scope.newTreatment.Price === 0)) {
-                    $scope.treatment.treatments.push({
+                    $scope.treatment.Treatments.push({
                         Name: $scope.newTreatment.Name,
                         Price: $scope.newTreatment.Price
                     });
@@ -35,7 +35,7 @@
 
             $scope.addVaccine = function () {
                 if ($scope.newVaccine.Name && ($scope.newVaccine.Price || $scope.newVaccine.Price === 0)) {
-                    $scope.treatment.vaccines.push({ Name: $scope.newVaccine.Name, Price: $scope.newVaccine.Price });
+                    $scope.treatment.Vaccines.push({ Name: $scope.newVaccine.Name, Price: $scope.newVaccine.Price });
                     $scope.totalPrice += $scope.newVaccine.Price;
                     $scope.newVaccine.Name = "";
                     $scope.newVaccine.Price = "";
@@ -44,7 +44,7 @@
 
             $scope.addMedication = function () {
                 if ($scope.newMedication.Name && $scope.newMedication.Dose && ($scope.newMedication.Price || $scope.newMedication.Price === 0)) {
-                    $scope.treatment.medications.push({
+                    $scope.treatment.Medications.push({
                         Name: $scope.newMedication.Name,
                         Price: $scope.newMedication.Price,
                         Dose: $scope.newMedication.Dose
@@ -57,8 +57,18 @@
             };
 
             $scope.deleteMedication = function (medicationName) {
-                var idx = $scope.treatment.medications.indexOf(x => x.Name === medicationName);
-                $scope.treatment.medications.splice(idx,1);
+                var idx = $scope.treatment.Medications.findIndex(x => x.Name === medicationName);
+                $scope.treatment.Medications.splice(idx, 1);
+            };
+
+            $scope.deleteTreatment= function (treatmentName) {
+                var idx = $scope.treatment.Treatments.findIndex(x => x.Name === treatmentName);
+                $scope.treatment.Treatments.splice(idx, 1);
+            };
+
+            $scope.deleteVaccine = function (vaccineName) {
+                var idx = $scope.treatment.Vaccines.findIndex(x => x.Name === vaccineName);
+                $scope.treatment.Vaccines.splice(idx, 1);
             };
 
             $scope.calcAge = function (dateOfBirth) {

@@ -78,7 +78,7 @@
                         path = '/VetPage';
                     }
                     else {
-                        path = '/AnimalsListCustomer';
+                        path = '/AnimalsList';
                     }
                 }
 
