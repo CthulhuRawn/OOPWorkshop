@@ -43,6 +43,11 @@
             controller: 'treatmentPageCtrl',
             activetab: 'TreatmentPage'
         });
+        $routeProvider.when('/Profile/', {
+            templateUrl: 'web/partials/Profile.html',
+            controller: 'profileCtrl',
+            activetab: 'Profile'
+        });
 
         $routeProvider.otherwise({
             redirectTo: '/login'

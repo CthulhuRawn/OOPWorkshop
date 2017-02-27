@@ -113,6 +113,10 @@
             },
             treatments: {
                 save: urlBase + "treatments/save"
+            },
+            profile: {
+                update: urlBase + "profile/update",
+                get: urlBase + "profile/get"
             }
         }
     });

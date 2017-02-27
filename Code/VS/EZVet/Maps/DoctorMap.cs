@@ -18,7 +18,6 @@ namespace Maps
 
             References(x => x.Address).Cascade.All();
 
-            HasMany(x => x.Animals);
             HasManyToMany(x => x.AnimalTypes);
             HasMany(x => x.Treatments);
             HasMany(x => x.TreatingAnimals);

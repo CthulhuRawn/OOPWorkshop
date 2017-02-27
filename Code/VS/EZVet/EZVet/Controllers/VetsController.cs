@@ -47,7 +47,7 @@ namespace EZVet.Controllers
             var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
 
             int vetIdFromCookie;
-            if (cookieValue[1] == "Doctor" && int.TryParse(cookieValue[0], out vetIdFromCookie))
+            if (cookieValue[1] == Consts.Roles.Doctor && int.TryParse(cookieValue[0], out vetIdFromCookie))
             {
                return _doctorsQueryProcessor.GetDoctor(vetIdFromCookie);
             }

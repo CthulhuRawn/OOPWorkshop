@@ -36,7 +36,7 @@
             $scope.submitted = false;
             $scope.model = {};
 
-            $scope.submitCustomer = function (isValid) {
+            $scope.submitUser = function (isValid) {
                 $scope.submitted = true;
 
                 if (!isValid)

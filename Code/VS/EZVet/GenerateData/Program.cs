@@ -23,7 +23,7 @@ namespace GenerateData
             var decode = new DecodesQueryProcessor(session);
             var employeeQP = new EmployeesQueryProcessor(session);
             var fieldQP = new FieldsQueryProcessor(decode, session);
-            var customerQP = new OwnersQueryProcessor(session, decode);
+            var customerQP = new OwnersQueryProcessor(session);
 
             var complaintQP = new ComplaintsQueryProcessor(session, decode, customerQP);
             var orderQP = new OrdersQueryProcessor(session, customerQP, fieldQP, decode);

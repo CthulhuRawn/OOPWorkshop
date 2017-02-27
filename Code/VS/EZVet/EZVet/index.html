@@ -29,6 +29,9 @@
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'VetPage'}" ng-show="sharedVariables.role == 'Doctor'">
                     <a href="#/VetPage">My Page</a>
                 </li>
+                <li role="presentation" ng-class="{active: $route.current.activetab == 'Profile'}">
+                    <a href="#/Profile">Profile</a>
+                </li>
                 <li uib-dropdown role="presentation" ng-class="{active: $route.current.activetab.startsWith('report')}" class="dropdown"
                     ng-show="sharedVariables.role == 'Admin' || sharedVariables.role == 'Employee'">
                     <a uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> הפקת דוחות <span class="caret"></span> </a>
@@ -74,6 +77,7 @@
     <script src="web/js/animalsControllers.js"></script>
     <script src="web/js/vetControllers.js"></script>
     <script src="web/js/treatmentControllers.js"></script>
+    <script src="web/js/profileControllers.js"></script>
     
     <script src="web/lib/jquery.js"></script>
     <script src="web/lib/bootstrap.js"></script>

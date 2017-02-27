@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EZVet.DTOs
+﻿namespace EZVet.DTOs
 {
     public abstract class Entity<TDTO, TDomain> : EntityBase where TDTO: EntityBase
     {

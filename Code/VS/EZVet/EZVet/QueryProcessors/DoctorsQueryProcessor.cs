@@ -9,7 +9,7 @@ using Doctor = EZVet.DTOs.Doctor;
 
 namespace EZVet.QueryProcessors
 {
-    public interface IDoctorsQueryProcessor
+    public interface IDoctorsQueryProcessor: IPersonQueryProcessor
     {
         Doctor GetDoctor(int id);
         Domain.Doctor Get(int id);
@@ -23,12 +23,13 @@ namespace EZVet.QueryProcessors
         Doctor AddRecommendation(string recommendation, int vetId, int ownerId);
     }
 
-    public class DoctorsQueryProcessor : DBAccessBase<Domain.Doctor>, IDoctorsQueryProcessor
+    public class DoctorsQueryProcessor : PersonQueryProcessor<Domain.Doctor>, IDoctorsQueryProcessor
     {
         private readonly IDecodesQueryProcessor _decodesQueryProcessor;
         private readonly IOwnersQueryProcessor _ownersQueryProcessor;
 
-        public DoctorsQueryProcessor(ISession session, IDecodesQueryProcessor decodesQueryProcessor, IOwnersQueryProcessor ownersQueryProcessor) : base(session)
+        public DoctorsQueryProcessor(ISession session, IDecodesQueryProcessor decodesQueryProcessor,
+            IOwnersQueryProcessor ownersQueryProcessor) : base(session)
         {
             _decodesQueryProcessor = decodesQueryProcessor;
             _ownersQueryProcessor = ownersQueryProcessor;
@@ -60,9 +61,12 @@ namespace EZVet.QueryProcessors
 
             if (!string.IsNullOrEmpty(address))
             {
-                filter.And(x => x.Address.City.Contains(address) || x.Address.StreetName.Contains(address) || x.Address.Country.Contains(address));
+                filter.And(
+                    x =>
+                        x.Address.City.Contains(address) || x.Address.StreetName.Contains(address) ||
+                        x.Address.Country.Contains(address));
             }
-            
+
             if (doctorId.HasValue)
             {
                 filter.And(x => x.Id == doctorId);
@@ -114,12 +118,14 @@ namespace EZVet.QueryProcessors
             existingDoctor.Phone = doctor.Phone ?? existingDoctor.Phone;
 
             var savedTypes =
-                _decodesQueryProcessor.Query<AnimalTypeDecode>().Where(x => doctor.Types.Any(type => type == x.Id)).ToList();
+                _decodesQueryProcessor.Query<AnimalTypeDecode>()
+                    .Where(x => doctor.Types.Any(type => type == x.Id))
+                    .ToList();
             existingDoctor.AnimalTypes = savedTypes;
 
             if (doctor.BirthDate != null)
                 existingDoctor.BirthDate = doctor.BirthDate;
-            
+
             Update(id, existingDoctor);
 
             return new Doctor().Initialize(existingDoctor);
