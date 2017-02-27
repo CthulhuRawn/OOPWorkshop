@@ -1,7 +1,10 @@
-﻿namespace Domain
+﻿using System;
+
+namespace Domain
 {
     public class AnimalMeasurements : Entity
     {
+        public virtual TreatmentReport ContainingTreatment { get; set; }
         public virtual int Pulse { get; set; }
         public virtual double Temperature { get; set; }
         public virtual double Weight { get; set; }

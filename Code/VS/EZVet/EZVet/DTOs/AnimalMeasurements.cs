@@ -1,4 +1,6 @@
-﻿namespace EZVet.DTOs
+﻿using System;
+
+namespace EZVet.DTOs
 {
     public class AnimalMeasurements : Entity<AnimalMeasurements, Domain.AnimalMeasurements>
     {
@@ -7,6 +9,7 @@
         public virtual double Weight { get; set; }
         public virtual int SystolicBloodPressure { get; set; }
         public virtual int DiastolicBloodPressure { get; set; }
+        public virtual DateTime Date { get; set; }
 
         public override AnimalMeasurements Initialize(Domain.AnimalMeasurements domain)
         {
@@ -16,6 +19,7 @@
             Temperature = domain.Temperature;
             SystolicBloodPressure = domain.SystolicBloodPressure;
             DiastolicBloodPressure = domain.DiastolicBloodPressure;
+            Date = domain.ContainingTreatment.Date;
             
             return this;
         }

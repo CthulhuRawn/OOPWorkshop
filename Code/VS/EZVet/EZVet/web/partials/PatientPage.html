@@ -86,6 +86,9 @@
                 <a data-toggle="tab" data-target="#medicationsTab">Medications</a>
             </li>
             <li role="presentation">
+                <a data-toggle="tab" data-target="#measurementsTab">Measurements</a>
+            </li>
+            <li role="presentation">
                 <a data-toggle="tab" data-target="#historyTab">History</a>
             </li>
         </ul>
@@ -168,6 +171,30 @@
                     <td>{{ x.Date }}</td>
                     <td>{{ x.Name }}</td>
                     <td>{{ x.Dose }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="measurementsTab">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Weight</th>
+                    <th>Pulse</th>
+                    <th>Temperature</th>
+                    <th>Systolic BP</th>
+                    <th>Diastolic BP</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in pet.AnimalMeasurements">
+                    <td>{{ x.Date }}</td>
+                    <td>{{ x.Weight }}</td>
+                    <td>{{ x.Pulse }}</td>
+                    <td>{{ x.Temperature }}</td>
+                    <td>{{ x.SystolicBloodPressure }}</td>
+                    <td>{{ x.DiastolicBloodPressure }}</td>
                 </tr>
                 </tbody>
             </table>

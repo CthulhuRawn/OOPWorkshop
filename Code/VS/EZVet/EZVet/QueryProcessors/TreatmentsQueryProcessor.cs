@@ -145,6 +145,7 @@ namespace EZVet.QueryProcessors
                     ContainingTreatment = report
                 }));
                 report.Summary = treatment.TreatmentSummary;
+                report.AnimalMeasurements.ContainingTreatment = report;
 
                 result = new TreatmentReport().Initialize(Save(report));
             }

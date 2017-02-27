@@ -11,6 +11,7 @@ namespace Maps
             Map(x => x.Weight);
             Map(x => x.SystolicBloodPressure);
             Map(x => x.DiastolicBloodPressure);
+            References(x => x.ContainingTreatment);
         }
     }
 }
