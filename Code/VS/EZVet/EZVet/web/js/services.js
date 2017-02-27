@@ -108,6 +108,7 @@
                 all: urlBase + "vets/all",
                 getVet: urlBase + "vets/get",
                 saveVet: urlBase + "vets/save",
+                saveRecommendation: urlBase + "vets/saveRecommendation",
                 assign: urlBase + "vets/assign"
             },
             treatments: {

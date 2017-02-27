@@ -10,6 +10,7 @@ namespace Domain
         public virtual string Notes { get; set; }
         public virtual string OpeningHours { get; set; }
         public virtual string Phone { get; set; }
+        public virtual IList<Recommendation> Recommendations { get; set; }
         public virtual IList<AnimalTypeDecode> AnimalTypes { get; set; }
     }
 }

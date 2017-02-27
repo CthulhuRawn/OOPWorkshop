@@ -70,6 +70,7 @@
     <Compile Include="FieldTypeDecodeMap.cs" />
     <Compile Include="GenderDecode.cs" />
     <Compile Include="InvitationStatusDecodeMap.cs" />
+    <Compile Include="RecommendationMap.cs" />
     <Compile Include="OrderStatusDecodeMap.cs" />
     <Compile Include="ParticipantMap.cs" />
     <Compile Include="RegionDecodeMap.cs" />

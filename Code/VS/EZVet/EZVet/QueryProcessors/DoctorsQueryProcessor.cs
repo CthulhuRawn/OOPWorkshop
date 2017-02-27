@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Domain;
 using EZVet.DTOs;
@@ -19,15 +20,18 @@ namespace EZVet.QueryProcessors
         bool Exists(string username);
         bool ExistsById(int id);
         IEnumerable<Doctor> Search(string firstName, string lastName, string address, int? id);
+        Doctor AddRecommendation(string recommendation, int vetId, int ownerId);
     }
 
     public class DoctorsQueryProcessor : DBAccessBase<Domain.Doctor>, IDoctorsQueryProcessor
     {
         private readonly IDecodesQueryProcessor _decodesQueryProcessor;
+        private readonly IOwnersQueryProcessor _ownersQueryProcessor;
 
-        public DoctorsQueryProcessor(ISession session, IDecodesQueryProcessor decodesQueryProcessor) : base(session)
+        public DoctorsQueryProcessor(ISession session, IDecodesQueryProcessor decodesQueryProcessor, IOwnersQueryProcessor ownersQueryProcessor) : base(session)
         {
             _decodesQueryProcessor = decodesQueryProcessor;
+            _ownersQueryProcessor = ownersQueryProcessor;
         }
 
         public bool Exists(string username)
@@ -121,5 +125,16 @@ namespace EZVet.QueryProcessors
             return new Doctor().Initialize(existingDoctor);
         }
 
+        public Doctor AddRecommendation(string recommendation, int vetId, int ownerId)
+        {
+            var existingDoctor = Get(vetId);
+            existingDoctor.Recommendations.Add(new Domain.Recommendation
+            {
+                Text = recommendation,
+                Owner = _ownersQueryProcessor.Get(ownerId),
+                Date = DateTime.UtcNow
+            });
+            return new Doctor().Initialize(Save(existingDoctor));
+        }
     }
 }

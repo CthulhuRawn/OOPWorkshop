@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="Recommendation.cs" />
     <Compile Include="Doctor.cs" />
     <Compile Include="TreatmentLinks.cs" />
     <Compile Include="TreatmentTypeDecode.cs" />

@@ -30,6 +30,7 @@ namespace EZVet.DTOs
         public virtual string OpeningHours { get; set; }
         public virtual string Phone { get; set; }
         public virtual IList<int> Types { get; set; }
+        public virtual IList<Recommendation> Recommendations { get; set; }
 
         public override Doctor Initialize(Domain.Doctor domain)
         {
@@ -46,6 +47,7 @@ namespace EZVet.DTOs
             OpeningHours = domain.OpeningHours;
             Phone = domain.Phone;
             Types = domain.AnimalTypes.Select(x => x.Id).ToList();
+            Recommendations = domain.Recommendations.Select(x => new Recommendation().Initialize(x)).ToList();
 
             return this;
         }

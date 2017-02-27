@@ -63,5 +63,15 @@ namespace EZVet.Controllers
         {
             return _doctorsQueryProcessor.Update(doctor.Id.Value, doctor);
         }
+
+        [HttpPost]
+        [Route("api/vets/saveRecommendation")]
+        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
+        [TransactionFilter]
+        public Doctor SaveRecommendation([FromBody]Recommendation recommendation, [FromUri]int id)
+        {
+            var userId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
+            return _doctorsQueryProcessor.AddRecommendation(recommendation.Text, id, userId);
+        }
     }
 }

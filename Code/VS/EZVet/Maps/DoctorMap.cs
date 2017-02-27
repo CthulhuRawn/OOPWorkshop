@@ -22,6 +22,7 @@ namespace Maps
             HasManyToMany(x => x.AnimalTypes);
             HasMany(x => x.Treatments);
             HasMany(x => x.TreatingAnimals);
+            HasMany(x => x.Recommendations).Cascade.All();
         }
     }
 }
