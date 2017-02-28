@@ -12,7 +12,9 @@ namespace EZVet.Common
     public class DateTimeParameterBinding : HttpParameterBinding
     {
         public DateTimeParameterBinding(HttpParameterDescriptor descriptor)
-            : base(descriptor) { }
+            : base(descriptor)
+        {
+        }
 
         public override Task ExecuteBindingAsync(
             ModelMetadataProvider metadataProvider,
@@ -20,11 +22,15 @@ namespace EZVet.Common
             CancellationToken cancellationToken)
         {
             string dateToParse = null;
-            var paramName = Descriptor.ParameterName;
+            string paramName = this.Descriptor.ParameterName;
 
+
+            // reading from query string
             var nameVal = actionContext.Request.GetQueryNameValuePairs();
-            dateToParse = nameVal.Where(q => q.Key.Equals(paramName))
-                                    .FirstOrDefault().Value;
+            dateToParse =
+                nameVal.Where(q => string.Equals(q.Key, paramName, StringComparison.InvariantCultureIgnoreCase))
+                    .FirstOrDefault().Value;
+
 
             DateTime? dateTime = null;
             if (!string.IsNullOrEmpty(dateToParse))
@@ -37,11 +43,12 @@ namespace EZVet.Common
             return Task.FromResult<object>(null);
         }
 
-        public DateTime? ParseDateTime(string dateToParse)
+        public DateTime? ParseDateTime(
+            string dateToParse)
         {
             DateTime validDate;
 
-            if (DateTime.TryParseExact(dateToParse, "d/M/yyyy", null, DateTimeStyles.AssumeLocal, out validDate))
+            if (DateTime.TryParseExact(dateToParse, "dd/MM/yyyy", null, DateTimeStyles.AssumeLocal, out validDate))
             {
                 return validDate;
             }

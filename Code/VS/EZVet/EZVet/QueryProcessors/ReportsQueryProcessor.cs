@@ -49,8 +49,8 @@ namespace EZVet.QueryProcessors
             return _treatmentsQueryProcessor.Query()
                 .Where(
                     x =>
-                        x.Doctor.Id == doctorId ||
-                        x.Animal.Owner.Id == ownerId && x.Date >= startDate && x.Date <= endDate)
+                        (x.Doctor.Id == doctorId || x.Animal.Owner.Id == ownerId) 
+                        && x.Date >= startDate && x.Date <= endDate)
                 .ToList()
                 .GroupBy(x => x.Date.ToString(_datePartFormat[datePart.Value])).Select(x => new FinanceReport
                 {

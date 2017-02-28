@@ -181,6 +181,7 @@
     <Compile Include="DTOs\UsingFieldsReport.cs" />
     <Compile Include="Filters\AuthorizeRolesAttribute.cs" />
     <Compile Include="Filters\TransactionFilterAttribute.cs" />
+    <Compile Include="Filters\DateTimeParameterAttribute.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="QueryProcessors\PersonQueryProcessor.cs" />
     <Compile Include="QueryProcessors\TreatmentsQueryProcessor.cs" />
