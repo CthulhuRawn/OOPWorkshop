@@ -26,7 +26,7 @@ namespace EZVet.QueryProcessors
             existingPerson.Address.City = entity.Address.City;
             existingPerson.Address.StreetName = entity.Address.StreetName;
             existingPerson.Address.StreetNumber = entity.Address.StreetNumber;
-            existingPerson.Phone = entity.PhoneNumber;
+            existingPerson.Phone = entity.Phone;
             Update(id, existingPerson);
         }
     }

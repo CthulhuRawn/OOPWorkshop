@@ -9,7 +9,7 @@ namespace EZVet.DTOs
         public virtual double Weight { get; set; }
         public virtual int SystolicBloodPressure { get; set; }
         public virtual int DiastolicBloodPressure { get; set; }
-        public virtual DateTime Date { get; set; }
+        public virtual DateTime? Date { get; set; }
 
         public override AnimalMeasurements Initialize(Domain.AnimalMeasurements domain)
         {
@@ -19,7 +19,7 @@ namespace EZVet.DTOs
             Temperature = domain.Temperature;
             SystolicBloodPressure = domain.SystolicBloodPressure;
             DiastolicBloodPressure = domain.DiastolicBloodPressure;
-            Date = domain.ContainingTreatment.Date;
+            Date = domain.ContainingTreatment?.Date;
             
             return this;
         }

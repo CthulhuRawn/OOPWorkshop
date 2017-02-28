@@ -24,7 +24,7 @@ namespace EZVet.DTOs
         public virtual Address Address { get; set; }
 
         [MaxLength(15)]
-        public virtual string PhoneNumber { get; set; }
+        public virtual string Phone { get; set; }
 
         [MaxLength(30)]
         public virtual string DoctorCode { get; set; }

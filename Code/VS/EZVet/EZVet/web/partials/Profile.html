@@ -3,11 +3,11 @@
     <form class="form-horizontal" name="userForm" ng-submit="submitUser(userForm.$valid)" novalidate>
         
         <div class="row">
-            <label>Address</label>
-        </div>
-        <div class="row">
+            <div class="col-sm-1" style="margin-top:25px">
+                <label>Address:</label>
+            </div>
             <div class="col-sm-3">
-                <div class='form-group' ng-class="{ 'has-error' : userForm.country.$invalid && submitted }">
+                <div ng-class="{ 'has-error' : userForm.country.$invalid && submitted }">
                     <label>Country</label>
                     <input type="text" name="country" class="form-control" placeholder="Country" ng-model="model.Address.Country" ng-maxlength="30" required>
                     <div class="callout" ng-show="userForm.country.$invalid && submitted">
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class='form-group' ng-class="{ 'has-error' : userForm.city.$invalid && submitted }">
+                <div ng-class="{ 'has-error' : userForm.city.$invalid && submitted }">
                     <label>City</label>
                     <input type="text" name="city" class="form-control" placeholder="City" ng-model="model.Address.City" ng-maxlength="50" required>
                     <div class="callout" ng-show="userForm.city.$invalid && submitted">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class='form-group' ng-class="{ 'has-error' : userForm.streetName.$invalid && submitted }">
+                <div ng-class="{ 'has-error' : userForm.streetName.$invalid && submitted }">
                     <label>Street Name</label>
                     <input type="text" name="streetName" class="form-control" placeholder="Street Name" ng-model="model.Address.StreetName" ng-maxlength="50" required>
                     <div class="callout" ng-show="userForm.streetName.$invalid && submitted">
@@ -36,8 +36,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class='form-group' ng-class="{ 'has-error' : userForm.streetNumber.$invalid && submitted }">
+            <div class="col-sm-2">
+                <div ng-class="{ 'has-error' : userForm.streetNumber.$invalid && submitted }">
                     <label>Street Number</label>
                     <input type="number" name="streetNumber" class="form-control" placeholder="#" ng-model="model.Address.StreetNumber" min="0" required>
                     <div class="callout" ng-show="userForm.streetNumber.$invalid && submitted">
@@ -49,7 +49,7 @@
             
         <div class="row">
             <div class="col-sm-4">
-                <div class='form-group' ng-class="{ 'has-error' : userForm.phoneNumber.$invalid && submitted }">
+                <div ng-class="{ 'has-error' : userForm.phoneNumber.$invalid && submitted }">
                     <label>Phone number</label>
                     <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number" ng-model="model.Phone" required ng-maxlength="15">
                     <div class="callout" ng-show="userForm.phoneNumber.$invalid && submitted">
