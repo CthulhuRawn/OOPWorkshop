@@ -29,22 +29,20 @@
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'VetPage'}" ng-show="sharedVariables.role == 'Doctor'">
                     <a href="#/VetPage">My Page</a>
                 </li>
+                <li uib-dropdown role="presentation" ng-class="{active: $route.current.activetab.startsWith('report')}" class="dropdown">
+                    <a uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button">Reports <span class="caret"></span> </a>
+                    <ul uib-dropdown-menu class="dropdown-menu">
+                        <li ng-class="{active: $route.current.activetab == 'reportIncome'}"><a href="#/reportIncome" ng-show="sharedVariables.role == 'Doctor'">Income Per Date</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportIncomeItem'}"><a href="#/reportIncomeItem" ng-show="sharedVariables.role == 'Doctor'">Income Per Item</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportIncomeType'}"><a href="#/reportIncomeType" ng-show="sharedVariables.role == 'Doctor'">Income Per Animal Type</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportOutcome'}"><a href="#/reportOutcome" ng-show="sharedVariables.role == 'Owner'">Outcome Per Animal</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportMissed'}"><a href="#/reportMissed">Missed Visits</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportFuture'}"><a href="#/reportFuture">Future Visits</a></li>
+                    </ul>
+                </li>
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'Profile'}">
                     <a href="#/Profile">Profile</a>
                 </li>
-                <li uib-dropdown role="presentation" ng-class="{active: $route.current.activetab.startsWith('report')}" class="dropdown"
-                    ng-show="sharedVariables.role == 'Admin' || sharedVariables.role == 'Employee'">
-                    <a uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> הפקת דוחות <span class="caret"></span> </a>
-                    <ul uib-dropdown-menu class="dropdown-menu">
-                        <li ng-class="{active: $route.current.activetab == 'reportCustomer'}"><a href="#/reportCustomer">פעילות לקוח</a></li>
-                        <li ng-class="{active: $route.current.activetab == 'reportComplaint'}"><a href="#/reportComplaint" ng-show="sharedVariables.role == 'Admin'">תלונות</a></li>
-                        <li ng-class="{active: $route.current.activetab == 'reportFields'}"><a href="#/reportFields">שימוש במגרשים</a></li>
-                    </ul>
-                </li>
-                <li role="presentation" ng-class="{active: $route.current.activetab == 'editMyCustomer'}" ng-show="sharedVariables.role == 'Customer'">
-                    <a href="#/editMyCustomer/{{sharedVariables.userId}}">הפרטים שלי</a>
-                </li>
-
                 <li role="presentation">
                     <a href="" ng-click="logout()">Log Out</a>
                 </li>
@@ -78,6 +76,7 @@
     <script src="web/js/vetControllers.js"></script>
     <script src="web/js/treatmentControllers.js"></script>
     <script src="web/js/profileControllers.js"></script>
+    <script src="web/js/reportsControllers.js"></script>
     
     <script src="web/lib/jquery.js"></script>
     <script src="web/lib/bootstrap.js"></script>

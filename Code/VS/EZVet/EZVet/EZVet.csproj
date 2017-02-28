@@ -163,6 +163,7 @@
     <Compile Include="DTOs\PersonLogin.cs" />
     <Compile Include="DTOs\Medication.cs" />
     <Compile Include="DTOs\TreatmentReport.cs" />
+    <Compile Include="DTOs\FinanceReport.cs" />
     <Compile Include="DTOs\Vaccine.cs" />
     <Compile Include="DTOs\Treatment.cs" />
     <Compile Include="DTOs\Animal.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="DTOs\CustomersActivityReport.cs" />
     <Compile Include="Validators\ExistsInDBAttribute.cs" />
     <Content Include="index.html" />
+    <Content Include="web\js\reportsControllers.js" />
     <Content Include="web\js\treatmentControllers.js" />
     <Content Include="web\js\profileControllers.js" />
     <Content Include="web\js\vetControllers.js" />

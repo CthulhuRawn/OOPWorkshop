@@ -11,6 +11,8 @@ namespace EZVet.QueryProcessors
     public interface ITreatmentsQueryProcessor
     {
         TreatmentReport Save(TreatmentReport treatment, int cotnactId);
+
+        IQueryable<Domain.TreatmentReport> Query();
     }
 
 

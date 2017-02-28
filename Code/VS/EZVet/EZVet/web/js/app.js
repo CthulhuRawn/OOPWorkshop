@@ -43,10 +43,40 @@
             controller: 'treatmentPageCtrl',
             activetab: 'TreatmentPage'
         });
-        $routeProvider.when('/Profile/', {
+        $routeProvider.when('/Profile', {
             templateUrl: 'web/partials/Profile.html',
             controller: 'profileCtrl',
             activetab: 'Profile'
+        });
+        $routeProvider.when('/reportIncomeItem', {
+            templateUrl: 'web/partials/Profile.html',
+            controller: 'reportIncomeItemCtrl',
+            activetab: 'reportIncomeItem'
+        });
+        $routeProvider.when('/reportIncomeType', {
+            templateUrl: 'web/partials/Profile.html',
+            controller: 'reportIncomeTypeCtrl',
+            activetab: 'reportIncomeType'
+        });
+        $routeProvider.when('/reportOutcome', {
+            templateUrl: 'web/partials/ReportFinance.html',
+            controller: 'reportFinanceCtrl',
+            activetab: 'reportOutcome'
+        });
+        $routeProvider.when('/reportMissed', {
+            templateUrl: 'web/partials/Profile.html',
+            controller: 'reportMissedCtrl',
+            activetab: 'reportMissed'
+        });
+        $routeProvider.when('/reportFuture', {
+            templateUrl: 'web/partials/Profile.html',
+            controller: 'reportFutureCtrl',
+            activetab: 'reportFuture'
+        });
+        $routeProvider.when('/reportIncome', {
+            templateUrl: 'web/partials/ReportFinance.html',
+            controller: 'reportFinanceCtrl',
+            activetab: 'reportIncome'
         });
 
         $routeProvider.otherwise({
