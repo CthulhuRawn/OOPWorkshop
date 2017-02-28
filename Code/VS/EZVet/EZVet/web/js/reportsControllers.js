@@ -1,11 +1,51 @@
 ﻿!(function () {
     var myApp = angular.module('myApp');
 
-    myApp.controller('reportIncomeItemCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', function ($scope, $http, ServerRoutes, toaster) {
-        $scope.model = {};
-        $scope.results;
+    myApp.controller('reportIncomeItemCtrl',
+    [
+        '$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster',
+        function($scope, $http, ServerRoutes, DomainDecodes, toaster) {
+            $scope.model = {};
+            $scope.dateParts = DomainDecodes.dateParts;
+            var today = new Date();
+            $scope.model.EndDate = moment(today).format("DD/MM/YYYY");
 
-        $scope.propertyName = 'FieldId';
+            $scope.propertyName = 'Date';
+            $scope.reverse = false;
+
+            $scope.sortBy = function(propertyName) {
+                // reverse current or false for new property
+                $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+                $scope.propertyName = propertyName;
+            };
+            $scope.print = function() {
+                window.print();
+            }
+
+            $scope.submitSearch = function() {
+                $http({
+                    url: ServerRoutes.reports.perItem,
+                    method: "GET",
+                    params: $scope.model
+                }).then(function searchCompleted(response) {
+                    $scope.rows = response.data;
+
+                    if (angular.equals($scope.rows, [])) {
+                        toaster.info("No rows match your search");
+                    }
+                });
+            }
+        }
+    ]);
+
+    myApp.controller('reportIncomeTypeCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', function ($scope, $http, ServerRoutes, DomainDecodes, toaster) {
+        $scope.model = {};
+        $scope.dateParts = DomainDecodes.dateParts;
+        $scope.animalTypes = DomainDecodes.animalTypes;
+        var today = new Date();
+        $scope.model.EndDate = moment(today).format("DD/MM/YYYY");
+
+        $scope.propertyName = 'Date';
         $scope.reverse = false;
 
         $scope.sortBy = function (propertyName) {
@@ -13,25 +53,37 @@
             $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
             $scope.propertyName = propertyName;
         };
+        $scope.print = function () {
+            window.print();
+        }
 
         $scope.submitSearch = function () {
             $http({
-                url: ServerRoutes.reports.fields,
+                url: ServerRoutes.reports.perType,
                 method: "GET",
-                params: $scope.model,
+                params: $scope.model
             }).then(function searchCompleted(response) {
-                $scope.results = response.data;
+                $scope.rows = response.data;
 
-                if (angular.equals($scope.results,[])) {
-                    toaster.info('לא נמצאו מגרשים העונים על הדרישה');
+                if (angular.equals($scope.rows, [])) {
+                    toaster.info("No rows match your search");
                 }
             });
         }
     }]);
 
-    myApp.controller('reportIncomeTypeCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', function ($scope, $http, ServerRoutes, toaster) {
+    myApp.controller('reportVisitsCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', 'DomainDecodes', '$rootScope', function ($scope, $http, ServerRoutes, toaster, DomainDecodes, $rootScope) {
         $scope.model = {};
-        $scope.results;
+        $scope.visitsTimes = DomainDecodes.visitsTimes;
+
+        if ($rootScope.sharedVariables.role === "Doctor") {
+            $scope.entity = "Owner";
+        } else {
+            $scope.entity = "Doctor";
+        }
+        $scope.print = function () {
+            window.print();
+        }
 
         $scope.sortBy = function (propertyName) {
             // reverse current or false for new property
@@ -41,64 +93,14 @@
 
         $scope.submitSearch = function () {
             $http({
-                url: ServerRoutes.reports.customers,
+                url: ServerRoutes.reports.visits,
                 method: "GET",
-                params: $scope.model,
+                params: $scope.model
             }).then(function searchCompleted(response) {
-                $scope.results = response.data;
+                $scope.rows = response.data;
 
-                if (angular.equals($scope.results, [])) {
-                    toaster.info('לא נמצאו לקוחות העונים על הדרישה');
-                }
-            });
-        }
-    }]);
-
-    myApp.controller('reportFutureCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', function ($scope, $http, ServerRoutes, toaster) {
-        $scope.model = {};
-        $scope.results;
-
-        $scope.sortBy = function (propertyName) {
-            // reverse current or false for new property
-            $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
-            $scope.propertyName = propertyName;
-        };
-
-        $scope.submitSearch = function () {
-            $http({
-                url: ServerRoutes.reports.customers,
-                method: "GET",
-                params: $scope.model,
-            }).then(function searchCompleted(response) {
-                $scope.results = response.data;
-
-                if (angular.equals($scope.results, [])) {
-                    toaster.info('לא נמצאו לקוחות העונים על הדרישה');
-                }
-            });
-        }
-    }]);
-
-    myApp.controller('reportMissedCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', function ($scope, $http, ServerRoutes, toaster) {
-        $scope.model = {};
-        $scope.results;
-
-        $scope.sortBy = function (propertyName) {
-            // reverse current or false for new property
-            $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
-            $scope.propertyName = propertyName;
-        };
-
-        $scope.submitSearch = function () {
-            $http({
-                url: ServerRoutes.reports.customers,
-                method: "GET",
-                params: $scope.model,
-            }).then(function searchCompleted(response) {
-                $scope.results = response.data;
-
-                if (angular.equals($scope.results, [])) {
-                    toaster.info('לא נמצאו לקוחות העונים על הדרישה');
+                if (angular.equals($scope.rows, [])) {
+                    toaster.info('No ' + $scope.model.Time + ' Visits!');
                 }
             });
         }
@@ -114,6 +116,10 @@
 
         $scope.propertyName = 'Id';
         $scope.reverse = false;
+
+        $scope.print = function () {
+            window.print();
+        }
 
         $scope.sortBy = function (propertyName) {
             // reverse current or false for new property
@@ -146,12 +152,10 @@
 myApp.controller('reportFinanceCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', function ($scope, $http, ServerRoutes, DomainDecodes, toaster) {
         $scope.model = {};
         $scope.dateParts = DomainDecodes.dateParts;
-        $scope.rows;
-        $scope.submitted = false;
         var today = new Date();
         $scope.model.EndDate = moment(today).format("DD/MM/YYYY");
 
-        $scope.propertyName = 'Id';
+        $scope.propertyName = 'Date';
         $scope.reverse = false;
 
         $scope.sortBy = function (propertyName) {
@@ -171,7 +175,48 @@ myApp.controller('reportFinanceCtrl', ['$scope', '$http', 'ServerRoutes', 'Domai
             }).then(function searchCompleted(response) {
                 $scope.rows = response.data;
 
-                if (angular.equals($scope.results, [])) {
+                if (angular.equals($scope.rows, [])) {
+                    toaster.info("No rows match your search");
+                }
+            });
+        }
+}]);
+
+myApp.controller('reportOutcomePerAnimalCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', function ($scope, $http, ServerRoutes, DomainDecodes, toaster) {
+        $scope.model = {};
+        $scope.dateParts = DomainDecodes.dateParts;
+        
+        var today = new Date();
+        $scope.model.EndDate = moment(today).format("DD/MM/YYYY");
+
+        $scope.propertyName = 'Date';
+        $scope.reverse = false;
+
+        $http({
+            url: ServerRoutes.animals.mine,
+            method: "GET"
+        }).then(function searchCompleted(response) {
+            $scope.myAnimals = angular.copy(response.data);
+        });
+
+        $scope.sortBy = function (propertyName) {
+            // reverse current or false for new property
+            $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+            $scope.propertyName = propertyName;
+        };
+        $scope.print = function() {
+            window.print();
+        }
+
+        $scope.submitSearch = function () {
+            $http({
+                url: ServerRoutes.reports.perAnimal,
+                method: "GET",
+                params: $scope.model
+            }).then(function searchCompleted(response) {
+                $scope.rows = response.data;
+
+                if (angular.equals($scope.rows, [])) {
                     toaster.info("No rows match your search");
                 }
             });

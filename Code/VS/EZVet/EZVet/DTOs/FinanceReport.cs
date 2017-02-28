@@ -6,7 +6,7 @@ namespace EZVet.DTOs
     {
         public virtual string Date{ get; set; }
 
-        public virtual int NumOfVisits{ get; set; }
+        public virtual int Count { get; set; }
 
         public virtual double Price { get; set; }
     }

@@ -158,6 +158,10 @@
     <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="DTOs\VisitsReport.cs" />
+    <Compile Include="DTOs\AnimalNameReport.cs" />
+    <Compile Include="DTOs\AnimalTypeReport.cs" />
+    <Compile Include="DTOs\ItemUsageReport.cs" />
     <Compile Include="DTOs\Recommendation.cs" />
     <Compile Include="DTOs\AnimalMeasurements.cs" />
     <Compile Include="DTOs\PersonLogin.cs" />
@@ -280,6 +284,10 @@
     <Content Include="web\partials\Old\reportComplaint.html" />
     <Content Include="web\partials\Old\reportCustomer.html" />
     <Content Include="web\partials\Old\reportFields.html" />
+    <Content Include="web\partials\ReportVisits.html" />
+    <Content Include="web\partials\ReportFinancePerAnimal.html" />
+    <Content Include="web\partials\ReportPerType.html" />
+    <Content Include="web\partials\ReportPerItem.html" />
     <Content Include="web\partials\ReportFinance.html" />
     <Content Include="web\partials\ReportLogicstics.html" />
     <Content Include="web\partials\ReportVaccine.html" />

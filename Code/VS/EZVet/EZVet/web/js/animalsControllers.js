@@ -1,7 +1,7 @@
 ﻿!(function () {
     var myApp = angular.module('myApp');
 
-    myApp.controller('animalsCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', '$rootScope', function ($scope, $http, ServerRoutes, DomainDecodes, toaster, $rootScope) {
+    myApp.controller('animalsCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', function ($scope, $http, ServerRoutes, DomainDecodes) {
         $scope.pets = [];
 
         $scope.getGender = function(id) {
@@ -17,14 +17,9 @@
             return Math.round(moment().diff(dob, 'years', true) * 100) / 100;
         }
 
-        var url = ServerRoutes.animals.owner;
-        if ($rootScope.sharedVariables.role === "Doctor")
-            url = ServerRoutes.animals.doctor;
-
         $http({
-            url: url,
-            method: "GET",
-            params: { Id: $rootScope.sharedVariables.userId }
+            url: ServerRoutes.animals.mine,
+            method: "GET"
         }).then(function searchCompleted(response) {
             $scope.pets = angular.copy(response.data);
         });

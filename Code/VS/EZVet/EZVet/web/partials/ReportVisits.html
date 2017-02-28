@@ -1,0 +1,49 @@
+﻿<div class="container">
+    <h2>Vists Report</h2>
+    <form class="form-horizontal">
+        <div class="row">
+           <div class="col-sm-3">
+                <label>Future/Missed</label>
+                <select class="form-control" ng-model="model.Time" ng-options="time.id as time.name for time in visitsTimes"></select>
+            </div>
+            <div class="form-group col-sm-3">
+                <label>Actions</label>
+                <div>
+                    <button type="button" class="btn btn-primary" ng-click="submitSearch()"><span class="glyphicon glyphicon-search"></span></button>
+                    <button type="button" class="btn btn-primary" ng-click="print()"><span class="glyphicon glyphicon-print"></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th ng-click="sortBy('AnimalName')">
+                                <span class="sortorder" ng-show="propertyName === 'AnimalName'" ng-class="{reverse: reverse}"></span>Animal Name
+                            </th>
+                            <th ng-click="sortBy('Name')">
+                                <span class="sortorder" ng-show="propertyName === 'Name'" ng-class="{reverse: reverse}"></span>{{entity}} Name
+                            </th>
+                            <th ng-click="sortBy('Phone')">
+                                <span class="sortorder" ng-show="propertyName === 'Phone'" ng-class="{reverse: reverse}"></span>{{entity}} Phone
+                            </th>
+                            <th ng-click="sortBy('Date')">
+                                <span class="sortorder" ng-show="propertyName === 'Date'" ng-class="{reverse: reverse}"></span>Next Visit Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in rows | orderBy:propertyName:reverse">
+                            <th>{{row.AnimalName}}</th>
+                            <td>{{row.EntityName}}</td>
+                            <td>{{row.EntityPhone}}</td>
+                            <td>{{row.Date}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>

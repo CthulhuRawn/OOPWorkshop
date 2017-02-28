@@ -49,12 +49,12 @@
             activetab: 'Profile'
         });
         $routeProvider.when('/reportIncomeItem', {
-            templateUrl: 'web/partials/Profile.html',
+            templateUrl: 'web/partials/ReportPerItem.html',
             controller: 'reportIncomeItemCtrl',
             activetab: 'reportIncomeItem'
         });
         $routeProvider.when('/reportIncomeType', {
-            templateUrl: 'web/partials/Profile.html',
+            templateUrl: 'web/partials/ReportPerType.html',
             controller: 'reportIncomeTypeCtrl',
             activetab: 'reportIncomeType'
         });
@@ -63,20 +63,20 @@
             controller: 'reportFinanceCtrl',
             activetab: 'reportOutcome'
         });
-        $routeProvider.when('/reportMissed', {
-            templateUrl: 'web/partials/Profile.html',
-            controller: 'reportMissedCtrl',
-            activetab: 'reportMissed'
-        });
-        $routeProvider.when('/reportFuture', {
-            templateUrl: 'web/partials/Profile.html',
-            controller: 'reportFutureCtrl',
-            activetab: 'reportFuture'
+        $routeProvider.when('/reportNextVisits', {
+            templateUrl: 'web/partials/ReportVisits.html',
+            controller: 'reportVisitsCtrl',
+            activetab: 'reportNextVisits'
         });
         $routeProvider.when('/reportIncome', {
             templateUrl: 'web/partials/ReportFinance.html',
             controller: 'reportFinanceCtrl',
             activetab: 'reportIncome'
+        });
+        $routeProvider.when('/reportOutcomePerAnimal', {
+            templateUrl: 'web/partials/ReportFinancePerAnimal.html',
+            controller: 'reportOutcomePerAnimalCtrl',
+            activetab: 'reportOutcomePerAnimal'
         });
 
         $routeProvider.otherwise({

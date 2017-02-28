@@ -17,6 +17,7 @@ namespace EZVet.QueryProcessors
         Domain.Animal Get(int animalId);
         void AttachToDoctor(int vetId, int petId);
         void Update(int animalId, Domain.Animal animal);
+        IQueryable<Domain.Animal> Query();
     }
 
 
@@ -38,7 +39,7 @@ namespace EZVet.QueryProcessors
             if (_doctorsQueryProcessor.ExistsById(id))
                 return
                     Query()
-                        .Where(x => x.Doctor.Id == id)
+                        .Where(x => x.Doctor.Id == id).ToList()
                         .Select(x => new Animal().Initialize(x))
                         .ToList();
 

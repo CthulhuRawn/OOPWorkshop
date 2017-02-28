@@ -104,8 +104,7 @@
                     login: urlBase + "login/login"
                 },
                 animals: {
-                    owner: urlBase + "animals/myAnimals",
-                    doctor: urlBase + "animals/myPatients",
+                    mine: urlBase + "animals/myAnimals",
                     patient: urlBase + "animals/animal"
                 },
                 vets: {
@@ -123,7 +122,11 @@
                     get: urlBase + "profile/get"
                 },
                 reports: {
-                    finance: urlBase + "reports/finance"
+                    finance: urlBase + "reports/finance",
+                    perItem: urlBase + "reports/perItem",
+                    perType: urlBase + "reports/perType",
+                    perAnimal: urlBase + "reports/perAnimal",
+                    visits: urlBase + "reports/visits"
                 }
             }
         });
@@ -169,6 +172,15 @@
                     }, {
                         id: 3,
                         name: 'Year'
+                    }
+                ],
+                visitsTimes: [
+                    {
+                        id: 1,
+                        name: 'Missed'
+                    }, {
+                        id: 2,
+                        name: 'Future'
                     }
                 ]
             };

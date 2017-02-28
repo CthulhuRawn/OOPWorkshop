@@ -35,9 +35,9 @@
                         <li ng-class="{active: $route.current.activetab == 'reportIncome'}"><a href="#/reportIncome" ng-show="sharedVariables.role == 'Doctor'">Income Per Date</a></li>
                         <li ng-class="{active: $route.current.activetab == 'reportIncomeItem'}"><a href="#/reportIncomeItem" ng-show="sharedVariables.role == 'Doctor'">Income Per Item</a></li>
                         <li ng-class="{active: $route.current.activetab == 'reportIncomeType'}"><a href="#/reportIncomeType" ng-show="sharedVariables.role == 'Doctor'">Income Per Animal Type</a></li>
-                        <li ng-class="{active: $route.current.activetab == 'reportOutcome'}"><a href="#/reportOutcome" ng-show="sharedVariables.role == 'Owner'">Outcome Per Animal</a></li>
-                        <li ng-class="{active: $route.current.activetab == 'reportMissed'}"><a href="#/reportMissed">Missed Visits</a></li>
-                        <li ng-class="{active: $route.current.activetab == 'reportFuture'}"><a href="#/reportFuture">Future Visits</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportOutcome'}"><a href="#/reportOutcome" ng-show="sharedVariables.role == 'Owner'">Outcome Per Date</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportOutcomePerAnimal'}"><a href="#/reportOutcomePerAnimal" ng-show="sharedVariables.role == 'Owner'">Outcome Per Animal</a></li>
+                        <li ng-class="{active: $route.current.activetab == 'reportNextVisits'}"><a href="#/reportNextVisits">Next Visits</a></li>
                     </ul>
                 </li>
                 <li role="presentation" ng-class="{active: $route.current.activetab == 'Profile'}">

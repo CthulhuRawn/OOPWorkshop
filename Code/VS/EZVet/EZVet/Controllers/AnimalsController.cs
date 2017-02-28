@@ -19,10 +19,17 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/animals/myAnimals")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
-        public List<Animal> MyAnimals(int id)
+        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        public List<Animal> MyAnimals()
         {
-            return _animalsQueryProcessor.SearchMine(id).ToList();
+            var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
+            var userId = int.Parse(cookieValue[0]);
+
+            if (cookieValue[1] == Consts.Roles.Owner)
+            {
+                return _animalsQueryProcessor.SearchMine(userId).ToList();
+            }
+            return _animalsQueryProcessor.SearchPatients(userId).ToList();
         }
 
         [HttpGet]
