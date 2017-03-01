@@ -99,7 +99,7 @@ body, .container {
 .scrollableTable > thead > tr th,
 .scrollableTable > tbody > tr td {
     display: inline-block;
-    float: right;
+    float: left;
 }
 
 .scrollableTable tbody {
