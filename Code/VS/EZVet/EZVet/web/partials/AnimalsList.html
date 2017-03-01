@@ -6,19 +6,27 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Pet Name</th>
-                        <th ng-show="sharedVariables.role === 'Owner'">Doctor Name</th>
-                        <th ng-show="sharedVariables.role === 'Doctor'">Owner Name</th>
-                        <th>Type</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Next Scheduled Visit</th>
+                        <th ng-click="sortBy('Id')">
+                                <span class="sortorder" ng-show="propertyName === 'Id'" ng-class="{reverse: reverse}"></span>#</th>
+                        <th ng-click="sortBy('Name')">
+                                <span class="sortorder" ng-show="propertyName === 'Name'" ng-class="{reverse: reverse}"></span>Pet Name</th>
+                        <th ng-click="sortBy('DoctorName')" ng-show="sharedVariables.role === 'Owner'">
+                                <span class="sortorder" ng-show="propertyName === 'DoctorName'" ng-class="{reverse: reverse}"></span>Doctor Name</th>
+                        <th ng-click="sortBy('OwnerName')" ng-show="sharedVariables.role === 'Doctor'">
+                                <span class="sortorder" ng-show="propertyName === 'OwnerName'" ng-class="{reverse: reverse}"></span>Owner Name</th>
+                        <th ng-click="sortBy('Type')">
+                                <span class="sortorder" ng-show="propertyName === 'Type'" ng-class="{reverse: reverse}"></span>Type</th>
+                        <th ng-click="sortBy('DateOfBirth')">
+                                <span class="sortorder" ng-show="propertyName === 'DateOfBirth'" ng-class="{reverse: reverse}"></span>Age</th>
+                        <th ng-click="sortBy('Gender')">
+                                <span class="sortorder" ng-show="propertyName === 'Gender'" ng-class="{reverse: reverse}"></span>Gender</th>
+                        <th ng-click="sortBy('NextVisit')">
+                                <span class="sortorder" ng-show="propertyName === 'NextVisit'" ng-class="{reverse: reverse}"></span>Next Scheduled Visit</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="x in pets">
+                    <tr ng-repeat="x in pets | orderBy:propertyName:reverse:comparator">
                         <td>{{ x.Id }}</td>
                         <td>{{ x.Name }}</td>
                         <td ng-show="sharedVariables.role === 'Owner'">{{ x.DoctorName }}</td>

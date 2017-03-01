@@ -2,6 +2,38 @@
     var myApp = angular.module('myApp');
 
     myApp.controller('animalsCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', function ($scope, $http, ServerRoutes, DomainDecodes) {
+        $scope.propertyName = 'Id';
+        $scope.reverse = false;
+        
+        $scope.sortBy = function (propertyName) {
+            // reverse current or false for new property
+            $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+            $scope.propertyName = propertyName;
+        };
+
+        $scope.comparator = function (v1, v2) {
+           
+            switch ($scope.propertyName) {
+                case 'DateOfBirth':
+                    return $scope.calcAge(v1.value) > $scope.calcAge(v2.value) ? 1 : -1;
+                    break;
+                case 'Type':
+                    return $scope.getType(v1.value) > $scope.getType(v2.value) ? 1 : -1;
+                    break;
+                case 'Gender':
+                    return $scope.getGender(v1.value) > $scope.getGender(v2.value) ? 1 : -1;
+                    break;
+                default:
+                    if (v1.type !== 'string' || v2.type !== 'string') {
+                        return (v1.index < v2.index) ? -1 : 1;
+                    }
+                    return v1.value.localeCompare(v2.value);
+                    break;
+            }
+            
+            return v1.value.localeCompare(v2.value);
+        };
+
         $scope.pets = [];
 
         $scope.getGender = function(id) {

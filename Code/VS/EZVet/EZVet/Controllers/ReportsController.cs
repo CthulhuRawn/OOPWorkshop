@@ -69,7 +69,7 @@ namespace EZVet.Controllers
         [HttpGet]
         [Route("api/reports/visits")]
         [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
-        public List<VisitsReport> Visits(int? time)
+        public List<VisitsReport> Visits(int? time = null)
         {
             var cookieValues = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
             var doctorId = -1;
