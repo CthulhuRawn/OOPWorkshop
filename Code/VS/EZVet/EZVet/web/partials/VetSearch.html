@@ -5,42 +5,6 @@
 </div>
 		
 <div class="row page">
-    <div class="col-sm-12 searchPanel">
-        <form class="form-horizontal">
-            <div class='row'>
-                <div class='col-sm-2'>
-                    <div class='form-group'>
-                        <label for="user_title">First Name</label>
-                        <input class="form-control" type="text" ng-model="model.firstName" empty-to-null />
-                    </div>
-                </div>
-                <div class='col-sm-offset-1 col-sm-2'>
-                    <div class='form-group'>
-                        <label>Last Name</label>
-                        <input class="form-control" type="text" ng-model="model.lastName" empty-to-null />
-                    </div>
-                </div>
-                <div class='col-sm-offset-1 col-sm-2'>
-                    <div class='form-group'>
-                        <label for="user_title">Address</label>
-                        <input class="form-control" type="text" ng-model="model.Address" empty-to-null />
-                    </div>
-                </div>
-                <div class='col-sm-offset-1 col-sm-2'>
-                    <div class='form-group'>
-                        <label>Id</label>
-                        <input class="form-control" type="number" ng-model="model.id" />
-                    </div>
-                </div>
-            </div>
-
-            <div class='row'>
-                <div class="pull-right col-sm-1">
-                    <button type="submit" class="btn btn-primary btn-search" ng-click="submitSearch()">Search</button>
-                </div>
-            </div>				
-        </form>
-    </div>
     <div class="searchResults">
         <table class="table table-hover searchTable scrollableTable">
             <thead>
@@ -61,14 +25,28 @@
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat="row in vets | orderBy:propertyName:reverse">
-                    <td class="col-sm-1">{{row.Id}}</td>
-                    <td class="col-sm-3">{{row.FirstName}}</td>
-                    <td class="col-sm-3">{{row.LastName}}</td>
-                    <td class="col-sm-3">{{row.AddressToDispaly}}</td>
-                    <td class="col-sm-1"><a href="#/VetPage/{{row.Id}}">View Vet</a></td>
-                    <td class="col-sm-1" ng-show="petId > -1"><a ng-click="setVetForPet(row.Id)">Set Vet</a></td>
-                </tr>
+            <tr>
+                <td class ="col-sm-1">
+                    <input class="form-control" type="number" ng-model="model.id" ng-keyup="submitSearch()" />
+                </td>
+                <td class="col-sm-3">
+                    <input class="form-control" type="text" ng-model="model.firstName" empty-to-null ng-keyup="submitSearch()" />
+                </td>          
+                <td class="col-sm-3">
+                    <input class="form-control" type="text" ng-model="model.lastName" empty-to-null ng-keyup="submitSearch()"/>
+                </td>
+                <td class="col-sm-3">
+                    <input class="form-control" type="text" ng-model="model.Address" empty-to-null ng-keyup="submitSearch()"/>
+                </td>
+            </tr>
+            <tr ng-repeat="row in vets | orderBy:propertyName:reverse">
+                <td class="col-sm-1">{{row.Id}}</td>
+                <td class="col-sm-3">{{row.FirstName}}</td>
+                <td class="col-sm-3">{{row.LastName}}</td>
+                <td class="col-sm-3">{{row.AddressToDispaly}}</td>
+                <td class="col-sm-1"><a href="#/VetPage/{{row.Id}}">View Vet</a></td>
+                <td class="col-sm-1" ng-show="petId > -1"><a ng-click="setVetForPet(row.Id)">Set Vet</a></td>
+            </tr>
             </tbody>
         </table>
     </div>
