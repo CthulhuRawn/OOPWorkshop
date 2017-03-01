@@ -127,6 +127,7 @@ namespace EZVet.QueryProcessors
         public IEnumerable<VisitsReport> GetVisitsReport(int? time, int doctorId, int ownerId)
         {
             var isDoctorMode = doctorId < ownerId;
+            time = time ?? 1;
             return _animalsQueryProcessor.Query()
                 .Where(
                     x =>

@@ -75,7 +75,7 @@
     myApp.controller('reportVisitsCtrl', ['$scope', '$http', 'ServerRoutes', 'toaster', 'DomainDecodes', '$rootScope', function ($scope, $http, ServerRoutes, toaster, DomainDecodes, $rootScope) {
         $scope.model = {};
         $scope.visitsTimes = DomainDecodes.visitsTimes;
-
+        $scope.model.Time = 1;
         if ($rootScope.sharedVariables.role === "Doctor") {
             $scope.entity = "Owner";
         } else {
