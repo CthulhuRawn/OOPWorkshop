@@ -1,6 +1,6 @@
 ﻿<div class="row">
     <div class="col-sm-12">
-        <h1>Financial Report - Per Type</h1>
+        <h1 class="pageTitle">Financial Report - Per Type</h1>
     </div>
 </div>
     
@@ -72,8 +72,8 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="row in rows | orderBy:propertyName:reverse">
-                    <th>{{row.Date}}</th>
-                    <th>{{row.AnimalType}}</th>
+                    <td>{{row.Date}}</td>
+                    <td>{{row.AnimalType}}</td>
                     <td>{{row.Count}}</td>
                     <td>{{row.Price}}$</td>
                 </tr>

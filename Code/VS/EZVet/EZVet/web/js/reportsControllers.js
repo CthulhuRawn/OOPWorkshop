@@ -98,9 +98,8 @@
                 params: $scope.model
             }).then(function searchCompleted(response) {
                 $scope.rows = response.data;
-
                 if (angular.equals($scope.rows, [])) {
-                    toaster.info('No ' + $scope.model.Time + ' Visits!');
+                    toaster.info('No ' + DomainDecodes.visitsTimes[$scope.model.Time-1].name + ' Visits!');
                 }
             });
         }

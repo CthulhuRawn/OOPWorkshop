@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using EZVet.Common;
+using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
@@ -11,8 +12,12 @@ namespace EZVet.DTOs
         public string DoctorName { get; set; }
         public string OwnerName { get; set; }
         public int Type { get; set; }
+
+        [NotInFuture]
         public DateTime DateOfBirth { get; set; }
         public int Gender { get; set; }
+
+        [NotInPast]
         public DateTime? NextVisit { get; set; }
         public string Notes { get; set; }
         public double Weight { get; set; }

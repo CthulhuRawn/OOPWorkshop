@@ -2439,7 +2439,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  *     <input type="text" ng-model="$ctrl.newPhone.name">
  *     <input type="submit" value="Add Phone">
  *   </form>
- *   <h1>Phones</h1>
+ *   <h1 class="pageTitle">Phones</h1>
  *   <ul>
  *     <li ng-repeat="phone in $ctrl.phones">{{phone.name}}</li>
  *   </ul>

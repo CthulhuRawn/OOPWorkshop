@@ -6,6 +6,8 @@
             $scope.newMedication = {};
             $scope.newVaccine = {};
 
+            $scope.submitted = false;
+
             $scope.totalPrice = 0;
             $scope.treatment.PetId = $routeParams.id;
             
@@ -80,7 +82,11 @@
                 window.print();
             };
 
-            $scope.saveTreatment = function() {
+            $scope.saveTreatment = function (valid) {
+                $scope.submitted = true;
+                if (!valid)
+                    return;
+
                 $http({
                     url: ServerRoutes.treatments.save,
                     method: "POST",
@@ -91,6 +97,7 @@
                         toaster.success('Treatment Saved!');
                     }
                 });
+                $scope.submitted = false;
             };
         }
     ]);

@@ -109,7 +109,8 @@ textarea.form-control {
 
 
 select:not(:focus):not(.ng-valid) + .callout:not(:hover),
-input:not(:focus):not(.ng-valid) + .callout:not(:hover) {
+input:not(:focus):not(.ng-valid) + .callout:not(:hover),
+input:not(:focus):not(.ng-valid) + span + .callout:not(:hover) {
 	transform: scale(0);
 }
 
@@ -165,11 +166,11 @@ input:not(:focus):not(.ng-valid) + .callout:not(:hover) {
 /* ==== Headers  ==== */
 
 h1.pageTitle {
-    background-color: #4399C7;
     color: #212121;
 	text-shadow: 0px 1px white;
     margin: 20px 0;
     padding-right: 15px;
+    text-decoration: underline
 }
 
 /* ==== Login  ==== */

@@ -131,9 +131,9 @@ namespace EZVet.QueryProcessors
             return _animalsQueryProcessor.Query()
                 .Where(
                     x =>
-                        x.Doctor.Id == doctorId ||
-                        x.Owner.Id == ownerId && time == 1 && x.DateNextVisit < DateTime.UtcNow ||
-                        time == 2 && x.DateNextVisit > DateTime.UtcNow).Select(x => new VisitsReport
+                        (x.Doctor.Id == doctorId ||
+                        x.Owner.Id == ownerId) && (time == 1 && x.DateNextVisit < DateTime.UtcNow) ||
+                        (time == 2 && x.DateNextVisit > DateTime.UtcNow)).Select(x => new VisitsReport
                 {
                     Date = x.DateNextVisit.Value,
                     AnimalName = x.Name,

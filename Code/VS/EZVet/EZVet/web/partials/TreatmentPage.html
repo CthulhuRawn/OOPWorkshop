@@ -1,11 +1,11 @@
 ﻿<div class="row">
     <div class="col-sm-12">
-        <h1>Treatment Page</h1>
+        <h1 class="pageTitle">Treatment Page</h1>
     </div>
 </div>
-    <form>
+    <form name="treatmentForm" ng-submit="submitUser(treatmentForm.$valid)">
         <div class="row">
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-4" >
                 <label>Name</label> 
                 <input type="text" class="form-control" id="nameInput" value="{{treatment.Animal.Name}}" disabled/></div>
             <div class="form-group col-sm-4">
@@ -24,33 +24,48 @@
             </div>
             <div class="form-group col-sm-2">
                 <label>Age</label> 
-                <input type="text" class="form-control" id="AgeInput" value="{{ calcAge(treatment.Animal.DateOfBirth) }}" disabled/></div>
+                <input type="text" class="form-control" value="{{ calcAge(treatment.Animal.DateOfBirth) }}" disabled/></div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.Weight.$invalid && submitted }">
                 <label>Weight</label> 
                 <div class="input-group">
-                    <input type="number" class="form-control" ng-model="treatment.Measurements.Weight">
+                    <input type="number" name="Weight" class="form-control" ng-model="treatment.Measurements.Weight" required min="0">
                     <span class="input-group-addon">Kg</span>
+                    <div class="callout" ng-show="treatmentForm.Weight.$invalid && submitted">
+                        <div ng-show="treatmentForm.Weight.$error.required && submitted">Please insert Weight</div>
+                    </div>
                 </div>
             </div>	
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.Pulse.$invalid && submitted }">
                 <label>Pulse</label> 
-                <input type="number" class="form-control" ng-model="treatment.Measurements.Pulse"/>
+                <input type="number" name="Pulse" class="form-control" ng-model="treatment.Measurements.Pulse" required min="0"/>
+                <div class="callout" ng-show="treatmentForm.Pulse.$invalid && submitted">
+                    <div ng-show="treatmentForm.Pulse.$error.required && submitted">Please insert Pulse</div>
+                </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.SystolicBloodPressure.$invalid && submitted }">
                 <label>Systolic BP</label> 
-                <input type="number" class="form-control" ng-model="treatment.Measurements.SystolicBloodPressure"/>
+                <input type="number" name="SystolicBloodPressure" class="form-control" ng-model="treatment.Measurements.SystolicBloodPressure" required min="0"/>
+                <div class="callout" ng-show="treatmentForm.SystolicBloodPressure.$invalid && submitted">
+                    <div ng-show="treatmentForm.SystolicBloodPressure.$error.required && submitted">Please insert Systolic BP</div>
+                </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.DiastolicBloodPressure.$invalid && submitted }">
                 <label>Diastolic BP</label>
-                <input type="number" class="form-control" ng-model="treatment.Measurements.DiastolicBloodPressure" />
+                <input type="number" name="DiastolicBloodPressure" class="form-control" ng-model="treatment.Measurements.DiastolicBloodPressure" required min="0"/>
+                <div class="callout" ng-show="treatmentForm.DiastolicBloodPressure.$invalid && submitted">
+                    <div ng-show="treatmentForm.DiastolicBloodPressure.$error.required && submitted">Please insert Diastolic BP</div>
+                </div>
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.Temperature.$invalid && submitted }">
                 <label>Temperature</label> 
                 <div class="input-group">
-                    <input type="number" class="form-control" ng-model="treatment.Measurements.Temperature">
+                    <input type="number" name="Temperature" class="form-control" ng-model="treatment.Measurements.Temperature" required min="0">
                     <span class="input-group-addon">°C</span>
+                    <div class="callout" ng-show="treatmentForm.Temperature.$invalid && submitted">
+                        <div ng-show="treatmentForm.Temperature.$error.required && submitted">Please insert Temperature</div>
+                    </div>
                 </div>	
             </div>
             <div class="form-group col-sm-2">
