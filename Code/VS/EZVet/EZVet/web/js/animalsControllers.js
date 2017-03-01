@@ -4,7 +4,11 @@
     myApp.controller('animalsCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', function ($scope, $http, ServerRoutes, DomainDecodes) {
         $scope.propertyName = 'Id';
         $scope.reverse = false;
-        
+        $scope.model = {};
+
+        $scope.animalTypes = DomainDecodes.animalTypes;
+        $scope.genders = DomainDecodes.genders;
+
         $scope.sortBy = function (propertyName) {
             // reverse current or false for new property
             $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
@@ -30,8 +34,6 @@
                     return v1.value.localeCompare(v2.value);
                     break;
             }
-            
-            return v1.value.localeCompare(v2.value);
         };
 
         $scope.pets = [];
@@ -49,12 +51,22 @@
             return Math.round(moment().diff(dob, 'years', true) * 100) / 100;
         }
 
-        $http({
-            url: ServerRoutes.animals.mine,
-            method: "GET"
-        }).then(function searchCompleted(response) {
-            $scope.pets = angular.copy(response.data);
-        });
+        $scope.clearSearch = function() {
+            $scope.model = {};
+            $scope.submitSearch();
+        }
+
+        $scope.submitSearch = function() {
+            $http({
+                url: ServerRoutes.animals.mine,
+                method: "GET",
+                params: $scope.model
+            }).then(function searchCompleted(response) {
+                $scope.pets = angular.copy(response.data);
+            });
+        }
+
+        $scope.submitSearch();
     }]);
 
     myApp.controller('patientCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', '$rootScope', '$routeParams',

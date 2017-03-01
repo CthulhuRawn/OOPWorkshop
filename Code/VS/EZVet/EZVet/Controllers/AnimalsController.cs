@@ -20,26 +20,23 @@ namespace EZVet.Controllers
         [HttpGet]
         [Route("api/animals/myAnimals")]
         [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
-        public List<Animal> MyAnimals()
+        public List<Animal> MyAnimals(int? id = null, string animalName = "", string doctorName = "", string ownerName = "", int? type = null, int? gender = null)
         {
-            var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
-            var userId = int.Parse(cookieValue[0]);
-
-            if (cookieValue[1] == Consts.Roles.Owner)
+            var cookieValues = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
+            var doctorId = -1;
+            var ownerId = -1;
+            if (cookieValues[1] == Consts.Roles.Doctor)
             {
-                return _animalsQueryProcessor.SearchMine(userId).ToList();
+                doctorId = int.Parse(cookieValues[0]);
             }
-            return _animalsQueryProcessor.SearchPatients(userId).ToList();
+            else
+            {
+                ownerId = int.Parse(cookieValues[0]);
+            }
+            return _animalsQueryProcessor.Search(doctorId, ownerId, id, animalName, doctorName, ownerName, type, gender).ToList();
+            
         }
-
-        [HttpGet]
-        [Route("api/animals/myPatients")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Doctor)]
-        public List<Animal> MyPatients(int id)
-        {
-            return _animalsQueryProcessor.SearchPatients(id).ToList();
-        }
-
+        
         [HttpGet]
         [Route("api/animals/animal")]
         [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]

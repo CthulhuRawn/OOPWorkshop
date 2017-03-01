@@ -8,9 +8,6 @@ namespace EZVet.QueryProcessors
 {
     public interface IAnimalsQueryProcessor
     {
-        List<Animal> SearchMine(int id);
-        List<Animal> SearchPatients(int id);
-
         Animal GetAnimal(int id);
 
         Animal Save(Animal animal, int cotnactId);
@@ -18,6 +15,7 @@ namespace EZVet.QueryProcessors
         void AttachToDoctor(int vetId, int petId);
         void Update(int animalId, Domain.Animal animal);
         IQueryable<Domain.Animal> Query();
+        List<Animal> Search(int doctorId, int ownerId, int? id, string animalName, string doctorName, string ownerName, int? type, int? gender);
     }
 
 
@@ -32,29 +30,7 @@ namespace EZVet.QueryProcessors
             _doctorsQueryProcessor = doctorsQueryProcessor;
             _decodesQueryProcessor = decodesQueryProcessor;
         }
-
-
-        public List<Animal> SearchPatients(int id)
-        {
-            if (_doctorsQueryProcessor.ExistsById(id))
-                return
-                    Query()
-                        .Where(x => x.Doctor.Id == id).ToList()
-                        .Select(x => new Animal().Initialize(x))
-                        .ToList();
-
-            return new List<Animal>();
-        }
-        public List<Animal> SearchMine(int id)
-        {
-            if (_ownersQueryProcessor.ExistsById(id))
-                return Query()
-                    .Where(x => x.Owner.Id == id).ToList()
-                    .Select(x => new Animal().Initialize(x))
-                    .ToList();
-
-            return new List<Animal>();
-        }
+        
         
         public Animal Save(Animal animal, int contactId)
         {
@@ -96,6 +72,21 @@ namespace EZVet.QueryProcessors
             var animal = Get(petId);
             animal.Doctor = _doctorsQueryProcessor.Get(vetId);
             Update(petId, animal);
+        }
+
+        public List<Animal> Search(int doctorId, int ownerId, int? id, string animalName, string doctorName, string ownerName, int? type,
+            int? gender)
+        {
+            return
+                Query()
+                    .Where(x => x.Owner.Id == ownerId || x.Doctor.Id == doctorId)
+                    .Where(
+                        x =>
+                            x.Name.Contains(animalName) && (x.Type.Id == type || type == null) && (x.Gender.Id == gender ||
+                            gender == null))
+                    .ToList()
+                    .Where(x => x.Owner.GetName().Contains(ownerName) && x.Doctor == null || x.Doctor.GetName().Contains(doctorName))
+                    .Select(x => new Animal().Initialize(x)).ToList();
         }
     }
 }
