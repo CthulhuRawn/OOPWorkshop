@@ -1,71 +1,74 @@
-﻿<div class="container">
-    <h2>Financial Report</h2>
-    <form class="form-horizontal">
-        <div class="row">
-            <div class="col-sm-3">
-                <div moment-picker="model.StartDate"
-                     locale="en-gb"
-                     format="DD/MM/YYYY"
-                     min-view="year"
-                     max-view="month"
-                     autoclose="true">
-                    <label>Start Date</label>
-                    <input name="birthDate" class="form-control" empty-to-null
-                           required past psdate ng-model="model.StartDate"
-                           ng-model-options="{ updateOn: 'blur' }">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div moment-picker="model.EndDate"
-                     locale="en-gb"
-                     format="DD/MM/YYYY"
-                     min-view="year"
-                     max-view="month"
-                     autoclose="true">
-                    <label>End Date</label>
-                    <input name="birthDate" class="form-control" empty-to-null
-                           required past psdate ng-model="model.EndDate"
-                           ng-model-options="{ updateOn: 'blur' }">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <label>Date Part</label>
-                <select class="form-control" ng-model="model.DatePart" ng-options="part.id as part.name for part in dateParts"></select>
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Actions</label>
-                <div>
-                    <button type="button" class="btn btn-primary" ng-click="submitSearch()"><span class="glyphicon glyphicon-search"></span></button>
-                    <button type="button" class="btn btn-primary" ng-click="print()"><span class="glyphicon glyphicon-print"></span></button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="col-sm-12">
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th ng-click="sortBy('Date')">
-                                <span class="sortorder" ng-show="propertyName === 'Date'" ng-class="{reverse: reverse}"></span>Date
-                            </th>
-                            <th ng-click="sortBy('Count')">
-                                <span class="sortorder" ng-show="propertyName === 'Count'" ng-class="{reverse: reverse}"></span>Number Of Visits
-                            </th>
-                            <th ng-click="sortBy('Price')">
-                                <span class="sortorder" ng-show="propertyName === 'Price'" ng-class="{reverse: reverse}"></span>Total Price
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="row in rows | orderBy:propertyName:reverse">
-                            <th>{{row.Date}}</th>
-                            <td>{{row.Count}}</td>
-                            <td>{{row.Price}}$</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </form>
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1>Financial Report</h1>
+    </div>
 </div>
+<form class="form-horizontal">
+    <div class="row">
+        <div class="col-sm-3">
+            <div moment-picker="model.StartDate"
+                 locale="en-gb"
+                 format="DD/MM/YYYY"
+                 min-view="year"
+                 max-view="month"
+                 autoclose="true">
+                <label>Start Date</label>
+                <input name="birthDate" class="form-control" empty-to-null
+                       required past psdate ng-model="model.StartDate"
+                       ng-model-options="{ updateOn: 'blur' }">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div moment-picker="model.EndDate"
+                 locale="en-gb"
+                 format="DD/MM/YYYY"
+                 min-view="year"
+                 max-view="month"
+                 autoclose="true">
+                <label>End Date</label>
+                <input name="birthDate" class="form-control" empty-to-null
+                       required past psdate ng-model="model.EndDate"
+                       ng-model-options="{ updateOn: 'blur' }">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label>Date Part</label>
+            <select class="form-control" ng-model="model.DatePart" ng-options="part.id as part.name for part in dateParts"></select>
+        </div>
+        <div class="form-group col-sm-3">
+            <label>Actions</label>
+            <div>
+                <button type="button" class="btn btn-primary" ng-click="submitSearch()"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="button" class="btn btn-primary" ng-click="print()"><span class="glyphicon glyphicon-print"></span></button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-sm-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th ng-click="sortBy('Date')">
+                        <span class="sortorder" ng-show="propertyName === 'Date'" ng-class="{reverse: reverse}"></span>Date
+                    </th>
+                    <th ng-click="sortBy('Count')">
+                        <span class="sortorder" ng-show="propertyName === 'Count'" ng-class="{reverse: reverse}"></span>Number Of Visits
+                    </th>
+                    <th ng-click="sortBy('Price')">
+                        <span class="sortorder" ng-show="propertyName === 'Price'" ng-class="{reverse: reverse}"></span>Total Price
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows | orderBy:propertyName:reverse">
+                    <th>{{row.Date}}</th>
+                    <td>{{row.Count}}</td>
+                    <td>{{row.Price}}$</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+

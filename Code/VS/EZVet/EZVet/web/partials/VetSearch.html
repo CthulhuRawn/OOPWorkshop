@@ -1,12 +1,12 @@
 ﻿<div class="row">
     <div class="col-sm-12">
-        <h1 class="pageTitle">{{pageTitle}}</h1>
+        <h1>{{pageTitle}}</h1>
     </div>
 </div>
 		
-<div class="row page">
-    <div class="searchResults">
-        <table class="table table-hover searchTable scrollableTable">
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-hover table-striped searchTable scrollableTable">
             <thead>
                 <th ng-click="sortBy('Id')" class="col-sm-1">
                     <span class="sortorder" ng-show="propertyName === 'Id'" ng-class="{reverse: reverse}"></span>Id
@@ -38,15 +38,16 @@
                 <td class="col-sm-3">
                     <input class="form-control" type="text" ng-model="model.Address" empty-to-null ng-keyup="submitSearch()"/>
                 </td>
+                <td></td>
             </tr>
             <tr ng-repeat="row in vets | orderBy:propertyName:reverse">
                 <td class="col-sm-1">{{row.Id}}</td>
                 <td class="col-sm-3">{{row.FirstName}}</td>
                 <td class="col-sm-3">{{row.LastName}}</td>
                 <td class="col-sm-3">{{row.AddressToDispaly}}</td>
-                <td class="col-sm-1"><a href="#/VetPage/{{row.Id}}">View Vet</a></td>
                 <td class="col-sm-1" ng-show="petId > -1"><a ng-click="setVetForPet(row.Id)">Set Vet</a></td>
-            </tr>
+                <td class="col-sm-1"><a href="#/VetPage/{{row.Id}}">View Vet</a></td>
+                </tr>
             </tbody>
         </table>
     </div>

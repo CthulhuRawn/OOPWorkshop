@@ -1,67 +1,74 @@
-﻿<div class="container">
-    <h2>Vet Name: {{vet.FirstName + " " + vet.LastName}}</h2>
-    <form>
-        <div class="row">
-            <div class="form-group col-sm-4">
-                <label>Address</label> 
-                <label type="text" class="form-control">{{vet.AddressToDispaly}}</label></div>
-            <div class="form-group col-sm-4">
-                <label>Phone</label> 
-                <input type="text" class="form-control" ng-model="vet.Phone" ng-readonly="sharedVariables.role !== 'Doctor'"/></div>
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1>Vet Name: {{vet.FirstName + " " + vet.LastName}}</h1>
+    </div>
+</div>
+<form>
+    <div class="row">
+        <div class="form-group col-sm-4">
+            <label>Address</label>
+            <label type="text" class="form-control">{{vet.AddressToDispaly}}</label>
         </div>
-        <div class="row">
-            <div class="form-group col-sm-4">
-                <label>Opening Hours</label> 
-                <textarea class="form-control" rows="7" ng-model="vet.OpeningHours" ng-readonly="sharedVariables.role !== 'Doctor'"></textarea></div>
-            <div class="form-group col-sm-4">
-                <label>Animals</label>
-                <div class="checkbox" ng-repeat="type in animalTypes">
-                    <label>
-                        <input type="checkbox"
-                               name="selectedTypes[]"
-                               value="{{type.id}}"
-                               ng-checked="vet.Types.indexOf(type.id) > -1"
-                               ng-click="toggleSelection(type.id)"
-                               ng-disabled="sharedVariables.role !== 'Doctor'"> {{type.name}}
-                    </label>
-                </div>
-            </div>
-            <div class="form-group col-sm-4">
-                <label>Information</label> 
-                <textarea class="form-control" rows="7" ng-model="vet.Notes" ng-readonly="sharedVariables.role !== 'Doctor'"></textarea></div>
+        <div class="form-group col-sm-4">
+            <label>Phone</label>
+            <input type="text" class="form-control" ng-model="vet.Phone" ng-readonly="sharedVariables.role !== 'Doctor'" />
         </div>
-        <div class="row">
-            <div class="form-group col-sm-12">
-                <button type="button" class="btn btn-lg btn-primary pull-right" ng-show="sharedVariables.role == 'Doctor'" ng-click="save()">Save</button>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-4">
+            <label>Opening Hours</label>
+            <textarea class="form-control" rows="7" ng-model="vet.OpeningHours" ng-readonly="sharedVariables.role !== 'Doctor'"></textarea>
+        </div>
+        <div class="form-group col-sm-4">
+            <label>Animals</label>
+            <div class="checkbox" ng-repeat="type in animalTypes">
+                <label>
+                    <input type="checkbox"
+                           name="selectedTypes[]"
+                           value="{{type.id}}"
+                           ng-checked="vet.Types.indexOf(type.id) > -1"
+                           ng-click="toggleSelection(type.id)"
+                           ng-disabled="sharedVariables.role !== 'Doctor'"> {{type.name}}
+                </label>
             </div>
         </div>
-        <div class="row">
-            <table class="table table-striped table-hover">
-                <thead>
+        <div class="form-group col-sm-4">
+            <label>Information</label>
+            <textarea class="form-control" rows="7" ng-model="vet.Notes" ng-readonly="sharedVariables.role !== 'Doctor'"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <button type="button" class="btn btn-lg btn-primary pull-right" ng-show="sharedVariables.role == 'Doctor'" ng-click="save()">Save</button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-hover">
+            <thead>
                 <tr>
                     <th>Name</th>
                     <th>Date</th>
                     <th>Recommendation</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <tr ng-repeat="recommendation in vet.Recommendations">
                     <td>{{ recommendation.OwnerName }}</td>
                     <td>{{ recommendation.Date }}</td>
                     <td>{{ recommendation.Text }}</td>
                 </tr>
-                </tbody>
-            </table>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="sharedVariables.role == 'Owner'">
+        <div class="row">
+            <textarea rows="5" ng-model="newRecommendation" class="col-sm-12 form-control"></textarea>
         </div>
-        <div ng-show="sharedVariables.role == 'Owner'">
-            <div class="row">
-                <textarea rows="5" ng-model="newRecommendation" class="col-sm-12 form-control"></textarea>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-12">
-                    <button type="button" class="btn btn-lg btn-primary pull-right" ng-click="saveRecommendation()">Save</button>
-                </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <button type="button" class="btn btn-lg btn-primary pull-right" ng-click="saveRecommendation()">Save</button>
             </div>
         </div>
+    </div>
 </form>
 </div>

@@ -14,8 +14,8 @@
             templateUrl: 'web/partials/Login.html',
             controller: 'LoginCtrl'
         }); 
-        $routeProvider.when('/registrationForm', {
-            templateUrl: 'web/partials/registrationForm.html',
+        $routeProvider.when('/RegistrationForm', {
+            templateUrl: 'web/partials/RegistrationForm.html',
             controller: 'RegistrationFormCtrl'
         });
         $routeProvider.when('/AnimalsList', {
@@ -85,7 +85,7 @@
     }]);
 
     ezVetApp.run(function ($rootScope, $location, $route, LoginService) {
-        var nonAuthenticanUrls = ["/", "/login", "/registrationForm"];
+        var nonAuthenticanUrls = ["/", "/login", "/RegistrationForm"];
 
         $rootScope.sharedVariables = {
             isLogin: true

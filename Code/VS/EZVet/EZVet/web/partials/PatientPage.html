@@ -1,76 +1,79 @@
-﻿<div class="container">
-    <h2>Patient ID: <span ng-show="pet.Id > 0">{{pet.Id}}</span></h2>
-    <form>
-        <div class="row">
-            <div class="form-group col-sm-4">
-                <label>Name</label>
-                <input type="text" class="form-control" id="nameInput" placeholder="Name" ng-model="pet.Name" />
-            </div>
-            <div class="form-group col-sm-2">
-                <label>Type</label>
-                <select class="form-control" style="width: 100px"
-                        ng-model="pet.Type" ng-options="type.id as type.name for type in animalTypes"></select>
-            </div>
-            <div class="form-group col-sm-2">
-                <label>Gender</label>
-                <div>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" value="1" ng-model="pet.Gender">M
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" value="2" ng-model="pet.Gender">F
-                    </label>
-                </div>
-            </div>
-            <div class="form-group col-sm-4">
-                <div class='form-group'
-                     moment-picker="pet.DateOfBirth"
-                     locale="en-gb"
-                     format="DD/MM/YYYY"
-                     min-view="year"
-                     max-view="month"
-                     autoclose="true">
-                    <label>Date of birth</label>
-                    <input name="birthDate" class="form-control" empty-to-null
-                           required past psdate ng-model="pet.DateOfBirth"
-                           ng-model-options="{ updateOn: 'blur' }">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-4">
-                <label>Chip #</label>
-                <input type="text" class="form-control" id="chipInput" placeholder="Chip #" ng-model="pet.ChipNumber" />
-            </div>
-            <div class="form-group col-sm-2">
-                <label>Color</label>
-                <input type="text" class="form-control" id="colorInput" placeholder="Color" ng-model="pet.Color" />
-            </div>
-            <div class="form-group col-sm-2">
-                <label>Weight</label>
-                <div class="input-group">
-                    <input type="number" step="any" class="form-control" ng-model="pet.Weight">
-                    <span class="input-group-addon">kg</span>
-                </div>
-            </div>
-            <div class="form-group col-sm-2" ng-show="pet.Id > 0">
-                <label>Owner Name</label><br>
-                <label id="ownerLabel">{{pet.OwnerName}}</label>
-            </div>
-            <div class="form-group col-sm-2" ng-show="pet.Id > 0">
-                <label>Owner Phone</label><br>
-                <label id="ownerPhoneLabel">{{pet.OwnerPhone}}</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-12">
-                <a href="#/VetSearch/{{pet.Id}}" type="button" class="btn btn-lg btn-primary" ng-show="sharedVariables.role == 'Owner'">Choose doctor</a>
-                <button type="button" class="btn btn-lg btn-primary pull-right" ng-click="savePet()">Save</button>
-            </div>
-        </div>
-    </form>
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1>Patient ID: <span ng-show="pet.Id > 0">{{pet.Id}}</span></h1>
+    </div>
 </div>
-<div class="container" ng-show="pet.Id > 0">
+    
+<form>
+    <div class="row">
+        <div class="form-group col-sm-4">
+            <label>Name</label>
+            <input type="text" class="form-control" id="nameInput" placeholder="Name" ng-model="pet.Name" />
+        </div>
+        <div class="form-group col-sm-2">
+            <label>Type</label>
+            <select class="form-control" style="width: 100px"
+                    ng-model="pet.Type" ng-options="type.id as type.name for type in animalTypes"></select>
+        </div>
+        <div class="form-group col-sm-2">
+            <label>Gender</label>
+            <div>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" value="1" ng-model="pet.Gender">M
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" value="2" ng-model="pet.Gender">F
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-sm-4">
+            <div class='form-group'
+                 moment-picker="pet.DateOfBirth"
+                 locale="en-gb"
+                 format="DD/MM/YYYY"
+                 min-view="year"
+                 max-view="month"
+                 autoclose="true">
+                <label>Date of birth</label>
+                <input name="birthDate" class="form-control" empty-to-null
+                       required past psdate ng-model="pet.DateOfBirth"
+                       ng-model-options="{ updateOn: 'blur' }">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-4">
+            <label>Chip #</label>
+            <input type="text" class="form-control" id="chipInput" placeholder="Chip #" ng-model="pet.ChipNumber" />
+        </div>
+        <div class="form-group col-sm-2">
+            <label>Color</label>
+            <input type="text" class="form-control" id="colorInput" placeholder="Color" ng-model="pet.Color" />
+        </div>
+        <div class="form-group col-sm-2">
+            <label>Weight</label>
+            <div class="input-group">
+                <input type="number" step="any" class="form-control" ng-model="pet.Weight">
+                <span class="input-group-addon">kg</span>
+            </div>
+        </div>
+        <div class="form-group col-sm-2" ng-show="pet.Id > 0">
+            <label>Owner Name</label><br>
+            <label id="ownerLabel">{{pet.OwnerName}}</label>
+        </div>
+        <div class="form-group col-sm-2" ng-show="pet.Id > 0">
+            <label>Owner Phone</label><br>
+            <label id="ownerPhoneLabel">{{pet.OwnerPhone}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <a href="#/VetSearch/{{pet.Id}}" type="button" class="btn btn-lg btn-primary" ng-show="sharedVariables.role == 'Owner'">Choose doctor</a>
+            <button type="button" class="btn btn-lg btn-primary pull-right" ng-click="savePet()">Save</button>
+        </div>
+    </div>
+</form>
+<div ng-show="pet.Id > 0">
     <div class="row">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active">

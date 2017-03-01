@@ -281,7 +281,7 @@
     <Content Include="web\partials\Old\pendingOrdersToJoin.html" />
     <Content Include="web\partials\Old\loginForm.html" />
     <Content Include="web\partials\Old\ownedOrders.html" />
-    <Content Include="web\partials\Old\registrationForm.html" />
+    <Content Include="web\partials\RegistrationForm.html" />
     <Content Include="web\partials\Old\reportComplaint.html" />
     <Content Include="web\partials\Old\reportCustomer.html" />
     <Content Include="web\partials\Old\reportFields.html" />

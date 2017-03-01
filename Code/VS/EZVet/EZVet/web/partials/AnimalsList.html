@@ -1,74 +1,77 @@
-﻿<div class="container">
-    <h2>{{ sharedVariables.role === 'Owner' ? 'My Pets':'My Patients'}}</h2>
-    <form>
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th ng-click="sortBy('Id')" class="col-sm-1">
-                                <span class="sortorder" ng-show="propertyName === 'Id'" ng-class="{reverse: reverse}"></span>#</th>
-                        <th ng-click="sortBy('Name')" class="col-sm-2">
-                                <span class="sortorder" ng-show="propertyName === 'Name'" ng-class="{reverse: reverse}"></span>Pet Name</th>
-                        <th ng-click="sortBy('DoctorName')" ng-show="sharedVariables.role === 'Owner'" class="col-sm-2">
-                                <span class="sortorder" ng-show="propertyName === 'DoctorName'" ng-class="{reverse: reverse}"></span>Doctor Name</th>
-                        <th ng-click="sortBy('OwnerName')" ng-show="sharedVariables.role === 'Doctor'" class="col-sm-2">
-                                <span class="sortorder" ng-show="propertyName === 'OwnerName'" ng-class="{reverse: reverse}"></span>Owner Name</th>
-                        <th ng-click="sortBy('Type')" class="col-sm-2">
-                                <span class="sortorder" ng-show="propertyName === 'Type'" ng-class="{reverse: reverse}"></span>Type</th>
-                        <th ng-click="sortBy('DateOfBirth')" class="col-sm-1">
-                                <span class="sortorder" ng-show="propertyName === 'DateOfBirth'" ng-class="{reverse: reverse}"></span>Age</th>
-                        <th ng-click="sortBy('Gender')" class="col-sm-2">
-                                <span class="sortorder" ng-show="propertyName === 'Gender'" ng-class="{reverse: reverse}"></span>Gender</th>
-                        <th ng-click="sortBy('NextVisit')" class="col-sm-2">
-                                <span class="sortorder" ng-show="propertyName === 'NextVisit'" ng-class="{reverse: reverse}"></span>Next Scheduled Visit</th>
-                        <th class="col-sm-1">
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col-sm-1">
-                                <input class="form-control" type="number" ng-model="model.id" ng-keyup="submitSearch()" />
-                            </td>
-                            <td class="col-sm-2">
-                                <input class="form-control" type="text" ng-model="model.animalName" empty-to-null ng-keyup="submitSearch()" />
-                            </td>
-                            <td class="col-sm-2" ng-show="sharedVariables.role === 'Owner'">
-                                <input class="form-control" type="text" ng-model="model.doctorName" empty-to-null ng-keyup="submitSearch()" />
-                            </td>
-                            <td class="col-sm-2" ng-show="sharedVariables.role === 'Doctor'">
-                                <input class="form-control" type="text" ng-model="model.ownerName" empty-to-null ng-keyup="submitSearch()" />
-                            </td>
-                            <td class="col-sm-2">
-                                <select class="form-control" ng-model="model.Type" ng-options="type.id as type.name for type in animalTypes" ng-change="submitSearch()"></select>
-                            </td>
-                            <td class="col-sm-1"></td>
-                            <td class="col-sm-2">
-                                <select class="form-control" ng-model="model.Gender" ng-options="gender.id as gender.name for gender in genders" ng-change="submitSearch()"></select>
-                            </td>
-                            <td></td>
-                            <td><button type="button" class="btn btn-sm" ng-click="clearSearch()">Clear Search</button></td>
-                        </tr>
-                    <tr ng-repeat="x in pets | orderBy:propertyName:reverse:comparator">
-                        <td>{{ x.Id }}</td>
-                        <td>{{ x.Name }}</td>
-                        <td ng-show="sharedVariables.role === 'Owner'">{{ x.DoctorName }}</td>
-                        <td ng-show="sharedVariables.role === 'Doctor'">{{ x.OwnerName }}</td>
-                        <td>{{ getType(x.Type)}}</td>
-                        <td>{{ calcAge(x.DateOfBirth) }}</td>
-                        <td>{{ getGender(x.Gender)}}</td>
-                        <td>{{ x.NextVisit }}</td>
-                        <td><a type="button" class="btn btn-sm btn-primary" href="#/PatientPage/{{x.Id}}">View Pet</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-12">
-                <a type="button" class="btn btn-lg btn-primary pull-right" href="#/PatientPage" ng-show="sharedVariables.role === 'Owner'">Add Pet</a>
-            </div>
-        </div>
-    </form>
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1>{{ sharedVariables.role === 'Owner' ? 'My Pets':'My Patients'}}</h1>
+    </div>
 </div>
+<form>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped table-hover searchTable scrollableTable">
+                <thead>
+                <tr>
+                    <th ng-click="sortBy('Id')" class="col-sm-1">
+                        <span class="sortorder" ng-show="propertyName === 'Id'" ng-class="{reverse: reverse}"></span>#</th>
+                    <th ng-click="sortBy('Name')" class="col-sm-2">
+                        <span class="sortorder" ng-show="propertyName === 'Name'" ng-class="{reverse: reverse}"></span>Pet Name</th>
+                    <th ng-click="sortBy('DoctorName')" ng-show="sharedVariables.role === 'Owner'" class="col-sm-2">
+                        <span class="sortorder" ng-show="propertyName === 'DoctorName'" ng-class="{reverse: reverse}"></span>Doctor Name</th>
+                    <th ng-click="sortBy('OwnerName')" ng-show="sharedVariables.role === 'Doctor'" class="col-sm-2">
+                        <span class="sortorder" ng-show="propertyName === 'OwnerName'" ng-class="{reverse: reverse}"></span>Owner Name</th>
+                    <th ng-click="sortBy('Type')" class="col-sm-2">
+                        <span class="sortorder" ng-show="propertyName === 'Type'" ng-class="{reverse: reverse}"></span>Type</th>
+                    <th ng-click="sortBy('DateOfBirth')" class="col-sm-1">
+                        <span class="sortorder" ng-show="propertyName === 'DateOfBirth'" ng-class="{reverse: reverse}"></span>Age</th>
+                    <th ng-click="sortBy('Gender')" class="col-sm-2">
+                        <span class="sortorder" ng-show="propertyName === 'Gender'" ng-class="{reverse: reverse}"></span>Gender</th>
+                    <th ng-click="sortBy('NextVisit')" class="col-sm-2">
+                        <span class="sortorder" ng-show="propertyName === 'NextVisit'" ng-class="{reverse: reverse}"></span>Next Scheduled Visit</th>
+                    <th class="col-sm-1">
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="col-sm-1">
+                        <input class="form-control" type="number" ng-model="model.id" ng-keyup="submitSearch()" />
+                    </td>
+                    <td class="col-sm-2">
+                        <input class="form-control" type="text" ng-model="model.animalName" empty-to-null ng-keyup="submitSearch()" />
+                    </td>
+                    <td class="col-sm-2" ng-show="sharedVariables.role === 'Owner'">
+                        <input class="form-control" type="text" ng-model="model.doctorName" empty-to-null ng-keyup="submitSearch()" />
+                    </td>
+                    <td class="col-sm-2" ng-show="sharedVariables.role === 'Doctor'">
+                        <input class="form-control" type="text" ng-model="model.ownerName" empty-to-null ng-keyup="submitSearch()" />
+                    </td>
+                    <td class="col-sm-2">
+                        <select class="form-control" ng-model="model.Type" ng-options="type.id as type.name for type in animalTypes" ng-change="submitSearch()"></select>
+                    </td>
+                    <td class="col-sm-1"></td>
+                    <td class="col-sm-2">
+                        <select class="form-control" ng-model="model.Gender" ng-options="gender.id as gender.name for gender in genders" ng-change="submitSearch()"></select>
+                    </td>
+                    <td></td>
+                    <td><button type="button" class="btn btn-sm" ng-click="clearSearch()">Clear Search</button></td>
+                </tr>
+                <tr ng-repeat="x in pets | orderBy:propertyName:reverse:comparator">
+                    <td>{{ x.Id }}</td>
+                    <td>{{ x.Name }}</td>
+                    <td ng-show="sharedVariables.role === 'Owner'">{{ x.DoctorName }}</td>
+                    <td ng-show="sharedVariables.role === 'Doctor'">{{ x.OwnerName }}</td>
+                    <td>{{ getType(x.Type)}}</td>
+                    <td>{{ calcAge(x.DateOfBirth) }}</td>
+                    <td>{{ getGender(x.Gender)}}</td>
+                    <td>{{ x.NextVisit }}</td>
+                    <td><a type="button" class="btn btn-sm btn-primary" href="#/PatientPage/{{x.Id}}">View Pet</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <a type="button" class="btn btn-lg btn-primary pull-right" href="#/PatientPage" ng-show="sharedVariables.role === 'Owner'">Add Pet</a>
+        </div>
+    </div>
+</form>
+
