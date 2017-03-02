@@ -114,6 +114,11 @@ input:not(:focus):not(.ng-valid) + span + .callout:not(:hover) {
 	transform: scale(0);
 }
 
+input + span + .callout {
+	left: 50px;
+    top: 37px;
+}
+
 .callout {	
 	position: absolute;
 	max-width: 14em;
