@@ -24,5 +24,14 @@ namespace EZVet.Controllers
             var userId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
             return _treatmentsQueryProcessor.Save(treatmentReport, userId);
         }
+
+        [HttpGet]
+        [Route("api/treatments/get")]
+        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Doctor + "," + Consts.Roles.Owner)]
+        public TreatmentReport Get(int petId, int treatmentId)
+        {
+            return _treatmentsQueryProcessor.Get(treatmentId, petId);
+        }
+
     }
 }

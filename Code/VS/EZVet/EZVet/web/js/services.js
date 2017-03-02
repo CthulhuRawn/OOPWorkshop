@@ -115,7 +115,8 @@
                     assign: urlBase + "vets/assign"
                 },
                 treatments: {
-                    save: urlBase + "treatments/save"
+                    save: urlBase + "treatments/save",
+                    get: urlBase + "treatments/get"
                 },
                 profile: {
                     update: urlBase + "profile/update",

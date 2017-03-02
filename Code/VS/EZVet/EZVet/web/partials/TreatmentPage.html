@@ -3,14 +3,17 @@
         <h1 class="pageTitle">Treatment Page</h1>
     </div>
 </div>
-    <form name="treatmentForm" ng-submit="submitUser(treatmentForm.$valid)">
+<form name="treatmentForm" ng-submit="submitUser(treatmentForm.$valid)">
+    <fieldset ng-disabled="treatmentId > 0">
         <div class="row">
-            <div class="form-group col-sm-4" >
-                <label>Name</label> 
-                <input type="text" class="form-control" id="nameInput" value="{{treatment.Animal.Name}}" disabled/></div>
             <div class="form-group col-sm-4">
-                <label>Owner</label> 
-                <input type="text" class="form-control" id="ownerInput" value="{{treatment.Animal.OwnerName}}" disabled/></div>
+                <label>Name</label>
+                <input type="text" class="form-control" id="nameInput" value="{{treatment.Animal.Name}}" disabled />
+            </div>
+            <div class="form-group col-sm-4">
+                <label>Owner</label>
+                <input type="text" class="form-control" id="ownerInput" value="{{treatment.Animal.OwnerName}}" disabled />
+            </div>
             <div class="form-group col-sm-2">
                 <label>Gender</label>
                 <div>
@@ -23,12 +26,13 @@
                 </div>
             </div>
             <div class="form-group col-sm-2">
-                <label>Age</label> 
-                <input type="text" class="form-control" value="{{ calcAge(treatment.Animal.DateOfBirth) }}" disabled/></div>
+                <label>Age</label>
+                <input type="text" class="form-control" value="{{ calcAge(treatment.Animal.DateOfBirth) }}" disabled />
+            </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.Weight.$invalid && submitted }">
-                <label>Weight</label> 
+                <label>Weight</label>
                 <div class="input-group">
                     <input type="number" name="Weight" class="form-control" ng-model="treatment.Measurements.Weight" required min="0">
                     <span class="input-group-addon">Kg</span>
@@ -36,37 +40,37 @@
                         <div ng-show="treatmentForm.Weight.$error.required && submitted">Please insert Weight</div>
                     </div>
                 </div>
-            </div>	
+            </div>
             <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.Pulse.$invalid && submitted }">
-                <label>Pulse</label> 
-                <input type="number" name="Pulse" class="form-control" ng-model="treatment.Measurements.Pulse" required min="0"/>
+                <label>Pulse</label>
+                <input type="number" name="Pulse" class="form-control" ng-model="treatment.Measurements.Pulse" required min="0" />
                 <div class="callout" ng-show="treatmentForm.Pulse.$invalid && submitted">
                     <div ng-show="treatmentForm.Pulse.$error.required && submitted">Please insert Pulse</div>
                 </div>
             </div>
             <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.SystolicBloodPressure.$invalid && submitted }">
-                <label>Systolic BP</label> 
-                <input type="number" name="SystolicBloodPressure" class="form-control" ng-model="treatment.Measurements.SystolicBloodPressure" required min="0"/>
+                <label>Systolic BP</label>
+                <input type="number" name="SystolicBloodPressure" class="form-control" ng-model="treatment.Measurements.SystolicBloodPressure" required min="0" />
                 <div class="callout" ng-show="treatmentForm.SystolicBloodPressure.$invalid && submitted">
                     <div ng-show="treatmentForm.SystolicBloodPressure.$error.required && submitted">Please insert Systolic BP</div>
                 </div>
             </div>
             <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.DiastolicBloodPressure.$invalid && submitted }">
                 <label>Diastolic BP</label>
-                <input type="number" name="DiastolicBloodPressure" class="form-control" ng-model="treatment.Measurements.DiastolicBloodPressure" required min="0"/>
+                <input type="number" name="DiastolicBloodPressure" class="form-control" ng-model="treatment.Measurements.DiastolicBloodPressure" required min="0" />
                 <div class="callout" ng-show="treatmentForm.DiastolicBloodPressure.$invalid && submitted">
                     <div ng-show="treatmentForm.DiastolicBloodPressure.$error.required && submitted">Please insert Diastolic BP</div>
                 </div>
             </div>
             <div class="form-group col-sm-2" ng-class="{ 'has-error' : treatmentForm.Temperature.$invalid && submitted }">
-                <label>Temperature</label> 
+                <label>Temperature</label>
                 <div class="input-group">
                     <input type="number" name="Temperature" class="form-control" ng-model="treatment.Measurements.Temperature" required min="0">
                     <span class="input-group-addon">°C</span>
                     <div class="callout" ng-show="treatmentForm.Temperature.$invalid && submitted">
                         <div ng-show="treatmentForm.Temperature.$error.required && submitted">Please insert Temperature</div>
                     </div>
-                </div>	
+                </div>
             </div>
             <div class="form-group col-sm-2">
                 <div class='form-group'
@@ -75,38 +79,41 @@
                      format="DD/MM/YYYY"
                      min-view="year"
                      max-view="month"
-                     autoclose="true">
+                     autoclose="true"
+                     disable="treatmentId > 0"
+                     ng-disabled="treatmentId > 0">
                     <label>Date of next visit</label>
                     <input name="DateNextVisit" class="form-control" empty-to-null
                            required past psdate ng-model="treatment.Animal.NextVisit"
-                           ng-model-options="{ updateOn: 'blur' }">
+                           ng-model-options="{ updateOn: 'blur' }" >
                 </div>
-            </div>	
+            </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-12">
                 <button type="button" class="btn btn-lg btn-primary pull-right" ng-click="saveTreatment()">Save</button>
             </div>
         </div>
-    </form>
-    <div class="row">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active">
-                <a data-toggle="tab" data-target="#treatmentsTab">Treatments</a>
-            </li>
-            <li role="presentation">
-                <a data-toggle="tab" data-target="#vaccinesTab">Vaccines</a>
-            </li>
-            <li role="presentation">
-                <a data-toggle="tab" data-target="#medicationsTab">Medications</a>
-            </li>
-            <li role="presentation">
-                <a data-toggle="tab" data-target="#summaryTab">Summary</a>
-            </li>
-        </ul>
-    </div>
+    </fieldset>
+</form>
+<div class="row">
+    <ul class="nav nav-tabs">
+        <li role="presentation" ng-class="{active: treatmentId === -1} " >
+            <a data-toggle="tab" data-target="#treatmentsTab" ng-disabled="treatmentId > 0">Treatments</a>
+        </li>
+        <li role="presentation">
+            <a data-toggle="tab" data-target="#vaccinesTab" ng-disabled="treatmentId > 0">Vaccines</a>
+        </li>
+        <li role="presentation">
+            <a data-toggle="tab" data-target="#medicationsTab" ng-disabled="treatmentId > 0">Medications</a>
+        </li>
+        <li role="presentation" ng-class="{active: treatmentId > 0} ">
+            <a data-toggle="tab" data-target="#summaryTab">Summary</a>
+        </li>
+    </ul>
+</div>
 <div class="tab-content">
-    <div class="tab-pane active" id="treatmentsTab">
+    <div class="tab-pane" id="treatmentsTab" ng-class="{active: treatmentId === -1} ">
         <table id="TreatmentsTable" class="table table-striped table-hover">
             <thead>
             <tr>
@@ -208,9 +215,11 @@
             </div>
         </div>
     </div>
-    <div id="summaryTab" class="tab-pane">
+    <div id="summaryTab" class="tab-pane" ng-class="{active: treatmentId > 0} ">
         <div class="row">
-            <textarea rows="5" ng-model="treatment.TreatmentSummary" class="col-sm-12 form-control"></textarea>
+            <div class="col-sm-12">
+                <textarea rows="5" ng-model="treatment.TreatmentSummary" class="form-control"></textarea>
+            </div>
         </div>
         <table class="table table-striped table-hover">
             <thead>

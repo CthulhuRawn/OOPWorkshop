@@ -9,9 +9,25 @@
             $scope.submitted = false;
 
             $scope.totalPrice = 0;
-            $scope.treatment.PetId = $routeParams.id;
-            
-            if ($scope.treatment.PetId) {
+            $scope.treatment.PetId = $routeParams.petId;
+
+            if ($routeParams.treatmentId) {
+                $scope.treatmentId = $routeParams.treatmentId;
+            } else {
+                $scope.treatmentId = -1;
+            }
+
+            if ($scope.treatmentId > 0 && $scope.treatment.PetId) {
+                $http({
+                    url: ServerRoutes.treatments.get,
+                    method: "GET",
+                    params: { PetId: $scope.treatment.PetId, TreatmentId: $scope.treatmentId }
+                }).then(function searchCompleted(response) {
+                    $scope.treatment = response.data;
+                    $scope.totalPrice = response.data.TotalPrice;
+                });
+            }
+            else if ($scope.treatment.PetId) {
                 $http({
                     url: ServerRoutes.animals.patient,
                     method: "GET",

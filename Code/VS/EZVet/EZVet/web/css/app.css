@@ -228,7 +228,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .table {
 	margin-top: 15px;
-	white-space: nowrap
+    white-space: normal;
 }
 
 .table > thead > tr > th:first-of-type {	
@@ -263,7 +263,8 @@ textarea {
   resize: none;
 }
 
-.dropdown-toggle{
+
+.fullWidth{
 	width:100%
 }
 

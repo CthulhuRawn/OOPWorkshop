@@ -13,6 +13,7 @@ namespace EZVet.QueryProcessors
         TreatmentReport Save(TreatmentReport treatment, int cotnactId);
 
         IQueryable<Domain.TreatmentReport> Query();
+        TreatmentReport Get(int treatmentId, int petId);
     }
 
 
@@ -156,6 +157,13 @@ namespace EZVet.QueryProcessors
             _animalsQueryProcessor.Update(animal.Id, animal);
 
             return result;
+        }
+
+        public TreatmentReport Get(int treatmentId, int petId)
+        {
+            return
+                new TreatmentReport().Initialize(Query()
+                    .FirstOrDefault(x => x.Id == treatmentId && x.Animal.Id == petId));
         }
     }
 }

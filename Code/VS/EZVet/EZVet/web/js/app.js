@@ -38,7 +38,7 @@
             controller: 'vetPageCtrl',
             activetab: 'VetPage'
         });
-        $routeProvider.when('/TreatmentPage/:id?', {
+        $routeProvider.when('/TreatmentPage/:petId/:treatmentId?', {
             templateUrl: 'web/partials/TreatmentPage.html',
             controller: 'treatmentPageCtrl',
             activetab: 'TreatmentPage'
