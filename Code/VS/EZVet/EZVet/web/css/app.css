@@ -189,7 +189,7 @@ h1.pageTitle {
 }
 
 .container {
-	background-color: #ade1d0;
+	background-color: #c4e6ff;
 	margin-top: 60px;
 	border-radius: 7px;
 	box-shadow: 2px 2px rgba(0,0,0,.5);
@@ -227,11 +227,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .table > thead > tr {
-	background-color: #cddbf5;
+	background-color: #85bdde;
 }
 
 .table > tbody  tr{
-	background-color:#fff9e7;
+	background-color:#ccebfb;
 }
 
 textarea {
@@ -249,8 +249,12 @@ textarea {
 }
 
 .btn-primary{
-	background-color: #508ed7;
+	background-color: #66c0b7;
 	background-image:none;
+}
+
+.btn-primary:hover{
+    background-color: #cb2c31;
 }
 
 .glyphicon{
@@ -259,4 +263,9 @@ textarea {
 
 .table > thead > tr > th,.table > thead > tr > td  {
 	vertical-align:top;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    color: #fff;
+    background-color: #cb2c31;
 }
