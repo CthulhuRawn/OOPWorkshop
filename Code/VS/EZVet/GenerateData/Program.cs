@@ -14,21 +14,21 @@ namespace GenerateData
 
             var sessionFactory = Fluently.Configure()
                     .Database(SQLiteConfiguration.Standard.UsingFile(absoluteDbPath))
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CustomerMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<OwnerMap>())
                     .CurrentSessionContext("web")
                     .ExposeConfiguration(conf => new SchemaUpdate(conf).Execute(false, true))
                     .BuildSessionFactory();
             var session = sessionFactory.OpenSession();
             
-            var decode = new DecodesQueryProcessor(session);
-            var employeeQP = new EmployeesQueryProcessor(session);
-            var fieldQP = new FieldsQueryProcessor(decode, session);
-            var customerQP = new OwnersQueryProcessor(session);
+            //var decode = new DecodesQueryProcessor(session);
+            //var employeeQP = new EmployeesQueryProcessor(session);
+            //var fieldQP = new FieldsQueryProcessor(decode, session);
+            //var customerQP = new OwnersQueryProcessor(session);
 
-            var complaintQP = new ComplaintsQueryProcessor(session, decode, customerQP);
-            var orderQP = new OrdersQueryProcessor(session, customerQP, fieldQP, decode);
-            var participantQP = new ParticipantsQueryProcessor(session, customerQP, orderQP, decode);
-            var reviewQP = new ReviewsQueryProcessor(session, customerQP);
+            //var complaintQP = new ComplaintsQueryProcessor(session, decode, customerQP);
+            //var orderQP = new OrdersQueryProcessor(session, customerQP, fieldQP, decode);
+            //var participantQP = new ParticipantsQueryProcessor(session, customerQP, orderQP, decode);
+            //var reviewQP = new ReviewsQueryProcessor(session, customerQP);
             
             //ReportsQueryProcessor reportsQP = new ReportsQueryProcessor(customerQP, orderQP, complaintQP, participantQP);
 

@@ -27,18 +27,12 @@ namespace EZVet.Common
 
         private void ConfigureQueryProcessors(IKernel container)
         {
-            container.Bind<IComplaintsQueryProcessor>().To<ComplaintsQueryProcessor>();
             container.Bind<ITreatmentsQueryProcessor>().To<TreatmentsQueryProcessor>();
             container.Bind<IAnimalsQueryProcessor>().To<AnimalsQueryProcessor>();
             container.Bind<IOwnersQueryProcessor>().To<OwnersQueryProcessor>();
             container.Bind<IDoctorsQueryProcessor>().To<DoctorsQueryProcessor>();
             container.Bind<IDecodesQueryProcessor>().To<DecodesQueryProcessor>();
-            container.Bind<IEmployeesQueryProcessor>().To<EmployeesQueryProcessor>();
-            container.Bind<IFieldsQueryProcessor>().To<FieldsQueryProcessor>();
-            container.Bind<IOrdersQueryProcessor>().To<OrdersQueryProcessor>();
-            container.Bind<IParticipantsQueryProcessor>().To<ParticipantsQueryProcessor>();
             container.Bind<IReportsQueryProcessor>().To<ReportsQueryProcessor>();
-            container.Bind<IReviewsQueryProcessor>().To<ReviewsQueryProcessor>();
         }
 
         private void ConfigureNhibernate(IKernel container)
@@ -54,7 +48,7 @@ namespace EZVet.Common
 
             return Fluently.Configure()
                     .Database(SQLiteConfiguration.Standard.UsingFile(absoluteDbPath))
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CustomerMap>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<OwnerMap>())
                     .CurrentSessionContext("web")
                     .ExposeConfiguration(conf => new SchemaUpdate(conf).Execute(false, true))
                     .BuildSessionFactory();

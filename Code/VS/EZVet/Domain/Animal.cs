@@ -14,7 +14,6 @@ namespace Domain
         public virtual GenderDecode Gender { get; set; }
         public virtual double Weight { get; set; }
         public virtual AnimalTypeDecode Type { get; set; }
-        public virtual AnimalSubTypeDecode SubType { get; set; }
         public virtual string Notes { get; set; }
         public virtual string ChipNumber { get; set; }
         public virtual string Color { get; set; }

@@ -156,7 +156,7 @@
 
                 var validate = function () {
                     var val = ngModel.$viewValue;
-                    var valDate = moment(val, "DD-MM-YYYY").toDate()
+                    var valDate = moment(val, "DD-MM-YYYY").toDate();
 
                     // set validity
                     ngModel.$setValidity('future', valDate >= today);

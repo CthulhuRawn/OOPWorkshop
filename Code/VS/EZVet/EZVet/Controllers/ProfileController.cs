@@ -20,7 +20,7 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/profile/update")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         [TransactionFilter]
         public void Update(PersonLogin updateData)
         {
@@ -39,7 +39,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/profile/get")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         public object Get()
         {
             var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');

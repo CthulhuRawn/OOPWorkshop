@@ -22,7 +22,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/reports/finance")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         public List<FinanceReport> Finance([DateTimeParameter]DateTime? startDate = null, [DateTimeParameter]DateTime? endDate = null, int? datePart = null)
         {
             var cookieValues = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
@@ -41,7 +41,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/reports/perItem")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Doctor)]
         public List<ItemUsageReport> PerItem([DateTimeParameter]DateTime? startDate = null, [DateTimeParameter]DateTime? endDate = null, int? datePart = null, string itemName = "")
         {
             var doctorId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
@@ -50,7 +50,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/reports/perType")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Doctor)]
         public List<AnimalTypeReport> PerType([DateTimeParameter]DateTime? startDate = null, [DateTimeParameter]DateTime? endDate = null, int? datePart = null, int? animalType = null)
         {
             var doctorId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
@@ -59,7 +59,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/reports/perAnimal")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
+        [Authorize(Roles =  Consts.Roles.Owner)]
         public List<AnimalNameReport> PerAnimal([DateTimeParameter]DateTime? startDate = null, [DateTimeParameter]DateTime? endDate = null, int? datePart = null, int? animalId = null)
         {
             var ownerId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
@@ -68,7 +68,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/reports/visits")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         public List<VisitsReport> Visits(int? time = null)
         {
             var cookieValues = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');

@@ -74,14 +74,6 @@ namespace EZVet.Filters
                 authorized = true;
             }
 
-            var admin = session.QueryOver<Admin>().Where(x => x.Username == username && x.Password == password).SingleOrDefault();
-
-            if (admin != null)
-            {
-                AuthorizationSucceed(admin.Id, Consts.Roles.Admin);
-                authorized = true;
-            }
-
             return authorized;
         }
 

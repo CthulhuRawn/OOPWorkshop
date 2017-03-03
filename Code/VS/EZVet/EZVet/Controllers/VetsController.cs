@@ -21,7 +21,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/vets/all")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
+        [Authorize(Roles =  Consts.Roles.Owner)]
         public List<Doctor> All(string firstName = null, string lastName = null, string address = null, int? id = null)
         {
             return _doctorsQueryProcessor.Search(firstName, lastName, address, id).ToList();
@@ -29,7 +29,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/vets/assign")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
+        [Authorize(Roles =  Consts.Roles.Owner)]
         [TransactionFilter]
         public void Assign(int vetId, int petId)
         {
@@ -38,7 +38,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/vets/get")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         public Doctor Get(int? vetId)
         {
             if(vetId.HasValue)
@@ -57,7 +57,7 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/vets/save")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Doctor)]
         [TransactionFilter]
         public Doctor Save(Doctor doctor)
         {
@@ -66,7 +66,7 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/vets/saveRecommendation")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner)]
+        [Authorize(Roles =  Consts.Roles.Owner)]
         [TransactionFilter]
         public Doctor SaveRecommendation([FromBody]Recommendation recommendation, [FromUri]int id)
         {

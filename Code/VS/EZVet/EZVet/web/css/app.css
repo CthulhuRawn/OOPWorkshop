@@ -178,31 +178,6 @@ h1.pageTitle {
     text-decoration: underline
 }
 
-/* ==== Login  ==== */
-
-.loginForm {
-	width: 600px;
-	position: absolute;
-	right: 50%;
-	top: 20%;
-	transform: translateX(50%);
-
-    border: 2px solid #b6b6b6;
-    border-radius: 10px;
-    
-    padding: 15px;
-}
-
-.loginForm .form-group:last-of-type {
-    margin-bottom: 0;
-}
-
-/* ==== Datepicker styles ==== */
-
-.moment-picker .header-view th:first-child, .moment-picker .header-view th:last-child {
-    transform:rotate(180deg);
-}
-
 /* ==== Spinner styles ==== */
 
 .spinner-container {

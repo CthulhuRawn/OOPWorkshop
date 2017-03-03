@@ -19,7 +19,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/animals/myAnimals")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         public List<Animal> MyAnimals(int? id = null, string animalName = "", string doctorName = "", string ownerName = "", int? type = null, int? gender = null)
         {
             var cookieValues = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
@@ -39,7 +39,7 @@ namespace EZVet.Controllers
         
         [HttpGet]
         [Route("api/animals/animal")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         [TransactionFilter]
         public Animal Animal(int id)
         {
@@ -48,7 +48,7 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/animals/animal")]
-        [Authorize(Roles = Consts.Roles.Admin + "," + Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         [TransactionFilter]
         public Animal Animal(Animal animal)
         {

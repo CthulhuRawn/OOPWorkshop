@@ -48,14 +48,6 @@ namespace EZVet.Controllers
                 userId = employee.Id;
             }
 
-            var admin = _session.QueryOver<Admin>().Where(x => x.Username == credentials.Username && x.Password == credentials.Password).SingleOrDefault();
-
-            if (admin != null)
-            {
-                role = Consts.Roles.Admin;
-                userId = admin.Id;
-            }
-
             role = role ?? Consts.Roles.None;
 
             var cookie = new HttpCookie("userId", userId + ":" + role);
