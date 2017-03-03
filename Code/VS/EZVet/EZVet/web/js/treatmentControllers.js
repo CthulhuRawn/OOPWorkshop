@@ -98,7 +98,7 @@
                 window.print();
             };
 
-            $scope.saveTreatment = function (valid) {
+            $scope.submitTreatment = function (valid) {
                 $scope.submitted = true;
                 if (!valid)
                     return;

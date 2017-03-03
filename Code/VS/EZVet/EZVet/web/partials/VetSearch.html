@@ -20,7 +20,7 @@
                 <th ng-click="sortBy('AddressToDispaly')" class="col-sm-3">
                     <span class="sortorder" ng-show="propertyName === 'AddressToDispaly'" ng-class="{reverse: reverse}"></span>Address
                 </th>
-                <th class="col-sm-2">
+                <th class="col-sm-2" colspan="2">
                     Actions
                 </th>
             </thead>
@@ -38,7 +38,7 @@
                 <td class="col-sm-3">
                     <input class="form-control" type="text" ng-model="model.Address" empty-to-null ng-keyup="submitSearch()"/>
                 </td>
-                <td></td>
+                <td colspan="2"></td>
             </tr>
             <tr ng-repeat="row in vets | orderBy:propertyName:reverse">
                 <td class="col-sm-1">{{row.Id}}</td>
