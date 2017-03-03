@@ -4,9 +4,9 @@ using System.Linq;
 using EZVet.Common;
 using EZVet.DTOs;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
-    public interface IReportsQueryProcessor
+    public interface IReportsDao
     {
         IEnumerable<FinanceReport> GetFinanceReport(DateTime? startDate, DateTime? endDate, int? datePart, int doctorId,
             int ownerId);
@@ -22,16 +22,16 @@ namespace EZVet.QueryProcessors
         IEnumerable<VisitsReport> GetVisitsReport(int? time, int doctorId, int ownerId);
     }
 
-    public class ReportsQueryProcessor : IReportsQueryProcessor
+    public class ReportsDao : IReportsDao
     {
-        private ITreatmentsQueryProcessor _treatmentsQueryProcessor;
-        private IAnimalsQueryProcessor _animalsQueryProcessor;
+        private ITreatmentsDao _treatmentsDao;
+        private IAnimalsDao _animalsDao;
         private readonly Dictionary<int, string> _datePartFormat;
 
-        public ReportsQueryProcessor(ITreatmentsQueryProcessor treatmentsQueryProcessor, IAnimalsQueryProcessor animalsQueryProcessor)
+        public ReportsDao(ITreatmentsDao treatmentsDao, IAnimalsDao animalsDao)
         {
-            _treatmentsQueryProcessor = treatmentsQueryProcessor;
-            _animalsQueryProcessor = animalsQueryProcessor;
+            _treatmentsDao = treatmentsDao;
+            _animalsDao = animalsDao;
             _datePartFormat = new Dictionary<int, string>
             {
                 {1, "dd/MM/yyyy"},
@@ -46,7 +46,7 @@ namespace EZVet.QueryProcessors
             startDate = startDate ?? new DateTime(1900, 1, 1);
             endDate = endDate ?? DateTime.MaxValue;
             datePart = datePart ?? 1;
-            return _treatmentsQueryProcessor.Query()
+            return _treatmentsDao.Query()
                 .Where(
                     x =>
                         (x.Doctor.Id == doctorId || x.Animal.Owner.Id == ownerId) 
@@ -66,7 +66,7 @@ namespace EZVet.QueryProcessors
             startDate = startDate ?? new DateTime(1900, 1, 1);
             endDate = endDate ?? DateTime.MaxValue;
             datePart = datePart ?? 1;
-            return _treatmentsQueryProcessor.Query()
+            return _treatmentsDao.Query()
                 .Where(
                     x =>
                         x.Doctor.Id == doctorId && x.Date >= startDate && x.Date <= endDate)
@@ -88,7 +88,7 @@ namespace EZVet.QueryProcessors
             endDate = endDate ?? DateTime.MaxValue;
             datePart = datePart ?? 1;
             animalType = animalType ?? -1;
-            return _treatmentsQueryProcessor.Query()
+            return _treatmentsDao.Query()
                 .Where(
                     x =>
                         x.Doctor.Id == doctorId && x.Date >= startDate && x.Date <= endDate && (x.Animal.Type.Id == animalType || animalType == -1))
@@ -109,7 +109,7 @@ namespace EZVet.QueryProcessors
             endDate = endDate ?? DateTime.MaxValue;
             datePart = datePart ?? 1;
             animalId = animalId ?? -1;
-            return _treatmentsQueryProcessor.Query()
+            return _treatmentsDao.Query()
                 .Where(
                     x =>
                         x.Animal.Owner.Id == ownerId && x.Date >= startDate && x.Date <= endDate && (x.Animal.Id == animalId || animalId == -1))
@@ -128,7 +128,7 @@ namespace EZVet.QueryProcessors
         {
             var isDoctorMode = doctorId < ownerId;
             time = time ?? 1;
-            return _animalsQueryProcessor.Query()
+            return _animalsDao.Query()
                 .Where(
                     x =>
                         (x.Doctor.Id == doctorId ||

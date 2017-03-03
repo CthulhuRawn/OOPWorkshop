@@ -4,19 +4,19 @@ using System.Web;
 using System.Web.Http;
 using EZVet.DTOs;
 using EZVet.Filters;
-using EZVet.QueryProcessors;
+using EZVet.Daos;
 
 namespace EZVet.Controllers
 {
     public class VetsController : ApiController
     {
-        private readonly IDoctorsQueryProcessor _doctorsQueryProcessor;
-        private readonly IAnimalsQueryProcessor _animalsQueryProcessor;
+        private readonly IDoctorsDao _doctorsDao;
+        private readonly IAnimalsDao _animalsDao;
 
-        public VetsController(IDoctorsQueryProcessor doctorsQueryProcessor, IAnimalsQueryProcessor animalsQueryProcessor)
+        public VetsController(IDoctorsDao doctorsDao, IAnimalsDao animalsDao)
         {
-            _doctorsQueryProcessor = doctorsQueryProcessor;
-            _animalsQueryProcessor = animalsQueryProcessor;
+            _doctorsDao = doctorsDao;
+            _animalsDao = animalsDao;
         }
 
         [HttpGet]
@@ -24,7 +24,7 @@ namespace EZVet.Controllers
         [Authorize(Roles =  Consts.Roles.Owner)]
         public List<Doctor> All(string firstName = null, string lastName = null, string address = null, int? id = null)
         {
-            return _doctorsQueryProcessor.Search(firstName, lastName, address, id).ToList();
+            return _doctorsDao.Search(firstName, lastName, address, id).ToList();
         }
 
         [HttpGet]
@@ -33,7 +33,7 @@ namespace EZVet.Controllers
         [TransactionFilter]
         public void Assign(int vetId, int petId)
         {
-            _animalsQueryProcessor.AttachToDoctor(vetId, petId);
+            _animalsDao.AttachToDoctor(vetId, petId);
         }
 
         [HttpGet]
@@ -42,14 +42,14 @@ namespace EZVet.Controllers
         public Doctor Get(int? vetId)
         {
             if(vetId.HasValue)
-            return _doctorsQueryProcessor.GetDoctor(vetId.Value);
+            return _doctorsDao.GetDoctor(vetId.Value);
 
             var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
 
             int vetIdFromCookie;
             if (cookieValue[1] == Consts.Roles.Doctor && int.TryParse(cookieValue[0], out vetIdFromCookie))
             {
-               return _doctorsQueryProcessor.GetDoctor(vetIdFromCookie);
+               return _doctorsDao.GetDoctor(vetIdFromCookie);
             }
 
             return new Doctor();
@@ -61,7 +61,7 @@ namespace EZVet.Controllers
         [TransactionFilter]
         public Doctor Save(Doctor doctor)
         {
-            return _doctorsQueryProcessor.Update(doctor.Id.Value, doctor);
+            return _doctorsDao.Update(doctor.Id.Value, doctor);
         }
 
         [HttpPost]
@@ -71,7 +71,7 @@ namespace EZVet.Controllers
         public Doctor SaveRecommendation([FromBody]Recommendation recommendation, [FromUri]int id)
         {
             var userId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
-            return _doctorsQueryProcessor.AddRecommendation(recommendation.Text, id, userId);
+            return _doctorsDao.AddRecommendation(recommendation.Text, id, userId);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using EZVet.QueryProcessors;
+﻿using EZVet.Daos;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Maps;
@@ -20,17 +20,17 @@ namespace GenerateData
                     .BuildSessionFactory();
             var session = sessionFactory.OpenSession();
             
-            //var decode = new DecodesQueryProcessor(session);
-            //var employeeQP = new EmployeesQueryProcessor(session);
-            //var fieldQP = new FieldsQueryProcessor(decode, session);
-            //var customerQP = new OwnersQueryProcessor(session);
+            //var decode = new DecodesDao(session);
+            //var employeeQP = new EmployeesDao(session);
+            //var fieldQP = new FieldsDao(decode, session);
+            //var customerQP = new OwnersDao(session);
 
-            //var complaintQP = new ComplaintsQueryProcessor(session, decode, customerQP);
-            //var orderQP = new OrdersQueryProcessor(session, customerQP, fieldQP, decode);
-            //var participantQP = new ParticipantsQueryProcessor(session, customerQP, orderQP, decode);
-            //var reviewQP = new ReviewsQueryProcessor(session, customerQP);
+            //var complaintQP = new ComplaintsDao(session, decode, customerQP);
+            //var orderQP = new OrdersDao(session, customerQP, fieldQP, decode);
+            //var participantQP = new ParticipantsDao(session, customerQP, orderQP, decode);
+            //var reviewQP = new ReviewsDao(session, customerQP);
             
-            //ReportsQueryProcessor reportsQP = new ReportsQueryProcessor(customerQP, orderQP, complaintQP, participantQP);
+            //ReportsDao reportsQP = new ReportsDao(customerQP, orderQP, complaintQP, participantQP);
 
             //IEnumerable<Order> orrr = orderQP.GetAvailbleOrders(2, null, 1, new System.DateTime(2016, 8, 20, 0, 0, 0));
             //IEnumerable<CustomersActivityReport> result = reportsQP.GetCustomersActivityReport(null, null, null, null);

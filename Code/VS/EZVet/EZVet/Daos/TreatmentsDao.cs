@@ -6,9 +6,9 @@ using EZVet.Common;
 using NHibernate;
 using TreatmentReport = EZVet.DTOs.TreatmentReport;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
-    public interface ITreatmentsQueryProcessor
+    public interface ITreatmentsDao
     {
         TreatmentReport Save(TreatmentReport treatment, int cotnactId);
 
@@ -17,23 +17,23 @@ namespace EZVet.QueryProcessors
     }
 
 
-    public class TreatmentsQueryProcessor : DBAccessBase<Domain.TreatmentReport>, ITreatmentsQueryProcessor
+    public class TreatmentsDao : DBAccessBase<Domain.TreatmentReport>, ITreatmentsDao
     {
-        private readonly IDoctorsQueryProcessor _doctorsQueryProcessor;
-        private readonly IDecodesQueryProcessor _decodesQueryProcessor;
-        private readonly IAnimalsQueryProcessor _animalsQueryProcessor;
+        private readonly IDoctorsDao _doctorsDao;
+        private readonly IDecodesDao _decodesDao;
+        private readonly IAnimalsDao _animalsDao;
 
-        public TreatmentsQueryProcessor(ISession session, IDoctorsQueryProcessor doctorsQueryProcessor, IDecodesQueryProcessor decodesQueryProcessor, IAnimalsQueryProcessor animalsQueryProcessor) : base(session)
+        public TreatmentsDao(ISession session, IDoctorsDao doctorsDao, IDecodesDao decodesDao, IAnimalsDao animalsDao) : base(session)
         {
-            _doctorsQueryProcessor = doctorsQueryProcessor;
-            _decodesQueryProcessor = decodesQueryProcessor;
-            _animalsQueryProcessor = animalsQueryProcessor;
+            _doctorsDao = doctorsDao;
+            _decodesDao = decodesDao;
+            _animalsDao = animalsDao;
         }
 
         public TreatmentReport Save(TreatmentReport treatment, int cotnactId)
         {
             TreatmentReport result;
-            var animal = _animalsQueryProcessor.Get(treatment.Animal.Id.Value);
+            var animal = _animalsDao.Get(treatment.Animal.Id.Value);
             if (treatment.Id.HasValue)
             {
                 var report = Get(treatment.Id.Value);
@@ -58,7 +58,7 @@ namespace EZVet.QueryProcessors
                             Name = x.Name,
                             Dose = x.Dose,
                             Price = x.Price,
-                            Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Medication),
+                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Medication),
                             ContainingTreatment = report
                         });
 
@@ -69,7 +69,7 @@ namespace EZVet.QueryProcessors
                         {
                             Name = x.Name,
                             Price = x.Price,
-                            Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
+                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
                             ContainingTreatment = report
                         });
 
@@ -80,7 +80,7 @@ namespace EZVet.QueryProcessors
                         {
                             Name = x.Name,
                             Price = x.Price,
-                            Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine),
+                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine),
                             ContainingTreatment = report
                         });
 
@@ -114,13 +114,13 @@ namespace EZVet.QueryProcessors
                 var report = new Domain.TreatmentReport
                 {
                     AnimalMeasurements = animalMeasurements,
-                    Animal = _animalsQueryProcessor.Get(treatment.Animal.Id.Value),
+                    Animal = _animalsDao.Get(treatment.Animal.Id.Value),
                     Date = DateTime.UtcNow,
                     TotalPrice =
                         treatment.Medications.Sum(x => x.Price) + treatment.Vaccines.Sum(x => x.Price) +
                         treatment.Medications.Sum(x => x.Price),
                     Treatments = treatments,
-                    Doctor = _doctorsQueryProcessor.Get(cotnactId)
+                    Doctor = _doctorsDao.Get(cotnactId)
                 };
 
                 treatments.AddRange(treatment.Medications.Select(x => new Treatment
@@ -128,7 +128,7 @@ namespace EZVet.QueryProcessors
                     Name = x.Name,
                     Dose = x.Dose,
                     Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Medication),
+                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Medication),
                     ContainingTreatment = report
                 }));
 
@@ -136,7 +136,7 @@ namespace EZVet.QueryProcessors
                 {
                     Name = x.Name,
                     Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine),
+                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine),
                     ContainingTreatment = report
                 }));
 
@@ -144,7 +144,7 @@ namespace EZVet.QueryProcessors
                 {
                     Name = x.Name,
                     Price = x.Price,
-                    Type = _decodesQueryProcessor.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
+                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
                     ContainingTreatment = report
                 }));
                 report.Summary = treatment.TreatmentSummary;
@@ -154,7 +154,7 @@ namespace EZVet.QueryProcessors
             }
             animal.Weight = result.Measurements.Weight;
             animal.DateNextVisit = treatment.Animal.NextVisit;
-            _animalsQueryProcessor.Update(animal.Id, animal);
+            _animalsDao.Update(animal.Id, animal);
 
             return result;
         }

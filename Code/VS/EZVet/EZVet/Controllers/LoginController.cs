@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Http;
 using Domain;
 using EZVet.DTOs;
-using EZVet.QueryProcessors;
+using EZVet.Daos;
 using NHibernate;
 using Doctor = Domain.Doctor;
 
@@ -12,15 +12,15 @@ namespace EZVet.Controllers
 {
     public class LoginController : ApiController
     {
-        private IOwnersQueryProcessor _ownersQueryProcessor;
-        private IDoctorsQueryProcessor _doctorsQueryProcessor;
+        private IOwnersDao _ownersDao;
+        private IDoctorsDao _doctorsDao;
         ISession _session;
 
-        public LoginController(ISession session, IOwnersQueryProcessor ownersQueryProcessor, IDoctorsQueryProcessor doctorsQueryProcessor)
+        public LoginController(ISession session, IOwnersDao ownersDao, IDoctorsDao doctorsDao)
         {
             _session = session;
-            _ownersQueryProcessor = ownersQueryProcessor;
-            _doctorsQueryProcessor = doctorsQueryProcessor;
+            _ownersDao = ownersDao;
+            _doctorsDao = doctorsDao;
         }
 
         [HttpPost]
@@ -69,7 +69,7 @@ namespace EZVet.Controllers
         [Route("api/login/registration")]
         public RegistrationReponse Registration(PersonLogin entity)
         {
-            if (_ownersQueryProcessor.Exists(entity.Email) || _doctorsQueryProcessor.Exists(entity.Email))
+            if (_ownersDao.Exists(entity.Email) || _doctorsDao.Exists(entity.Email))
             {
                 return new RegistrationReponse
                 {
@@ -79,11 +79,11 @@ namespace EZVet.Controllers
 
             if (!string.IsNullOrEmpty(entity.DoctorCode))
             {
-                _doctorsQueryProcessor.Save(entity);
+                _doctorsDao.Save(entity);
             }
             else
             {
-                _ownersQueryProcessor.Save(entity);
+                _ownersDao.Save(entity);
             }
 
             return new RegistrationReponse

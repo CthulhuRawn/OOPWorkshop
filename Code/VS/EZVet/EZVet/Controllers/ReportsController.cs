@@ -5,18 +5,18 @@ using System.Web;
 using System.Web.Http;
 using EZVet.DTOs;
 using EZVet.Filters;
-using EZVet.QueryProcessors;
+using EZVet.Daos;
 
 namespace EZVet.Controllers
 {
     
     public class ReportsController : ApiController
     {
-        private readonly IReportsQueryProcessor _reportsQueryProcessor;
+        private readonly IReportsDao _reportsDao;
 
-        public ReportsController(IReportsQueryProcessor reportsQueryProcessor)
+        public ReportsController(IReportsDao reportsDao)
         {
-            _reportsQueryProcessor = reportsQueryProcessor;
+            _reportsDao = reportsDao;
         }
         
 
@@ -36,7 +36,7 @@ namespace EZVet.Controllers
             {
                 ownerId = int.Parse(cookieValues[0]);
             }
-            return _reportsQueryProcessor.GetFinanceReport(startDate, endDate, datePart, doctorId, ownerId).ToList();
+            return _reportsDao.GetFinanceReport(startDate, endDate, datePart, doctorId, ownerId).ToList();
         }
 
         [HttpGet]
@@ -45,7 +45,7 @@ namespace EZVet.Controllers
         public List<ItemUsageReport> PerItem([DateTimeParameter]DateTime? startDate = null, [DateTimeParameter]DateTime? endDate = null, int? datePart = null, string itemName = "")
         {
             var doctorId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
-            return _reportsQueryProcessor.GetPerItemReport(startDate, endDate, datePart, doctorId, itemName).ToList();
+            return _reportsDao.GetPerItemReport(startDate, endDate, datePart, doctorId, itemName).ToList();
         }
 
         [HttpGet]
@@ -54,7 +54,7 @@ namespace EZVet.Controllers
         public List<AnimalTypeReport> PerType([DateTimeParameter]DateTime? startDate = null, [DateTimeParameter]DateTime? endDate = null, int? datePart = null, int? animalType = null)
         {
             var doctorId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
-            return _reportsQueryProcessor.GetPerTypeReport(startDate, endDate, datePart, doctorId, animalType).ToList();
+            return _reportsDao.GetPerTypeReport(startDate, endDate, datePart, doctorId, animalType).ToList();
         }
 
         [HttpGet]
@@ -63,7 +63,7 @@ namespace EZVet.Controllers
         public List<AnimalNameReport> PerAnimal([DateTimeParameter]DateTime? startDate = null, [DateTimeParameter]DateTime? endDate = null, int? datePart = null, int? animalId = null)
         {
             var ownerId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
-            return _reportsQueryProcessor.GetPerAnimalReport(startDate, endDate, datePart, ownerId, animalId).ToList();
+            return _reportsDao.GetPerAnimalReport(startDate, endDate, datePart, ownerId, animalId).ToList();
         }
 
         [HttpGet]
@@ -82,7 +82,7 @@ namespace EZVet.Controllers
             {
                 ownerId = int.Parse(cookieValues[0]);
             }
-            return _reportsQueryProcessor.GetVisitsReport(time, doctorId, ownerId).ToList();
+            return _reportsDao.GetVisitsReport(time, doctorId, ownerId).ToList();
         }
     }
 }

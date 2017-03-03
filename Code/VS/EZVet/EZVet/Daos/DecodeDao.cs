@@ -4,9 +4,9 @@ using Domain;
 using NHibernate;
 using NHibernate.Linq;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
-    public interface IDecodesQueryProcessor
+    public interface IDecodesDao
     {
         IEnumerable<T> Query<T>() where T : Decode;
         T Get<T>(string name) where T : Decode;
@@ -14,11 +14,11 @@ namespace EZVet.QueryProcessors
         T Get<T>(int? id) where T : Decode;
     }
 
-    public class DecodesQueryProcessor : IDecodesQueryProcessor
+    public class DecodesDao : IDecodesDao
     {
         private readonly ISession _session;
 
-        public DecodesQueryProcessor(ISession session)
+        public DecodesDao(ISession session)
         {
             _session = session;
         }

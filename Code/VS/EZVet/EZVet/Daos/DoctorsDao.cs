@@ -7,9 +7,9 @@ using LinqKit;
 using NHibernate;
 using Doctor = EZVet.DTOs.Doctor;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
-    public interface IDoctorsQueryProcessor: IPersonQueryProcessor
+    public interface IDoctorsDao: IPersonDao
     {
         Doctor GetDoctor(int id);
         Domain.Doctor Get(int id);
@@ -23,16 +23,16 @@ namespace EZVet.QueryProcessors
         Doctor AddRecommendation(string recommendation, int vetId, int ownerId);
     }
 
-    public class DoctorsQueryProcessor : PersonQueryProcessor<Domain.Doctor>, IDoctorsQueryProcessor
+    public class DoctorsDao : PersonDao<Domain.Doctor>, IDoctorsDao
     {
-        private readonly IDecodesQueryProcessor _decodesQueryProcessor;
-        private readonly IOwnersQueryProcessor _ownersQueryProcessor;
+        private readonly IDecodesDao _decodesDao;
+        private readonly IOwnersDao _ownersDao;
 
-        public DoctorsQueryProcessor(ISession session, IDecodesQueryProcessor decodesQueryProcessor,
-            IOwnersQueryProcessor ownersQueryProcessor) : base(session)
+        public DoctorsDao(ISession session, IDecodesDao decodesDao,
+            IOwnersDao ownersDao) : base(session)
         {
-            _decodesQueryProcessor = decodesQueryProcessor;
-            _ownersQueryProcessor = ownersQueryProcessor;
+            _decodesDao = decodesDao;
+            _ownersDao = ownersDao;
         }
 
         public bool Exists(string username)
@@ -118,7 +118,7 @@ namespace EZVet.QueryProcessors
             existingDoctor.Phone = doctor.Phone ?? existingDoctor.Phone;
 
             var savedTypes =
-                _decodesQueryProcessor.Query<AnimalTypeDecode>()
+                _decodesDao.Query<AnimalTypeDecode>()
                     .Where(x => doctor.Types.Any(type => type == x.Id))
                     .ToList();
             existingDoctor.AnimalTypes = savedTypes;
@@ -137,7 +137,7 @@ namespace EZVet.QueryProcessors
             existingDoctor.Recommendations.Add(new Domain.Recommendation
             {
                 Text = recommendation,
-                Owner = _ownersQueryProcessor.Get(ownerId),
+                Owner = _ownersDao.Get(ownerId),
                 Date = DateTime.UtcNow
             });
             return new Doctor().Initialize(Save(existingDoctor));

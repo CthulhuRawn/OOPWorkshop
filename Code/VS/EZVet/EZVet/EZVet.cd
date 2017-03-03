@@ -112,75 +112,75 @@
       <FileName>Controllers\ReportsController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EZVet.QueryProcessors.ComplaintsQueryProcessor">
+  <Class Name="EZVet.Daos.ComplaintsDao">
     <Position X="13.75" Y="33" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAIAAAAAAAAAAABEAAAAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\ComplaintsQueryProcessor.cs</FileName>
+      <FileName>Daos\ComplaintsDao.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="EZVet.QueryProcessors.CustomersQueryProcessor">
+  <Class Name="EZVet.Daos.CustomersDao">
     <Position X="13.75" Y="26.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEhAAA=</HashCode>
-      <FileName>QueryProcessors\CustomersQueryProcessor.cs</FileName>
+      <FileName>Daos\CustomersDao.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="EZVet.QueryProcessors.DBAccessBase&lt;T&gt;">
+  <Class Name="EZVet.Daos.DBAccessBase&lt;T&gt;">
     <Position X="17" Y="30" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAABAAAAAAAAAAAEAAAggAAAAAAAAAAA=</HashCode>
-      <FileName>QueryProcessors\DBAccessBase.cs</FileName>
+      <FileName>Daos\DBAccessBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="EZVet.QueryProcessors.EmployeesQueryProcessor">
+  <Class Name="EZVet.Daos.EmployeesDao">
     <Position X="16.5" Y="33" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\EmployeesQueryProcessor.cs</FileName>
+      <FileName>Daos\EmployeesDao.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="EZVet.QueryProcessors.FieldsQueryProcessor">
+  <Class Name="EZVet.Daos.FieldsDao">
     <Position X="16.5" Y="26.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAgAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\FieldsQueryProcessor.cs</FileName>
+      <FileName>Daos\FieldsDao.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="EZVet.QueryProcessors.OrdersQueryProcessor">
+  <Class Name="EZVet.Daos.OrdersDao">
     <Position X="19.25" Y="33" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQABYAAAAAAAAAABAAAAABECAAAAAgAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\OrdersQueryProcessor.cs</FileName>
+      <FileName>Daos\OrdersDao.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="EZVet.QueryProcessors.ParticipantsQueryProcessor">
+  <Class Name="EZVet.Daos.ParticipantsDao">
     <Position X="19" Y="26.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAEAAAAAAAAAAAAAhEAAEAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\ParticipantsQueryProcessor.cs</FileName>
+      <FileName>Daos\ParticipantsDao.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="EZVet.QueryProcessors.ReportsQueryProcessor" BaseTypeListCollapsed="true">
+  <Class Name="EZVet.Daos.ReportsDao" BaseTypeListCollapsed="true">
     <Position X="22" Y="26.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAEAAAAAAAAAAAAABACAAAKAgAAgAAAAAAAAA=</HashCode>
-      <FileName>QueryProcessors\ReportsQueryProcessor.cs</FileName>
+      <FileName>Daos\ReportsDao.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="EZVet.QueryProcessors.ReviewsQueryProcessor">
+  <Class Name="EZVet.Daos.ReviewsDao">
     <Position X="22" Y="33" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAAAAAAAAAABAAAAAAAACAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\ReviewsQueryProcessor.cs</FileName>
+      <FileName>Daos\ReviewsDao.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -233,67 +233,67 @@
       <FileName>DTOs\LoginResponse.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="EZVet.QueryProcessors.IComplaintsQueryProcessor">
+  <Interface Name="EZVet.Daos.IComplaintsDao">
     <Position X="13.75" Y="36.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\ComplaintsQueryProcessor.cs</FileName>
+      <FileName>Daos\ComplaintsDao.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EZVet.QueryProcessors.ICustomersQueryProcessor">
+  <Interface Name="EZVet.Daos.ICustomersDao">
     <Position X="13.75" Y="24" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEhAAA=</HashCode>
-      <FileName>QueryProcessors\CustomersQueryProcessor.cs</FileName>
+      <FileName>Daos\CustomersDao.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EZVet.QueryProcessors.IEmployeesQueryProcessor">
+  <Interface Name="EZVet.Daos.IEmployeesDao">
     <Position X="16.5" Y="36.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\EmployeesQueryProcessor.cs</FileName>
+      <FileName>Daos\EmployeesDao.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EZVet.QueryProcessors.IFieldsQueryProcessor">
+  <Interface Name="EZVet.Daos.IFieldsDao">
     <Position X="16.5" Y="24" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAgAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\FieldsQueryProcessor.cs</FileName>
+      <FileName>Daos\FieldsDao.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EZVet.QueryProcessors.IDatabaseAccess&lt;T&gt;">
+  <Interface Name="EZVet.Daos.IDatabaseAccess&lt;T&gt;">
     <Position X="15" Y="30" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
-      <FileName>QueryProcessors\IDatabaseAccess.cs</FileName>
+      <FileName>Daos\IDatabaseAccess.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EZVet.QueryProcessors.IOrdersQueryProcessor">
+  <Interface Name="EZVet.Daos.IOrdersDao">
     <Position X="19.25" Y="36.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQABYAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\OrdersQueryProcessor.cs</FileName>
+      <FileName>Daos\OrdersDao.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EZVet.QueryProcessors.IParticipantsQueryProcessor">
+  <Interface Name="EZVet.Daos.IParticipantsDao">
     <Position X="19" Y="24" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\ParticipantsQueryProcessor.cs</FileName>
+      <FileName>Daos\ParticipantsDao.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EZVet.QueryProcessors.IReportsQueryProcessor">
+  <Interface Name="EZVet.Daos.IReportsDao">
     <Position X="22" Y="24" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAACAAAAgAAAAAAAAA=</HashCode>
-      <FileName>QueryProcessors\ReportsQueryProcessor.cs</FileName>
+      <FileName>Daos\ReportsDao.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EZVet.QueryProcessors.IReviewsQueryProcessor">
+  <Interface Name="EZVet.Daos.IReviewsDao">
     <Position X="22" Y="36.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAIAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
-      <FileName>QueryProcessors\ReviewsQueryProcessor.cs</FileName>
+      <FileName>Daos\ReviewsDao.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

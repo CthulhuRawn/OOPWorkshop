@@ -2,20 +2,20 @@
 using System.Web.Http;
 using EZVet.DTOs;
 using EZVet.Filters;
-using EZVet.QueryProcessors;
+using EZVet.Daos;
 
 namespace EZVet.Controllers
 {
     public class ProfileController : ApiController
     {
-        private readonly IDoctorsQueryProcessor _doctorsQueryProcessor;
-        private readonly IOwnersQueryProcessor _ownersQueryProcessor;
+        private readonly IDoctorsDao _doctorsDao;
+        private readonly IOwnersDao _ownersDao;
 
-        public ProfileController(IDoctorsQueryProcessor doctorsQueryProcessor,
-            IOwnersQueryProcessor ownersQueryProcessor)
+        public ProfileController(IDoctorsDao doctorsDao,
+            IOwnersDao ownersDao)
         {
-            _doctorsQueryProcessor = doctorsQueryProcessor;
-            _ownersQueryProcessor = ownersQueryProcessor;
+            _doctorsDao = doctorsDao;
+            _ownersDao = ownersDao;
         }
 
         [HttpPost]
@@ -29,10 +29,10 @@ namespace EZVet.Controllers
             switch (cookieValue[1])
             {
                 case Consts.Roles.Doctor:
-                    _doctorsQueryProcessor.UpdateProfile(userId, updateData);
+                    _doctorsDao.UpdateProfile(userId, updateData);
                     break;
                 case Consts.Roles.Owner:
-                    _ownersQueryProcessor.UpdateProfile(userId, updateData);
+                    _ownersDao.UpdateProfile(userId, updateData);
                     break;
             }
         }
@@ -44,8 +44,8 @@ namespace EZVet.Controllers
         {
             var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
             var userId = int.Parse(cookieValue[0]);
-            return cookieValue[1] == Consts.Roles.Doctor ? (object)new Doctor().Initialize(_doctorsQueryProcessor.Get(userId))
-                : new Owner().Initialize(_ownersQueryProcessor.Get(userId));
+            return cookieValue[1] == Consts.Roles.Doctor ? (object)new Doctor().Initialize(_doctorsDao.Get(userId))
+                : new Owner().Initialize(_ownersDao.Get(userId));
 
         }
     }

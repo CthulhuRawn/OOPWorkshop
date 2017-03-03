@@ -3,7 +3,7 @@ using Domain;
 using NHibernate;
 using NHibernate.Linq;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
     public abstract class DBAccessBase<T> : IDatabaseAccess<T> where T : Entity
     {

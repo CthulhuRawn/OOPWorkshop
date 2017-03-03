@@ -4,9 +4,9 @@ using Domain;
 using NHibernate;
 using Animal = EZVet.DTOs.Animal;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
-    public interface IAnimalsQueryProcessor
+    public interface IAnimalsDao
     {
         Animal GetAnimal(int id);
 
@@ -19,16 +19,16 @@ namespace EZVet.QueryProcessors
     }
 
 
-    public class AnimalsQueryProcessor : DBAccessBase<Domain.Animal>, IAnimalsQueryProcessor
+    public class AnimalsDao : DBAccessBase<Domain.Animal>, IAnimalsDao
     {
-        private readonly IOwnersQueryProcessor _ownersQueryProcessor;
-        private readonly IDoctorsQueryProcessor _doctorsQueryProcessor;
-        private readonly IDecodesQueryProcessor _decodesQueryProcessor;
-        public AnimalsQueryProcessor(ISession session, IOwnersQueryProcessor ownersQueryProcessor, IDoctorsQueryProcessor doctorsQueryProcessor, IDecodesQueryProcessor decodesQueryProcessor) : base(session)
+        private readonly IOwnersDao _ownersDao;
+        private readonly IDoctorsDao _doctorsDao;
+        private readonly IDecodesDao _decodesDao;
+        public AnimalsDao(ISession session, IOwnersDao ownersDao, IDoctorsDao doctorsDao, IDecodesDao decodesDao) : base(session)
         {
-            _ownersQueryProcessor = ownersQueryProcessor;
-            _doctorsQueryProcessor = doctorsQueryProcessor;
-            _decodesQueryProcessor = decodesQueryProcessor;
+            _ownersDao = ownersDao;
+            _doctorsDao = doctorsDao;
+            _decodesDao = decodesDao;
         }
         
         
@@ -44,10 +44,10 @@ namespace EZVet.QueryProcessors
                 domainAnimal = new Domain.Animal();
             }
             
-            domainAnimal.Gender = _decodesQueryProcessor.Get<GenderDecode>(animal.Gender);
+            domainAnimal.Gender = _decodesDao.Get<GenderDecode>(animal.Gender);
             domainAnimal.Name = animal.Name;
             domainAnimal.Notes = animal.Notes;
-            domainAnimal.Type = _decodesQueryProcessor.Get<AnimalTypeDecode>(animal.Type);
+            domainAnimal.Type = _decodesDao.Get<AnimalTypeDecode>(animal.Type);
             domainAnimal.Weight = animal.Weight;
             domainAnimal.ChipNumber = animal.ChipNumber;
             domainAnimal.Color = animal.Color;
@@ -55,7 +55,7 @@ namespace EZVet.QueryProcessors
 
             if (domainAnimal.Owner == null)
             {
-                domainAnimal.Owner = _ownersQueryProcessor.Get(contactId);
+                domainAnimal.Owner = _ownersDao.Get(contactId);
             }
 
 
@@ -70,7 +70,7 @@ namespace EZVet.QueryProcessors
         public void AttachToDoctor(int vetId, int petId)
         {
             var animal = Get(petId);
-            animal.Doctor = _doctorsQueryProcessor.Get(vetId);
+            animal.Doctor = _doctorsDao.Get(vetId);
             Update(petId, animal);
         }
 

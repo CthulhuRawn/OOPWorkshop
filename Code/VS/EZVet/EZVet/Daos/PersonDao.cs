@@ -2,15 +2,15 @@
 using EZVet.DTOs;
 using NHibernate;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
-    public interface IPersonQueryProcessor
+    public interface IPersonDao
     {
         bool UpdateProfile(int id, PersonLogin entity);
     }
-    public abstract class PersonQueryProcessor<T>: DBAccessBase<T> , IPersonQueryProcessor where T:Person
+    public abstract class PersonDao<T>: DBAccessBase<T> , IPersonDao where T:Person
     {
-        protected PersonQueryProcessor(ISession session) : base(session)
+        protected PersonDao(ISession session) : base(session)
         {
         }
         public bool UpdateProfile(int id, PersonLogin entity)

@@ -2,9 +2,9 @@
 using EZVet.DTOs;
 using NHibernate;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
-    public interface IOwnersQueryProcessor : IPersonQueryProcessor
+    public interface IOwnersDao : IPersonDao
     {
         Domain.Owner Get(int id);
         Owner Save(PersonLogin owner);
@@ -12,9 +12,9 @@ namespace EZVet.QueryProcessors
         bool ExistsById(int id);
     }
 
-    public class OwnersQueryProcessor : PersonQueryProcessor<Domain.Owner>, IOwnersQueryProcessor
+    public class OwnersDao : PersonDao<Domain.Owner>, IOwnersDao
     {
-        public OwnersQueryProcessor(ISession session) : base(session)
+        public OwnersDao(ISession session) : base(session)
         {
         }
 

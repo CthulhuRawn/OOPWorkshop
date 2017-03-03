@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Domain;
 
-namespace EZVet.QueryProcessors
+namespace EZVet.Daos
 {
     public interface IDatabaseAccess<T> where T : Entity
     {

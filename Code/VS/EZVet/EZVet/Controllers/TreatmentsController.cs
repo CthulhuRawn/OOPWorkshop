@@ -2,17 +2,17 @@
 using System.Web.Http;
 using EZVet.DTOs;
 using EZVet.Filters;
-using EZVet.QueryProcessors;
+using EZVet.Daos;
 
 namespace EZVet.Controllers
 {
     public class TreatmentsController : ApiController
     {
-        private readonly ITreatmentsQueryProcessor _treatmentsQueryProcessor;
+        private readonly ITreatmentsDao _treatmentsDao;
 
-        public TreatmentsController(ITreatmentsQueryProcessor treatmentQueryProcessor)
+        public TreatmentsController(ITreatmentsDao treatmentDao)
         {
-            _treatmentsQueryProcessor = treatmentQueryProcessor;
+            _treatmentsDao = treatmentDao;
         }
 
         [HttpPost]
@@ -22,7 +22,7 @@ namespace EZVet.Controllers
         public TreatmentReport Save(TreatmentReport treatmentReport)
         {
             var userId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
-            return _treatmentsQueryProcessor.Save(treatmentReport, userId);
+            return _treatmentsDao.Save(treatmentReport, userId);
         }
 
         [HttpGet]
@@ -30,7 +30,7 @@ namespace EZVet.Controllers
         [Authorize(Roles =  Consts.Roles.Doctor + "," + Consts.Roles.Owner)]
         public TreatmentReport Get(int petId, int treatmentId)
         {
-            return _treatmentsQueryProcessor.Get(treatmentId, petId);
+            return _treatmentsDao.Get(treatmentId, petId);
         }
 
     }

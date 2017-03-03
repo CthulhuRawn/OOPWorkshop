@@ -1,5 +1,5 @@
 ﻿using System.Web;
-using EZVet.QueryProcessors;
+using EZVet.Daos;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Maps;
@@ -22,17 +22,17 @@ namespace EZVet.Common
         public void AddBindings(IKernel container)
         {
             ConfigureNhibernate(container);
-            ConfigureQueryProcessors(container);
+            ConfigureDaos(container);
         }
 
-        private void ConfigureQueryProcessors(IKernel container)
+        private void ConfigureDaos(IKernel container)
         {
-            container.Bind<ITreatmentsQueryProcessor>().To<TreatmentsQueryProcessor>();
-            container.Bind<IAnimalsQueryProcessor>().To<AnimalsQueryProcessor>();
-            container.Bind<IOwnersQueryProcessor>().To<OwnersQueryProcessor>();
-            container.Bind<IDoctorsQueryProcessor>().To<DoctorsQueryProcessor>();
-            container.Bind<IDecodesQueryProcessor>().To<DecodesQueryProcessor>();
-            container.Bind<IReportsQueryProcessor>().To<ReportsQueryProcessor>();
+            container.Bind<ITreatmentsDao>().To<TreatmentsDao>();
+            container.Bind<IAnimalsDao>().To<AnimalsDao>();
+            container.Bind<IOwnersDao>().To<OwnersDao>();
+            container.Bind<IDoctorsDao>().To<DoctorsDao>();
+            container.Bind<IDecodesDao>().To<DecodesDao>();
+            container.Bind<IReportsDao>().To<ReportsDao>();
         }
 
         private void ConfigureNhibernate(IKernel container)
