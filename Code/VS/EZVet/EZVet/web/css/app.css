@@ -231,7 +231,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .table > tbody  tr{
-	background-color:#ccebfb;
+	background-color:#fff;
 }
 
 textarea {
@@ -268,4 +268,12 @@ textarea {
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
     color: #fff;
     background-color: #cb2c31;
+}
+
+a {
+    cursor: pointer;
+}
+
+.table-hover>tbody>tr:hover {
+    background-color: #FF6A6A;
 }

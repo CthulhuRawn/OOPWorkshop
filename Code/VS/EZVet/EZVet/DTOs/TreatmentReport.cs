@@ -15,6 +15,8 @@ namespace EZVet.DTOs
         public virtual DateTime Date { get; set; }
         public virtual AnimalMeasurements Measurements { get; set; }
         public virtual string TreatmentSummary { get; set; }
+        public virtual string DoctorName { get; set; }
+        public virtual string DoctorPhone { get; set; }
 
         public override TreatmentReport Initialize(Domain.TreatmentReport domain)
         {
@@ -40,6 +42,8 @@ namespace EZVet.DTOs
             Measurements = new AnimalMeasurements().Initialize(domain.AnimalMeasurements);
             TreatmentSummary = domain.Summary;
             TotalPrice = domain.Treatments.Select(x => x.Price).Sum();
+            DoctorName = domain.Doctor.GetName();
+            DoctorPhone = domain.Doctor.Phone;
         }
     }
 }
