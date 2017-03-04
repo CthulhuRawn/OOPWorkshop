@@ -77,7 +77,7 @@
             var id = $routeParams.id;
             if (id) {
                 $http({
-                    url: ServerRoutes.animals.patient,
+                    url: ServerRoutes.animals.base,
                     method: "GET",
                     params: { Id: id},
                 }).then(function searchCompleted(response) {
@@ -87,7 +87,7 @@
 
             $scope.savePet = function () {
                 $http({
-                    url: ServerRoutes.animals.patient,
+                    url: ServerRoutes.animals.base,
                     method: "POST",
                     data: angular.copy($scope.pet)
                 }).then(function searchCompleted(response) {

@@ -37,7 +37,6 @@ namespace EZVet.Controllers
         }
 
         [HttpGet]
-        [Route("api/vets/get")]
         [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         public Doctor Get(int? vetId)
         {
@@ -56,7 +55,6 @@ namespace EZVet.Controllers
         }
 
         [HttpPost]
-        [Route("api/vets/save")]
         [Authorize(Roles =  Consts.Roles.Doctor)]
         [TransactionFilter]
         public Doctor Save(Doctor doctor)

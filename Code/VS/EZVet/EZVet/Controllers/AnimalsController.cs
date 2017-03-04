@@ -36,21 +36,20 @@ namespace EZVet.Controllers
             return _animalsDao.Search(doctorId, ownerId, id, animalName, doctorName, ownerName, type, gender).ToList();
             
         }
-        
+
+        // GET: api/Animals/5
         [HttpGet]
-        [Route("api/animals/animal")]
         [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
-        [TransactionFilter]
-        public Animal Animal(int id)
+        public Animal Get(int id)
         {
             return _animalsDao.GetAnimal(id);
         }
 
+        // POST: api/Animals
         [HttpPost]
-        [Route("api/animals/animal")]
         [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         [TransactionFilter]
-        public Animal Animal(Animal animal)
+        public Animal Save(Animal animal)
         {
             var userId = int.Parse(HttpContext.Current.Request.Cookies["UserId"].Value.Split(':')[0]);
             return _animalsDao.Save(animal, userId);

@@ -16,7 +16,6 @@ namespace EZVet.Controllers
         }
 
         [HttpPost]
-        [Route("api/treatments/save")]
         [Authorize(Roles =  Consts.Roles.Doctor)]
         [TransactionFilter]
         public TreatmentReport Save(TreatmentReport treatmentReport)
@@ -26,7 +25,6 @@ namespace EZVet.Controllers
         }
 
         [HttpGet]
-        [Route("api/treatments/get")]
         [Authorize(Roles =  Consts.Roles.Doctor + "," + Consts.Roles.Owner)]
         public TreatmentReport Get(int petId, int treatmentId)
         {

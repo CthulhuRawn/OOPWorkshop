@@ -8,7 +8,7 @@
             $scope.model = {};
 
             $http({
-                url: ServerRoutes.profile.get,
+                url: ServerRoutes.profile.base,
                 method: "GET"
             }).success(function searchCompleted(response) {
                 $scope.model = response;
@@ -21,8 +21,8 @@
                     return;
 
                 $http({
-                    url: ServerRoutes.profile.update,
-                    method: "POST",
+                    url: ServerRoutes.profile.base,
+                    method: "PUT",
                     data: $scope.model
                 }).success(function searchCompleted() {
                     toaster.success("Profile updated!");

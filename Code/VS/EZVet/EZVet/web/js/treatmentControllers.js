@@ -19,7 +19,7 @@
 
             if ($scope.treatmentId > 0 && $scope.treatment.PetId) {
                 $http({
-                    url: ServerRoutes.treatments.get,
+                    url: ServerRoutes.treatments.base,
                     method: "GET",
                     params: { PetId: $scope.treatment.PetId, TreatmentId: $scope.treatmentId }
                 }).then(function searchCompleted(response) {
@@ -29,7 +29,7 @@
             }
             else if ($scope.treatment.PetId) {
                 $http({
-                    url: ServerRoutes.animals.patient,
+                    url: ServerRoutes.animals.base,
                     method: "GET",
                     params: { Id: $scope.treatment.PetId }
                 }).then(function searchCompleted(response) {
@@ -104,7 +104,7 @@
                     return;
 
                 $http({
-                    url: ServerRoutes.treatments.save,
+                    url: ServerRoutes.treatments.base,
                     method: "POST",
                     data: angular.copy($scope.treatment)
                 }).then(function searchCompleted(response) {

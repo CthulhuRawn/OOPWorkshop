@@ -11,7 +11,6 @@ namespace EZVet.Daos
     public interface ITreatmentsDao
     {
         TreatmentReport Save(TreatmentReport treatment, int cotnactId);
-
         IQueryable<Domain.TreatmentReport> Query();
         TreatmentReport Get(int treatmentId, int petId);
     }

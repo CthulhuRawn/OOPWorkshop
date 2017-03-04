@@ -18,8 +18,7 @@ namespace EZVet.Controllers
             _ownersDao = ownersDao;
         }
 
-        [HttpPost]
-        [Route("api/profile/update")]
+        [HttpPut]
         [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         [TransactionFilter]
         public void Update(PersonLogin updateData)
@@ -38,7 +37,6 @@ namespace EZVet.Controllers
         }
 
         [HttpGet]
-        [Route("api/profile/get")]
         [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
         public object Get()
         {

@@ -15,7 +15,7 @@
 
             if ($scope.petId) {
                 $http({
-                    url: ServerRoutes.animals.patient,
+                    url: ServerRoutes.animals.base,
                     method: "GET",
                     params: { Id: $scope.petId },
                 }).then(function searchCompleted(response) {
@@ -107,7 +107,7 @@
             $scope.getVet = function()
             {
                 $http({
-                    url: ServerRoutes.vets.getVet,
+                    url: ServerRoutes.vets.base,
                     method: "GET",
                     params: { vetId: $scope.vetId }
                 }).then(function searchCompleted(response) {
@@ -117,7 +117,7 @@
 
             $scope.save = function() {
                 $http({
-                    url: ServerRoutes.vets.saveVet,
+                    url: ServerRoutes.vets.base,
                     method: "POST",
                     data: angular.copy($scope.vet)
                 }).then(function searchCompleted(response) {

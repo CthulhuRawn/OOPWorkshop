@@ -104,23 +104,21 @@
                     login: urlBase + "login/login"
                 },
                 animals: {
-                    mine: urlBase + "animals/myAnimals",
-                    patient: urlBase + "animals/animal"
+                    base: urlBase + "animals",
+                    mine: urlBase + "animals/myAnimals"
+                    
                 },
                 vets: {
+                    base: urlBase + "vets",
                     all: urlBase + "vets/all",
-                    getVet: urlBase + "vets/get",
-                    saveVet: urlBase + "vets/save",
                     saveRecommendation: urlBase + "vets/saveRecommendation",
                     assign: urlBase + "vets/assign"
                 },
                 treatments: {
-                    save: urlBase + "treatments/save",
-                    get: urlBase + "treatments/get"
+                    base: urlBase + "treatments"                    
                 },
                 profile: {
-                    update: urlBase + "profile/update",
-                    get: urlBase + "profile/get"
+                    base: urlBase + "profile"                    
                 },
                 reports: {
                     finance: urlBase + "reports/finance",
