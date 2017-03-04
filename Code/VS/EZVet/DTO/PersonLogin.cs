@@ -4,7 +4,7 @@ using DTO.Validators;
 
 namespace DTO
 {
-    public class PersonLogin : EntityBase
+    public class PersonLogin 
     {
         [Key]
         [EmailAddress]

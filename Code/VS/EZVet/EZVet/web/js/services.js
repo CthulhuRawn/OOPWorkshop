@@ -52,13 +52,6 @@
                     localStorage.setItem("currLogin", JSON.stringify(login))
                 },
 
-                updatePassword: function updatePassword(authenticationKey) {
-                    var loginData = JSON.parse(localStorage.getItem("currLogin"));
-                    loginData.AuthorizationKey = authenticationKey;
-                    $http.defaults.headers.common['Authorization'] = loginData.AuthorizationKey;
-                    this.saveLogin(loginData);
-                },
-
                 deleteLogin: function deleteLogin() {
                     $rootScope.sharedVariables.isLogin = true;
                     localStorage.removeItem("currLogin");
@@ -75,9 +68,7 @@
                     $rootScope.sharedVariables.isLogin = false;
 
                     if (!path) {
-                        if (loginData.Role == "Admin") {
-                            path = '/searchCustomers';
-                        } else if (loginData.Role == "Doctor") { // 
+                        if (loginData.Role == "Doctor") { // 
                             path = '/VetPage';
                         } else {
                             path = '/AnimalsList';

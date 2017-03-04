@@ -149,7 +149,6 @@
     <Compile Include="Common\NinjectConfigurator.cs" />
     <Compile Include="Common\NinjectDependencyResolver.cs" />
     <Compile Include="Common\EZVetDateConverter.cs" />
-    <Compile Include="Common\TreatmentType.cs" />
     <Compile Include="Controllers\TreatmentsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\VetsController.cs" />
