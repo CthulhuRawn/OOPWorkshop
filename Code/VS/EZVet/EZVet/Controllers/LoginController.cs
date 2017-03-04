@@ -2,9 +2,8 @@
 using System.Text;
 using System.Web;
 using System.Web.Http;
-using Domain;
-using EZVet.DTOs;
-using EZVet.Daos;
+using DAL;
+using DTO;
 using NHibernate;
 using Doctor = Domain.Doctor;
 

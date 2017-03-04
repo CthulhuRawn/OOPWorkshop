@@ -1,5 +1,6 @@
 ﻿using System.Web;
-using EZVet.Daos;
+using DAL;
+using DTO;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Maps;

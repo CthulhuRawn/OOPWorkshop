@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maps", "Maps\Maps.csproj", "{8EAE22B9-3724-4ECF-B47E-ED301D29D6D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{46D32ACB-136C-4AD4-8E11-FDC5CBB9F04C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{968DB4B2-7B6A-4E72-BA82-10765DA6F3F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{8EAE22B9-3724-4ECF-B47E-ED301D29D6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EAE22B9-3724-4ECF-B47E-ED301D29D6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EAE22B9-3724-4ECF-B47E-ED301D29D6D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46D32ACB-136C-4AD4-8E11-FDC5CBB9F04C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46D32ACB-136C-4AD4-8E11-FDC5CBB9F04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46D32ACB-136C-4AD4-8E11-FDC5CBB9F04C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46D32ACB-136C-4AD4-8E11-FDC5CBB9F04C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{968DB4B2-7B6A-4E72-BA82-10765DA6F3F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{968DB4B2-7B6A-4E72-BA82-10765DA6F3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968DB4B2-7B6A-4E72-BA82-10765DA6F3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{968DB4B2-7B6A-4E72-BA82-10765DA6F3F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
