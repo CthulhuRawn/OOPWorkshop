@@ -11,57 +11,28 @@
             public const string None = "None";
         }
 
-        public static class Paging
-        {
-            public const int PageSize = 10;
-        }
-
         public static class Decodes
         {
-            public enum OrderStatus
+            public enum AnimalType
             {
-                Sent=1,
-                Accepted,
-                Rejected,
-                Canceled
+                Cat=1,
+                Dog,
+                Fish,
+                Bird
             }
 
-            public enum ComplaintType
+            public enum Gender
             {
-                Payment=1,
-                Attendance,
-                Sportsmanship
+                Male=1,
+                Female
             }
 
-            public enum FieldSize
+            public enum TreatmentType
             {
-                Small = 1,
-                Medium,
-                Large
+                Treatment = 1,
+                Medicine,
+                Vaccine
             }
-
-            public enum FieldType
-            {
-                Football=1,
-                Basketball,
-                Tennis,
-                Volleyball
-            }
-
-            public enum InvitationStatus
-            {
-                Sent=1,
-                Accepted,
-                Rejected
-            }
-
-            public enum RegionDecode
-            {
-                Dan=1,
-                Negev,
-                Haifa,
-                Jerusalem
-            }
-        }
+       }
     }
 }

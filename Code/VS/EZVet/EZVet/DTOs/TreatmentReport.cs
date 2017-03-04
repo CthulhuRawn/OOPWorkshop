@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using EZVet.Common;
+using EZVet.Validators;
 
 namespace EZVet.DTOs
 {
     public class TreatmentReport : Entity<TreatmentReport, Domain.TreatmentReport>
     {
+        [ExistsInDB(typeof(Domain.Animal))]
         public virtual Animal Animal{ get; set; }
         public virtual IList<Treatment> Treatments { get; set; }
         public virtual IList<Medication> Medications { get; set; }

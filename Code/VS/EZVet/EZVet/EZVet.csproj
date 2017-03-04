@@ -188,7 +188,6 @@
     <Compile Include="Daos\ReportsDao.cs" />
     <Compile Include="Validators\AboveAttribute.cs" />
     <Compile Include="Validators\IsEnumOfTypeAttribute.cs" />
-    <Compile Include="Validators\ListExistsInDbAttribute.cs" />
     <Compile Include="Validators\NotInFutureAttribute.cs" />
     <Compile Include="Validators\NotInPastAttribute.cs" />
     <Content Include="web\css\angular-moment-picker.min.css" />

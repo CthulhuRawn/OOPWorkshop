@@ -11,12 +11,12 @@ namespace EZVet.DTOs
         public string Name { get; set; }
         public string DoctorName { get; set; }
         public string OwnerName { get; set; }
+        [IsEnumOfType(typeof(Consts.Decodes.AnimalType))]
         public int Type { get; set; }
-
         [NotInFuture]
         public DateTime DateOfBirth { get; set; }
+        [IsEnumOfType(typeof(Consts.Decodes.Gender))]
         public int Gender { get; set; }
-
         [NotInPast(AllowNulls = true)]
         public DateTime? NextVisit { get; set; }
         public string Notes { get; set; }
