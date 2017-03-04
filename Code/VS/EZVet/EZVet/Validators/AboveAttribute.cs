@@ -13,10 +13,20 @@ namespace EZVet.Validators
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (!(value is int))
-                throw new ValidationException("value must be of integer type");
+            if (!(value is int) && !(value is double))
+                throw new ValidationException("value must be of numeric type");
 
-            if ((int)value < _min)
+            var valueToTest = 0;
+            if (value is double)
+            {
+                valueToTest = (int) (double) value;
+            }
+            else
+            {
+                valueToTest = (int)value;
+            }
+
+            if ((double)valueToTest < _min)
             {
                 return new ValidationResult("Value below minimal");
             }
