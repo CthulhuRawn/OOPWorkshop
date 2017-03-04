@@ -68,7 +68,7 @@
     </div>
     <div class="row">
         <div class="form-group col-sm-12">
-            <a href="#/VetSearch/{{pet.Id}}" type="button" class="btn btn-lg btn-primary" ng-show="sharedVariables.role == 'Owner'">Choose doctor</a>
+            <a href="#/VetSearch/{{pet.Id}}" type="button" class="btn btn-lg btn-primary" ng-show="sharedVariables.role == 'Owner' && pet.Id > 0">Choose doctor</a>
             <button type="button" class="btn btn-lg btn-primary pull-right" ng-click="savePet()">Save</button>
         </div>
     </div>

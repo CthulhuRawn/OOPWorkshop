@@ -46,8 +46,8 @@ namespace EZVet.DTOs
             Notes = domain.Notes;
             OpeningHours = domain.OpeningHours;
             Phone = domain.Phone;
-            Types = domain.AnimalTypes.Select(x => x.Id).ToList();
-            Recommendations = domain.Recommendations.Select(x => new Recommendation().Initialize(x)).ToList();
+            Types = domain.AnimalTypes?.Select(x => x.Id).ToList();
+            Recommendations = domain.Recommendations?.Select(x => new Recommendation().Initialize(x)).ToList();
 
             return this;
         }

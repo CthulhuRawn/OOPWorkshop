@@ -17,7 +17,7 @@ namespace EZVet.DTOs
         public DateTime DateOfBirth { get; set; }
         public int Gender { get; set; }
 
-        [NotInPast]
+        [NotInPast(AllowNulls = true)]
         public DateTime? NextVisit { get; set; }
         public string Notes { get; set; }
         public double Weight { get; set; }
