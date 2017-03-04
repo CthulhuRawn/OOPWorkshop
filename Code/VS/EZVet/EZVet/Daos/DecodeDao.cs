@@ -10,7 +10,6 @@ namespace EZVet.Daos
     {
         IEnumerable<T> Query<T>() where T : Decode;
         T Get<T>(string name) where T : Decode;
-
         T Get<T>(int? id) where T : Decode;
     }
 

@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-    public class  Person : Entity
+    public abstract class  Person : Entity
     {
         public virtual string Password { get; set; }
         public virtual string FirstName { get; set; }

@@ -13,12 +13,9 @@ namespace EZVet.Daos
     {
         Doctor GetDoctor(int id);
         Domain.Doctor Get(int id);
-
         Doctor Save(PersonLogin doctor);
-
         Doctor Update(int id, Doctor doctor);
         bool Exists(string username);
-        bool ExistsById(int id);
         IEnumerable<Doctor> Search(string firstName, string lastName, string address, int? id);
         Doctor AddRecommendation(string recommendation, int vetId, int ownerId);
     }
@@ -39,12 +36,7 @@ namespace EZVet.Daos
         {
             return Query().Where(user => user.Email == username).Any();
         }
-
-        public bool ExistsById(int id)
-        {
-            return Query().Where(user => user.Id == id).Any();
-        }
-
+              
         public IEnumerable<Doctor> Search(string firstName, string lastName, string address, int? doctorId)
         {
             var filter = PredicateBuilder.New<Domain.Doctor>(x => true);

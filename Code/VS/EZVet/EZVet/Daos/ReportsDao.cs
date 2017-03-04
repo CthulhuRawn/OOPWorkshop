@@ -10,15 +10,12 @@ namespace EZVet.Daos
     {
         IEnumerable<FinanceReport> GetFinanceReport(DateTime? startDate, DateTime? endDate, int? datePart, int doctorId,
             int ownerId);
-
         IEnumerable<ItemUsageReport> GetPerItemReport(DateTime? startDate, DateTime? endDate, int? datePart,
-            int doctorId, string itemName);
-
+    int doctorId, string itemName);
         IEnumerable<AnimalTypeReport> GetPerTypeReport(DateTime? startDate, DateTime? endDate, int? datePart,
-            int doctorId, int? animalType);
+    int doctorId, int? animalType);
         IEnumerable<AnimalNameReport> GetPerAnimalReport(DateTime? startDate, DateTime? endDate, int? datePart,
             int ownerId, int? animalId);
-
         IEnumerable<VisitsReport> GetVisitsReport(int? time, int doctorId, int ownerId);
     }
 

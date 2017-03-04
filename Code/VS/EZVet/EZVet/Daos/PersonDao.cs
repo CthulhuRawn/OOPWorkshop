@@ -15,12 +15,6 @@ namespace EZVet.Daos
         }
         public bool UpdateProfile(int id, PersonLogin entity)
         {
-            Update(id, entity);
-            return true;
-        }
-        
-        private void Update(int id, PersonLogin entity)
-        {
             var existingPerson = Get(id);
             existingPerson.Address.Country = entity.Address.Country;
             existingPerson.Address.City = entity.Address.City;
@@ -28,6 +22,7 @@ namespace EZVet.Daos
             existingPerson.Address.StreetNumber = entity.Address.StreetNumber;
             existingPerson.Phone = entity.Phone;
             Update(id, existingPerson);
+            return true;
         }
     }
 }

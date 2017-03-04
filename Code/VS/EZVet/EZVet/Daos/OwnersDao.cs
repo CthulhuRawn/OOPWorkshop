@@ -9,7 +9,6 @@ namespace EZVet.Daos
         Domain.Owner Get(int id);
         Owner Save(PersonLogin owner);
         bool Exists(string username);
-        bool ExistsById(int id);
     }
 
     public class OwnersDao : PersonDao<Domain.Owner>, IOwnersDao
@@ -22,12 +21,6 @@ namespace EZVet.Daos
         {
             return Query().Any(user => user.Email == username);
         }
-
-        public bool ExistsById(int id)
-        {
-            return Get(id) != null;
-        }
-
       
         public Owner Save(PersonLogin owner)
         {
