@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EZVet</RootNamespace>
     <AssemblyName>EZVet</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -155,41 +155,10 @@
     <Compile Include="Controllers\VetsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
-    <Compile Include="DTOs\VisitsReport.cs" />
-    <Compile Include="DTOs\AnimalNameReport.cs" />
-    <Compile Include="DTOs\AnimalTypeReport.cs" />
-    <Compile Include="DTOs\ItemUsageReport.cs" />
-    <Compile Include="DTOs\Recommendation.cs" />
-    <Compile Include="DTOs\AnimalMeasurements.cs" />
-    <Compile Include="DTOs\PersonLogin.cs" />
-    <Compile Include="DTOs\Medication.cs" />
-    <Compile Include="DTOs\TreatmentReport.cs" />
-    <Compile Include="DTOs\FinanceReport.cs" />
-    <Compile Include="DTOs\Vaccine.cs" />
-    <Compile Include="DTOs\Treatment.cs" />
-    <Compile Include="DTOs\Animal.cs" />
-    <Compile Include="DTOs\Address.cs" />
-    <Compile Include="DTOs\LoginResponse.cs" />
-    <Compile Include="DTOs\Doctor.cs" />
-    <Compile Include="DTOs\RegistrationReponse.cs" />
-    <Compile Include="DTOs\UserCredentials.cs" />
     <Compile Include="Filters\AuthorizeRolesAttribute.cs" />
     <Compile Include="Filters\TransactionFilterAttribute.cs" />
     <Compile Include="Filters\DateTimeParameterAttribute.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
-    <Compile Include="Daos\PersonDao.cs" />
-    <Compile Include="Daos\TreatmentsDao.cs" />
-    <Compile Include="Daos\DecodeDao.cs" />
-    <Compile Include="Daos\AnimalsDao.cs" />
-    <Compile Include="Daos\DoctorsDao.cs" />
-    <Compile Include="Daos\OwnersDao.cs" />
-    <Compile Include="Daos\DBAccessBase.cs" />
-    <Compile Include="Daos\IDatabaseAccess.cs" />
-    <Compile Include="Daos\ReportsDao.cs" />
-    <Compile Include="Validators\AboveAttribute.cs" />
-    <Compile Include="Validators\IsEnumOfTypeAttribute.cs" />
-    <Compile Include="Validators\NotInFutureAttribute.cs" />
-    <Compile Include="Validators\NotInPastAttribute.cs" />
     <Content Include="web\css\angular-moment-picker.min.css" />
     <Content Include="web\css\app.css" />
     <Content Include="web\css\bootstrap-theme.min.css" />
@@ -200,9 +169,6 @@
     <Content Include="web\fonts\fontawesome-webfont.svg" />
     <Content Include="web\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Compile Include="DTOs\Entity.cs" />
-    <Compile Include="DTOs\Owner.cs" />
-    <Compile Include="Validators\ExistsInDBAttribute.cs" />
     <Content Include="index.html" />
     <Content Include="web\js\reportsControllers.js" />
     <Content Include="web\js\treatmentControllers.js" />
@@ -268,7 +234,6 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\GlobalExceptionHandler.cs" />
-    <Compile Include="Consts.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Filters\BasicAuthenticationIdentity.cs" />
     <Compile Include="Filters\GlobalAuthorizationFilter.cs" />
@@ -299,9 +264,17 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{968db4b2-7b6a-4e72-ba82-10765da6f3f9}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{7035209C-29DF-4B24-97EF-B72E9AD009BC}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{46d32acb-136c-4ad4-8e11-fdc5cbb9f04c}</Project>
+      <Name>DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Maps\Maps.csproj">
       <Project>{8EAE22B9-3724-4ECF-B47E-ED301D29D6D2}</Project>

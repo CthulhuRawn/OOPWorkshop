@@ -7,9 +7,11 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using Domain;
+using DTO;
 using EZVet.Controllers;
 using NHibernate;
+using Doctor = Domain.Doctor;
+using Owner = Domain.Owner;
 
 namespace EZVet.Filters
 {

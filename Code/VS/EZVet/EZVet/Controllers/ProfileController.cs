@@ -1,8 +1,8 @@
 ﻿using System.Web;
 using System.Web.Http;
-using EZVet.DTOs;
+using DAL;
+using DTO;
 using EZVet.Filters;
-using EZVet.Daos;
 
 namespace EZVet.Controllers
 {
