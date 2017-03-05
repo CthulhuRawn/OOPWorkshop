@@ -27,7 +27,7 @@ namespace EZVet.Controllers
             return _doctorsDao.Search(firstName, lastName, address, id).ToList();
         }
 
-        [HttpGet]
+        [HttpPut]
         [Route("api/vets/assign")]
         [Authorize(Roles =  Consts.Roles.Owner)]
         [TransactionFilter]

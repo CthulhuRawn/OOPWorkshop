@@ -105,49 +105,6 @@
         }
     }]);
 
-    myApp.controller('reportOutcomeCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', function ($scope, $http, ServerRoutes, DomainDecodes, toaster) {
-        $scope.model = {};
-        $scope.types = DomainDecodes.complaintType;
-        $scope.results;
-        $scope.submitted = false;
-        var today = new Date();
-        $scope.model.untilDate = moment(today).format("DD/MM/YYYY");
-
-        $scope.propertyName = 'Id';
-        $scope.reverse = false;
-
-        $scope.print = function () {
-            window.print();
-        }
-
-        $scope.sortBy = function (propertyName) {
-            // reverse current or false for new property
-            $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
-            $scope.propertyName = propertyName;
-        };
-
-        $scope.submitSearch = function (isValid) {
-            $scope.submitted = true;
-
-            if (!isValid)
-                return;
-
-            $http({
-                url: ServerRoutes.reports.complaints,
-                method: "GET",
-                params: $scope.model,
-            }).then(function searchCompleted(response) {
-                $scope.results = response.data;
-
-                if (angular.equals($scope.results, [])) {
-                    toaster.info('לא נמצאו נתונים העונים על הדרישה');
-                }
-
-                $scope.submitted = false;
-            });
-        }
-    }]);
-
 myApp.controller('reportFinanceCtrl', ['$scope', '$http', 'ServerRoutes', 'DomainDecodes', 'toaster', function ($scope, $http, ServerRoutes, DomainDecodes, toaster) {
         $scope.model = {};
         $scope.dateParts = DomainDecodes.dateParts;

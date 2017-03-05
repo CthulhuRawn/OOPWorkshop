@@ -34,8 +34,8 @@
             $scope.setVetForPet = function(vetId) {
                 $http({
                     url: ServerRoutes.vets.assign,
-                    method: "GET",
-                    params: { vetId: vetId, petId: $scope.petId },
+                    method: "PUT",
+                    params: { vetId: vetId, petId: $scope.petId }
                 }).then(function setCompleted(response) {
                     if (response.status === 204)
                         toaster.info('Success!');
