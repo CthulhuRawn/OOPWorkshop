@@ -6,10 +6,10 @@ namespace DTO
     public class Medication : Entity<Medication, Domain.Treatment>
     {
         [MaxLength(30)]
-        public virtual string Name { get; set; }
-        public virtual string Dose { get; set; }
-        public virtual double Price { get; set; }
-        public virtual DateTime Date { get; set; }
+        public string Name { get; set; }
+        public string Dose { get; set; }
+        public double Price { get; set; }
+        public DateTime Date { get; set; }
 
         public override Medication Initialize(Domain.Treatment domain)
         {

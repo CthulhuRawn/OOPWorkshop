@@ -6,17 +6,17 @@ namespace DTO
     public class AnimalMeasurements : Entity<AnimalMeasurements, Domain.AnimalMeasurements>
     {
         [Above(0)]
-        public virtual int Pulse { get; set; }
+        public int Pulse { get; set; }
         [Above(0)]
-        public virtual double Temperature { get; set; }
+        public double Temperature { get; set; }
         [Above(0)]
-        public virtual double Weight { get; set; }
+        public double Weight { get; set; }
         [Above(0)]
-        public virtual int SystolicBloodPressure { get; set; }
+        public int SystolicBloodPressure { get; set; }
         [Above(0)]
-        public virtual int DiastolicBloodPressure { get; set; }
+        public int DiastolicBloodPressure { get; set; }
 
-        public virtual DateTime? Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public override AnimalMeasurements Initialize(Domain.AnimalMeasurements domain)
         {

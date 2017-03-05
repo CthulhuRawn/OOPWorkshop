@@ -8,16 +8,16 @@ namespace DTO
     public class TreatmentReport : Entity<TreatmentReport, Domain.TreatmentReport>
     {
         [ExistsInDB(typeof(Domain.Animal))]
-        public virtual Animal Animal{ get; set; }
-        public virtual IList<Treatment> Treatments { get; set; }
-        public virtual IList<Medication> Medications { get; set; }
-        public virtual IList<Vaccine> Vaccines { get; set; }
-        public virtual double TotalPrice { get; set; }
-        public virtual DateTime Date { get; set; }
-        public virtual AnimalMeasurements Measurements { get; set; }
-        public virtual string TreatmentSummary { get; set; }
-        public virtual string DoctorName { get; set; }
-        public virtual string DoctorPhone { get; set; }
+        public Animal Animal{ get; set; }
+        public IList<Treatment> Treatments { get; set; }
+        public IList<Medication> Medications { get; set; }
+        public IList<Vaccine> Vaccines { get; set; }
+        public double TotalPrice { get; set; }
+        public DateTime Date { get; set; }
+        public AnimalMeasurements Measurements { get; set; }
+        public string TreatmentSummary { get; set; }
+        public string DoctorName { get; set; }
+        public string DoctorPhone { get; set; }
 
         public override TreatmentReport Initialize(Domain.TreatmentReport domain)
         {

@@ -2,10 +2,10 @@
 {
     public class FinanceReport
     {
-        public virtual string Date{ get; set; }
+        public string Date{ get; set; }
 
-        public virtual int Count { get; set; }
+        public int Count { get; set; }
 
-        public virtual double Price { get; set; }
+        public double Price { get; set; }
     }
 }

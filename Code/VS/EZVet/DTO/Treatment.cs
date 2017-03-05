@@ -6,9 +6,9 @@ namespace DTO
     public class Treatment : Entity<Treatment, Domain.Treatment>
     {
         [MaxLength(30)]
-        public virtual string Name { get; set; }
-        public virtual double Price { get; set; }
-        public virtual DateTime Date { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public DateTime Date { get; set; }
 
         public override Treatment Initialize(Domain.Treatment domain)
         {

@@ -4,7 +4,7 @@
     {
         public abstract TDTO Initialize(TDomain domain);
 
-        public virtual TDTO ShallowInitialize(TDomain domain)
+        public TDTO ShallowInitialize(TDomain domain)
         {
             return null;
         }

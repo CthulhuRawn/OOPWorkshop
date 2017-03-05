@@ -5,12 +5,12 @@ namespace DTO
     public class Address : Entity<Address, Domain.Address>
     {
         [MaxLength(30)]
-        public virtual string Country { get; set; }
+        public string Country { get; set; }
         [MaxLength(50)]
-        public virtual string City { get; set; }
+        public string City { get; set; }
         [MaxLength(50)]
-        public virtual string StreetName { get; set; }
-        public virtual int StreetNumber { get; set; }
+        public string StreetName { get; set; }
+        public int StreetNumber { get; set; }
 
         public override Address Initialize(Domain.Address domain)
         {
@@ -23,7 +23,7 @@ namespace DTO
             return this;
         }
 
-        public virtual string ForUI()
+        public string ForUI()
         {
             return Country + ", " + City + ", " + StreetName + " " + StreetNumber;
         }

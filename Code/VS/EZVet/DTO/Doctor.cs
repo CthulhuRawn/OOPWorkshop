@@ -10,27 +10,27 @@ namespace DTO
     {
         [Key]
         [EmailAddress]
-        public virtual string Email { get; set; }
+        public string Email { get; set; }
 
-        public virtual string Password { get; set; }
-
-        [MaxLength(20)]
-        public virtual string FirstName { get; set; }
+        public string Password { get; set; }
 
         [MaxLength(20)]
-        public virtual string LastName { get; set; }
+        public string FirstName { get; set; }
+
+        [MaxLength(20)]
+        public string LastName { get; set; }
 
         [NotInFuture]
-        public virtual DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
-        public virtual Address Address { get; set; }
-        public virtual string DoctorCode { get; set; }
-        public virtual string AddressToDispaly { get; set; }
-        public virtual  string Notes { get; set; }
-        public virtual string OpeningHours { get; set; }
-        public virtual string Phone { get; set; }
-        public virtual IList<int> Types { get; set; }
-        public virtual IList<Recommendation> Recommendations { get; set; }
+        public Address Address { get; set; }
+        public string DoctorCode { get; set; }
+        public string AddressToDispaly { get; set; }
+        public  string Notes { get; set; }
+        public string OpeningHours { get; set; }
+        public string Phone { get; set; }
+        public IList<int> Types { get; set; }
+        public IList<Recommendation> Recommendations { get; set; }
 
         public override Doctor Initialize(Domain.Doctor domain)
         {

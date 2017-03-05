@@ -2,6 +2,6 @@
 {
     public class AnimalTypeReport : FinanceReport
     {
-        public virtual string AnimalType { get; set; }
+        public string AnimalType { get; set; }
     }
 }
