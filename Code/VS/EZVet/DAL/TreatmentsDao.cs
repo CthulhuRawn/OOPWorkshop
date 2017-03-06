@@ -119,7 +119,7 @@ namespace DAL
                     Date = DateTime.UtcNow,
                     TotalPrice =
                         treatment.Medications.Sum(x => x.Price) + treatment.Vaccines.Sum(x => x.Price) +
-                        treatment.Medications.Sum(x => x.Price),
+                        treatment.Treatments.Sum(x => x.Price),
                     Treatments = treatments,
                     Doctor = _doctorsDao.Get(cotnactId)
                 };

@@ -122,19 +122,20 @@ namespace DAL
 
         public IEnumerable<VisitsReport> GetVisitsReport(int? time, int doctorId, int ownerId)
         {
-            var isDoctorMode = doctorId < ownerId;
+            var isDoctorMode = doctorId > ownerId;
             time = time ?? 1;
             return _animalsDao.Query()
                 .Where(
                     x =>
                         (x.Doctor.Id == doctorId ||
-                        x.Owner.Id == ownerId) && (time == 1 && x.DateNextVisit < DateTime.UtcNow) ||
-                        (time == 2 && x.DateNextVisit > DateTime.UtcNow)).Select(x => new VisitsReport
+                         x.Owner.Id == ownerId) && ((time == 1 && x.DateNextVisit < DateTime.UtcNow) ||
+                                                    (time == 2 && x.DateNextVisit > DateTime.UtcNow)))
+                .Select(x => new VisitsReport
                 {
                     Date = x.DateNextVisit.Value,
                     AnimalName = x.Name,
-                    EntityName = isDoctorMode ? x.Doctor.GetName() : x.Owner.GetName(),
-                    EntityPhone = isDoctorMode ? x.Doctor.Phone : x.Owner.Phone
+                    EntityName = isDoctorMode ? x.Owner.GetName() : x.Doctor.GetName(),
+                    EntityPhone = isDoctorMode ? x.Owner.Phone : x.Doctor.Phone
                 }).ToList();
         }
     }

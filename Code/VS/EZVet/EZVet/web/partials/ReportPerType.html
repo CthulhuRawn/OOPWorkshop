@@ -60,10 +60,10 @@
                         <span class="sortorder" ng-show="propertyName === 'Date'" ng-class="{reverse: reverse}"></span>Date
                     </th>
                     <th ng-click="sortBy('AnimalType')">
-                        <span class="sortorder" ng-show="propertyName === 'AnimalType'" ng-class="{reverse: reverse}"></span>AnimalType
+                        <span class="sortorder" ng-show="propertyName === 'AnimalType'" ng-class="{reverse: reverse}"></span>Animal Type
                     </th>
                     <th ng-click="sortBy('Count')">
-                        <span class="sortorder" ng-show="propertyName === 'Count'" ng-class="{reverse: reverse}"></span>Number Of Usages
+                        <span class="sortorder" ng-show="propertyName === 'Count'" ng-class="{reverse: reverse}"></span>Number Of Visits
                     </th>
                     <th ng-click="sortBy('Price')">
                         <span class="sortorder" ng-show="propertyName === 'Price'" ng-class="{reverse: reverse}"></span>Total Price
@@ -72,7 +72,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="row in rows | orderBy:propertyName:reverse">
-                    <td>{{row.Date}}</td>
+                    <td><strong>{{row.Date}}</strong></td>
                     <td>{{row.AnimalType}}</td>
                     <td>{{row.Count}}</td>
                     <td>{{row.Price}}$</td>
