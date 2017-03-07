@@ -4,7 +4,9 @@ using System.Web;
 using System.Web.Http;
 using DAL;
 using DTO;
+using DTO.Enums;
 using EZVet.Filters;
+using FluentNHibernate.Utils;
 using Animal = DTO.Animal;
 
 namespace EZVet.Controllers
@@ -20,13 +22,13 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/animals/myAnimals")]
-        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [AuthorizeRoles(  Roles.Owner,Roles.Doctor)]
         public List<Animal> MyAnimals(int? id = null, string animalName = "", string doctorName = "", string ownerName = "", int? type = null, int? gender = null)
         {
             var cookieValues = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
             var doctorId = -1;
             var ownerId = -1;
-            if (cookieValues[1] == Consts.Roles.Doctor)
+            if (cookieValues[1] == Roles.Doctor.ToString())
             {
                 doctorId = int.Parse(cookieValues[0]);
             }
@@ -40,7 +42,7 @@ namespace EZVet.Controllers
 
         // GET: api/Animals/5
         [HttpGet]
-        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [AuthorizeRoles(  Roles.Owner,Roles.Doctor)]
         public Animal Get(int id)
         {
             return _animalsDao.GetAnimal(id);
@@ -48,7 +50,7 @@ namespace EZVet.Controllers
 
         // POST: api/Animals
         [HttpPost]
-        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [AuthorizeRoles(  Roles.Owner,Roles.Doctor)]
         [TransactionFilter]
         public Animal Save(Animal animal)
         {

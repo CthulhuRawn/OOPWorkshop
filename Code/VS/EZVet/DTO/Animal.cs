@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DTO.Enums;
 using DTO.Validators;
 
 namespace DTO
@@ -10,11 +11,11 @@ namespace DTO
         public string Name { get; set; }
         public string DoctorName { get; set; }
         public string OwnerName { get; set; }
-        [IsEnumOfType(typeof(Consts.Decodes.AnimalType))]
+        [IsEnumOfType(typeof(AnimalType))]
         public int Type { get; set; }
         [NotInFuture]
         public DateTime DateOfBirth { get; set; }
-        [IsEnumOfType(typeof(Consts.Decodes.Gender))]
+        [IsEnumOfType(typeof(Gender))]
         public int Gender { get; set; }
         [NotInPast(AllowNulls = true)]
         public DateTime? NextVisit { get; set; }
@@ -47,17 +48,17 @@ namespace DTO
             OwnerPhone = domain.Owner.Phone;
             Vaccines =
                 domain.Orders?.SelectMany(x => x.Treatments)
-                    .Where(x => x.Type.Id == (int) Consts.Decodes.TreatmentType.Vaccine)
+                    .Where(x => x.Type.Id == (int) TreatmentType.Vaccine)
                     .Select(x => new Vaccine().Initialize(x))
                     .ToList();
             Medications =
                 domain.Orders?.SelectMany(x => x.Treatments)
-                    .Where(x => x.Type.Id == (int) Consts.Decodes.TreatmentType.Medication)
+                    .Where(x => x.Type.Id == (int) TreatmentType.Medication)
                     .Select(x => new Medication().Initialize(x))
                     .ToList();
             Treatments =
                 domain.Orders?.SelectMany(x => x.Treatments)
-                    .Where(x => x.Type.Id == (int) Consts.Decodes.TreatmentType.Treatment)
+                    .Where(x => x.Type.Id == (int) TreatmentType.Treatment)
                     .Select(x => new Treatment().Initialize(x))
                     .ToList();
             TreatmentSummaries = domain.Orders?.Select(x => new TreatmentReport().ShallowInitialize(x));

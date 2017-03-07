@@ -2,6 +2,7 @@
 using System.Web.Http;
 using DAL;
 using DTO;
+using DTO.Enums;
 using EZVet.Filters;
 
 namespace EZVet.Controllers
@@ -16,7 +17,7 @@ namespace EZVet.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles =  Consts.Roles.Doctor)]
+        [AuthorizeRoles(Roles.Doctor)]
         [TransactionFilter]
         public TreatmentReport Save(TreatmentReport treatmentReport)
         {
@@ -25,7 +26,7 @@ namespace EZVet.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles =  Consts.Roles.Doctor + "," + Consts.Roles.Owner)]
+        [AuthorizeRoles(Roles.Doctor, Roles.Owner)]
         public TreatmentReport Get(int petId, int treatmentId)
         {
             return _treatmentsDao.Get(treatmentId, petId);

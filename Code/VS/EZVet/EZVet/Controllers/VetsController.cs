@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Http;
 using DAL;
 using DTO;
+using DTO.Enums;
 using EZVet.Filters;
 
 namespace EZVet.Controllers
@@ -21,7 +22,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/vets/all")]
-        [Authorize(Roles =  Consts.Roles.Owner)]
+        [AuthorizeRoles(  Roles.Owner)]
         public List<Doctor> All(string firstName = null, string lastName = null, string address = null, int? id = null)
         {
             return _doctorsDao.Search(firstName, lastName, address, id).ToList();
@@ -29,7 +30,7 @@ namespace EZVet.Controllers
 
         [HttpPut]
         [Route("api/vets/assign")]
-        [Authorize(Roles =  Consts.Roles.Owner)]
+        [AuthorizeRoles(  Roles.Owner)]
         [TransactionFilter]
         public void Assign(int vetId, int petId)
         {
@@ -37,7 +38,7 @@ namespace EZVet.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [AuthorizeRoles(  Roles.Owner,Roles.Doctor)]
         public Doctor Get(int? vetId)
         {
             if(vetId.HasValue)
@@ -46,7 +47,7 @@ namespace EZVet.Controllers
             var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
 
             int vetIdFromCookie;
-            if (cookieValue[1] == Consts.Roles.Doctor && int.TryParse(cookieValue[0], out vetIdFromCookie))
+            if (cookieValue[1] == Roles.Doctor.ToString() && int.TryParse(cookieValue[0], out vetIdFromCookie))
             {
                return _doctorsDao.GetDoctor(vetIdFromCookie);
             }
@@ -55,7 +56,7 @@ namespace EZVet.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles =  Consts.Roles.Doctor)]
+        [AuthorizeRoles(  Roles.Doctor)]
         [TransactionFilter]
         public Doctor Save(Doctor doctor)
         {
@@ -64,7 +65,7 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/vets/saveRecommendation")]
-        [Authorize(Roles =  Consts.Roles.Owner)]
+        [AuthorizeRoles(  Roles.Owner)]
         [TransactionFilter]
         public Doctor SaveRecommendation([FromBody]Recommendation recommendation, [FromUri]int id)
         {

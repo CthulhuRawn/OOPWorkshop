@@ -10,6 +10,7 @@ using NHibernate.Tool.hbm2ddl;
 using Ninject;
 using Ninject.Activation;
 using Ninject.Web.Common;
+using Ninject.Extensions.Conventions;
 
 namespace EZVet.Common
 {
@@ -28,12 +29,12 @@ namespace EZVet.Common
 
         private void ConfigureDaos(IKernel container)
         {
-            container.Bind<ITreatmentsDao>().To<TreatmentsDao>();
-            container.Bind<IAnimalsDao>().To<AnimalsDao>();
-            container.Bind<IOwnersDao>().To<OwnersDao>();
-            container.Bind<IDoctorsDao>().To<DoctorsDao>();
-            container.Bind<IDecodesDao>().To<DecodesDao>();
-            container.Bind<IReportsDao>().To<ReportsDao>();
+            container.Bind(x =>
+            {
+                x.FromAssemblyContaining<ITreatmentsDao>()
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
         }
 
         private void ConfigureNhibernate(IKernel container)
@@ -45,14 +46,15 @@ namespace EZVet.Common
 
         private ISessionFactory CreateSessionFactory(IContext context)
         {
-            var absoluteDbPath = HttpContext.Current.Server.MapPath(Consts.DB_PATH);
+            var dbPath = "~/App_Data/db.sqlite";
+            var absoluteDbPath = HttpContext.Current.Server.MapPath(dbPath);
 
             return Fluently.Configure()
-                    .Database(SQLiteConfiguration.Standard.UsingFile(absoluteDbPath))
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<OwnerMap>())
-                    .CurrentSessionContext("web")
-                    .ExposeConfiguration(conf => new SchemaUpdate(conf).Execute(false, true))
-                    .BuildSessionFactory();
+                .Database(SQLiteConfiguration.Standard.UsingFile(absoluteDbPath))
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<OwnerMap>())
+                .CurrentSessionContext("web")
+                .ExposeConfiguration(conf => new SchemaUpdate(conf).Execute(false, true))
+                .BuildSessionFactory();
         }
 
         private ISession CreateSession(IContext context)

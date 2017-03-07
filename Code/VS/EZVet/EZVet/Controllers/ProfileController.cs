@@ -2,6 +2,7 @@
 using System.Web.Http;
 using DAL;
 using DTO;
+using DTO.Enums;
 using EZVet.Filters;
 
 namespace EZVet.Controllers
@@ -19,30 +20,33 @@ namespace EZVet.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [AuthorizeRoles(Roles.Owner, Roles.Doctor)]
         [TransactionFilter]
         public void Update(PersonLogin updateData)
         {
             var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
             var userId = int.Parse(cookieValue[0]);
-            switch (cookieValue[1])
+            if (cookieValue[1] == Roles.Doctor.ToString())
             {
-                case Consts.Roles.Doctor:
-                    _doctorsDao.UpdateProfile(userId, updateData);
-                    break;
-                case Consts.Roles.Owner:
-                    _ownersDao.UpdateProfile(userId, updateData);
-                    break;
+
+                _doctorsDao.UpdateProfile(userId, updateData);
             }
+            else
+            {
+                _ownersDao.UpdateProfile(userId, updateData);
+
+            }
+
         }
 
         [HttpGet]
-        [Authorize(Roles =  Consts.Roles.Owner + "," + Consts.Roles.Doctor)]
+        [AuthorizeRoles(Roles.Owner, Roles.Doctor)]
         public object Get()
         {
             var cookieValue = HttpContext.Current.Request.Cookies["UserId"].Value.Split(':');
             var userId = int.Parse(cookieValue[0]);
-            return cookieValue[1] == Consts.Roles.Doctor ? (object)new Doctor().Initialize(_doctorsDao.Get(userId))
+            return cookieValue[1] == Roles.Doctor.ToString()
+                ? (object) new Doctor().Initialize(_doctorsDao.Get(userId))
                 : new Owner().Initialize(_ownersDao.Get(userId));
 
         }

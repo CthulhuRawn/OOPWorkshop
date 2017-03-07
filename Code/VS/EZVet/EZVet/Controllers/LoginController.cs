@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Http;
 using DAL;
 using DTO;
+using DTO.Enums;
 using NHibernate;
 using Doctor = Domain.Doctor;
 
@@ -35,7 +36,7 @@ namespace EZVet.Controllers
 
             if (user != null)
             {
-                role = Consts.Roles.Owner;
+                role = Roles.Owner.ToString();
                 userId = user.Id;
             }
 
@@ -43,11 +44,11 @@ namespace EZVet.Controllers
 
             if (employee != null)
             {
-                role = Consts.Roles.Doctor;
+                role = Roles.Doctor.ToString();
                 userId = employee.Id;
             }
 
-            role = role ?? Consts.Roles.None;
+            role = role ?? Roles.None.ToString();
 
             var cookie = new HttpCookie("userId", userId + ":" + role);
             cookie.Expires = DateTime.MaxValue;

@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using DTO;
+using DTO.Enums;
 using EZVet.Controllers;
 using NHibernate;
 using Doctor = Domain.Doctor;
@@ -64,7 +65,7 @@ namespace EZVet.Filters
 
             if (user != null)
             { 
-                AuthorizationSucceed(user.Id, Consts.Roles.Owner);
+                AuthorizationSucceed(user.Id, Roles.Owner.ToString());
                 authorized = true;
             }
 
@@ -72,7 +73,7 @@ namespace EZVet.Filters
 
             if (doctor != null)
             {
-                AuthorizationSucceed(doctor.Id, Consts.Roles.Doctor);
+                AuthorizationSucceed(doctor.Id, Roles.Doctor.ToString());
                 authorized = true;
             }
 

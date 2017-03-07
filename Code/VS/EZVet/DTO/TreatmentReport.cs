@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DTO.Enums;
 using DTO.Validators;
 
 namespace DTO
@@ -37,9 +38,9 @@ namespace DTO
         {
             Id = domain.Id;
             Date = domain.Date;
-            Treatments = domain.Treatments.Where(x => x.Type.Id == (int)Consts.Decodes.TreatmentType.Treatment).Select(x => new Treatment().Initialize(x)).ToList();
-            Vaccines = domain.Treatments.Where(x => x.Type.Id == (int)Consts.Decodes.TreatmentType.Vaccine).Select(x => new Vaccine().Initialize(x)).ToList();
-            Medications = domain.Treatments.Where(x => x.Type.Id == (int)Consts.Decodes.TreatmentType.Medication).Select(x => new Medication().Initialize(x)).ToList();
+            Treatments = domain.Treatments.Where(x => x.Type.Id == (int)TreatmentType.Treatment).Select(x => new Treatment().Initialize(x)).ToList();
+            Vaccines = domain.Treatments.Where(x => x.Type.Id == (int)TreatmentType.Vaccine).Select(x => new Vaccine().Initialize(x)).ToList();
+            Medications = domain.Treatments.Where(x => x.Type.Id == (int)TreatmentType.Medication).Select(x => new Medication().Initialize(x)).ToList();
             Measurements = new AnimalMeasurements().Initialize(domain.AnimalMeasurements);
             TreatmentSummary = domain.Summary;
             TotalPrice = domain.Treatments.Select(x => x.Price).Sum();

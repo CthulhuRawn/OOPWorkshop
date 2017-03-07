@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain;
 using DTO;
+using DTO.Enums;
 using NHibernate;
 using AnimalMeasurements = Domain.AnimalMeasurements;
 using Treatment = Domain.Treatment;
@@ -59,7 +60,7 @@ namespace DAL
                             Name = x.Name,
                             Dose = x.Dose,
                             Price = x.Price,
-                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) Consts.Decodes.TreatmentType.Medication),
+                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Medication),
                             ContainingTreatment = report
                         });
 
@@ -70,7 +71,7 @@ namespace DAL
                         {
                             Name = x.Name,
                             Price = x.Price,
-                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) Consts.Decodes.TreatmentType.Treatment),
+                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
                             ContainingTreatment = report
                         });
 
@@ -81,7 +82,7 @@ namespace DAL
                         {
                             Name = x.Name,
                             Price = x.Price,
-                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) Consts.Decodes.TreatmentType.Vaccine),
+                            Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine),
                             ContainingTreatment = report
                         });
 
@@ -129,7 +130,7 @@ namespace DAL
                     Name = x.Name,
                     Dose = x.Dose,
                     Price = x.Price,
-                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) Consts.Decodes.TreatmentType.Medication),
+                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Medication),
                     ContainingTreatment = report
                 }));
 
@@ -137,7 +138,7 @@ namespace DAL
                 {
                     Name = x.Name,
                     Price = x.Price,
-                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) Consts.Decodes.TreatmentType.Vaccine),
+                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Vaccine),
                     ContainingTreatment = report
                 }));
 
@@ -145,7 +146,7 @@ namespace DAL
                 {
                     Name = x.Name,
                     Price = x.Price,
-                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) Consts.Decodes.TreatmentType.Treatment),
+                    Type = _decodesDao.Get<TreatmentTypeDecode>((int) TreatmentType.Treatment),
                     ContainingTreatment = report
                 }));
                 report.Summary = treatment.TreatmentSummary;

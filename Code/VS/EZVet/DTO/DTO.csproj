@@ -70,9 +70,12 @@
     <Compile Include="AnimalMeasurements.cs" />
     <Compile Include="AnimalNameReport.cs" />
     <Compile Include="AnimalTypeReport.cs" />
-    <Compile Include="Consts.cs" />
     <Compile Include="Doctor.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="Enums\Roles.cs" />
+    <Compile Include="Enums\TreatmentType.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\AnimalType.cs" />
     <Compile Include="FinanceReport.cs" />
     <Compile Include="ItemUsageReport.cs" />
     <Compile Include="LoginResponse.cs" />
