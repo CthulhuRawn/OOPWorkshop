@@ -22,7 +22,7 @@ namespace EZVet.Controllers
 
         [HttpGet]
         [Route("api/vets/all")]
-        [AuthorizeRoles(  Roles.Owner)]
+        [AuthorizeRoles(Roles.Owner)]
         public List<Doctor> All(string firstName = null, string lastName = null, string address = null, int? id = null)
         {
             return _doctorsDao.Search(firstName, lastName, address, id).ToList();
@@ -30,7 +30,7 @@ namespace EZVet.Controllers
 
         [HttpPut]
         [Route("api/vets/assign")]
-        [AuthorizeRoles(  Roles.Owner)]
+        [AuthorizeRoles(Roles.Owner)]
         [TransactionFilter]
         public void Assign(int vetId, int petId)
         {
@@ -38,7 +38,7 @@ namespace EZVet.Controllers
         }
 
         [HttpGet]
-        [AuthorizeRoles(  Roles.Owner,Roles.Doctor)]
+        [AuthorizeRoles(Roles.Owner, Roles.Doctor)]
         public Doctor Get(int? vetId)
         {
             if(vetId.HasValue)
@@ -56,7 +56,7 @@ namespace EZVet.Controllers
         }
 
         [HttpPost]
-        [AuthorizeRoles(  Roles.Doctor)]
+        [AuthorizeRoles(Roles.Doctor)]
         [TransactionFilter]
         public Doctor Save(Doctor doctor)
         {
@@ -65,7 +65,7 @@ namespace EZVet.Controllers
 
         [HttpPost]
         [Route("api/vets/saveRecommendation")]
-        [AuthorizeRoles(  Roles.Owner)]
+        [AuthorizeRoles(Roles.Owner)]
         [TransactionFilter]
         public Doctor SaveRecommendation([FromBody]Recommendation recommendation, [FromUri]int id)
         {
